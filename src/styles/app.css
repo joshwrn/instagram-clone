@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+html {
+  font-family: helvetica;
+}
