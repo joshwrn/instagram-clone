@@ -1,6 +1,19 @@
+:root {
+  --primary-font-color: rgb(0, 0, 0);
+  --secondary-font-color: rgb(160, 160, 160);
+  --nav-background-color: rgba(255, 255, 255, 0.733);
+  --primary-background-color: rgb(255, 255, 255);
+
+  --primary-border: 1px solid rgba(41, 41, 41, 0);
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 textarea:focus,
@@ -11,7 +24,17 @@ input:focus {
 button:focus {
   outline: 0;
 }
+/* 
+@font-face {
+  font-family: blonde;
+  src: url(../assets/fonts/AvantageSmall.ttf);
+} */
 
 html {
   font-family: helvetica;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--primary-font-color);
+  background-color: var(--primary-background-color);
 }

@@ -7,30 +7,114 @@
   border: 0px solid rgba(59, 59, 59, 0.158);
   border-radius: 1em;
   height: 30em;
+  position: relative;
 }
 
-/* profile */
+#sidebar-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 25em;
+  align-items: center;
+}
+
+/*+ profile */
 #sidebar-profile-container {
-  width: 100%;
-  transition: transform 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #sidebar-profile-container:hover {
-  transform: translateY(-0.25em);
+}
+
+#sidebar-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5em;
+  height: 5em;
+  transition: transform 0.25s;
   cursor: pointer;
+}
+
+#sidebar-image-container:hover {
+  transform: translateY(-0.1em);
 }
 
 #sidebar-profile-img {
   border-radius: 100%;
-  width: 6em;
+  width: 5em;
   position: absolute;
 }
 
 #sidebar-profile-img-blur {
   border-radius: 100%;
-  width: 6em;
+  width: 5em;
   position: absolute;
   filter: blur(1em);
   opacity: 0.75;
   z-index: -3;
+}
+
+/*+ user info */
+
+#sidebar-name-container {
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+#sidebar-username {
+  color: var(--secondary-font-color);
+}
+
+/*+ user stats */
+
+#sidebar-stats {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 1em 0 0 0em;
+}
+
+.sidebar-stat {
+  margin: 0 0.5em;
+  font-size: 0.85rem;
+  color: var(--secondary-font-color);
+  cursor: pointer;
+}
+
+.stat-number {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--primary-font-color);
+}
+
+/*+ links */
+
+#sidebar-container > .info-links {
+  display: flex;
+  margin: 1.5em 0 0 0;
+  gap: 0 0.75em;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+#sidebar-container > .info-links > .link {
+  color: rgb(180, 180, 180);
+  font-size: 0.65rem;
+}
+
+#sidebar-container > .footer {
+  display: flex;
+  margin: 0.5em 0 0 0;
+  justify-content: center;
+  width: 100%;
+}
+
+#sidebar-container > .footer > .copyright {
+  margin: 1em 0 0 0;
+  color: rgb(180, 180, 180);
+  font-size: 0.65rem;
 }

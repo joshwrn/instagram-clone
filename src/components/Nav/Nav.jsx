@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
@@ -11,18 +12,22 @@ const Nav = () => {
     <div id="nav">
       <div id="nav-inner">
         <div id="nav-logo">
-          <h2>Logo</h2>
+          <h2>Instagram</h2>
         </div>
         <div id="nav-search">
-          <form>
+          <form autoComplete="off">
             <input id="nav-search-input" type="text" placeholder="Search" />
           </form>
         </div>
         <div id="nav-icons">
-          <HomeRoundedIcon className="nav-icon" />
+          <NavLink exact to="/">
+            <HomeRoundedIcon className="nav-icon" />
+          </NavLink>
           <EmailRoundedIcon className="nav-icon nav-icon-large" />
           <FavoriteRoundedIcon className="nav-icon nav-icon-large" />
-          <PersonRoundedIcon className="nav-icon" />
+          <NavLink exact to="/profile">
+            <PersonRoundedIcon className="nav-icon" />
+          </NavLink>
         </div>
       </div>
     </div>
