@@ -81,6 +81,11 @@
 
 /*+ image */
 
+.card-image-link {
+  width: inherit;
+  height: inherit;
+}
+
 .card-image {
   position: absolute;
   width: inherit;
@@ -94,7 +99,7 @@
 .card-image-blur {
   position: absolute;
   filter: blur(2em);
-  opacity: 0.75;
+  opacity: 0.35;
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -154,7 +159,7 @@
   font-size: 0.85rem;
 }
 
-.comment {
+.card-comments > .comment {
   margin: 0.35em 0;
 }
 

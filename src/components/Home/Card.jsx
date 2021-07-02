@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../styles/card.css';
+import './styles/card.css';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { Link } from 'react-router-dom';
 import {
   IoShareOutline,
   IoHeartOutline,
-  IoHeart,
   IoChatbubbleOutline,
   IoSendOutline,
   IoShareSocialOutline,
@@ -58,7 +58,9 @@ const Card = ({ src }) => {
             <IoSendOutline className="send" />
           </div>
         </div>
-        <img className="card-image" src={src} alt="" />
+        <Link className="card-image-link" to="/Post">
+          <img className="card-image" src={src} alt="" />
+        </Link>
       </div>
       <img className="card-image-blur" src={src} alt="" />
     </div>

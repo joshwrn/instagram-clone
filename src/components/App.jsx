@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
 import Profile from './Profile/Profile.jsx';
+import Post from './Post/Post';
 
 function App() {
   const BrowserRouter = require('react-router-dom').BrowserRouter;
@@ -19,8 +20,12 @@ function App() {
               <Home />
             </Route>
             {/* Profile */}
+            {/* exact path to /profile/uid */}
             <Route exact path="/profile">
               <Profile />
+            </Route>
+            <Route path="/post">
+              <Post />
             </Route>
           </Switch>
         </div>

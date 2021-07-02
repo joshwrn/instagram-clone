@@ -1,9 +1,20 @@
 import React from 'react';
-import '../../styles/profile.css';
+import ProfileSidebar from './ProfileSidebar';
+import ProfileFeed from './ProfileFeed';
+import './styles/profile.css';
+import jupiter from '../../assets/misc/jupiter.jpg';
+import {
+  IoShareOutline,
+  IoHeartOutline,
+  IoChatbubbleOutline,
+  IoSendOutline,
+  IoShareSocialOutline,
+} from 'react-icons/io5';
 
 const Profile = () => {
   return (
     <div id="profile">
+      {/* banner */}
       <div id="profile-header">
         <img
           id="profile-hero"
@@ -11,9 +22,28 @@ const Profile = () => {
           alt=""
         />
       </div>
-      <div id="profile-picture"></div>
+      <div id="profile-outer">
+        {/* top bar*/}
+        <div id="profile-top-section">
+          <div id="profile-img-container">
+            <img id="profile-img" src={jupiter} alt="" />
+            <img id="profile-img-blur" src={jupiter} alt="" />
+          </div>
+          <div className="right">
+            <div id="icon-row">
+              <button className="follow">Follow</button>
+              <button className="message">
+                <IoSendOutline className="send" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="profile-inner">
-        <div id="feed"></div>
+        {/* sidebar */}
+        <ProfileSidebar />
+        {/* posts */}
+        <ProfileFeed />
       </div>
     </div>
   );

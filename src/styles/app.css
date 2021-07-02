@@ -1,6 +1,6 @@
 :root {
   --primary-font-color: rgb(0, 0, 0);
-  --secondary-font-color: rgb(160, 160, 160);
+  --secondary-font-color: rgb(136, 136, 136);
   --nav-background-color: rgba(255, 255, 255, 0.733);
   --primary-background-color: rgb(255, 255, 255);
 
@@ -14,6 +14,15 @@
 
 a {
   text-decoration: none;
+  color: var(--primary-font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--primary-font-color);
 }
 
 textarea:focus,

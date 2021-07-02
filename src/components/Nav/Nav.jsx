@@ -1,19 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
-import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import { NavLink, Link } from 'react-router-dom';
+import {
+  IoHomeOutline,
+  IoChatbubbleOutline,
+  IoHeartOutline,
+  IoPersonOutline,
+} from 'react-icons/io5';
+import logo from '../../assets/img/logo/logo-2.png';
 
-import '../../styles/nav.css';
+import './styles/nav.css';
 
 const Nav = () => {
   return (
     <div id="nav">
       <div id="nav-inner">
-        <div id="nav-logo">
-          <h2>Instagram</h2>
-        </div>
+        <Link exact to="/">
+          <div id="nav-logo">
+            <img id="nav-logo-img" src={logo} alt="" />
+            <h2>Instagram</h2>
+          </div>
+        </Link>
         <div id="nav-search">
           <form autoComplete="off">
             <input id="nav-search-input" type="text" placeholder="Search" />
@@ -21,12 +27,12 @@ const Nav = () => {
         </div>
         <div id="nav-icons">
           <NavLink exact to="/">
-            <HomeRoundedIcon className="nav-icon" />
+            <IoHomeOutline className="nav-icon" />
           </NavLink>
-          <EmailRoundedIcon className="nav-icon nav-icon-large" />
-          <FavoriteRoundedIcon className="nav-icon nav-icon-large" />
+          <IoChatbubbleOutline className="nav-icon" />
+          <IoHeartOutline className="nav-icon" />
           <NavLink exact to="/profile">
-            <PersonRoundedIcon className="nav-icon" />
+            <IoPersonOutline className="nav-icon" />
           </NavLink>
         </div>
       </div>

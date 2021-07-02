@@ -45,16 +45,20 @@
 #sidebar-profile-img {
   border-radius: 100%;
   width: 5em;
+  height: 5em;
   position: absolute;
+  object-fit: cover;
 }
 
 #sidebar-profile-img-blur {
   border-radius: 100%;
   width: 5em;
+  height: 5em;
   position: absolute;
   filter: blur(1em);
   opacity: 0.75;
   z-index: -3;
+  object-fit: cover;
 }
 
 /*+ user info */

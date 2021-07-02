@@ -1,0 +1,114 @@
+#profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-hero {
+  position: relative;
+  width: 100%;
+  height: 20em;
+  object-fit: cover;
+  display: block;
+  z-index: -2;
+  object-position: center;
+}
+
+#profile-outer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 975px;
+  width: 100%;
+}
+
+#profile-inner {
+  display: flex;
+  max-width: 975px;
+  width: 100%;
+}
+
+#profile-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 5em;
+}
+
+#profile-img-container {
+}
+
+#profile-img {
+  position: absolute;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  width: 10em;
+  cursor: pointer;
+}
+
+#profile-img-blur {
+  position: absolute;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  width: 10em;
+  filter: blur(1em);
+  opacity: 0.75;
+  z-index: -3;
+}
+
+#profile-top-section > .right {
+  width: fit-content;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#profile-top-section > .right > #icon-row {
+  display: flex;
+  gap: 1em;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+#profile-top-section > .right > #icon-row > .follow {
+  border: none;
+  box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 0 2em;
+  height: 2.25em;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--primary-border);
+}
+
+#profile-top-section > .right > #icon-row > .follow:hover {
+  box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
+}
+
+#profile-top-section > .right > #icon-row > .message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  height: 2.25em;
+  width: 2.25em;
+  font-size: 1.2rem;
+  border-radius: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--primary-border);
+}
+
+#profile-top-section > .right > #icon-row > .message:hover {
+  box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
+}
