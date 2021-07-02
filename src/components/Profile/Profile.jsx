@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileSidebar from './ProfileSidebar';
 import ProfileFeed from './ProfileFeed';
-import './styles/profile.css';
+import '../../styles/profile/profile.css';
 import jupiter from '../../assets/misc/jupiter.jpg';
 import {
   IoShareOutline,

@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/sidebar.css';
+import '../../styles/home/home__sidebar.css';
 import jupiter from '../../assets/misc/jupiter.jpg';
 import { Link } from 'react-router-dom';
 

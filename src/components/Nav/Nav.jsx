@@ -8,7 +8,7 @@ import {
 } from 'react-icons/io5';
 import logo from '../../assets/img/logo/logo-2.png';
 
-import './styles/nav.css';
+import '../../styles/nav/nav.css';
 
 const Nav = () => {
   return (

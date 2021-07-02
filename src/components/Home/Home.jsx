@@ -1,7 +1,7 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import Card from './Card.jsx';
-import './styles/home.css';
+import Sidebar from './HomeSidebar';
+import Card from './HomeCard.jsx';
+import '../../styles/home/home.css';
 import unicorn from '../../assets/img/cards/unicorn.jpg';
 
 const Home = () => {

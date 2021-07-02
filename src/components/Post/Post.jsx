@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/post.css';
+import '../../styles/post/post.css';
 import { Link } from 'react-router-dom';
 import profilePic from '../../assets/misc/toa-heftiba-YCi4c79ZDIE-unsplash.jpg';
 import unicorn from '../../assets/img/cards/unicorn.jpg';

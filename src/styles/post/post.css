@@ -18,6 +18,7 @@
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
   overflow: hidden;
   border-radius: 1em;
+  border: var(--primary-border);
 }
 
 #post-image {
@@ -131,8 +132,6 @@
   width: inherit;
   height: 7em;
   padding: 0em 1.25em;
-  background-color: var(--primary-background-color);
-  z-index: 3;
   bottom: 0;
   box-sizing: border-box;
 }

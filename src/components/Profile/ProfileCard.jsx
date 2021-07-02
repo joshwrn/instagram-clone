@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/profile-card.css';
+import '../../styles/profile/profile__card.css';
 import { Link } from 'react-router-dom';
 
 const ProfileCard = ({ src }) => {

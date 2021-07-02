@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileCard from './ProfileCard';
-import './styles/profile-feed.css';
+import '../../styles/profile/profile__feed.css';
 import unicorn from '../../assets/img/cards/unicorn.jpg';
 
 const ProfileFeed = () => {

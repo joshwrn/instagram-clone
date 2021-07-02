@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/card.css';
+import '../../styles/home/home__card.css';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Link } from 'react-router-dom';
 import {

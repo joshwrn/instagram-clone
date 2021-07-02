@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/profile-sidebar.css';
+import '../../styles/profile/profile__sidebar.css';
 
 const ProfileSidebar = () => {
   return (
