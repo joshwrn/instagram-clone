@@ -11,7 +11,7 @@
 }
 
 /*@ Contain main overflow */
-.card-container {
+.card__container {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -21,7 +21,7 @@
 
 /*+ card top and profile picture */
 
-.card-header {
+.card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,11 +34,11 @@
   padding: 1.5em;
 }
 
-.card-header > .left {
+.card__header > .left {
   display: flex;
 }
 
-.card-header > .right {
+.card__header > .right {
   display: flex;
   height: 100%;
   align-items: center;
@@ -49,7 +49,7 @@
 }
 
 /*# card profile picture */
-.card-profile-picture {
+.card__profile-picture {
   border-radius: 100%;
   height: 2.25em;
   width: 2.25em;
@@ -60,20 +60,20 @@
 }
 
 /* card user info */
-.card-user-info {
+.card__user-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 1em;
 }
 
-.card-display-name {
+.card__display-name {
   font-weight: bold;
   font-size: 0.9em;
   cursor: pointer;
 }
 
-.card-username {
+.card__username {
   color: var(--secondary-font-color);
   font-size: 0.85em;
   cursor: pointer;
@@ -81,12 +81,12 @@
 
 /*+ image */
 
-.card-image-link {
+.card__image-link {
   width: inherit;
   height: inherit;
 }
 
-.card-image {
+.card__image {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -96,7 +96,7 @@
   cursor: pointer;
 }
 
-.card-image-blur {
+.card__image-blur {
   position: absolute;
   filter: blur(2em);
   opacity: 0.35;
@@ -108,8 +108,8 @@
   z-index: -2;
 }
 
-/*+ card footer */
-.card-footer {
+/*+ card__footer */
+.card__footer {
   position: absolute;
   width: 100%;
   height: 12em;
@@ -120,18 +120,18 @@
   box-sizing: border-box;
 }
 
-.card-footer > .first-child {
+.card__footer > .first-child {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card-footer > .first-child > .left > .card-icon {
+.card__footer > .first-child > .left > .card__icon {
   margin: 0 0.25em 0 0;
 }
 
-.card-icon {
+.card__icon {
   cursor: pointer;
 }
 
@@ -140,7 +140,7 @@
   stroke: red;
 }
 
-.card-likes {
+.card__likes {
   cursor: pointer;
   margin: 0.5rem 0;
   font-weight: bold;
@@ -149,28 +149,28 @@
 
 /*+ comments */
 
-.card-comments > .view-all {
+.card__comments > .view-all {
   color: var(--secondary-font-color);
   margin: 0 0 0.35rem 0;
   cursor: pointer;
 }
 
-.card-comments {
+.card__comments {
   font-size: 0.85rem;
 }
 
-.card-comments > .comment {
+.card__comments > .comment {
   margin: 0.35em 0;
 }
 
-.card-comments > .comment > .comment-user {
+.card__comments > .comment > .comment__user {
   font-weight: bold;
   cursor: pointer;
 }
 
 /*+ comment input */
 
-.card-footer > .comment-box {
+.card__footer > .comment-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -182,11 +182,11 @@
   padding-top: 0.65em;
 }
 
-.card-footer > .comment-box > .comment-form {
+.card__footer > .comment-box > .comment__form {
   width: 100%;
 }
 
-.card-footer > .comment-box > .comment-form > .input-box {
+.card__footer > .comment-box > .comment__form > .input-box {
   width: 100%;
   text-align: left;
   border: 0px solid rgba(124, 124, 124, 0);
@@ -194,6 +194,6 @@
   color: var(--primary-font-color);
 }
 
-.card-footer > .comment-box > .send {
+.card__footer > .comment-box > .send {
   cursor: pointer;
 }

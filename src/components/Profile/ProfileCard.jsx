@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 const ProfileCard = ({ src }) => {
   return (
-    <div className="profile-card">
-      <div className="profile-card-container">
-        <Link className="card-image-link" to="/Post">
-          <img className="profile-card-image" src={src} alt="" />{' '}
+    <div className="profile__card">
+      <div className="profile__card__container">
+        <Link className="profile__card__image-link" to="/Post">
+          <img className="profile__card__image" src={src} alt="" />{' '}
         </Link>
       </div>
-      <img className="profile-card-image-blur" src={src} alt="" />
+      <img className="profile__card__image-blur" src={src} alt="" />
     </div>
   );
 };

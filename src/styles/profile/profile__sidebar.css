@@ -1,4 +1,4 @@
-#profile-sidebar {
+#profile__sidebar {
   display: flex;
   flex-direction: column;
   width: 15rem;
@@ -6,45 +6,45 @@
   gap: 1em;
 }
 
-#profile-sidebar > .user-names {
+#profile__sidebar > .user-names {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
 }
 
-#profile-sidebar > .user-names > .display-name {
+#profile__sidebar > .user-names > .display-name {
   color: var(--primary-font-color);
 }
 
-#profile-sidebar > .user-names > .username {
+#profile__sidebar > .user-names > .username {
   color: var(--secondary-font-color);
 }
 
-#profile-sidebar > .user-info {
+#profile__sidebar > .user-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 
-#profile-sidebar > .user-info > .followers-container > .followers {
+#profile__sidebar > .user-info > .followers-container > .followers {
   color: var(--secondary-font-color);
   font-size: 0.9rem;
 }
-#profile-sidebar > .user-info > .following-container > .following {
+#profile__sidebar > .user-info > .following-container > .following {
   color: var(--secondary-font-color);
   font-size: 0.9rem;
 }
 
-#profile-sidebar > .bio {
+#profile__sidebar > .bio {
   padding: 0.5em 0;
   border-top: 1px solid rgba(124, 124, 124, 0.281);
 }
 
-#profile-sidebar > .bio > .header {
+#profile__sidebar > .bio > .header {
   margin-bottom: 0.25em;
 }
 
-#profile-sidebar > .bio > .text {
+#profile__sidebar > .bio > .text {
   font-size: 0.75rem;
   color: var(--primary-font-color);
 }

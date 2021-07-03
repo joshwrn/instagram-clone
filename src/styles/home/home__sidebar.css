@@ -10,7 +10,7 @@
   position: relative;
 }
 
-#sidebar-container {
+#home__sidebar__container {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -19,16 +19,16 @@
 }
 
 /*+ profile */
-#sidebar-profile-container {
+#home__sidebar__profile__container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#sidebar-profile-container:hover {
+#home__sidebar__profile__container:hover {
 }
 
-#sidebar-image-container {
+#home__sidebar__image__container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,11 +38,11 @@
   cursor: pointer;
 }
 
-#sidebar-image-container:hover {
+#home__sidebar__image__container:hover {
   transform: translateY(-0.1em);
 }
 
-#sidebar-profile-img {
+#home__sidebar__profile__img {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -50,7 +50,7 @@
   object-fit: cover;
 }
 
-#sidebar-profile-img-blur {
+#home__sidebar__profile__img-blur {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -63,32 +63,32 @@
 
 /*+ user info */
 
-#sidebar-name-container {
+#home__sidebar__name__container {
   margin-left: 1em;
   cursor: pointer;
 }
 
-#sidebar-username {
+#home__sidebar__username {
   color: var(--secondary-font-color);
 }
 
 /*+ user stats */
 
-#sidebar-stats {
+#home__sidebar__stats {
   display: flex;
   justify-content: center;
   width: 100%;
   margin: 1em 0 0 0em;
 }
 
-.sidebar-stat {
+.home__sidebar__stat {
   margin: 0 0.5em;
   font-size: 0.85rem;
   color: var(--secondary-font-color);
   cursor: pointer;
 }
 
-.stat-number {
+.stat__number {
   font-weight: bold;
   font-size: 0.9rem;
   color: var(--primary-font-color);
@@ -96,7 +96,7 @@
 
 /*+ links */
 
-#sidebar-container > .info-links {
+#home__sidebar__container > .info-links {
   display: flex;
   margin: 1.5em 0 0 0;
   gap: 0 0.75em;
@@ -105,19 +105,19 @@
   width: 70%;
 }
 
-#sidebar-container > .info-links > .link {
+#home__sidebar__container > .info-links > .link {
   color: rgb(180, 180, 180);
   font-size: 0.65rem;
 }
 
-#sidebar-container > .footer {
+#home__sidebar__container > .footer {
   display: flex;
   margin: 0.5em 0 0 0;
   justify-content: center;
   width: 100%;
 }
 
-#sidebar-container > .footer > .copyright {
+#home__sidebar__container > .footer > .copyright {
   margin: 1em 0 0 0;
   color: rgb(180, 180, 180);
   font-size: 0.65rem;

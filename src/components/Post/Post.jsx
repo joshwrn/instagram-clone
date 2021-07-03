@@ -15,26 +15,26 @@ import {
 const Post = () => {
   return (
     <div id="post">
-      <div id="post-container">
-        <img id="post-image" src={unicorn} alt="" />
-        <div id="post-sidebar">
+      <div id="post__container">
+        <img id="post__image" src={unicorn} alt="" />
+        <div id="post__sidebar">
           <Link exact to="/profile">
-            <div id="post-profile-container">
-              <div id="post-image-container">
-                <img id="post-profile-img" src={profilePic} alt="" />
-                <img id="post-profile-img-blur" src={profilePic} alt="" />
+            <div id="post__profile__container">
+              <div id="post__image__container">
+                <img id="post__profile__img" src={profilePic} alt="" />
+                <img id="post__profile__img-blur" src={profilePic} alt="" />
               </div>
-              <div id="post-name-container">
-                <h2 id="post-display-name">Emily Browning</h2>
-                <p id="post-username">@embr32</p>
+              <div id="post__name__container">
+                <h2 id="post__display-name">Emily Browning</h2>
+                <p id="post__username">@embr32</p>
               </div>
             </div>
           </Link>
-          <div className="post-comments">
+          <div className="post__comments">
             {/* <p className="view-all">View All Comments</p> */}
-            <div className="post-comment-container">
+            <div className="post__comment__container">
               <img
-                className="post-comment-profile-img"
+                className="post__comment__profile-img"
                 src={profilePic}
                 alt=""
               />
@@ -42,9 +42,9 @@ const Post = () => {
                 <span className="comment-user">Andrew G</span> awesome 🔥
               </p>
             </div>
-            <div className="post-comment-container">
+            <div className="post__comment__container">
               <img
-                className="post-comment-profile-img"
+                className="post__comment__profile-img"
                 src={profilePic}
                 alt=""
               />
@@ -53,18 +53,18 @@ const Post = () => {
               </p>
             </div>
           </div>
-          <div className="post-footer">
+          <div className="post__footer">
             <div className="first-child">
               <div className="left">
-                <IoHeartOutline className="post-icon like-icon" />
-                <IoChatbubbleOutline className="post-icon" />
-                <IoShareOutline className="post-icon" />
+                <IoHeartOutline className="post__icon like-icon" />
+                <IoChatbubbleOutline className="post__icon" />
+                <IoShareOutline className="post__icon" />
               </div>
-              <IoShareSocialOutline className="post-icon" />
+              <IoShareSocialOutline className="post__icon" />
             </div>
-            <p className="post-likes">3,543 likes</p>
+            <p className="post__likes">3,543 likes</p>
             <div className="comment-box">
-              <form className="comment-form">
+              <form className="comment__form">
                 <input
                   className="input-box"
                   type="text"

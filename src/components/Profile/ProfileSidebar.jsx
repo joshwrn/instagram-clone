@@ -3,7 +3,7 @@ import '../../styles/profile/profile__sidebar.css';
 
 const ProfileSidebar = () => {
   return (
-    <div id="profile-sidebar">
+    <div id="profile__sidebar">
       <div className="user-names">
         <h2 className="display-name">Josh Warren</h2>
         <h3 className="username">@joshwrn</h3>

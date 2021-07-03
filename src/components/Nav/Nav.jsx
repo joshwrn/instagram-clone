@@ -13,26 +13,26 @@ import '../../styles/nav/nav.css';
 const Nav = () => {
   return (
     <div id="nav">
-      <div id="nav-inner">
+      <div id="nav__inner">
         <Link exact to="/">
-          <div id="nav-logo">
-            <img id="nav-logo-img" src={logo} alt="" />
+          <div id="nav__logo">
+            <img id="nav__logo__img" src={logo} alt="" />
             <h2>Instagram</h2>
           </div>
         </Link>
-        <div id="nav-search">
+        <div id="nav__search">
           <form autoComplete="off">
-            <input id="nav-search-input" type="text" placeholder="Search" />
+            <input id="nav__search-input" type="text" placeholder="Search" />
           </form>
         </div>
-        <div id="nav-icons">
+        <div id="nav__icons">
           <NavLink exact to="/">
-            <IoHomeOutline className="nav-icon" />
+            <IoHomeOutline className="nav__icon" />
           </NavLink>
-          <IoChatbubbleOutline className="nav-icon" />
-          <IoHeartOutline className="nav-icon" />
+          <IoChatbubbleOutline className="nav__icon" />
+          <IoHeartOutline className="nav__icon" />
           <NavLink exact to="/profile">
-            <IoPersonOutline className="nav-icon" />
+            <IoPersonOutline className="nav__icon" />
           </NavLink>
         </div>
       </div>

@@ -15,40 +15,40 @@ import profilePic from '../../assets/misc/toa-heftiba-YCi4c79ZDIE-unsplash.jpg';
 const Card = ({ src }) => {
   return (
     <div className="card">
-      <div className="card-container">
-        <div className="card-header">
+      <div className="card__container">
+        <div className="card__header">
           <div className="left">
-            <img src={profilePic} alt="" className="card-profile-picture" />
-            <div className="card-user-info">
-              <p className="card-display-name">Emily Browning</p>
-              <p className="card-username">@embr32</p>
+            <img src={profilePic} alt="" className="card__profile-picture" />
+            <div className="card__user-info">
+              <p className="card__display-name">Emily Browning</p>
+              <p className="card__username">@embr32</p>
             </div>
           </div>
           <div className="right">
             <MoreHorizIcon className="more-icon" />
           </div>
         </div>
-        <div className="card-footer">
+        <div className="card__footer">
           <div className="first-child">
             <div className="left">
-              <IoHeartOutline className="card-icon like-icon" />
-              <IoChatbubbleOutline className="card-icon" />
-              <IoShareOutline className="card-icon" />
+              <IoHeartOutline className="card__icon like-icon" />
+              <IoChatbubbleOutline className="card__icon" />
+              <IoShareOutline className="card__icon" />
             </div>
-            <IoShareSocialOutline className="card-icon" />
+            <IoShareSocialOutline className="card__icon" />
           </div>
-          <p className="card-likes">3,543 likes</p>
-          <div className="card-comments">
+          <p className="card__likes">3,543 likes</p>
+          <div className="card__comments">
             <p className="view-all">View All Comments</p>
             <p className="comment">
-              <span className="comment-user">Andrew G</span> awesome 🔥
+              <span className="comment__user">Andrew G</span> awesome 🔥
             </p>
             <p className="comment">
-              <span className="comment-user">Sofie Smith</span> wow so cool!
+              <span className="comment__user">Sofie Smith</span> wow so cool!
             </p>
           </div>
           <div className="comment-box">
-            <form className="comment-form">
+            <form className="comment__form">
               <input
                 className="input-box"
                 type="text"
@@ -58,11 +58,11 @@ const Card = ({ src }) => {
             <IoSendOutline className="send" />
           </div>
         </div>
-        <Link className="card-image-link" to="/Post">
-          <img className="card-image" src={src} alt="" />
+        <Link className="card__image-link" to="/Post">
+          <img className="card__image" src={src} alt="" />
         </Link>
       </div>
-      <img className="card-image-blur" src={src} alt="" />
+      <img className="card__image-blur" src={src} alt="" />
     </div>
   );
 };

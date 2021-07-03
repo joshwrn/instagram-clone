@@ -6,25 +6,25 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <div id="sidebar">
-      <div id="sidebar-container">
+      <div id="home__sidebar__container">
         <Link exact to="/profile">
-          <div id="sidebar-profile-container">
-            <div id="sidebar-image-container">
-              <img id="sidebar-profile-img" src={jupiter} alt="" />
-              <img id="sidebar-profile-img-blur" src={jupiter} alt="" />
+          <div id="home__sidebar__profile__container">
+            <div id="home__sidebar__image__container">
+              <img id="home__sidebar__profile__img" src={jupiter} alt="" />
+              <img id="home__sidebar__profile__img-blur" src={jupiter} alt="" />
             </div>
-            <div id="sidebar-name-container">
-              <h2 id="sidebar-display-name">Josh Warren</h2>
-              <p id="sidebar-username">@joshwrn</p>
+            <div id="home__sidebar__name__container">
+              <h2 id="home__sidebar__display-name">Josh Warren</h2>
+              <p id="home__sidebar__username">@joshwrn</p>
             </div>
           </div>
         </Link>
-        <div id="sidebar-stats">
-          <p className="sidebar-stat">
-            <span className="stat-number">556</span> Followers
+        <div id="home__sidebar__stats">
+          <p className="home__sidebar__stat">
+            <span className="stat__number">556</span> Followers
           </p>
-          <p className="sidebar-stat">
-            <span className="stat-number">103</span> Following
+          <p className="home__sidebar__stat">
+            <span className="stat__number">103</span> Following
           </p>
         </div>
         <div className="footer">

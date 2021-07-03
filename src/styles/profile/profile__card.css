@@ -1,4 +1,4 @@
-.profile-card {
+.profile__card {
   display: flex;
   width: 14em;
   height: 15.8em;
@@ -10,7 +10,7 @@
 }
 
 /*@ Contain main overflow */
-.profile-card-container {
+.profile__card__container {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -20,7 +20,12 @@
 
 /*+ image */
 
-.profile-card-image {
+.profile__card__image-link {
+  width: inherit;
+  height: inherit;
+}
+
+.profile__card__image {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -30,7 +35,7 @@
   cursor: pointer;
 }
 
-.profile-card-image-blur {
+.profile__card__image-blur {
   position: absolute;
   filter: blur(1em);
   opacity: 0.5;
@@ -43,7 +48,7 @@
   transition: filter 0.35s, opacity 0.35s;
 }
 
-.profile-card:hover > .profile-card-image-blur {
+.profile__card:hover > .profile__card__image-blur {
   filter: blur(1.3em);
   opacity: 0.75;
 }

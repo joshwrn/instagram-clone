@@ -5,7 +5,7 @@
   margin-top: 6.5em;
 }
 
-#home-inner {
+#home__inner {
   display: flex;
   /* gap: 3em; */
   justify-content: center;
@@ -14,7 +14,7 @@
   width: 100%;
 }
 
-#feed {
+#home__feed {
   display: flex;
   flex-direction: column;
   align-items: center;

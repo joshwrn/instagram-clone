@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-#post-container {
+#post__container {
   display: flex;
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
   overflow: hidden;
@@ -21,18 +21,18 @@
   border: var(--primary-border);
 }
 
-#post-image {
+#post__image {
   object-fit: cover;
   width: 35em;
   height: 39.5em;
 }
 
-#post-sidebar {
+#post__sidebar {
   width: 25em;
 }
 
 /*+ profile */
-#post-profile-container {
+#post__profile__container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,10 +41,10 @@
   border-bottom: 1px solid rgba(124, 124, 124, 0.281);
 }
 
-#post-profile-container:hover {
+#post__profile__container:hover {
 }
 
-#post-image-container {
+#post__image__container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,11 +54,11 @@
   cursor: pointer;
 }
 
-#post-image-container:hover {
+#post__image__container:hover {
   transform: translateY(-0.1em);
 }
 
-#post-profile-img {
+#post__profile__img {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -66,7 +66,7 @@
   object-fit: cover;
 }
 
-#post-profile-img-blur {
+#post__profile__img-blur {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -79,37 +79,37 @@
 
 /*+ user info */
 
-#post-name-container {
+#post__name__container {
   margin-left: 1em;
   cursor: pointer;
   text-align: left;
 }
 
-#post-username {
+#post__username {
   color: var(--secondary-font-color);
 }
 
 /*+ comments */
 
-.post-comments > .view-all {
+.post__comments > .view-all {
   color: var(--secondary-font-color);
   margin: 0 0 0.35rem 0;
   cursor: pointer;
 }
 
-.post-comments {
+.post__comments {
   font-size: 0.85rem;
   text-align: left;
   margin: 1em 1.25em;
 }
 
-.post-comment-container {
+.post__comment__container {
   display: flex;
   align-items: center;
   gap: 0.75em;
 }
 
-.post-comment-profile-img {
+.post__comment__profile-img {
   border-radius: 100%;
   width: 2em;
   height: 2em;
@@ -117,17 +117,17 @@
   cursor: pointer;
 }
 
-.post-comment-container > .comment {
+.post__comment__container > .comment {
   margin: 0.7em 0;
 }
 
-.post-comment-container > .comment > .comment-user {
+.post__comment__container > .comment > .comment-user {
   font-weight: bold;
   cursor: pointer;
 }
 
 /*+ card footer */
-.post-footer {
+.post__footer {
   position: absolute;
   width: inherit;
   height: 7em;
@@ -136,18 +136,18 @@
   box-sizing: border-box;
 }
 
-.post-footer > .first-child {
+.post__footer > .first-child {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.post-footer > .first-child > .left > .post-icon {
+.post__footer > .first-child > .left > .post__icon {
   margin: 0 0.25em 0 0;
 }
 
-.post-icon {
+.post__icon {
   cursor: pointer;
 }
 
@@ -156,7 +156,7 @@
   stroke: red;
 }
 
-.post-likes {
+.post__likes {
   cursor: pointer;
   margin: 0.5rem 0;
   font-weight: bold;
@@ -166,7 +166,7 @@
 
 /*+ comment input */
 
-.post-footer > .comment-box {
+.post__footer > .comment-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -178,11 +178,11 @@
   padding-top: 0.65em;
 }
 
-.post-footer > .comment-box > .comment-form {
+.post__footer > .comment-box > .comment__form {
   width: 100%;
 }
 
-.post-footer > .comment-box > .comment-form > .input-box {
+.post__footer > .comment-box > .comment__form > .input-box {
   width: 100%;
   text-align: left;
   border: 0px solid rgba(124, 124, 124, 0);
@@ -190,6 +190,6 @@
   color: var(--primary-font-color);
 }
 
-.post-footer > .comment-box > .send {
+.post__footer > .comment-box > .send {
   cursor: pointer;
 }

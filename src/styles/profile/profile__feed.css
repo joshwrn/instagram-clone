@@ -1,4 +1,4 @@
-#profile-feed {
+.profile__feed {
   display: grid;
   grid-template-columns: repeat(auto-fill, 14em);
   grid-template-rows: repeat(auto-fill, 1fr);

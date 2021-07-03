@@ -13,7 +13,7 @@
   z-index: 100;
 }
 
-#nav-inner {
+#nav__inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,11 +21,11 @@
   width: 100%;
 }
 
-#nav-logo-img {
+#nav__logo__img {
   height: 30px;
 }
 
-#nav-logo {
+#nav__logo {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -33,7 +33,7 @@
 }
 
 /* search box */
-#nav-search-input {
+#nav__search-input {
   padding: 0em 1em 0 1em;
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0.281);
@@ -43,7 +43,7 @@
   transition: text-align 1s;
 }
 
-#nav-search-input:focus {
+#nav__search-input:focus {
   padding: 0em 1em 0 1em;
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0.281);
@@ -70,32 +70,32 @@ input::placeholder:focus {
 }
 
 /* nav icons */
-#nav-icons {
+#nav__icons {
   display: flex;
   gap: 0.95em;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav-icon {
+.nav__icon {
   cursor: pointer;
   font-size: 1.5em !important;
 }
 
-#nav-icons > a {
+#nav__icons > a {
   color: var(--primary-font-color);
 }
 
-#nav-icons > .active {
+#nav__icons > .active {
   color: var(--primary-font-color);
 }
 
-.active > .nav-icon > path {
+.active > .nav__icon > path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }
 
-.nav-icon:hover > path {
+.nav__icon:hover > path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }

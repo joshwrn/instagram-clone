@@ -5,7 +5,7 @@ import unicorn from '../../assets/img/cards/unicorn.jpg';
 
 const ProfileFeed = () => {
   return (
-    <div id="profile-feed">
+    <div className="profile__feed">
       <ProfileCard src={unicorn} />
       <ProfileCard
         src={
