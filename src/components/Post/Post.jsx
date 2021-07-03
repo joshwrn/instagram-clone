@@ -18,7 +18,7 @@ const Post = () => {
       <div id="post__container">
         <img id="post__image" src={unicorn} alt="" />
         <div id="post__sidebar">
-          <Link exact to="/profile">
+          <Link to="/profile">
             <div id="post__profile__container">
               <div id="post__image__container">
                 <img id="post__profile__img" src={profilePic} alt="" />

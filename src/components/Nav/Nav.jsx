@@ -14,7 +14,7 @@ const Nav = () => {
   return (
     <div id="nav">
       <div id="nav__inner">
-        <Link exact to="/">
+        <Link to="/">
           <div id="nav__logo">
             <img id="nav__logo__img" src={logo} alt="" />
             <h2>Instagram</h2>
@@ -26,12 +26,12 @@ const Nav = () => {
           </form>
         </div>
         <div id="nav__icons">
-          <NavLink exact to="/">
+          <NavLink to="/">
             <IoHomeOutline className="nav__icon" />
           </NavLink>
           <IoChatbubbleOutline className="nav__icon" />
           <IoHeartOutline className="nav__icon" />
-          <NavLink exact to="/profile">
+          <NavLink to="/profile">
             <IoPersonOutline className="nav__icon" />
           </NavLink>
         </div>
