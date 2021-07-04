@@ -114,7 +114,7 @@ const Post = ({ match }) => {
         <div id="post">
           <div id="post__not-found-container">
             <h3>Post Not Found</h3>
-            <Link to="/home">
+            <Link to="/">
               <button id="post__return-button">Return Home</button>
             </Link>
           </div>

@@ -28,12 +28,14 @@ const Nav = () => {
           </form>
         </div>
         <div id="nav__icons">
-          <NavLink to="/home">
+          <NavLink exact to="/">
             <IoHomeOutline className="nav__icon" />
           </NavLink>
           <IoChatbubbleOutline className="nav__icon" />
           <IoHeartOutline className="nav__icon" />
-          <NavLink to={currentUser ? `/profile/${currentUser.uid}` : '/'}>
+          <NavLink
+            to={currentUser ? `/profile/${currentUser.uid}` : '/sign-up'}
+          >
             <IoPersonOutline className="nav__icon" />
           </NavLink>
         </div>

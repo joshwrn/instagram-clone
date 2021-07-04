@@ -27,13 +27,47 @@
   height: 80vh;
 }
 
-.sign-up__form {
-  width: 100%;
+#sign-up__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* 
+#sign-up__header__text-container {
+  background-image: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background-clip: text;
+} */
+
+#sign-up__logo__img {
+  height: 4em;
+  width: 4em;
+  margin: 3em 0 1em 0;
+}
+
+#sign-up__header__text {
+  color: rgb(104, 104, 104);
+  cursor: default;
+}
+
+#sign-up__form-container {
   height: 100%;
+}
+
+.sign-up__form {
+  margin-top: 4em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  box-sizing: border-box;
 }
 
 .sign-up__input {
@@ -44,6 +78,7 @@
   border: 1px solid rgb(211, 211, 211);
   border-radius: 1em;
   height: 2em;
+  margin: 0 0 0.25em 0;
 }
 
 .sign-up__input > .username {
@@ -65,10 +100,20 @@
   margin-left: 0.5em;
 }
 
-.sign-up__form > .sign-up {
-  border: none;
-  background-color: rgb(0, 0, 0);
+.sign-up__helper-div {
+  display: flex;
+  width: 60%;
+  justify-content: flex-start;
+}
+
+.sign-up__helper-div > .name-helper {
+  font-size: 0.7rem;
+  margin-left: 1em;
   color: var(--secondary-font-color);
+}
+
+.sign-up__form > .sign-up {
+  background-color: black;
   padding: 0 2em;
   height: 2.25em;
   width: 15em;
@@ -79,8 +124,29 @@
   font-weight: bold;
   transition: box-shadow 0.25s;
   border: var(--primary-border);
-  border: 1px solid rgb(214, 214, 214);
   color: white;
+  margin: 3em 0 1em 0;
+}
+
+#sign-up__form-container > .or {
+  color: var(--primary-font-color);
+  font-size: 0.8rem;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.sign-up__form__login-button {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--secondary-font-color);
+  padding: 0 2em;
+  height: 2em;
+  width: 13em;
+  font-size: 0.9rem;
+  border-radius: 1em;
+  cursor: pointer;
+  font-weight: bold;
+  box-sizing: border-box;
+  transition: box-shadow 0.25s;
+  border: 1px solid var(--secondary-font-color);
 }
 
 /*! already logged in */

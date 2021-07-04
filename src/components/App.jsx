@@ -22,9 +22,6 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/home">
-                <Home />
-              </Route>
               {/* Sign up */}
               <Route exact path="/sign-up">
                 <SignUp />
