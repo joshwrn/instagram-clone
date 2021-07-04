@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import {
   IoHomeOutline,
   IoChatbubbleOutline,
@@ -11,6 +12,7 @@ import logo from '../../assets/img/logo/logo-2.png';
 import '../../styles/nav/nav.css';
 
 const Nav = () => {
+  const { currentUser } = useAuth();
   return (
     <div id="nav">
       <div id="nav__inner">
@@ -26,12 +28,12 @@ const Nav = () => {
           </form>
         </div>
         <div id="nav__icons">
-          <NavLink to="/">
+          <NavLink to="/home">
             <IoHomeOutline className="nav__icon" />
           </NavLink>
           <IoChatbubbleOutline className="nav__icon" />
           <IoHeartOutline className="nav__icon" />
-          <NavLink to="/profile">
+          <NavLink to={currentUser ? `/profile/${currentUser.uid}` : '/'}>
             <IoPersonOutline className="nav__icon" />
           </NavLink>
         </div>

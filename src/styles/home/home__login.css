@@ -1,0 +1,25 @@
+#home__sidebar__login-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--secondary-font-color);
+}
+#home__sidebar__sign-up > .google-sign-in,
+#home__sidebar__login-buttons > .google-sign-in {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: var(--secondary-font-color);
+  padding: 0 2em;
+  height: 2.25em;
+  width: 13em;
+  font-size: 1rem;
+  border-radius: 1em;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--primary-border);
+  border: 1px solid rgb(214, 214, 214);
+}

@@ -13,6 +13,37 @@
   box-sizing: border-box;
 }
 
+#post__not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20em;
+  height: 20em;
+  overflow: hidden;
+  border-radius: 1em;
+  color: var(--secondary-font-color);
+  gap: 1.5em;
+}
+
+#post__not-found-container > h3 {
+  color: var(--secondary-font-color);
+}
+
+#post__return-button {
+  background-color: rgb(255, 255, 255);
+  color: var(--secondary-font-color);
+  padding: 0 2em;
+  height: 2.25em;
+  font-size: 1.2rem;
+  border-radius: 0.25em;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: 1px solid rgb(214, 214, 214);
+}
+
 #post__container {
   display: flex;
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);

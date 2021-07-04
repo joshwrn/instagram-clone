@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-const app = () => {
+export const initFire = () => {
   if (!firebase.apps.length) {
     return firebase.initializeApp({
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,11 +17,11 @@ const app = () => {
   }
 };
 
-app();
+initFire();
 
 export const signIn = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithRedirect(provider);
+  firebase.auth().signInWithPopup(provider);
 };
 
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp();

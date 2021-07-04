@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../styles/home/home__sidebar.css';
-import jupiter from '../../assets/misc/jupiter.jpg';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import Test from '../test-components/Test';
+import LoginButton from './LoginButton.jsx';
 
 const Sidebar = () => {
   const { currentUser } = useAuth();
@@ -11,8 +10,8 @@ const Sidebar = () => {
   return (
     <div id="sidebar">
       <div id="home__sidebar__container">
-        <Link to="/profile">
-          {currentUser !== null ? (
+        {currentUser ? (
+          <Link to={`/profile/${currentUser.uid}`}>
             <div id="home__sidebar__profile__container">
               <div id="home__sidebar__image__container">
                 <img
@@ -33,19 +32,20 @@ const Sidebar = () => {
                 <p id="home__sidebar__username">@joshwrn</p>
               </div>
             </div>
-          ) : (
-            'log in button'
-          )}
-        </Link>
-        <div id="home__sidebar__stats">
-          <p className="home__sidebar__stat">
-            <span className="stat__number">556</span> Followers
-          </p>
-          <p className="home__sidebar__stat">
-            <span className="stat__number">103</span> Following
-          </p>
-        </div>
-        <Test />
+          </Link>
+        ) : null}
+        <LoginButton />
+        {currentUser && (
+          <div id="home__sidebar__stats">
+            <p className="home__sidebar__stat">
+              <span className="stat__number">556</span> Followers
+            </p>
+            <p className="home__sidebar__stat">
+              <span className="stat__number">103</span> Following
+            </p>
+          </div>
+        )}
+
         <div className="footer">
           <p className="copyright">© 2021 COPYRIGHT GOES HERE</p>
         </div>

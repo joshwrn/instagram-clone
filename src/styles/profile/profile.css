@@ -7,7 +7,7 @@
 
 #profile__hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 20em;
   object-fit: cover;
   display: block;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { firestore } from '../../services/firebase';
 import ProfileSidebar from './ProfileSidebar';
 import ProfileFeed from './ProfileFeed';
 import '../../styles/profile/profile.css';
@@ -11,41 +12,84 @@ import {
   IoShareSocialOutline,
 } from 'react-icons/io5';
 
-const Profile = () => {
+const Profile = (props) => {
+  const [currentProfile, setCurrentProfile] = useState();
+  const { match } = props;
+
+  useEffect(() => {
+    return getUserObject();
+  }, []);
+
+  const getUserObject = () => {
+    firestore
+      .collection('users')
+      .doc(match.params.uid)
+      .get()
+      .then((userData) => {
+        if (userData.exists) {
+          setCurrentProfile(userData.data());
+        }
+      });
+  };
+
+  const getUserPosts = () => {};
+
+  const handleParam = (e) => {
+    console.log(match.params.uid);
+    console.log(currentProfile);
+  };
+
   return (
-    <div id="profile">
-      {/* banner */}
-      <div id="profile__header">
-        <img
-          id="profile__hero"
-          src="https://images.unsplash.com/photo-1475598322381-f1b499717dda?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80"
-          alt=""
-        />
-      </div>
-      <div id="profile__outer">
-        {/* top bar*/}
-        <div id="profile__top-section">
-          <div id="profile__img-container">
-            <img id="profile__img" src={jupiter} alt="" />
-            <img id="profile__img-blur" src={jupiter} alt="" />
+    <>
+      {currentProfile && (
+        <div id="profile">
+          {/* banner */}
+          <div id="profile__header">
+            <img id="profile__hero" src={currentProfile.banner} alt="" />
           </div>
-          <div className="right">
-            <div id="icon-row">
-              <button className="follow">Follow</button>
-              <button className="message">
-                <IoSendOutline className="send" />
-              </button>
+          <div id="profile__outer">
+            {/* top bar*/}
+            <div id="profile__top-section">
+              <div onClick={handleParam} id="profile__img-container">
+                <img
+                  id="profile__img"
+                  src={currentProfile.profilePhoto}
+                  alt=""
+                />
+                <img
+                  id="profile__img-blur"
+                  src={currentProfile.profilePhoto}
+                  alt=""
+                />
+              </div>
+              <div className="right">
+                <div id="icon-row">
+                  <button className="follow">Follow</button>
+                  <button className="message">
+                    <IoSendOutline className="send" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div id="profile__inner">
+            {/* sidebar */}
+            <ProfileSidebar
+              firestore={firestore}
+              match={match}
+              currentProfile={currentProfile}
+            />
+            {/* posts */}
+            <ProfileFeed
+              firestore={firestore}
+              match={match}
+              currentProfile={currentProfile}
+            />
+          </div>
         </div>
-      </div>
-      <div id="profile__inner">
-        {/* sidebar */}
-        <ProfileSidebar />
-        {/* posts */}
-        <ProfileFeed />
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
