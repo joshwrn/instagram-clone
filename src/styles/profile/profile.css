@@ -63,14 +63,14 @@
   box-sizing: border-box;
 }
 
-#profile__top-section > .right > #icon-row {
+#profile__top-section > .right > .icon-row {
   display: flex;
   gap: 1em;
   transform: translateY(-50%);
   box-sizing: border-box;
 }
 
-#profile__top-section > .right > #icon-row > .follow {
+#profile__top-section > .right > .icon-row > .profile-btn {
   border: none;
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
   background-color: rgb(255, 255, 255);
@@ -86,11 +86,11 @@
   border: var(--primary-border);
 }
 
-#profile__top-section > .right > #icon-row > .follow:hover {
+#profile__top-section > .right > .icon-row > .profile-btn:hover {
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
 }
 
-#profile__top-section > .right > #icon-row > .message {
+#profile__top-section > .right > .icon-row > .action {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,6 +109,6 @@
   border: var(--primary-border);
 }
 
-#profile__top-section > .right > #icon-row > .message:hover {
+#profile__top-section > .right > .icon-row > .action:hover {
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
 }

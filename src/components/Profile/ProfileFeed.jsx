@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ProfileCard from './ProfileCard';
 import '../../styles/profile/profile__feed.css';
 
-const ProfileFeed = ({ firestore, match }) => {
+const ProfileFeed = ({ firestore, match, newPost }) => {
   const [profileFeed, setProfileFeed] = useState([]);
 
   useEffect(() => {
     return getFeed();
-  }, []);
+  }, [newPost]);
 
   const getFeed = () => {
     let temp = [];
