@@ -103,11 +103,7 @@ const SignUp = () => {
                 <div className="sign-up__helper-div">{nameHelper}</div>
                 <button
                   type={'submit'}
-                  onClick={
-                    !nameTaken && userInput.length > 3
-                      ? handleSubmit
-                      : doNothing
-                  }
+                  onClick={!nameTaken && userInput.length > 3 ? handleSubmit : doNothing}
                   className="sign-up"
                   style={
                     !nameTaken && userInput.length > 3

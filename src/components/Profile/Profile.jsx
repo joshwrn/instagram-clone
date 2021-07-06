@@ -6,6 +6,7 @@ import ProfileUpload from './ProfileUpload';
 import '../../styles/profile/profile.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoHeartOutline, IoSendOutline, IoAddOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
@@ -57,7 +58,11 @@ const Profile = (props) => {
   let profileButton = <button className="profile-btn">Follow</button>;
   if (currentUser) {
     if (currentUser.uid === match.params.uid) {
-      profileButton = <button className="profile-btn">Edit Profile</button>;
+      profileButton = (
+        <Link to="/settings" className="link">
+          <button className="profile-btn">Edit Profile</button>
+        </Link>
+      );
     }
   }
 

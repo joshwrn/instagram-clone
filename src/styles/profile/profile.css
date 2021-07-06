@@ -73,6 +73,7 @@
   box-sizing: border-box;
 }
 
+#profile__top-section > .right > .icon-row > .link > .profile-btn,
 #profile__top-section > .right > .icon-row > .profile-btn {
   border: none;
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
@@ -89,6 +90,7 @@
   border: var(--primary-border);
 }
 
+#profile__top-section > .right > .icon-row > .link > .profile-btn:hover,
 #profile__top-section > .right > .icon-row > .profile-btn:hover {
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
 }

@@ -6,6 +6,7 @@ import Home from './Home/Home';
 import Profile from './Profile/Profile.jsx';
 import Post from './Post/Post';
 import SignUp from './SignUp/SignUp';
+import Settings from './Settings/Settings';
 import { AuthProvider } from '../contexts/AuthContext';
 
 function App() {
@@ -15,19 +16,18 @@ function App() {
       <Router>
         <AuthProvider>
           <div className="App">
-            {/* Nav */}
+            {/*//+ Nav */}
             <Nav />
             <Switch>
-              {/* Home */}
+              {/*//+ Home */}
               <Route exact path="/">
                 <Home />
               </Route>
-              {/* Sign up */}
+              {/*//+ Sign up */}
               <Route exact path="/sign-up">
                 <SignUp />
               </Route>
-              {/* Profile */}
-              {/* exact path to /profile/uid */}
+              {/*//+ Profile */}
               <Route
                 exact
                 path="/profile/:uid"
@@ -36,7 +36,7 @@ function App() {
                   <Profile {...props} />
                 )}
               />
-              {/* post */}
+              {/*//+ post */}
               <Route
                 exact
                 path="/post/:uid/:postid"
@@ -45,6 +45,10 @@ function App() {
                   <Post {...props} />
                 )}
               />
+              {/*//+ settings */}
+              <Route exact path="/settings">
+                <Settings />
+              </Route>
             </Switch>
           </div>
         </AuthProvider>
