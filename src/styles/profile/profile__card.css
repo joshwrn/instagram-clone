@@ -1,7 +1,7 @@
 .profile__card {
   display: flex;
-  width: 14em;
-  height: 15.8em;
+  width: 16em;
+  height: 16em;
   justify-content: center;
   /* box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089); */
   border: var(--primary-border);

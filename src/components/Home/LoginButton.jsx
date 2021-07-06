@@ -32,9 +32,7 @@ const LoginButton = () => {
 
   return (
     <div>
-      {currentUser ? (
-        <button onClick={handleLogout}>logout</button>
-      ) : (
+      {!currentUser && (
         <div id="home__sidebar__login-buttons">
           <Link id="home__sidebar__sign-up" to="/sign-up">
             <button className="google-sign-in">Sign Up</button>

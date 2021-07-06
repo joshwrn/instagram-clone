@@ -19,13 +19,13 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  max-width: 975px;
+  max-width: 1150px;
   width: 100%;
 }
 
 #profile__inner {
   display: flex;
-  max-width: 975px;
+  max-width: 1150px;
   width: 100%;
 }
 

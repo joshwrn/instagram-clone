@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import {
@@ -8,11 +8,33 @@ import {
   IoPersonOutline,
 } from 'react-icons/io5';
 import logo from '../../assets/img/logo/logo-2.png';
-
+import NavUserMenu from './NavUserMenu';
 import '../../styles/nav/nav.css';
 
 const Nav = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleUserIcon = (e) => {
+    e.preventDefault();
+    openMenu ? setOpenMenu(false) : setOpenMenu(true);
+  };
+
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+    };
+  }, []);
+
   return (
     <div id="nav">
       <div id="nav__inner">
@@ -33,11 +55,16 @@ const Nav = () => {
           </NavLink>
           <IoChatbubbleOutline className="nav__icon" />
           <IoHeartOutline className="nav__icon" />
-          <NavLink
-            to={currentUser ? `/profile/${currentUser.uid}` : '/sign-up'}
-          >
-            <IoPersonOutline className="nav__icon" />
-          </NavLink>
+          <div ref={menuRef}>
+            <IoPersonOutline onClick={handleUserIcon} className="nav__icon" />
+            {openMenu ? (
+              <NavUserMenu
+                setOpenMenu={setOpenMenu}
+                logout={logout}
+                currentUser={currentUser}
+              />
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

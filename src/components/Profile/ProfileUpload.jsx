@@ -18,17 +18,18 @@ const ProfileUpload = ({
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (file.size < 1000000) {
-      setPostFile(file);
-    } else {
-      setPostFile(null);
+    if (file) {
+      if (file.size < 1000000) {
+        setPostFile(file);
+      } else {
+        setPostFile(null);
+      }
     }
   };
 
   const handleTextChange = (e) => {
     e.preventDefault();
     setCaption(e.target.value);
-    console.log(postFile);
   };
 
   const handleSubmit = async (e) => {
@@ -46,7 +47,6 @@ const ProfileUpload = ({
     const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
     await fileRef.put(postFile);
-    console.log(currentProfile, 'success');
     const fileUrl = await fileRef.getDownloadURL();
     console.log(fileUrl);
     await createPost.set(
@@ -87,7 +87,7 @@ const ProfileUpload = ({
                 <input
                   onChange={handleFileChange}
                   type="file"
-                  accept="image/*"
+                  accept="image/jpeg, image/png, image/jpg"
                   className="file-input"
                 />
                 {postFile === null ? (
@@ -100,7 +100,9 @@ const ProfileUpload = ({
                 )}
               </label>
             </div>
-            <p>{postFile === null ? 'file size limit 1mb' : 'ready to post'}</p>
+            <p>
+              {postFile === null ? 'File size limit 1 mb.' : 'ready to post'}
+            </p>
             <div id="profile__upload-modal__caption-container">
               <textarea
                 className="caption-input"

@@ -112,6 +112,7 @@
   box-sizing: border-box;
   resize: none;
   text-align: center;
+  background-color: var(--primary-background-color);
 }
 
 #profile__upload-modal__caption-container > .caption-input:focus {

@@ -35,7 +35,7 @@ const Sidebar = () => {
           </Link>
         ) : null}
         <LoginButton />
-        {userProfile && (
+        {/* {userProfile && (
           <div id="home__sidebar__stats">
             <p className="home__sidebar__stat">
               <span className="stat__number">
@@ -50,7 +50,7 @@ const Sidebar = () => {
               Following
             </p>
           </div>
-        )}
+        )} */}
 
         <div className="footer">
           <p className="copyright">© 2021 COPYRIGHT GOES HERE</p>
