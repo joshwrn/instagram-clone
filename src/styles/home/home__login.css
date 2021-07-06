@@ -9,7 +9,7 @@
 #home__sidebar__sign-up > .google-sign-in,
 #home__sidebar__login-buttons > .google-sign-in {
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--primary-background-color);
   color: var(--secondary-font-color);
   padding: 0 2em;
   height: 2.25em;

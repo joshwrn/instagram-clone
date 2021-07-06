@@ -6,10 +6,7 @@ const ProfileCard = ({ src, match, postId }) => {
   return (
     <div className="profile__card">
       <div className="profile__card__container">
-        <Link
-          className="profile__card__image-link"
-          to={`/post/${match.params.uid}/${postId}`}
-        >
+        <Link className="profile__card__image-link" to={`/post/${match.params.uid}/${postId}`}>
           <img className="profile__card__image" src={src} alt="" />{' '}
         </Link>
       </div>

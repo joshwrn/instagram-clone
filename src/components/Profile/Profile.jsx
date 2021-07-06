@@ -73,16 +73,8 @@ const Profile = (props) => {
             {/* top bar*/}
             <div id="profile__top-section">
               <div id="profile__img-container">
-                <img
-                  id="profile__img"
-                  src={currentProfile.profilePhoto}
-                  alt=""
-                />
-                <img
-                  id="profile__img-blur"
-                  src={currentProfile.profilePhoto}
-                  alt=""
-                />
+                <img id="profile__img" src={currentProfile.profilePhoto} alt="" />
+                <img id="profile__img-blur" src={currentProfile.profilePhoto} alt="" />
               </div>
               <div className="right">
                 <div className="icon-row">
@@ -102,11 +94,7 @@ const Profile = (props) => {
                 getModal={getModal}
               />
             )}
-            <ProfileSidebar
-              firestore={firestore}
-              match={match}
-              currentProfile={currentProfile}
-            />
+            <ProfileSidebar firestore={firestore} match={match} currentProfile={currentProfile} />
             {/* posts */}
             <ProfileFeed
               newPost={newPost}

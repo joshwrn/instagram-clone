@@ -24,6 +24,7 @@
   gap: 1.5em;
   background-color: var(--primary-background-color);
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
+  border: var(--primary-border);
 }
 
 #profile__upload-modal__header {
@@ -33,7 +34,7 @@
   justify-self: center;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(206, 206, 206);
+  border-bottom: var(--secondary-border);
 }
 
 #profile__upload-modal__header > h3 {
@@ -58,9 +59,7 @@
   height: 7em;
 }
 
-#profile__upload-modal__upload-container
-  > .profile__upload-modal__button-container
-  > .upload {
+#profile__upload-modal__upload-container > .profile__upload-modal__button-container > .upload {
   font-size: 3rem;
   padding: 0.5em;
   border-radius: 0.5rem;

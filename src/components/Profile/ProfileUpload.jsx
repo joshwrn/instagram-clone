@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
 import '../../styles/profile/profile__modal.css';
-import {
-  IoCloseOutline,
-  IoCloudUploadOutline,
-  IoCheckmarkCircleOutline,
-} from 'react-icons/io5';
+import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { firestore, initFire, timestamp } from '../../services/firebase';
 
-const ProfileUpload = ({
-  getModal,
-  currentUser,
-  currentProfile,
-  setNewPost,
-}) => {
+const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
   const [caption, setCaption] = useState('');
 
-  const handleFileChange = async (e) => {
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      if (file.size < 1000000) {
-        setPostFile(file);
-      } else {
-        setPostFile(null);
-      }
+    if (file && file.size < 1000000) {
+      setPostFile(file);
+    } else {
+      setPostFile(null);
     }
   };
 
@@ -100,9 +89,7 @@ const ProfileUpload = ({
                 )}
               </label>
             </div>
-            <p>
-              {postFile === null ? 'File size limit 1 mb.' : 'ready to post'}
-            </p>
+            <p>{postFile === null ? 'File size limit 1 mb.' : 'ready to post'}</p>
             <div id="profile__upload-modal__caption-container">
               <textarea
                 className="caption-input"

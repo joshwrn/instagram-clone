@@ -13,6 +13,7 @@ import '../../styles/nav/nav.css';
 
 const Nav = () => {
   const { currentUser, logout } = useAuth();
+  const [theme, setTheme] = useState('light');
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleUserIcon = (e) => {
@@ -59,6 +60,8 @@ const Nav = () => {
             <IoPersonOutline onClick={handleUserIcon} className="nav__icon" />
             {openMenu ? (
               <NavUserMenu
+                theme={theme}
+                setTheme={setTheme}
                 setOpenMenu={setOpenMenu}
                 logout={logout}
                 currentUser={currentUser}

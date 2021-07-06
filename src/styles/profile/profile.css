@@ -24,9 +24,12 @@
 }
 
 #profile__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(15rem, 1fr) 5fr;
   max-width: 1150px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 1em 0 1em;
 }
 
 #profile__top-section {
