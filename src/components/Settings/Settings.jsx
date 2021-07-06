@@ -3,9 +3,34 @@ import '../../styles/settings/settings.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { firestore, initFire, timestamp } from '../../services/firebase';
 
 const Settings = () => {
-  const { currentUser, userProfile } = useAuth();
+  const { getUserProfile, currentUser, userProfile } = useAuth();
+  const handlePhotoChange = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file && file.size < 1000000) {
+      handleUpload(e.target.name, file);
+    } else {
+      console.log('fail');
+    }
+  };
+  const handleUpload = async (imgType, file) => {
+    const storageRef = initFire.storage().ref();
+    const fileRef = storageRef.child(`${currentUser.uid}/${imgType}`);
+    await fileRef.put(file);
+    const fileUrl = await fileRef.getDownloadURL();
+    const userRef = firestore.collection('users').doc(currentUser.uid);
+    await userRef.set(
+      {
+        [imgType]: fileUrl,
+      },
+      { merge: true }
+    );
+    getUserProfile();
+  };
+
   return (
     <div id="settings">
       <div id="settings__container">
@@ -13,7 +38,13 @@ const Settings = () => {
         <div id="settings__inner">
           <div>
             <label id="banner-ov-con">
-              <input type="file" accept="image/jpeg, image/png, image/jpg" className="file-input" />
+              <input
+                name="banner"
+                type="file"
+                accept="image/jpeg, image/png, image/jpg"
+                className="file-input"
+                onChange={handlePhotoChange}
+              />
               <div className="banner-container">
                 <img className="banner-image" src={userProfile && userProfile.banner} alt="" />
               </div>
@@ -25,9 +56,11 @@ const Settings = () => {
               <div id="settings__profile-container-bar">
                 <label id="o-con">
                   <input
+                    onChange={handlePhotoChange}
                     type="file"
                     accept="image/jpeg, image/png, image/jpg"
                     className="file-input"
+                    name="profilePhoto"
                   />
                   <img
                     id="settings__profile-container__image"
@@ -68,7 +101,7 @@ const Settings = () => {
                   <input
                     autoComplete="off"
                     name="displayName"
-                    className="input-box"
+                    className="input-box-display"
                     type="text"
                     placeholder={userProfile && userProfile.displayName}
                     maxLength="15"
@@ -90,7 +123,7 @@ const Settings = () => {
           </div>
         </div>
         <div>
-          <Link to={`/profile/${userProfile.userID}`}>
+          <Link to={`/profile/${userProfile && userProfile.userID}`}>
             <button id="settings__profile-btn">View Profile</button>
           </Link>
         </div>

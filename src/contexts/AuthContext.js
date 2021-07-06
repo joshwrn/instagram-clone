@@ -36,10 +36,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const getUserProfile = async () => {
-    const profileData = await firestore
-      .collection('users')
-      .doc(currentUser.uid)
-      .get();
+    const profileData = await firestore.collection('users').doc(currentUser.uid).get();
     setUserProfile(profileData.data());
   };
 
@@ -68,10 +65,7 @@ export function AuthProvider({ children }) {
   //check whether name is taken and then create the user
   const firebaseRegister = async (usernameInput) => {
     if (currentUser !== null) {
-      const userData = await firestore
-        .collection('users')
-        .doc(currentUser.uid)
-        .get();
+      const userData = await firestore.collection('users').doc(currentUser.uid).get();
       //# if user data does not exist
       if (!userData.exists) {
         //currentUser.metadata.creationTime === currentUser.metadata.lastSignInTime
@@ -122,15 +116,12 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     userProfile,
+    getUserProfile,
     login,
     logout,
     firebaseRegister,
   };
 
   // Takes all value props
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }
