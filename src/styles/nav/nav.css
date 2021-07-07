@@ -82,7 +82,24 @@ input::placeholder:focus {
 
 .nav__icon {
   cursor: pointer;
-  font-size: 1.5em !important;
+  font-size: 1.5rem !important;
+}
+#nav__icons > div > .person {
+  transform: translateY(2px) translateX(-1px);
+  font-size: 1.45rem !important;
+}
+
+#nav__icons > a > .home {
+  transform: translateY(1px);
+  font-size: 1.5rem !important;
+}
+
+#nav__icons > .heart {
+  font-size: 1.65rem !important;
+}
+
+#nav__icons > .chat {
+  transform: translateY(-1px);
 }
 
 #nav__icons > a {

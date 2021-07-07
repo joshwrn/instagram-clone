@@ -52,12 +52,12 @@ const Nav = () => {
         </div>
         <div id="nav__icons">
           <NavLink exact to="/">
-            <IoHomeOutline className="nav__icon" />
+            <IoHomeOutline className="nav__icon home" />
           </NavLink>
-          <IoChatbubbleOutline className="nav__icon" />
-          <IoHeartOutline className="nav__icon" />
-          <div ref={menuRef}>
-            <IoPersonOutline onClick={handleUserIcon} className="nav__icon" />
+          <IoChatbubbleOutline className="nav__icon chat" />
+          <IoHeartOutline className="nav__icon heart" />
+          <div id="nav__user-menu-container" ref={menuRef}>
+            <IoPersonOutline onClick={handleUserIcon} className="nav__icon person" />
             {openMenu ? (
               <NavUserMenu
                 theme={theme}

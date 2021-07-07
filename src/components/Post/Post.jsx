@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../../services/firebase';
 import '../../styles/post/post.css';
+import '../../styles/post/post__loading.css';
 import { Link } from 'react-router-dom';
 import profilePic from '../../assets/misc/toa-heftiba-YCi4c79ZDIE-unsplash.jpg';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -14,114 +15,181 @@ import {
 
 const Post = ({ match }) => {
   const [currentPost, setCurrentPost] = useState();
-  const [currentUser, setCurrentUser] = useState();
+  const [postUser, setPostUser] = useState();
+  const [loading, setLoading] = useState([
+    {
+      image: 'avatar',
+      loading: true,
+    },
+    { image: 'post', loading: true },
+  ]);
+  const [loaded, setLoaded] = useState(false);
+
+  //@ get the current post and user on page load
   useEffect(() => {
     getCurrentPost();
-    getCurrentUser();
+    getPostUser();
   }, []);
 
+  //@ check if postUser and currentUser are defined then set loading false
+  useEffect(() => {
+    if (postUser && currentPost) {
+      console.log('hi');
+      if (loading.every((item) => item.loading === false)) {
+        setLoaded(true);
+        console.log(loaded);
+      }
+    }
+  }, [loading]);
+
+  //@ get the current post
   const getCurrentPost = async () => {
-    await firestore
+    const thisPost = await firestore
       .collection('users')
       .doc(match.params.uid)
       .collection('posts')
       .doc(match.params.postid)
-      .get()
-      .then((postData) => {
-        if (postData.exists) {
-          setCurrentPost(postData);
-        }
-      });
-  };
-
-  const getCurrentUser = async () => {
-    const getUser = await firestore
-      .collection('users')
-      .doc(match.params.uid)
       .get();
-    setCurrentUser(getUser);
+    console.log('trying');
+    if (thisPost.exists) {
+      console.log('cur post exists');
+      setCurrentPost(thisPost);
+    } else {
+      setLoaded('error');
+    }
   };
 
-  return (
-    <>
-      {currentPost && currentUser ? (
-        <div id="post">
-          <div id="post__container">
-            <img id="post__image" src={currentPost.data().src} alt="" />
-            <div id="post__sidebar">
-              <Link to={`/profile/${match.params.uid}`}>
-                <div id="post__profile__container">
-                  <div id="post__image__container">
-                    <img
-                      id="post__profile__img"
-                      src={currentUser.data().profilePhoto}
-                      alt=""
-                    />
-                    <img
-                      id="post__profile__img-blur"
-                      src={currentUser.data().profilePhoto}
-                      alt=""
-                    />
-                  </div>
-                  <div id="post__name__container">
-                    <h2 id="post__display-name">
-                      {currentUser.data().displayName}
-                    </h2>
-                    <p id="post__username">@{currentUser.data().displayName}</p>
-                  </div>
-                </div>
-              </Link>
-              <div className="post__comments">
-                {/* <p className="view-all">View All Comments</p> */}
+  //@ get the profile of the current post
+  const getPostUser = async () => {
+    const getUser = await firestore.collection('users').doc(match.params.uid).get();
+    if (getUser.exists) {
+      setPostUser(getUser);
+    } else {
+      setLoaded('error');
+    }
+  };
 
-                <div className="post__comment__container">
+  //@ update the loading state
+  const handleLoad = (e) => {
+    const { alt } = e.target;
+    const imgIndex = loading.findIndex((img) => img.image === alt);
+    setLoading(
+      (old) => [...old],
+      {
+        [loading[imgIndex]]: (loading[imgIndex].loading = false),
+      },
+      console.log(loading)
+    );
+  };
+
+  let postState;
+
+  //@ if finished loading
+
+  if (currentPost && postUser) {
+    postState = (
+      <div id="post">
+        <div id="post__container">
+          <div id="post__image-loading" style={loaded ? { display: 'none' } : null} />
+          <img
+            style={!loaded ? { display: 'none' } : null}
+            onLoad={handleLoad}
+            id="post__image"
+            src={currentPost.data().src}
+            alt="post"
+          />
+          <div id="post__sidebar">
+            <Link to={`/profile/${match.params.uid}`}>
+              <div id="post__profile__container">
+                <div id="post__image__container">
+                  <div
+                    id="post__profile__img-loading"
+                    style={loaded ? { display: 'none' } : null}
+                  />
                   <img
-                    className="post__comment__profile-img"
-                    src={profilePic}
+                    style={!loaded ? { display: 'none' } : null}
+                    onLoad={handleLoad}
+                    id="post__profile__img"
+                    src={postUser.data().profilePhoto}
+                    alt="avatar"
+                  />
+                  <img
+                    id="post__profile__img-blur"
+                    style={!loaded ? { display: 'none' } : null}
+                    src={postUser.data().profilePhoto}
                     alt=""
                   />
-                  <p className="comment">
-                    <span className="comment-user">Sofie Smith</span> wow so
-                    cool!
-                  </p>
+                </div>
+                <div id="post__name__container">
+                  <h2 id="post__display-name">{postUser.data().displayName}</h2>
+                  <p id="post__username">@{postUser.data().username}</p>
                 </div>
               </div>
-              <div className="post__footer">
-                <div className="first-child">
-                  <div className="left">
-                    <IoHeartOutline className="post__icon like-icon" />
-                    <IoChatbubbleOutline className="post__icon" />
-                    <IoShareOutline className="post__icon" />
+            </Link>
+            <div className="post__comments">
+              {/* <p className="view-all">View All Comments</p> */}
+              {!loaded ? (
+                <>
+                  <div className="post__comment__container">
+                    <div className="post__comment__profile-img-loading" />
+                    <div className="comment-loading"></div>
                   </div>
-                  <IoShareSocialOutline className="post__icon" />
+                  <div className="post__comment__container">
+                    <div className="post__comment__profile-img-loading" />
+                    <div className="comment-loading"></div>
+                  </div>
+                  <div className="post__comment__container">
+                    <div className="post__comment__profile-img-loading" />
+                    <div className="comment-loading"></div>
+                  </div>
+                </>
+              ) : (
+                <div className="post__comment__container">
+                  <img className="post__comment__profile-img" src={profilePic} alt="" />
+                  <p className="comment">
+                    <span className="comment-user">Sofie Smith</span> wow so cool!
+                  </p>
                 </div>
-                <p className="post__likes">3,543 likes</p>
-                <div className="comment-box">
-                  <form className="comment__form">
-                    <input
-                      className="input-box"
-                      type="text"
-                      placeholder="Add a comment..."
-                    />
-                  </form>
-                  <IoSendOutline className="send" />
+              )}
+            </div>
+            <div className="post__footer">
+              <div className="first-child">
+                <div className="left">
+                  <IoHeartOutline className="post__icon like-icon" />
+                  <IoChatbubbleOutline className="post__icon" />
+                  <IoShareOutline className="post__icon" />
                 </div>
+                <IoShareSocialOutline className="post__icon" />
+              </div>
+              <p className="post__likes">{currentPost.data().likesCounter} likes</p>
+              <div className="comment-box">
+                <form className="comment__form">
+                  <input className="input-box" type="text" placeholder="Add a comment..." />
+                </form>
+                <IoSendOutline className="send" />
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <div id="post">
-          <div id="post__not-found-container">
-            <h3>Post Not Found</h3>
-            <Link to="/">
-              <button id="post__return-button">Return Home</button>
-            </Link>
-          </div>
+      </div>
+    );
+  }
+
+  //@ if there was an error
+  if (loaded === 'error') {
+    postState = (
+      <div id="post">
+        <div id="post__not-found-container">
+          <h3>Post Not Found</h3>
+          <Link to="/">
+            <button id="post__return-button">Return Home</button>
+          </Link>
         </div>
-      )}
-    </>
-  );
+      </div>
+    );
+  }
+
+  return <>{postState}</>;
 };
 
 export default Post;

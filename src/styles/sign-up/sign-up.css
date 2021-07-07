@@ -87,7 +87,7 @@
   padding: 0 0.5em;
   height: 80%;
   color: gray;
-  border-right: 1px solid rgb(190, 190, 190);
+  border-right: var(--secondary-border);
 }
 
 .sign-up__input > .input-box {

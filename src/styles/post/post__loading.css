@@ -1,0 +1,52 @@
+#post__image-loading {
+  object-fit: cover;
+  width: 35em;
+  height: 39.5em;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
+}
+
+#post__profile__img-loading {
+  border-radius: 100%;
+  width: 5em;
+  height: 5em;
+  position: absolute;
+  object-fit: cover;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
+}
+
+.post__comment__profile-img-loading {
+  border-radius: 100%;
+  width: 2em;
+  height: 2em;
+  object-fit: cover;
+  cursor: pointer;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
+}
+
+.comment-loading {
+  width: 70%;
+  height: 2em;
+  margin: 0.5rem 0;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
+  border-radius: 1em;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

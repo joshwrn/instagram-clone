@@ -38,9 +38,11 @@ const Profile = (props) => {
     e.preventDefault();
     if (avatarModal === false) {
       setAvatarModal(true);
+      document.body.classList.add('stop-scrolling');
       console.log('um');
     } else {
       setAvatarModal(false);
+      document.body.classList.remove('stop-scrolling');
       console.log('hi');
     }
   };
@@ -49,8 +51,10 @@ const Profile = (props) => {
     e.preventDefault();
     if (renderModal === false) {
       setRenderModal(true);
+      document.body.classList.add('stop-scrolling');
     } else {
       setRenderModal(false);
+      document.body.classList.remove('stop-scrolling');
     }
   };
 

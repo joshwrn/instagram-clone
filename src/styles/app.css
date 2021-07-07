@@ -9,11 +9,22 @@
   --primary-background-color: rgb(255, 255, 255);
   --primary-border: 1px solid rgba(41, 41, 41, 0);
   --secondary-border: 1px solid rgb(206, 206, 206);
+
+  --loading-gradient: linear-gradient(to right, #ffffff, #c2c2c2);
 }
 
 * {
   margin: 0;
   padding: 0;
+}
+
+img {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 a {
@@ -50,4 +61,9 @@ html {
   text-rendering: optimizeLegibility;
   color: var(--primary-font-color);
   background-color: var(--primary-background-color);
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }

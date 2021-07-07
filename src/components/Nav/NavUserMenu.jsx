@@ -21,6 +21,7 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--primary-background-color', 'black');
       root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41)');
       root.style.setProperty('--secondary-border', '1px solid rgb(41, 41, 41)');
+      root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #000000, #000000)');
       setTheme('dark');
     } else if (theme === 'dark') {
       root.style.setProperty('--primary-font-color', 'black');
@@ -30,6 +31,7 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--primary-background-color', 'white');
       root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41, 0)');
       root.style.setProperty('--secondary-border', '1px solid rgb(206, 206, 206)');
+      root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #ffffff, #c2c2c2)');
       setTheme('light');
     }
   };
