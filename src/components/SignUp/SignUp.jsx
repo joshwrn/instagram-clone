@@ -12,8 +12,10 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
-    setUserInput(value);
+    const { value } = e.target;
+    const reg = /[^a-zA-Z\d]/gi;
+    const newVal = value.replace(reg, '');
+    setUserInput(newVal);
   };
 
   useEffect(() => {
@@ -84,7 +86,7 @@ const SignUp = () => {
               </div>
             </div>
             <div id="sign-up__form-container">
-              <form className="sign-up__form">
+              <form pattern="[0-9a-zA-Z_.-]*" className="sign-up__form">
                 <div className="sign-up__input">
                   <div className="username">
                     <p>@</p>
@@ -97,7 +99,7 @@ const SignUp = () => {
                     placeholder="username"
                     maxLength="15"
                     minLength="4"
-                    pattern="[0-9a-zA-Z_.-]*"
+                    value={userInput}
                   />
                 </div>
                 <div className="sign-up__helper-div">{nameHelper}</div>

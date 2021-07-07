@@ -33,6 +33,8 @@ const ProfileFeed = ({ firestore, match, newPost }) => {
             src={item.data().src}
             match={match}
             postId={item.id}
+            likes={item.data().likesCounter}
+            comments={item.data().commentsCounter}
           />
         );
       })}

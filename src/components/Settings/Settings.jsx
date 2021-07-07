@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/settings/settings.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import { firestore, initFire, timestamp } from '../../services/firebase';
+import { firestore, initFire } from '../../services/firebase';
 
 const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
+  const [userInput, setUserInput] = useState('');
+  const [userBio, setUserBio] = useState('');
+
+  useEffect(() => {
+    userProfile && setUserInput(userProfile.displayName);
+    userProfile && setUserBio(userProfile.bio);
+  }, [userProfile]);
+
+  //! handle photo uploads
+  //@ add file to state
   const handlePhotoChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
@@ -16,6 +26,8 @@ const Settings = () => {
       console.log('fail');
     }
   };
+
+  //+ upload
   const handleUpload = async (imgType, file) => {
     const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${imgType}`);
@@ -29,6 +41,44 @@ const Settings = () => {
       { merge: true }
     );
     getUserProfile();
+  };
+
+  //! handle text input changes
+  //@ handle display name change
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    const reg = /[^a-zA-Z' '\d]/gi; //replace all but these characters
+    const newVal = value.replace(reg, '');
+    setUserInput(newVal);
+  };
+
+  //@ handle bio change
+  const handleBioChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    setUserBio(value);
+  };
+
+  //+ handle save text
+  const handleTextUpload = async (e) => {
+    e.preventDefault();
+    if (userBio !== userProfile.bio) {
+      await firestore.collection('users').doc(currentUser.uid).set(
+        {
+          bio: userBio,
+        },
+        { merge: true }
+      );
+    }
+    if (userInput !== userProfile.displayName && userInput !== '') {
+      await firestore.collection('users').doc(currentUser.uid).set(
+        {
+          displayName: userInput,
+        },
+        { merge: true }
+      );
+    }
   };
 
   return (
@@ -74,27 +124,8 @@ const Settings = () => {
               </div>
             </form>
           </div>
-
           <div id="settings__text-inputs">
             <form id="settings__text-form">
-              <div className="settings__input-container">
-                <p>Username:</p>
-                <div className="settings__input">
-                  <div className="username">
-                    <p>@</p>
-                  </div>
-                  <input
-                    autoComplete="off"
-                    name="username"
-                    className="input-box"
-                    type="text"
-                    placeholder={userProfile && userProfile.username}
-                    maxLength="15"
-                    minLength="4"
-                    pattern="[0-9a-zA-Z_.-]*"
-                  />
-                </div>
-              </div>
               <div className="settings__input-container">
                 <p>Display Name:</p>
                 <div className="settings__input">
@@ -104,9 +135,10 @@ const Settings = () => {
                     className="input-box-display"
                     type="text"
                     placeholder={userProfile && userProfile.displayName}
-                    maxLength="15"
-                    minLength="4"
-                    pattern="[a-zA-Z0-9]"
+                    maxLength="25"
+                    minLength="3"
+                    onChange={handleChange}
+                    value={userInput}
                   />
                 </div>
               </div>
@@ -117,13 +149,19 @@ const Settings = () => {
                   name="bio"
                   maxLength="150"
                   placeholder={userProfile && userProfile.bio}
+                  value={userBio}
+                  onChange={handleBioChange}
                 />
               </div>
+              <button onClick={handleTextUpload} type="submit" id="settings__text-save-btn">
+                Save
+              </button>
             </form>
           </div>
         </div>
-        <div>
-          <Link to={`/profile/${userProfile && userProfile.userID}`}>
+
+        <div id="settings__profile-btn-container">
+          <Link id="settings__profile-link" to={`/profile/${userProfile && userProfile.userID}`}>
             <button id="settings__profile-btn">View Profile</button>
           </Link>
         </div>

@@ -11,8 +11,9 @@
   left: 0;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.514);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 200;
+  backdrop-filter: blur(0.5rem);
 }
 
 #profile__upload-modal__container {
@@ -121,7 +122,6 @@
 /*# post button  */
 #profile__upload-modal__caption-container > .post-btn {
   margin-top: 1.5em;
-  box-shadow: 0px 0.25em 0.5em 1px rgba(0, 0, 0, 0.103);
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);
   padding: 0 2em;
@@ -132,9 +132,5 @@
   box-sizing: border-box;
   font-weight: bold;
   transition: box-shadow 0.25s;
-  border: var(--primary-border);
-}
-
-#profile__upload-modal__caption-container > .post-btn:hover {
-  box-shadow: 0px 0.25em 1em 1px rgba(0, 0, 0, 0.2);
+  border: var(--secondary-border);
 }

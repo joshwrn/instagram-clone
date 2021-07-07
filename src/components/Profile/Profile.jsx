@@ -3,13 +3,16 @@ import { firestore } from '../../services/firebase';
 import ProfileSidebar from './ProfileSidebar';
 import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
+import ProfileAvatarModal from './ProfileAvatarModal';
 import '../../styles/profile/profile.css';
 import { useAuth } from '../../contexts/AuthContext';
-import { IoHeartOutline, IoSendOutline, IoAddOutline } from 'react-icons/io5';
+import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
+
 import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
+  const [avatarModal, setAvatarModal] = useState(false);
   const [renderModal, setRenderModal] = useState(false);
   const [newPost, setNewPost] = useState(0);
   const { match } = props;
@@ -29,6 +32,17 @@ const Profile = (props) => {
           setCurrentProfile(userData.data());
         }
       });
+  };
+
+  const getAvatarModal = (e) => {
+    e.preventDefault();
+    if (avatarModal === false) {
+      setAvatarModal(true);
+      console.log('um');
+    } else {
+      setAvatarModal(false);
+      console.log('hi');
+    }
   };
 
   const getModal = (e) => {
@@ -78,8 +92,19 @@ const Profile = (props) => {
             {/* top bar*/}
             <div id="profile__top-section">
               <div id="profile__img-container">
-                <img id="profile__img" src={currentProfile.profilePhoto} alt="" />
+                <img
+                  onClick={getAvatarModal}
+                  id="profile__img"
+                  src={currentProfile.profilePhoto}
+                  alt=""
+                />
                 <img id="profile__img-blur" src={currentProfile.profilePhoto} alt="" />
+                {avatarModal && (
+                  <ProfileAvatarModal
+                    getAvatarModal={getAvatarModal}
+                    src={currentProfile.profilePhoto}
+                  />
+                )}
               </div>
               <div className="right">
                 <div className="icon-row">

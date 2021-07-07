@@ -21,6 +21,8 @@
   align-content: center;
   max-width: 1150px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 1em 0 1em;
 }
 
 #profile__inner {
@@ -49,6 +51,7 @@
   width: 10em;
   height: 10em;
   cursor: pointer;
+  object-fit: cover;
 }
 
 #profile__img-blur {

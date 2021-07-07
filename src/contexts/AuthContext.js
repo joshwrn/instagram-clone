@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
   };
 
   function logout() {
-    setUserProfile(undefined);
+    setUserProfile(null);
     return auth.signOut();
   }
 

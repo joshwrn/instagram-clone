@@ -22,7 +22,7 @@
   overflow: hidden;
   overflow-y: scroll;
   border-radius: 1em;
-  border: 1px solid rgb(211, 211, 211);
+  border: var(--secondary-border);
   width: 25em;
   height: 80vh;
 }
@@ -75,7 +75,7 @@
   width: 60%;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(211, 211, 211);
+  border: var(--secondary-border);
   border-radius: 1em;
   height: 2em;
   margin: 0 0 0.25em 0;

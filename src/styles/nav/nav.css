@@ -8,9 +8,10 @@
   background-color: var(--nav-background-color);
   backdrop-filter: blur(2em);
   height: 54px;
-  border: var(--primary-border);
+  border-bottom: var(--primary-border);
   box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089);
   z-index: 100;
+  box-sizing: border-box;
 }
 
 #nav__inner {
@@ -19,6 +20,8 @@
   align-items: center;
   max-width: 1150px;
   width: 100%;
+  padding: 0 1em 0 1em;
+  box-sizing: border-box;
 }
 
 #nav__logo__img {

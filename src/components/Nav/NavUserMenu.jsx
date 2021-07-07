@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/nav/nav__user-menu.css';
 import { NavLink, Link } from 'react-router-dom';
+import { IoPersonCircleOutline, IoPersonAddOutline, IoLogOut } from 'react-icons/io5';
+import { CgDarkMode } from 'react-icons/cg';
 
 const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
   const handleClick = (e) => {
@@ -38,25 +40,30 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
         {currentUser ? (
           <>
             <NavLink className="user-menu__option" to={`/profile/${currentUser.uid}`}>
+              <IoPersonCircleOutline className="nav__menu__icon" />
               <div>
                 <p>Profile</p>
               </div>
             </NavLink>
             <div onClick={changeTheme} className="user-menu__option">
+              <CgDarkMode className="nav__menu__icon" />
               <p>Change Theme</p>
             </div>
             <div onClick={logout} className="user-menu__option">
+              <IoLogOut className="nav__menu__icon" />
               <p>Logout</p>
             </div>
           </>
         ) : (
           <>
             <Link className="user-menu__option" to={'/sign-up'}>
+              <IoPersonAddOutline className="nav__menu__icon" />
               <div>
                 <p>Sign Up</p>
               </div>
             </Link>
             <div onClick={changeTheme} className="user-menu__option">
+              <CgDarkMode className="nav__menu__icon" />
               <p>Change Theme</p>
             </div>
           </>

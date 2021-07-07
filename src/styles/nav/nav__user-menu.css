@@ -45,9 +45,13 @@
   color: var(--user-menu-font-color);
   transition: background-color 0.25s;
   font-size: 0.86rem;
-  font-weight: bold;
+  gap: 5px;
 }
 
 .user-menu__option:hover {
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav__menu__icon {
+  font-size: 1.05rem;
 }
