@@ -34,7 +34,6 @@ const Post = ({ match }) => {
   //@ check if postUser and currentUser are defined then set loading false
   useEffect(() => {
     if (postUser && currentPost) {
-      console.log('hi');
       if (loading.every((item) => item.loading === false)) {
         setLoaded(true);
         console.log(loaded);
@@ -50,9 +49,7 @@ const Post = ({ match }) => {
       .collection('posts')
       .doc(match.params.postid)
       .get();
-    console.log('trying');
     if (thisPost.exists) {
-      console.log('cur post exists');
       setCurrentPost(thisPost);
     } else {
       setLoaded('error');
@@ -73,107 +70,97 @@ const Post = ({ match }) => {
   const handleLoad = (e) => {
     const { alt } = e.target;
     const imgIndex = loading.findIndex((img) => img.image === alt);
-    setLoading(
-      (old) => [...old],
-      {
-        [loading[imgIndex]]: (loading[imgIndex].loading = false),
-      },
-      console.log(loading)
-    );
+    setLoading((old) => [...old], {
+      [loading[imgIndex]]: (loading[imgIndex].loading = false),
+    });
   };
 
   let postState;
 
   //@ if finished loading
-
-  if (currentPost && postUser) {
-    postState = (
-      <div id="post">
-        <div id="post__container">
-          <div id="post__image-loading" style={loaded ? { display: 'none' } : null} />
-          <img
-            style={!loaded ? { display: 'none' } : null}
-            onLoad={handleLoad}
-            id="post__image"
-            src={currentPost.data().src}
-            alt="post"
-          />
-          <div id="post__sidebar">
-            <Link to={`/profile/${match.params.uid}`}>
-              <div id="post__profile__container">
-                <div id="post__image__container">
-                  <div
-                    id="post__profile__img-loading"
-                    style={loaded ? { display: 'none' } : null}
-                  />
-                  <img
-                    style={!loaded ? { display: 'none' } : null}
-                    onLoad={handleLoad}
-                    id="post__profile__img"
-                    src={postUser.data().profilePhoto}
-                    alt="avatar"
-                  />
-                  <img
-                    id="post__profile__img-blur"
-                    style={!loaded ? { display: 'none' } : null}
-                    src={postUser.data().profilePhoto}
-                    alt=""
-                  />
-                </div>
-                <div id="post__name__container">
-                  <h2 id="post__display-name">{postUser.data().displayName}</h2>
-                  <p id="post__username">@{postUser.data().username}</p>
-                </div>
+  postState = (
+    <div id="post">
+      <div id="post__container">
+        <div id="post__image-loading" style={loaded ? { display: 'none' } : null} />
+        <img
+          style={!loaded ? { display: 'none' } : null}
+          onLoad={handleLoad}
+          id="post__image"
+          src={currentPost && currentPost.data().src}
+          alt="post"
+        />
+        <div id="post__sidebar">
+          <Link to={`/profile/${match.params.uid}`}>
+            <div id="post__profile__container">
+              <div id="post__image__container">
+                <div id="post__profile__img-loading" style={loaded ? { display: 'none' } : null} />
+                <img
+                  style={!loaded ? { display: 'none' } : null}
+                  onLoad={handleLoad}
+                  id="post__profile__img"
+                  src={postUser && postUser.data().profilePhoto}
+                  alt="avatar"
+                />
+                <img
+                  id="post__profile__img-blur"
+                  style={!loaded ? { display: 'none' } : null}
+                  src={postUser && postUser.data().profilePhoto}
+                  alt=""
+                />
               </div>
-            </Link>
-            <div className="post__comments">
-              {/* <p className="view-all">View All Comments</p> */}
-              {!loaded ? (
-                <>
-                  <div className="post__comment__container">
-                    <div className="post__comment__profile-img-loading" />
-                    <div className="comment-loading"></div>
-                  </div>
-                  <div className="post__comment__container">
-                    <div className="post__comment__profile-img-loading" />
-                    <div className="comment-loading"></div>
-                  </div>
-                  <div className="post__comment__container">
-                    <div className="post__comment__profile-img-loading" />
-                    <div className="comment-loading"></div>
-                  </div>
-                </>
-              ) : (
-                <div className="post__comment__container">
-                  <img className="post__comment__profile-img" src={profilePic} alt="" />
-                  <p className="comment">
-                    <span className="comment-user">Sofie Smith</span> wow so cool!
-                  </p>
-                </div>
-              )}
+              <div id="post__name__container">
+                <h2 id="post__display-name">{postUser && postUser.data().displayName}</h2>
+                <p id="post__username">@{postUser && postUser.data().username}</p>
+              </div>
             </div>
-            <div className="post__footer">
-              <div className="first-child">
-                <div className="left">
-                  <IoHeartOutline className="post__icon like-icon" />
-                  <IoChatbubbleOutline className="post__icon" />
-                  <IoShareOutline className="post__icon" />
+          </Link>
+          <div className="post__comments">
+            {/* <p className="view-all">View All Comments</p> */}
+            {!loaded ? (
+              <>
+                <div className="post__comment__container">
+                  <div className="post__comment__profile-img-loading" />
+                  <div className="comment-loading"></div>
                 </div>
-                <IoShareSocialOutline className="post__icon" />
+                <div className="post__comment__container">
+                  <div className="post__comment__profile-img-loading" />
+                  <div className="comment-loading"></div>
+                </div>
+                <div className="post__comment__container">
+                  <div className="post__comment__profile-img-loading" />
+                  <div className="comment-loading"></div>
+                </div>
+              </>
+            ) : (
+              <div className="post__comment__container">
+                <img className="post__comment__profile-img" src={profilePic} alt="" />
+                <p className="comment">
+                  <span className="comment-user">Sofie Smith</span> wow so cool!
+                </p>
               </div>
-              <p className="post__likes">{currentPost.data().likesCounter} likes</p>
-              <div className="comment-box">
-                <form className="comment__form">
-                  <input className="input-box" type="text" placeholder="Add a comment..." />
-                </form>
-                <IoSendOutline className="send" />
+            )}
+          </div>
+          <div className="post__footer">
+            <div className="first-child">
+              <div className="left">
+                <IoHeartOutline className="post__icon like-icon" />
+                <IoChatbubbleOutline className="post__icon" />
+                <IoShareOutline className="post__icon" />
               </div>
+              <IoShareSocialOutline className="post__icon" />
+            </div>
+            <p className="post__likes">{currentPost && currentPost.data().likesCounter} likes</p>
+            <div className="comment-box">
+              <form className="comment__form">
+                <input className="input-box" type="text" placeholder="Add a comment..." />
+              </form>
+              <IoSendOutline className="send" />
             </div>
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 
   //@ if there was an error
   if (loaded === 'error') {

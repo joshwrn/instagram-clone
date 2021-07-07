@@ -48,7 +48,7 @@ const Settings = () => {
   const handleChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    const reg = /[^a-zA-Z' '\d]/gi; //replace all but these characters
+    const reg = /[^a-zA-Z' ']/gi; //replace all but these characters
     const newVal = value.replace(reg, '');
     setUserInput(newVal);
   };

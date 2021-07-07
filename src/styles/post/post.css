@@ -56,18 +56,6 @@
   object-fit: cover;
   width: 35em;
   height: 39.5em;
-  opacity: 0;
-  animation: anim 1s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes anim {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100;
-  }
 }
 
 #post__sidebar {

@@ -16,6 +16,7 @@
   background: var(--loading-gradient);
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
+  box-shadow: 0px 5px 1em 1px rgba(0, 0, 0, 0.2);
 }
 
 .post__comment__profile-img-loading {
@@ -27,6 +28,7 @@
   background: var(--loading-gradient);
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
+  box-shadow: 0px 5px 1em 1px rgba(0, 0, 0, 0.2);
 }
 
 .comment-loading {
@@ -37,6 +39,7 @@
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
   border-radius: 1em;
+  box-shadow: 0px 5px 1em 1px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes gradientMove {
