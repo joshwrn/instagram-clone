@@ -134,3 +134,9 @@
   transition: box-shadow 0.25s;
   border: var(--secondary-border);
 }
+
+/*! loading icon */
+
+#profile__upload-modal__caption-container > .loader {
+  margin-top: 2.7em;
+}

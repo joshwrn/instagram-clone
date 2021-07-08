@@ -6,7 +6,7 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
 
   if (loaded === false) {
     sidebar = (
-      <>
+      <div id="profile__sidebar">
         <div className="user-names">
           <div id="sidebar__display-name-loading"></div>
           <div id="sidebar__username-loading"></div>
@@ -16,13 +16,13 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
           <div className="counter-loading"></div>
           <div className="counter-loading"></div>
         </div>
-      </>
+      </div>
     );
   }
 
   if (loaded === true) {
     sidebar = (
-      <>
+      <div className="fade-in" id="profile__sidebar">
         <div className="user-names">
           <h2 className="display-name">{currentProfile.displayName}</h2>
           <h3 className="username">@{currentProfile.username}</h3>
@@ -34,11 +34,11 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
           </div>
           <div className="user-info">
             <div className="following-container">
-              <h3> {currentProfile.followingCounter} </h3>
+              <h3> {currentProfile.following.length} </h3>
               <p className="following">Following</p>
             </div>
             <div className="followers-container">
-              <h3>{currentProfile.followersCounter}</h3> <p className="followers">Followers</p>
+              <h3>{currentProfile.followers.length}</h3> <p className="followers">Followers</p>
             </div>
           </div>
         </div>
@@ -46,11 +46,11 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
           <h3 className="header">Bio</h3>
           <p className="text">{currentProfile.bio}</p>
         </div>
-      </>
+      </div>
     );
   }
 
-  return <div id="profile__sidebar">{sidebar}</div>;
+  return <>{sidebar}</>;
 };
 
 export default ProfileSidebar;

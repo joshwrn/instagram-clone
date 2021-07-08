@@ -12,23 +12,32 @@ import {
   IoSendOutline,
   IoShareSocialOutline,
 } from 'react-icons/io5';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Post = ({ match }) => {
   const [currentPost, setCurrentPost] = useState();
   const [postUser, setPostUser] = useState();
+  const [ownPost, setOwnPost] = useState(false);
   const [loading, setLoading] = useState([
     { image: 'avatar', loading: true },
     { image: 'post', loading: true },
   ]);
   const [loaded, setLoaded] = useState(false);
+  const { currentUser } = useAuth();
 
-  //@ get the current post and user on page load
+  useEffect(() => {
+    if (currentUser && postUser === currentUser) {
+      setOwnPost(true);
+    }
+  }, [postUser]);
+
+  //+ get the current post and user on page load
   useEffect(() => {
     getCurrentPost();
     getPostUser();
   }, []);
 
-  //@ check if postUser and currentUser are defined then set loading false
+  //+ check if postUser and currentUser are defined then set loading false
   useEffect(() => {
     if (postUser && currentPost) {
       if (loading.every((item) => item.loading === false)) {
@@ -37,7 +46,7 @@ const Post = ({ match }) => {
     }
   }, [loading]);
 
-  //@ get the current post
+  //+ get the current post
   const getCurrentPost = async () => {
     const thisPost = await firestore
       .collection('users')
@@ -52,7 +61,7 @@ const Post = ({ match }) => {
     }
   };
 
-  //@ get the profile of the current post
+  //+ get the profile of the current post
   const getPostUser = async () => {
     const getUser = await firestore.collection('users').doc(match.params.uid).get();
     if (getUser.exists) {
@@ -62,7 +71,7 @@ const Post = ({ match }) => {
     }
   };
 
-  //@ update the loading state
+  //+ update the loading state
   const handleLoad = (e) => {
     const { alt } = e.target;
     const imgIndex = loading.findIndex((img) => img.image === alt);
@@ -73,7 +82,7 @@ const Post = ({ match }) => {
 
   let postState;
 
-  //@ if finished loading
+  //+ if finished loading
   postState = (
     <div id="post">
       <div id="post__container">
@@ -100,6 +109,7 @@ const Post = ({ match }) => {
                   className="post__loading-image"
                 />
                 <img
+                  className="blur"
                   id="post__profile__img-blur"
                   style={!loaded ? { display: 'none' } : null}
                   src={postUser && postUser.data().profilePhoto}
@@ -149,7 +159,7 @@ const Post = ({ match }) => {
                 <IoChatbubbleOutline className="post__icon" />
                 <IoShareOutline className="post__icon" />
               </div>
-              <IoShareSocialOutline className="post__icon" />
+              {ownPost ? <MoreHorizIcon /> : <IoShareSocialOutline className="post__icon" />}
             </div>
             <p className="post__likes">{currentPost && currentPost.data().likesCounter} likes</p>
             <div className="comment-box">
@@ -164,7 +174,7 @@ const Post = ({ match }) => {
     </div>
   );
 
-  //@ if there was an error
+  //+ if there was an error
   if (loaded === 'error') {
     postState = (
       <div id="post">

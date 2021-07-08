@@ -24,14 +24,16 @@ const Profile = (props) => {
     { image: 'feed', loading: true }, //change
   ]);
 
+  //+ if the every item in loading is set to false set loaded to true
   useEffect(() => {
-    if (currentProfile && currentUser) {
+    if (currentProfile) {
       if (loading.every((item) => item.loading === false)) {
         setLoaded(true);
       }
     }
   }, [loading]);
 
+  //+ set the target image to be done loading onload
   const handleLoad = (e) => {
     const { alt } = e.target;
     const imgIndex = loading.findIndex((img) => img.image === alt);
@@ -40,10 +42,12 @@ const Profile = (props) => {
     });
   };
 
+  //+ when theres a new post update the user profile
   useEffect(() => {
     return getUserObject();
   }, [newPost]);
 
+  //+ get the current profiles data
   const getUserObject = () => {
     firestore
       .collection('users')
@@ -56,6 +60,7 @@ const Profile = (props) => {
       });
   };
 
+  //+ avatar modal
   const getAvatarModal = (e) => {
     e.preventDefault();
     if (avatarModal === false) {
@@ -67,6 +72,7 @@ const Profile = (props) => {
     }
   };
 
+  //+ new post modal
   const getModal = (e) => {
     e.preventDefault();
     if (renderModal === false) {
@@ -78,6 +84,7 @@ const Profile = (props) => {
     }
   };
 
+  //+ decides if action button should be post or message
   let actionButton = (
     <button className="action">
       <IoSendOutline className="action-icon" />
@@ -93,6 +100,7 @@ const Profile = (props) => {
     }
   }
 
+  //+ decides if profile button should be follow or edit
   let profileButton = <button className="profile-btn">Follow</button>;
   if (currentUser) {
     if (currentUser.uid === match.params.uid) {
@@ -106,82 +114,84 @@ const Profile = (props) => {
 
   return (
     <>
-      {currentProfile && (
-        <div id="profile">
-          {/*//+ banner */}
-          <div id="profile__header">
-            <div id="profile__hero-loading" style={loaded ? { display: 'none' } : null} />
-            <img
-              id="profile__hero"
-              src={currentProfile.banner}
-              alt="banner"
-              onLoad={handleLoad}
-              style={!loaded ? { display: 'none' } : null}
-            />
-          </div>
-          <div id="profile__outer">
-            {/*//+ top bar*/}
-            <div id="profile__top-section">
-              <div id="profile__img-container">
-                <div style={loaded ? { display: 'none' } : null} id="profile__img-loading" />
-                <img
-                  onClick={getAvatarModal}
-                  id="profile__img"
-                  src={currentProfile.profilePhoto}
-                  alt="avatar"
-                  onLoad={handleLoad}
-                  style={!loaded ? { display: 'none' } : null}
-                />
-                <img
-                  id="profile__img-blur"
-                  src={currentProfile.profilePhoto}
-                  alt=""
-                  style={!loaded ? { display: 'none' } : null}
-                />
-                {avatarModal && (
-                  <ProfileAvatarModal
-                    getAvatarModal={getAvatarModal}
-                    src={currentProfile.profilePhoto}
-                  />
-                )}
+      <div id="profile">
+        {/*//+ banner */}
+        <div id="profile__header">
+          <div id="profile__hero-loading" style={loaded ? { display: 'none' } : null} />
+          <img
+            id="profile__hero"
+            className="fade-in"
+            src={currentProfile && currentProfile.banner}
+            alt="banner"
+            onLoad={handleLoad}
+            style={!loaded ? { display: 'none' } : null}
+          />
+        </div>
+        <div id="profile__outer">
+          {/*//+ top bar*/}
+          <div id="profile__top-section">
+            <div id="profile__img-container">
+              <div style={loaded ? { display: 'none' } : null} id="profile__img-loading" />
+              <img
+                onClick={getAvatarModal}
+                id="profile__img"
+                src={currentProfile && currentProfile.profilePhoto}
+                alt="avatar"
+                onLoad={handleLoad}
+                style={!loaded ? { display: 'none' } : null}
+                className="fade-in"
+              />
+              <img
+                id="profile__img-blur"
+                src={currentProfile && currentProfile.profilePhoto}
+                alt=""
+                style={!loaded ? { display: 'none' } : null}
+                className="blur"
+              />
+            </div>
+            {avatarModal && (
+              <ProfileAvatarModal
+                getAvatarModal={getAvatarModal}
+                src={currentProfile.profilePhoto}
+                className="fade-in"
+              />
+            )}
+            <div className="right">
+              <div className="icon-row">
+                {profileButton}
+                {actionButton}
               </div>
-              <div className="right">
-                <div className="icon-row">
-                  {profileButton}
-                  {actionButton}
-                </div>
-                {renderModal && (
-                  <ProfileUpload
-                    setNewPost={setNewPost}
-                    currentUser={currentUser}
-                    currentProfile={currentProfile}
-                    getModal={getModal}
-                  />
-                )}
-              </div>
+              {renderModal && (
+                <ProfileUpload
+                  setNewPost={setNewPost}
+                  currentUser={currentUser}
+                  currentProfile={currentProfile}
+                  getModal={getModal}
+                />
+              )}
             </div>
           </div>
-          <div id="profile__inner">
-            {/*//+ sidebar */}
-            <ProfileSidebar
-              loaded={loaded}
-              firestore={firestore}
-              match={match}
-              currentProfile={currentProfile}
-            />
-            {/*//@ posts */}
-            <ProfileFeed
-              newPost={newPost}
-              setLoading={setLoading}
-              loading={loading}
-              loaded={loaded}
-              firestore={firestore}
-              match={match}
-              currentProfile={currentProfile}
-            />
-          </div>
         </div>
-      )}
+        <div id="profile__inner">
+          {/*//+ sidebar */}
+          <ProfileSidebar
+            loaded={loaded}
+            firestore={firestore}
+            match={match}
+            currentProfile={currentProfile}
+          />
+          {/*//@ posts */}
+          <ProfileFeed
+            newPost={newPost}
+            setLoading={setLoading}
+            loading={loading}
+            loaded={loaded}
+            firestore={firestore}
+            match={match}
+            currentProfile={currentProfile}
+          />
+        </div>
+      </div>
     </>
   );
 };

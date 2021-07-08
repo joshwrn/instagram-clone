@@ -6,7 +6,9 @@ import { firestore, initFire, timestamp } from '../../services/firebase';
 const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
   const [caption, setCaption] = useState('');
+  const [uploading, setUploading] = useState(false);
 
+  //+ after choosing a file store it in state
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.size < 1000000) {
@@ -16,13 +18,17 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
     }
   };
 
+  //+ set the caption
   const handleTextChange = (e) => {
     e.preventDefault();
     setCaption(e.target.value);
   };
 
+  //+ submit the post
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUploading(true);
+    //+ create post info
     const createPost = await firestore
       .collection('users')
       .doc(currentUser.uid)
@@ -33,17 +39,20 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
         commentsCounter: 0,
         caption: caption,
       });
+    //+ upload image to storage
     const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
     await fileRef.put(postFile);
     const fileUrl = await fileRef.getDownloadURL();
     console.log(fileUrl);
+    //+ set src to image url
     await createPost.set(
       {
         src: fileUrl,
       },
       { merge: true }
     );
+    //+ update post count
     await firestore
       .collection('users')
       .doc(currentUser.uid)
@@ -54,7 +63,9 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
         },
         { merge: true }
       );
+    //+ close modal and update state with new post
     getModal(e);
+    setUploading(false);
     setNewPost((prev) => prev + 1);
   };
 
@@ -98,22 +109,26 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
                 placeholder="Enter Caption..."
                 onChange={handleTextChange}
               />
-              <button
-                onClick={postFile !== null ? handleSubmit : doNothing}
-                type="submit"
-                className="post-btn"
-                style={
-                  postFile === null
-                    ? { backgroundColor: 'var(--primary-background-color)' }
-                    : {
-                        backgroundColor: 'var(--save-color)',
-                        color: 'white',
-                        boxShadow: '0px 0.25em 0.5em 1px var(--save-shadow-color)',
-                      }
-                }
-              >
-                Post
-              </button>
+              {uploading ? (
+                <div class="loader"></div>
+              ) : (
+                <button
+                  onClick={postFile !== null ? handleSubmit : doNothing}
+                  type="submit"
+                  className="post-btn"
+                  style={
+                    postFile === null
+                      ? { backgroundColor: 'var(--primary-background-color)' }
+                      : {
+                          backgroundColor: 'var(--save-color)',
+                          color: 'white',
+                          boxShadow: '0px 0.25em 0.5em 1px var(--save-shadow-color)',
+                        }
+                  }
+                >
+                  Post
+                </button>
+              )}
             </div>
           </form>
         </div>

@@ -97,10 +97,10 @@ export function AuthProvider({ children }) {
               userID: currentUser.uid,
               joinDate: currentUser.metadata.creationTime,
               lastPostDate: 0,
-              likesCounter: 0,
+              likedPosts: [],
               postsCounter: 0,
-              followersCounter: 0,
-              followingCounter: 0,
+              followers: [],
+              following: [],
               messagesCounter: 0,
             })
             .then(history.push('/settings'))

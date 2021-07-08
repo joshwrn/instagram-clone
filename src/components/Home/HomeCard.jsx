@@ -49,11 +49,7 @@ const Card = ({ src }) => {
           </div>
           <div className="comment-box">
             <form className="comment__form">
-              <input
-                className="input-box"
-                type="text"
-                placeholder="Add a comment..."
-              />
+              <input className="input-box" type="text" placeholder="Add a comment..." />
             </form>
             <IoSendOutline className="send" />
           </div>
@@ -62,7 +58,7 @@ const Card = ({ src }) => {
           <img className="card__image" src={src} alt="" />
         </Link>
       </div>
-      <img className="card__image-blur" src={src} alt="" />
+      <img className="card__image-blur blur" src={src} alt="" />
     </div>
   );
 };

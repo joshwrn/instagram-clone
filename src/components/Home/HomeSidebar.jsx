@@ -14,21 +14,16 @@ const Sidebar = () => {
           <Link to={`/profile/${userProfile.userID}`}>
             <div id="home__sidebar__profile__container">
               <div id="home__sidebar__image__container">
+                <img id="home__sidebar__profile__img" src={userProfile.profilePhoto} alt="" />
                 <img
-                  id="home__sidebar__profile__img"
-                  src={userProfile.profilePhoto}
-                  alt=""
-                />
-                <img
+                  className="blur"
                   id="home__sidebar__profile__img-blur"
                   src={userProfile.profilePhoto}
                   alt=""
                 />
               </div>
               <div id="home__sidebar__name__container">
-                <h2 id="home__sidebar__display-name">
-                  {userProfile.displayName}
-                </h2>
+                <h2 id="home__sidebar__display-name">{userProfile.displayName}</h2>
                 <p id="home__sidebar__username">@{userProfile.username}</p>
               </div>
             </div>

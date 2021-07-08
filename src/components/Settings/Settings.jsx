@@ -9,12 +9,14 @@ const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
   const [userInput, setUserInput] = useState('');
   const [userBio, setUserBio] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     userProfile && setUserInput(userProfile.displayName);
     userProfile && setUserBio(userProfile.bio);
   }, [userProfile]);
 
+  //+ updates on account sign up
   useEffect(() => {
     getUserProfile();
   }, [currentUser]);
@@ -33,6 +35,7 @@ const Settings = () => {
 
   //+ upload
   const handleUpload = async (imgType, file) => {
+    setUploading(true);
     const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${imgType}`);
     await fileRef.put(file);
@@ -44,6 +47,7 @@ const Settings = () => {
       },
       { merge: true }
     );
+    setUploading(false);
     getUserProfile();
   };
 
@@ -68,20 +72,24 @@ const Settings = () => {
   const handleTextUpload = async (e) => {
     e.preventDefault();
     if (userBio !== userProfile.bio) {
+      setUploading(true);
       await firestore.collection('users').doc(currentUser.uid).set(
         {
           bio: userBio,
         },
         { merge: true }
       );
+      setUploading(false);
     }
     if (userInput !== userProfile.displayName && userInput !== '') {
+      setUploading(true);
       await firestore.collection('users').doc(currentUser.uid).set(
         {
           displayName: userInput,
         },
         { merge: true }
       );
+      setUploading(false);
     }
   };
 
@@ -157,9 +165,13 @@ const Settings = () => {
                   onChange={handleBioChange}
                 />
               </div>
-              <button onClick={handleTextUpload} type="submit" id="settings__text-save-btn">
-                Save
-              </button>
+              {uploading ? (
+                <div class="loader"></div>
+              ) : (
+                <button onClick={handleTextUpload} type="submit" id="settings__text-save-btn">
+                  Save
+                </button>
+              )}
             </form>
           </div>
         </div>
