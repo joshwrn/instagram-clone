@@ -1,20 +1,24 @@
 import React from 'react';
 import '../../styles/profile/profile__card.css';
 import { Link } from 'react-router-dom';
-import {
-  IoShareOutline,
-  IoHeartOutline,
-  IoChatbubbleOutline,
-  IoSendOutline,
-  IoShareSocialOutline,
-} from 'react-icons/io5';
+import { IoHeartOutline, IoChatbubbleOutline } from 'react-icons/io5';
 
-const ProfileCard = ({ src, match, postId, likes, comments }) => {
+const ProfileCard = ({ src, match, postId, likes, comments, handleLoad, loaded }) => {
   return (
     <div className="profile__card">
       <div className="profile__card__container">
         <Link className="profile__card__image-link" to={`/post/${match.params.uid}/${postId}`}>
-          <img className="profile__card__image" src={src} alt="" />
+          <div
+            className="profile__card__image-loading"
+            style={loaded ? { display: 'none' } : null}
+          />
+          <img
+            className="profile__card__image"
+            src={src}
+            alt=""
+            onLoad={handleLoad}
+            style={!loaded ? { display: 'none' } : null}
+          />
           <div className="profile__card__overlay">
             <div className="profile__card__overlay__col">
               <IoHeartOutline /> <p>{likes}</p>
@@ -26,7 +30,12 @@ const ProfileCard = ({ src, match, postId, likes, comments }) => {
           </div>
         </Link>
       </div>
-      <img className="profile__card__image-blur" src={src} alt="" />
+      <img
+        className="profile__card__image-blur"
+        src={src}
+        alt=""
+        style={!loaded ? { display: 'none' } : null}
+      />
     </div>
   );
 };

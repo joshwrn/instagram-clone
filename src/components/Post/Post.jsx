@@ -17,10 +17,7 @@ const Post = ({ match }) => {
   const [currentPost, setCurrentPost] = useState();
   const [postUser, setPostUser] = useState();
   const [loading, setLoading] = useState([
-    {
-      image: 'avatar',
-      loading: true,
-    },
+    { image: 'avatar', loading: true },
     { image: 'post', loading: true },
   ]);
   const [loaded, setLoaded] = useState(false);
@@ -36,7 +33,6 @@ const Post = ({ match }) => {
     if (postUser && currentPost) {
       if (loading.every((item) => item.loading === false)) {
         setLoaded(true);
-        console.log(loaded);
       }
     }
   }, [loading]);
@@ -88,6 +84,7 @@ const Post = ({ match }) => {
           id="post__image"
           src={currentPost && currentPost.data().src}
           alt="post"
+          className="post__loading-image"
         />
         <div id="post__sidebar">
           <Link to={`/profile/${match.params.uid}`}>
@@ -100,6 +97,7 @@ const Post = ({ match }) => {
                   id="post__profile__img"
                   src={postUser && postUser.data().profilePhoto}
                   alt="avatar"
+                  className="post__loading-image"
                 />
                 <img
                   id="post__profile__img-blur"
@@ -108,7 +106,11 @@ const Post = ({ match }) => {
                   alt=""
                 />
               </div>
-              <div id="post__name__container">
+              <div id="post__name__container" style={loaded ? { display: 'none' } : null}>
+                <div id="post__display-name-loading" />
+                <div id="post__username-loading" />
+              </div>
+              <div id="post__name__container" style={!loaded ? { display: 'none' } : null}>
                 <h2 id="post__display-name">{postUser && postUser.data().displayName}</h2>
                 <p id="post__username">@{postUser && postUser.data().username}</p>
               </div>

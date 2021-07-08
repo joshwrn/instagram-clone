@@ -5,9 +5,9 @@ import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
 import ProfileAvatarModal from './ProfileAvatarModal';
 import '../../styles/profile/profile.css';
+import '../../styles/profile/profile__loading.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
-
 import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
@@ -17,6 +17,28 @@ const Profile = (props) => {
   const [newPost, setNewPost] = useState(0);
   const { match } = props;
   const { currentUser } = useAuth();
+  const [loaded, setLoaded] = useState(false);
+  const [loading, setLoading] = useState([
+    { image: 'avatar', loading: true },
+    { image: 'banner', loading: true },
+    { image: 'feed', loading: true }, //change
+  ]);
+
+  useEffect(() => {
+    if (currentProfile && currentUser) {
+      if (loading.every((item) => item.loading === false)) {
+        setLoaded(true);
+      }
+    }
+  }, [loading]);
+
+  const handleLoad = (e) => {
+    const { alt } = e.target;
+    const imgIndex = loading.findIndex((img) => img.image === alt);
+    setLoading((old) => [...old], {
+      [loading[imgIndex]]: (loading[imgIndex].loading = false),
+    });
+  };
 
   useEffect(() => {
     return getUserObject();
@@ -39,11 +61,9 @@ const Profile = (props) => {
     if (avatarModal === false) {
       setAvatarModal(true);
       document.body.classList.add('stop-scrolling');
-      console.log('um');
     } else {
       setAvatarModal(false);
       document.body.classList.remove('stop-scrolling');
-      console.log('hi');
     }
   };
 
@@ -88,21 +108,36 @@ const Profile = (props) => {
     <>
       {currentProfile && (
         <div id="profile">
-          {/* banner */}
+          {/*//+ banner */}
           <div id="profile__header">
-            <img id="profile__hero" src={currentProfile.banner} alt="" />
+            <div id="profile__hero-loading" style={loaded ? { display: 'none' } : null} />
+            <img
+              id="profile__hero"
+              src={currentProfile.banner}
+              alt="banner"
+              onLoad={handleLoad}
+              style={!loaded ? { display: 'none' } : null}
+            />
           </div>
           <div id="profile__outer">
-            {/* top bar*/}
+            {/*//+ top bar*/}
             <div id="profile__top-section">
               <div id="profile__img-container">
+                <div style={loaded ? { display: 'none' } : null} id="profile__img-loading" />
                 <img
                   onClick={getAvatarModal}
                   id="profile__img"
                   src={currentProfile.profilePhoto}
-                  alt=""
+                  alt="avatar"
+                  onLoad={handleLoad}
+                  style={!loaded ? { display: 'none' } : null}
                 />
-                <img id="profile__img-blur" src={currentProfile.profilePhoto} alt="" />
+                <img
+                  id="profile__img-blur"
+                  src={currentProfile.profilePhoto}
+                  alt=""
+                  style={!loaded ? { display: 'none' } : null}
+                />
                 {avatarModal && (
                   <ProfileAvatarModal
                     getAvatarModal={getAvatarModal}
@@ -115,23 +150,31 @@ const Profile = (props) => {
                   {profileButton}
                   {actionButton}
                 </div>
+                {renderModal && (
+                  <ProfileUpload
+                    setNewPost={setNewPost}
+                    currentUser={currentUser}
+                    currentProfile={currentProfile}
+                    getModal={getModal}
+                  />
+                )}
               </div>
             </div>
           </div>
           <div id="profile__inner">
-            {/* sidebar */}
-            {renderModal && (
-              <ProfileUpload
-                setNewPost={setNewPost}
-                currentUser={currentUser}
-                currentProfile={currentProfile}
-                getModal={getModal}
-              />
-            )}
-            <ProfileSidebar firestore={firestore} match={match} currentProfile={currentProfile} />
-            {/* posts */}
+            {/*//+ sidebar */}
+            <ProfileSidebar
+              loaded={loaded}
+              firestore={firestore}
+              match={match}
+              currentProfile={currentProfile}
+            />
+            {/*//@ posts */}
             <ProfileFeed
               newPost={newPost}
+              setLoading={setLoading}
+              loading={loading}
+              loaded={loaded}
               firestore={firestore}
               match={match}
               currentProfile={currentProfile}

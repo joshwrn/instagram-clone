@@ -1,23 +1,41 @@
-#post__image-loading {
-  width: 35em;
-  height: 39.5em;
+#profile__hero-loading {
+  position: relative;
+  width: 100vw;
+  height: 20em;
+  display: block;
+  z-index: -2;
   background: var(--loading-gradient);
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
 }
 
-#post__profile__img-loading {
-  border-radius: 100%;
-  width: 5em;
-  height: 5em;
+#profile__img-loading {
   position: absolute;
-  object-fit: cover;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  width: 10em;
+  height: 10em;
   background: var(--loading-gradient);
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
 }
 
-#post__display-name-loading {
+.profile__card__image-loading {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  display: block;
+  object-position: top;
+  cursor: pointer;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
+}
+
+/*+ sidebar */
+
+#sidebar__display-name-loading {
   border-radius: 0.5rem;
   width: 10rem;
   height: 2rem;
@@ -26,7 +44,7 @@
   animation: 3s linear infinite gradientMove;
 }
 
-#post__username-loading {
+#sidebar__username-loading {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
   width: 6rem;
@@ -36,25 +54,19 @@
   animation: 3s linear infinite gradientMove;
 }
 
-.post__comment__profile-img-loading {
-  border-radius: 100%;
-  width: 2em;
-  height: 2em;
-  object-fit: cover;
-  cursor: pointer;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+#profile__sidebar__counters-loading {
+  display: flex;
+  flex-direction: column;
 }
 
-.comment-loading {
-  width: 70%;
-  height: 2em;
-  margin: 0.5rem 0;
+.counter-loading {
+  margin-top: 1.25rem;
+  border-radius: 0.5rem;
+  width: 13rem;
+  height: 2rem;
   background: var(--loading-gradient);
   background-size: 200%;
   animation: 3s linear infinite gradientMove;
-  border-radius: 1em;
 }
 
 @keyframes gradientMove {
