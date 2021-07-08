@@ -15,6 +15,10 @@ const Settings = () => {
     userProfile && setUserBio(userProfile.bio);
   }, [userProfile]);
 
+  useEffect(() => {
+    getUserProfile();
+  }, [currentUser]);
+
   //! handle photo uploads
   //@ add file to state
   const handlePhotoChange = (e) => {

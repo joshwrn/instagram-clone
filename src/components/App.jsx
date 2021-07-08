@@ -7,10 +7,11 @@ import Profile from './Profile/Profile.jsx';
 import Post from './Post/Post';
 import SignUp from './SignUp/SignUp';
 import Settings from './Settings/Settings';
-import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
 
 function App() {
   const BrowserRouter = require('react-router-dom').BrowserRouter;
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Router>

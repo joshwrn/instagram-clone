@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth, signIn, firestore, timestamp } from '../services/firebase';
+import { useHistory } from 'react-router-dom';
 
 // Create context
 const AuthContext = React.createContext();
@@ -15,6 +16,7 @@ export function AuthProvider({ children }) {
   const [userProfile, setUserProfile] = useState();
   const [attemptLogin, setAttemptLogin] = useState();
   const [loading, setLoading] = useState(true);
+  let history = useHistory();
 
   const login = () => {
     signIn();
@@ -62,7 +64,7 @@ export function AuthProvider({ children }) {
     }
   }, [currentUser]);
 
-  //check whether name is taken and then create the user
+  //+ check whether name is taken and then create the user
   const firebaseRegister = async (usernameInput) => {
     if (currentUser !== null) {
       const userData = await firestore.collection('users').doc(currentUser.uid).get();
@@ -101,6 +103,7 @@ export function AuthProvider({ children }) {
               followingCounter: 0,
               messagesCounter: 0,
             })
+            .then(history.push('/settings'))
             .catch(function (error) {
               console.error('Error writing new message to database', error);
             });
@@ -108,7 +111,7 @@ export function AuthProvider({ children }) {
           auth.signOut();
         }
       } else {
-        console.log('already have account');
+        history.push('/');
       }
     }
   };

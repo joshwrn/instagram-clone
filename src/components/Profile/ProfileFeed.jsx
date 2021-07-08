@@ -18,20 +18,23 @@ const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded })
     }
   }, [loads]);
 
-  const getFeed = () => {
+  const getFeed = async () => {
     let temp = [];
-    return firestore
+    const snap = await firestore
       .collection('users')
       .doc(match.params.uid)
       .collection('posts')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.complete = false;
-          temp.push(doc);
-        });
-        setProfileFeed(temp);
+      .get();
+    const push = await snap.forEach((doc) => {
+      doc.complete = false;
+      temp.push(doc);
+    });
+    setProfileFeed(temp);
+    if (temp.length === 0) {
+      setLoading((old) => [...old], {
+        [loading[2]]: (loading[2].loading = false),
       });
+    }
   };
 
   const handleLoad = () => {
