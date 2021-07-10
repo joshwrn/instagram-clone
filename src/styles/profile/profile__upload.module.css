@@ -26,6 +26,7 @@
   background-color: var(--primary-background-color);
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.2);
   border: var(--primary-border);
+  animation: anim ease-in 0.25s forwards;
 }
 
 .header {
@@ -85,6 +86,7 @@
   height: 7em;
   width: 6em;
   z-index: -1;
+  opacity: 0;
 }
 .top-container > form > p {
   font-size: 0.7rem;
@@ -137,4 +139,13 @@
 
 .loader {
   margin-top: 2.7em;
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -22,4 +22,14 @@
   object-fit: cover;
   border-radius: 100%;
   cursor: pointer;
+  animation: anim ease-in 0.25s forwards;
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

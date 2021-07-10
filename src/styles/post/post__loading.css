@@ -3,7 +3,7 @@
   height: 39.5em;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
 }
 
 #post__profile__img-loading {
@@ -14,7 +14,7 @@
   object-fit: cover;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
 }
 
 #post__display-name-loading {
@@ -23,7 +23,7 @@
   height: 2rem;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
 }
 
 #post__username-loading {
@@ -33,7 +33,7 @@
   height: 1rem;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
 }
 
 .post__comment__profile-img-loading {
@@ -44,7 +44,7 @@
   cursor: pointer;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
 }
 
 .comment-loading {
@@ -53,7 +53,7 @@
   margin: 0.5rem 0;
   background: var(--loading-gradient);
   background-size: 200%;
-  animation: 3s linear infinite gradientMove;
+  animation: 2s linear infinite gradientMove;
   border-radius: 1em;
 }
 

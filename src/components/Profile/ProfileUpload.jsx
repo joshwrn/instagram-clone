@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__upload.module.css';
 import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
-import { firestore, initFire, timestamp } from '../../services/firebase';
+import { firestore, storageRef, timestamp } from '../../services/firebase';
 
 const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
@@ -11,7 +11,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
   //+ after choosing a file store it in state
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size < 1000000) {
+    if (file && file.size < 3000000) {
       setPostFile(file);
     } else {
       setPostFile(null);
@@ -40,7 +40,6 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
         caption: caption,
       });
     //+ upload image to storage
-    const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
     await fileRef.put(postFile);
     const fileUrl = await fileRef.getDownloadURL();
@@ -100,7 +99,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
                 )}
               </label>
             </div>
-            <p>{postFile === null ? 'File size limit 1 mb.' : 'ready to post'}</p>
+            <p>{postFile === null ? 'File size limit 2 mb.' : 'ready to post'}</p>
             <div className={Styles['caption-container']}>
               <textarea
                 className={Styles['caption-input']}

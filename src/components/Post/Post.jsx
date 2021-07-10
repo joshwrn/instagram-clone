@@ -3,15 +3,7 @@ import { firestore } from '../../services/firebase';
 import '../../styles/post/post.css';
 import '../../styles/post/post__loading.css';
 import { Link } from 'react-router-dom';
-import profilePic from '../../assets/misc/toa-heftiba-YCi4c79ZDIE-unsplash.jpg';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import {
-  IoShareOutline,
-  IoHeartOutline,
-  IoChatbubbleOutline,
-  IoSendOutline,
-  IoShareSocialOutline,
-} from 'react-icons/io5';
+import PostSidebar from './PostSidebar';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Post = ({ match }) => {
@@ -96,89 +88,14 @@ const Post = ({ match }) => {
           alt="post"
           className="post__loading-image"
         />
-        <div id="post__sidebar">
-          <div id="post__sidebar__top">
-            <Link to={`/profile/${match.params.uid}`}>
-              <div id="post__profile__container">
-                <div id="post__image__container">
-                  <div
-                    id="post__profile__img-loading"
-                    style={loaded ? { display: 'none' } : null}
-                  />
-                  <img
-                    style={!loaded ? { display: 'none' } : null}
-                    onLoad={handleLoad}
-                    id="post__profile__img"
-                    src={postUser?.profilePhoto}
-                    alt="avatar"
-                    className="post__loading-image"
-                  />
-                  <img
-                    className="blur"
-                    id="post__profile__img-blur"
-                    style={!loaded ? { display: 'none' } : null}
-                    src={postUser?.profilePhoto}
-                    alt=""
-                  />
-                </div>
-                <div id="post__name__container" style={loaded ? { display: 'none' } : null}>
-                  <div id="post__display-name-loading" />
-                  <div id="post__username-loading" />
-                </div>
-                <div id="post__name__container" style={!loaded ? { display: 'none' } : null}>
-                  <h2 id="post__display-name">{postUser?.displayName}</h2>
-                  <p id="post__username">@{postUser?.username}</p>
-                </div>
-              </div>
-            </Link>
-            <div className="caption-container">
-              <p className="caption">{currentPost?.caption}</p>
-            </div>
-          </div>
-          <div className="post__comments">
-            {/* <p className="view-all">View All Comments</p> */}
-            {!loaded ? (
-              <>
-                <div className="post__comment__container">
-                  <div className="post__comment__profile-img-loading" />
-                  <div className="comment-loading"></div>
-                </div>
-                <div className="post__comment__container">
-                  <div className="post__comment__profile-img-loading" />
-                  <div className="comment-loading"></div>
-                </div>
-                <div className="post__comment__container">
-                  <div className="post__comment__profile-img-loading" />
-                  <div className="comment-loading"></div>
-                </div>
-              </>
-            ) : (
-              <div className="post__comment__container">
-                <img className="post__comment__profile-img" src={profilePic} alt="" />
-                <p className="comment">
-                  <span className="comment-user">Sofie Smith</span> wow so cool!
-                </p>
-              </div>
-            )}
-          </div>
-          <div className="post__footer">
-            <div className="first-child">
-              <div className="left">
-                <IoHeartOutline className="post__icon like-icon" />
-                <IoChatbubbleOutline className="post__icon" />
-                <IoShareOutline className="post__icon" />
-              </div>
-              {ownPost ? <MoreHorizIcon /> : <IoShareSocialOutline className="post__icon" />}
-            </div>
-            <p className="post__likes">{currentPost?.likesCounter} likes</p>
-            <div className="comment-box">
-              <form className="comment__form">
-                <input className="input-box" type="text" placeholder="Add a comment..." />
-              </form>
-              <IoSendOutline className="send" />
-            </div>
-          </div>
-        </div>
+        <PostSidebar
+          match={match}
+          loaded={loaded}
+          handleLoad={handleLoad}
+          postUser={postUser}
+          ownPost={ownPost}
+          currentPost={currentPost}
+        />
       </div>
     </div>
   );

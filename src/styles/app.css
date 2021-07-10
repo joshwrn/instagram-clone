@@ -87,6 +87,12 @@ html {
   }
 }
 
+.gradientLoad {
+  animation: gradientMove 2s linear infinite;
+  background: var(--loading-gradient);
+  background-size: 200%;
+}
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
@@ -99,13 +105,6 @@ html {
   }
 }
 
-/* .fade-in */
-/* img:not(.blur),
-.fade-in {
-  animation: ease-in fade 0.25s forwards;
-  opacity: 0;
-}
-
 @keyframes fade {
   0% {
     opacity: 0;
@@ -113,4 +112,11 @@ html {
   100% {
     opacity: 1;
   }
-} */
+}
+
+/* .fade-in */
+/* img:not(.blur),
+.fade-in {
+  animation: ease-in fade 0.25s forwards;
+  opacity: 0;
+}*/

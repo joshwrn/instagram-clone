@@ -9,7 +9,6 @@ const SignUp = () => {
   const { login, currentUser, firebaseRegister } = useAuth();
   const [userInput, setUserInput] = useState('');
   const [nameTaken, setNameTaken] = useState(false);
-  let history = useHistory();
 
   const handleChange = (e) => {
     e.preventDefault();

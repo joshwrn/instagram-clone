@@ -85,24 +85,24 @@ const Profile = (props) => {
 
   //+ decides if action button should be post or message
   let actionButton = (
-    <button className={Styles['action-btn']}>
+    <button className={Styles.actionBtn}>
       <IoSendOutline className="action-icon" />
     </button>
   );
   if (currentUser?.uid === match.params.uid) {
     actionButton = (
-      <button onClick={getModal} className={Styles['action-btn']}>
+      <button onClick={getModal} className={Styles.actionBtn}>
         <IoAddOutline className="action-icon" />
       </button>
     );
   }
 
   //+ decides if profile button should be follow or edit
-  let profileButton = <button className={Styles['profile-btn']}>Follow</button>;
+  let profileButton = <button className={Styles.profileBtn}>Follow</button>;
   if (currentUser?.uid === match.params.uid) {
     profileButton = (
       <Link to="/settings" className="link">
-        <button className={Styles['profile-btn']}>Edit Profile</button>
+        <button className={Styles.profileBtn}>Edit Profile</button>
       </Link>
     );
   }
@@ -112,7 +112,10 @@ const Profile = (props) => {
       <div className={Styles.profile}>
         {/*//+ banner */}
         <div className={Styles.header}>
-          <div className={Styles['hero-loading']} style={loaded ? { display: 'none' } : null} />
+          <div
+            className={`${Styles.heroLoading} gradientLoad`}
+            style={loaded ? { display: 'none' } : null}
+          />
           <img
             className={Styles.hero}
             src={currentProfile?.banner}
@@ -123,11 +126,11 @@ const Profile = (props) => {
         </div>
         <div className={Styles.outer}>
           {/*//+ top bar*/}
-          <div className={Styles['top-section']}>
-            <div className={Styles['img-container']}>
+          <div className={Styles.topSection}>
+            <div className={Styles.imgContainer}>
               <div
                 style={loaded ? { display: 'none' } : null}
-                className={Styles['avatar-loading']}
+                className={`${Styles.avatarLoading} gradientLoad`}
               />
               <img
                 onClick={getAvatarModal}
@@ -138,7 +141,7 @@ const Profile = (props) => {
                 style={!loaded ? { display: 'none' } : null}
               />
               <img
-                className={Styles['avatar-blur']}
+                className={Styles.avatarBlur}
                 src={currentProfile?.profilePhoto}
                 alt=""
                 style={!loaded ? { display: 'none' } : null}
@@ -150,8 +153,8 @@ const Profile = (props) => {
                 src={currentProfile?.profilePhoto}
               />
             )}
-            <div className={Styles['top-right']}>
-              <div className={Styles['top-icon-row']}>
+            <div className={Styles.topRight}>
+              <div className={Styles.topIconRow}>
                 {profileButton}
                 {actionButton}
               </div>

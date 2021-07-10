@@ -3,7 +3,7 @@ import '../../styles/settings/settings.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import { firestore, initFire } from '../../services/firebase';
+import { firestore, initFire, storageRef } from '../../services/firebase';
 
 const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
@@ -36,7 +36,6 @@ const Settings = () => {
   //+ upload
   const handleUpload = async (imgType, file) => {
     setUploading(true);
-    const storageRef = initFire.storage().ref();
     const fileRef = storageRef.child(`${currentUser.uid}/${imgType}`);
     await fileRef.put(file);
     const fileUrl = await fileRef.getDownloadURL();
@@ -178,7 +177,9 @@ const Settings = () => {
 
         <div id="settings__profile-btn-container">
           <Link id="settings__profile-link" to={`/profile/${userProfile && userProfile.userID}`}>
-            <button id="settings__profile-btn">View Profile</button>
+            <button className="button" id="settings__profile-btn">
+              View Profile
+            </button>
           </Link>
         </div>
       </div>

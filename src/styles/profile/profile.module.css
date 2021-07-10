@@ -40,14 +40,14 @@
   padding: 0 16px;
 }
 
-.top-section {
+.topSection {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 80px;
 }
 
-.img-container {
+.imgContainer {
   transform: translateY(-50%);
   border-radius: 100%;
   width: 160px;
@@ -65,7 +65,7 @@
   object-fit: cover;
 }
 
-.avatar-blur {
+.avatarBlur {
   position: absolute;
   border-radius: 100%;
   width: 160px;
@@ -75,20 +75,20 @@
   z-index: -3;
 }
 
-.top-right {
+.topRight {
   width: fit-content;
   position: relative;
   box-sizing: border-box;
 }
 
-.top-icon-row {
+.topIconRow {
   display: flex;
   gap: 16px;
   transform: translateY(-50%);
   box-sizing: border-box;
 }
 
-.profile-btn {
+.profileBtn {
   border: none;
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.103);
   background-color: rgb(255, 255, 255);
@@ -104,11 +104,11 @@
   border: var(--primary-border);
 }
 
-.profile-btn:hover {
+.profileBtn:hover {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
 }
 
-.action-btn {
+.actionBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,29 +127,23 @@
   border: var(--primary-border);
 }
 
-.action-btn:hover {
+.actionBtn:hover {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
 }
 
 /*+ loading */
 
-.hero-loading {
+.heroLoading {
   position: relative;
   width: 100vw;
   height: 320px;
   display: block;
   z-index: -2;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
 }
 
-.avatar-loading {
+.avatarLoading {
   position: absolute;
   border-radius: 100%;
   width: 160px;
   height: 160px;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
 }

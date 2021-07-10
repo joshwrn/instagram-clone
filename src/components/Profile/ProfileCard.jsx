@@ -8,7 +8,10 @@ const ProfileCard = ({ src, match, postId, likes, comments, handleLoad, loaded }
     <div className={Styles.card}>
       <div className={Styles.container}>
         <Link className={Styles.link} to={`/post/${match.params.uid}/${postId}`}>
-          <div className={Styles.loading} style={loaded ? { display: 'none' } : null} />
+          <div
+            className={`${Styles.loading} gradientLoad`}
+            style={loaded ? { display: 'none' } : null}
+          />
           <img
             className={Styles.image}
             src={src}

@@ -8,13 +8,13 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
     sidebar = (
       <div className={Sidebar.sidebar}>
         <div className={Sidebar.usernames}>
-          <div className={Sidebar['name-loading']}></div>
-          <div className={Sidebar['username-loading']}></div>
+          <div className={`${Sidebar['name-loading']} gradientLoad`}></div>
+          <div className={`${Sidebar['username-loading']} gradientLoad`}></div>
         </div>
-        <div className={Sidebar['counters-loading']}>
-          <div className={Sidebar['counter-loading']}></div>
-          <div className={Sidebar['counter-loading']}></div>
-          <div className={Sidebar['counter-loading']}></div>
+        <div className={`${Sidebar['counters-loading']}`}>
+          <div className={`${Sidebar['counter-loading']} gradientLoad`}></div>
+          <div className={`${Sidebar['counter-loading']} gradientLoad`}></div>
+          <div className={`${Sidebar['counter-loading']} gradientLoad`}></div>
         </div>
       </div>
     );

@@ -65,9 +65,6 @@
   border-radius: 8px;
   width: 160px;
   height: 32px;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
 }
 
 .username-loading {
@@ -75,9 +72,6 @@
   border-radius: 8px;
   width: 96px;
   height: 16px;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
 }
 
 .counters-loading {
@@ -90,7 +84,4 @@
   border-radius: 8px;
   width: 208px;
   height: 32px;
-  background: var(--loading-gradient);
-  background-size: 200%;
-  animation: 3s linear infinite gradientMove;
 }

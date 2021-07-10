@@ -19,3 +19,5 @@ export const signIn = () => {
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storageRef = firebase.storage().ref();
+export const storage = firebase.storage();
