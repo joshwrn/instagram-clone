@@ -4,8 +4,7 @@ import ProfileSidebar from './ProfileSidebar';
 import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
 import ProfileAvatarModal from './ProfileAvatarModal';
-import '../../styles/profile/profile.css';
-import '../../styles/profile/profile__loading.css';
+import Styles from '../../styles/profile/profile.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
@@ -86,78 +85,73 @@ const Profile = (props) => {
 
   //+ decides if action button should be post or message
   let actionButton = (
-    <button className="action">
+    <button className={Styles['action-btn']}>
       <IoSendOutline className="action-icon" />
     </button>
   );
-  if (currentUser) {
-    if (currentUser.uid === match.params.uid) {
-      actionButton = (
-        <button onClick={getModal} className="action">
-          <IoAddOutline className="action-icon" />
-        </button>
-      );
-    }
+  if (currentUser?.uid === match.params.uid) {
+    actionButton = (
+      <button onClick={getModal} className={Styles['action-btn']}>
+        <IoAddOutline className="action-icon" />
+      </button>
+    );
   }
 
   //+ decides if profile button should be follow or edit
-  let profileButton = <button className="profile-btn">Follow</button>;
-  if (currentUser) {
-    if (currentUser.uid === match.params.uid) {
-      profileButton = (
-        <Link to="/settings" className="link">
-          <button className="profile-btn">Edit Profile</button>
-        </Link>
-      );
-    }
+  let profileButton = <button className={Styles['profile-btn']}>Follow</button>;
+  if (currentUser?.uid === match.params.uid) {
+    profileButton = (
+      <Link to="/settings" className="link">
+        <button className={Styles['profile-btn']}>Edit Profile</button>
+      </Link>
+    );
   }
 
   return (
     <>
-      <div id="profile">
+      <div className={Styles.profile}>
         {/*//+ banner */}
-        <div id="profile__header">
-          <div id="profile__hero-loading" style={loaded ? { display: 'none' } : null} />
+        <div className={Styles.header}>
+          <div className={Styles['hero-loading']} style={loaded ? { display: 'none' } : null} />
           <img
-            id="profile__hero"
-            className="fade-in"
-            src={currentProfile && currentProfile.banner}
+            className={Styles.hero}
+            src={currentProfile?.banner}
             alt="banner"
             onLoad={handleLoad}
             style={!loaded ? { display: 'none' } : null}
           />
         </div>
-        <div id="profile__outer">
+        <div className={Styles.outer}>
           {/*//+ top bar*/}
-          <div id="profile__top-section">
-            <div id="profile__img-container">
-              <div style={loaded ? { display: 'none' } : null} id="profile__img-loading" />
+          <div className={Styles['top-section']}>
+            <div className={Styles['img-container']}>
+              <div
+                style={loaded ? { display: 'none' } : null}
+                className={Styles['avatar-loading']}
+              />
               <img
                 onClick={getAvatarModal}
-                id="profile__img"
-                src={currentProfile && currentProfile.profilePhoto}
+                className={Styles.avatar}
+                src={currentProfile?.profilePhoto}
                 alt="avatar"
                 onLoad={handleLoad}
                 style={!loaded ? { display: 'none' } : null}
-                className="fade-in"
               />
               <img
-                id="profile__img-blur"
-                src={currentProfile && currentProfile.profilePhoto}
+                className={Styles['avatar-blur']}
+                src={currentProfile?.profilePhoto}
                 alt=""
                 style={!loaded ? { display: 'none' } : null}
-                className="blur"
               />
             </div>
             {avatarModal && (
               <ProfileAvatarModal
                 getAvatarModal={getAvatarModal}
-                src={currentProfile.profilePhoto}
-                className="fade-in"
+                src={currentProfile?.profilePhoto}
               />
             )}
-            <div className="right">
-              <div className="icon-row">
+            <div className={Styles['top-right']}>
+              <div className={Styles['top-icon-row']}>
                 {profileButton}
                 {actionButton}
               </div>
@@ -172,7 +166,7 @@ const Profile = (props) => {
             </div>
           </div>
         </div>
-        <div id="profile__inner">
+        <div className={Styles.inner}>
           {/*//+ sidebar */}
           <ProfileSidebar
             loaded={loaded}

@@ -5,7 +5,7 @@
   align-items: center;
   /* box-shadow: 0px 0px 2em 0px rgba(0, 0, 0, 0.089); */
   border: 0px solid rgba(59, 59, 59, 0.158);
-  border-radius: 1em;
+  border-radius: 16px;
   height: 30em;
   position: relative;
 }
@@ -55,8 +55,8 @@
   width: 5em;
   height: 5em;
   position: absolute;
-  filter: blur(1em);
-  opacity: 0.75;
+  filter: blur(16px);
+  opacity: 0.65;
   z-index: -3;
   object-fit: cover;
 }
@@ -64,7 +64,7 @@
 /*+ user info */
 
 #home__sidebar__name__container {
-  margin-left: 1em;
+  margin-left: 16px;
   cursor: pointer;
 }
 
@@ -78,7 +78,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 1em 0 0 0em;
+  margin: 16px 0 0 0em;
 }
 
 .home__sidebar__stat {
@@ -118,7 +118,7 @@
 }
 
 #home__sidebar__container > .footer > .copyright {
-  margin: 1em 0 0 0;
+  margin: 16px 0 0 0;
   color: rgb(180, 180, 180);
   font-size: 0.65rem;
 }

@@ -9,7 +9,6 @@
   --primary-background-color: rgb(255, 255, 255);
   --primary-border: 1px solid rgba(41, 41, 41, 0);
   --secondary-border: 1px solid rgb(206, 206, 206);
-
   --loading-gradient: linear-gradient(to right, #ffffff, #c2c2c2);
 }
 
@@ -61,6 +60,7 @@ html {
   text-rendering: optimizeLegibility;
   color: var(--primary-font-color);
   background-color: var(--primary-background-color);
+  font-size: 16px;
 }
 
 .stop-scrolling {
@@ -70,11 +70,11 @@ html {
 
 /* loading animation */
 .loader {
-  border: 2px solid var(--primary-background-color);
-  border-top: 2px solid var(--primary-font-color);
+  border: 3px solid var(--primary-background-color);
+  border-top: 3px solid var(--primary-font-color);
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
+  width: 21px;
+  height: 21px;
   animation: spin 2s linear infinite;
 }
 
@@ -87,8 +87,20 @@ html {
   }
 }
 
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* .fade-in */
-img:not(.blur),
+/* img:not(.blur),
 .fade-in {
   animation: ease-in fade 0.25s forwards;
   opacity: 0;
@@ -99,6 +111,6 @@ img:not(.blur),
     opacity: 0;
   }
   100% {
-    opacity: 100;
+    opacity: 1;
   }
-}
+} */

@@ -1,12 +1,12 @@
-#profile__feed {
+.feed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 16em);
+  grid-template-columns: repeat(auto-fill, 256px);
   grid-template-rows: repeat(auto-fill, 1fr);
-  padding: 0 0 25em 1.5em;
+  padding: 0 0 400px 24px;
   justify-content: center;
   justify-items: center;
   align-items: center;
-  gap: 2.55em;
+  gap: 41px;
   height: fit-content;
   width: 100%;
   box-sizing: border-box;

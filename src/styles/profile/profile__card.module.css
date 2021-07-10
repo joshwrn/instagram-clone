@@ -1,20 +1,20 @@
-.profile__card {
+.card {
   display: flex;
-  width: 16em;
-  height: 16em;
+  width: 256px;
+  height: 256px;
   justify-content: center;
   /* box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089); */
   border: var(--primary-border);
   position: relative;
-  border-radius: 0.55em;
+  border-radius: 9px;
 }
 
 /*@ Contain main overflow */
-.profile__card__container {
+.container {
   position: absolute;
   width: inherit;
   height: inherit;
-  border-radius: 0.55em;
+  border-radius: 9px;
   overflow: hidden;
   background: var(--loading-gradient);
   background-size: 200%;
@@ -22,12 +22,12 @@
 
 /*+ image */
 
-.profile__card__image-link {
+.link {
   width: inherit;
   height: inherit;
 }
 
-.profile__card__image {
+.image {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -37,9 +37,9 @@
   cursor: pointer;
 }
 
-.profile__card__image-blur {
+.blur {
   position: absolute;
-  filter: blur(1em);
+  filter: blur(16px);
   opacity: 0.5;
   width: inherit;
   height: inherit;
@@ -52,13 +52,13 @@
   -webkit-transform: translateZ(0) scale(1, 1);
 }
 
-.profile__card:hover > .profile__card__image-blur {
-  filter: blur(1.3em);
+.card:hover > .imageBlur {
+  filter: blur(21px);
   opacity: 0.75;
 }
 
-.profile__card__overlay {
-  font-size: 1.5rem;
+.overlay {
+  font-size: 24px;
   color: white;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.466);
@@ -69,27 +69,37 @@
   height: 100%;
   position: absolute;
   cursor: pointer;
-  gap: 1.7rem;
+  gap: 27px;
   opacity: 0;
   transition: opacity 0.25s;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0) scale(1, 1);
 }
 
-.profile__card__overlay__col {
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
-.profile__card__overlay__col > p {
+.icon > p {
   font-size: 1.3rem;
 }
 
-.profile__card:hover
-  > .profile__card__container
-  > .profile__card__image-link
-  > .profile__card__overlay {
+.card:hover .overlay {
   opacity: 1;
+}
+
+.loading {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  display: block;
+  object-position: top;
+  cursor: pointer;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 3s linear infinite gradientMove;
 }

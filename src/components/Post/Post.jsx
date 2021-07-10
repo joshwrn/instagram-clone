@@ -25,8 +25,9 @@ const Post = ({ match }) => {
   const [loaded, setLoaded] = useState(false);
   const { currentUser } = useAuth();
 
+  //+ determine if this is the user's post
   useEffect(() => {
-    if (currentUser && postUser === currentUser) {
+    if (currentUser && match.params.uid === currentUser.uid) {
       setOwnPost(true);
     }
   }, [postUser]);
@@ -55,7 +56,7 @@ const Post = ({ match }) => {
       .doc(match.params.postid)
       .get();
     if (thisPost.exists) {
-      setCurrentPost(thisPost);
+      setCurrentPost(thisPost.data());
     } else {
       setLoaded('error');
     }
@@ -65,7 +66,7 @@ const Post = ({ match }) => {
   const getPostUser = async () => {
     const getUser = await firestore.collection('users').doc(match.params.uid).get();
     if (getUser.exists) {
-      setPostUser(getUser);
+      setPostUser(getUser.data());
     } else {
       setLoaded('error');
     }
@@ -91,41 +92,49 @@ const Post = ({ match }) => {
           style={!loaded ? { display: 'none' } : null}
           onLoad={handleLoad}
           id="post__image"
-          src={currentPost && currentPost.data().src}
+          src={currentPost?.src}
           alt="post"
           className="post__loading-image"
         />
         <div id="post__sidebar">
-          <Link to={`/profile/${match.params.uid}`}>
-            <div id="post__profile__container">
-              <div id="post__image__container">
-                <div id="post__profile__img-loading" style={loaded ? { display: 'none' } : null} />
-                <img
-                  style={!loaded ? { display: 'none' } : null}
-                  onLoad={handleLoad}
-                  id="post__profile__img"
-                  src={postUser && postUser.data().profilePhoto}
-                  alt="avatar"
-                  className="post__loading-image"
-                />
-                <img
-                  className="blur"
-                  id="post__profile__img-blur"
-                  style={!loaded ? { display: 'none' } : null}
-                  src={postUser && postUser.data().profilePhoto}
-                  alt=""
-                />
+          <div id="post__sidebar__top">
+            <Link to={`/profile/${match.params.uid}`}>
+              <div id="post__profile__container">
+                <div id="post__image__container">
+                  <div
+                    id="post__profile__img-loading"
+                    style={loaded ? { display: 'none' } : null}
+                  />
+                  <img
+                    style={!loaded ? { display: 'none' } : null}
+                    onLoad={handleLoad}
+                    id="post__profile__img"
+                    src={postUser?.profilePhoto}
+                    alt="avatar"
+                    className="post__loading-image"
+                  />
+                  <img
+                    className="blur"
+                    id="post__profile__img-blur"
+                    style={!loaded ? { display: 'none' } : null}
+                    src={postUser?.profilePhoto}
+                    alt=""
+                  />
+                </div>
+                <div id="post__name__container" style={loaded ? { display: 'none' } : null}>
+                  <div id="post__display-name-loading" />
+                  <div id="post__username-loading" />
+                </div>
+                <div id="post__name__container" style={!loaded ? { display: 'none' } : null}>
+                  <h2 id="post__display-name">{postUser?.displayName}</h2>
+                  <p id="post__username">@{postUser?.username}</p>
+                </div>
               </div>
-              <div id="post__name__container" style={loaded ? { display: 'none' } : null}>
-                <div id="post__display-name-loading" />
-                <div id="post__username-loading" />
-              </div>
-              <div id="post__name__container" style={!loaded ? { display: 'none' } : null}>
-                <h2 id="post__display-name">{postUser && postUser.data().displayName}</h2>
-                <p id="post__username">@{postUser && postUser.data().username}</p>
-              </div>
+            </Link>
+            <div className="caption-container">
+              <p className="caption">{currentPost?.caption}</p>
             </div>
-          </Link>
+          </div>
           <div className="post__comments">
             {/* <p className="view-all">View All Comments</p> */}
             {!loaded ? (
@@ -161,7 +170,7 @@ const Post = ({ match }) => {
               </div>
               {ownPost ? <MoreHorizIcon /> : <IoShareSocialOutline className="post__icon" />}
             </div>
-            <p className="post__likes">{currentPost && currentPost.data().likesCounter} likes</p>
+            <p className="post__likes">{currentPost?.likesCounter} likes</p>
             <div className="comment-box">
               <form className="comment__form">
                 <input className="input-box" type="text" placeholder="Add a comment..." />

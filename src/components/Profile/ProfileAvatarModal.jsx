@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../styles/profile/profile__avatar__modal.css';
+import Styles from '../../styles/profile/profile__avatar__modal.module.css';
 
 const ProfileAvatarModal = ({ src, getAvatarModal }) => {
   return (
-    <div onClick={getAvatarModal} id="profile__avatar-modal">
-      <img id="profile__avatar-modal__img" src={src} alt="" />
+    <div onClick={getAvatarModal} className={Styles.modal}>
+      <img className={Styles.avatar} src={src} alt="" />
     </div>
   );
 };

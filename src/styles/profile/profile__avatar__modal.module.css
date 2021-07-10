@@ -1,4 +1,4 @@
-#profile__avatar-modal {
+.modal {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -16,11 +16,10 @@
   position: fixed;
 }
 
-#profile__avatar-modal__img {
+.avatar {
   height: 40vw;
   width: 40vw;
   object-fit: cover;
   border-radius: 100%;
-  box-shadow: 0px 0px 3em 1px rgba(0, 0, 0, 0.418);
   cursor: pointer;
 }

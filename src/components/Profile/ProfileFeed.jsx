@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProfileCard from './ProfileCard';
-import '../../styles/profile/profile__feed.css';
+import Styles from '../../styles/profile/profile__feed.module.css';
 
 const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded }) => {
   const [profileFeed, setProfileFeed] = useState([]);
@@ -32,6 +32,8 @@ const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded })
       .collection('users')
       .doc(match.params.uid)
       .collection('posts')
+      .orderBy('date', 'desc')
+      .limit(9)
       .get();
     const push = await snap.forEach((doc) => {
       doc.complete = false;
@@ -47,7 +49,7 @@ const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded })
   };
 
   return (
-    <div id="profile__feed">
+    <div className={Styles.feed}>
       {profileFeed.map((item) => {
         return (
           <ProfileCard

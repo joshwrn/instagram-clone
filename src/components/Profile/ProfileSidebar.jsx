@@ -1,20 +1,20 @@
 import React from 'react';
-import '../../styles/profile/profile__sidebar.css';
+import Sidebar from '../../styles/profile/profile__sidebar.module.css';
 
 const ProfileSidebar = ({ currentProfile, loaded }) => {
   let sidebar;
 
   if (loaded === false) {
     sidebar = (
-      <div id="profile__sidebar">
-        <div className="user-names">
-          <div id="sidebar__display-name-loading"></div>
-          <div id="sidebar__username-loading"></div>
+      <div className={Sidebar.sidebar}>
+        <div className={Sidebar.usernames}>
+          <div className={Sidebar['name-loading']}></div>
+          <div className={Sidebar['username-loading']}></div>
         </div>
-        <div id="profile__sidebar__counters-loading">
-          <div className="counter-loading"></div>
-          <div className="counter-loading"></div>
-          <div className="counter-loading"></div>
+        <div className={Sidebar['counters-loading']}>
+          <div className={Sidebar['counter-loading']}></div>
+          <div className={Sidebar['counter-loading']}></div>
+          <div className={Sidebar['counter-loading']}></div>
         </div>
       </div>
     );
@@ -22,29 +22,30 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
 
   if (loaded === true) {
     sidebar = (
-      <div className="fade-in" id="profile__sidebar">
-        <div className="user-names">
-          <h2 className="display-name">{currentProfile.displayName}</h2>
-          <h3 className="username">@{currentProfile.username}</h3>
+      <div className={Sidebar.sidebar}>
+        <div className={Sidebar.usernames}>
+          <h2 className={Sidebar['display-name']}>{currentProfile.displayName}</h2>
+          <h3 className={Sidebar.username}>@{currentProfile.username}</h3>
         </div>
         <div id="profile__sidebar__counters">
-          <div className="posts-container">
+          <div className={Sidebar['posts-container']}>
             <h3>{currentProfile.postsCounter}</h3>
-            <p className="posts">Posts</p>
+            <p className={Sidebar.posts}>Posts</p>
           </div>
-          <div className="user-info">
+          <div className={Sidebar['user-info']}>
             <div className="following-container">
               <h3> {currentProfile.following.length} </h3>
-              <p className="following">Following</p>
+              <p className={Sidebar.following}>Following</p>
             </div>
             <div className="followers-container">
-              <h3>{currentProfile.followers.length}</h3> <p className="followers">Followers</p>
+              <h3>{currentProfile.followers.length}</h3>
+              <p className={Sidebar.followers}>Followers</p>
             </div>
           </div>
         </div>
-        <div className="bio">
-          <h3 className="header">Bio</h3>
-          <p className="text">{currentProfile.bio}</p>
+        <div className={Sidebar.bio}>
+          <h3 className={Sidebar.header}>Bio</h3>
+          <p className={Sidebar.text}>{currentProfile.bio}</p>
         </div>
       </div>
     );

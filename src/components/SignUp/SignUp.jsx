@@ -68,7 +68,7 @@ const SignUp = () => {
       );
     } else {
       nameHelper = (
-        <p style={{ color: 'red' }} className="name-helper">
+        <p style={{ color: '#ff0000' }} className="name-helper">
           Name has already been taken.
         </p>
       );

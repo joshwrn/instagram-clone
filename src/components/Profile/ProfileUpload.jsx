@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/profile/profile__modal.css';
+import Styles from '../../styles/profile/profile__upload.module.css';
 import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { firestore, initFire, timestamp } from '../../services/firebase';
 
@@ -74,48 +74,48 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
   };
 
   return (
-    <div id="profile__upload-modal">
-      <div id="profile__upload-modal__container">
-        <div id="profile__upload-modal__header">
+    <div className={Styles.modal}>
+      <div className={Styles.container}>
+        <div className={Styles.header}>
           <h3>Create New Post</h3>
-          <IoCloseOutline onClick={getModal} className="close" />
+          <IoCloseOutline onClick={getModal} className={Styles.close} />
         </div>
-        <div id="profile__upload-modal__top-container">
+        <div className={Styles['top-container']}>
           <form>
-            <div id="profile__upload-modal__upload-container">
-              <label className="profile__upload-modal__button-container">
+            <div className={Styles['upload-container']}>
+              <label className={Styles['button-container']}>
                 <input
                   onChange={handleFileChange}
                   type="file"
                   accept="image/jpeg, image/png, image/jpg"
-                  className="file-input"
+                  className={Styles['file-input']}
                 />
                 {postFile === null ? (
-                  <IoCloudUploadOutline className="upload" />
+                  <IoCloudUploadOutline className={Styles.upload} />
                 ) : (
                   <IoCheckmarkCircleOutline
-                    className="upload"
+                    className={Styles.upload}
                     style={{ color: '#00C138', border: '2px solid #00C138' }}
                   />
                 )}
               </label>
             </div>
             <p>{postFile === null ? 'File size limit 1 mb.' : 'ready to post'}</p>
-            <div id="profile__upload-modal__caption-container">
+            <div className={Styles['caption-container']}>
               <textarea
-                className="caption-input"
+                className={Styles['caption-input']}
                 name="caption"
                 maxLength="150"
                 placeholder="Enter Caption..."
                 onChange={handleTextChange}
               />
               {uploading ? (
-                <div class="loader"></div>
+                <div className={`${Styles.loader} loader`}></div>
               ) : (
                 <button
                   onClick={postFile !== null ? handleSubmit : doNothing}
                   type="submit"
-                  className="post-btn"
+                  className={Styles['post-btn']}
                   style={
                     postFile === null
                       ? { backgroundColor: 'var(--primary-background-color)' }
