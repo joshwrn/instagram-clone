@@ -57,7 +57,9 @@ const Nav = () => {
           <IoChatbubbleOutline className="nav__icon chat" />
           <IoHeartOutline className="nav__icon heart" />
           <div id="nav__user-menu-container" ref={menuRef}>
-            <IoPersonOutline onClick={handleUserIcon} className="nav__icon person" />
+            <NavLink to={`/profile/${currentUser?.uid}`}>
+              <IoPersonOutline onClick={handleUserIcon} className="nav__icon person" />
+            </NavLink>
             {openMenu ? (
               <NavUserMenu
                 theme={theme}

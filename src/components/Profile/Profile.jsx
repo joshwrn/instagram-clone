@@ -14,6 +14,7 @@ const Profile = (props) => {
   const [avatarModal, setAvatarModal] = useState(false);
   const [renderModal, setRenderModal] = useState(false);
   const [newPost, setNewPost] = useState(0);
+  const [noPosts, setNoPosts] = useState(false);
   const { match } = props;
   const { currentUser } = useAuth();
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,7 @@ const Profile = (props) => {
 
   //+ when theres a new post update the user profile
   useEffect(() => {
+    setNoPosts(false);
     return getUserObject();
   }, [newPost]);
 
@@ -186,6 +188,8 @@ const Profile = (props) => {
             firestore={firestore}
             match={match}
             currentProfile={currentProfile}
+            noPosts={noPosts}
+            setNoPosts={setNoPosts}
           />
         </div>
       </div>

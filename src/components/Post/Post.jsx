@@ -15,7 +15,7 @@ const Post = ({ match }) => {
     { image: 'post', loading: true },
   ]);
   const [loaded, setLoaded] = useState(false);
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile } = useAuth();
 
   //+ determine if this is the user's post
   useEffect(() => {
@@ -95,6 +95,8 @@ const Post = ({ match }) => {
           postUser={postUser}
           ownPost={ownPost}
           currentPost={currentPost}
+          currentUser={currentUser}
+          userProfile={userProfile}
         />
       </div>
     </div>

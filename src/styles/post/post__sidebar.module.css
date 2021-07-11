@@ -1,0 +1,165 @@
+.sidebar {
+  width: 25em;
+}
+
+.top {
+  border-bottom: 1px solid rgba(124, 124, 124, 0.281);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.25em;
+  padding: 1.2rem 0;
+  box-sizing: border-box;
+}
+
+.captionContainer {
+  padding: 0rem 1.25em;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.caption {
+  color: var(--secondary-font-color);
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+/*+ profile */
+.profileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5em;
+  height: 5em;
+  transition: transform 0.25s;
+  cursor: pointer;
+}
+
+.imageContainer:hover {
+  transform: translateY(-0.1em);
+}
+
+.profileImg {
+  border-radius: 100%;
+  width: 5em;
+  height: 5em;
+  position: absolute;
+  object-fit: cover;
+}
+
+.profileImgBlur {
+  border-radius: 100%;
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+  position: absolute;
+  filter: blur(1em);
+  opacity: 0.65;
+  z-index: -3;
+}
+
+/*+ user info */
+
+.nameContainer {
+  margin-left: 1em;
+  cursor: pointer;
+  text-align: left;
+}
+
+.username {
+  color: var(--secondary-font-color);
+}
+
+/*+ card footer */
+.footer {
+  position: absolute;
+  width: inherit;
+  height: 7em;
+  padding: 0em 1.25em;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+.firstChild {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postIcon {
+  margin: 0 4px 0 0;
+  cursor: pointer;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.likeIcon {
+  margin: 0 4px 0 0;
+  cursor: pointer;
+}
+
+.likeIcon > path:hover {
+  fill: red;
+  stroke: red;
+}
+
+.likedIcon {
+  margin: 0 4px 0 0;
+  cursor: pointer;
+}
+
+.likedIcon > path {
+  fill: red;
+  stroke: red;
+}
+
+.likes {
+  cursor: pointer;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+/*+ comment input */
+
+.commentBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: rgba(32, 32, 32, 0);
+  border: 1px solid rgba(124, 124, 124, 0);
+  border-top: 1px solid rgba(124, 124, 124, 0.281);
+  margin-top: 0.75em;
+  padding-top: 0.65em;
+}
+
+.commentForm {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  text-align: left;
+  border: 0px solid rgba(124, 124, 124, 0);
+  background: rgba(32, 32, 32, 0);
+  color: var(--primary-font-color);
+}
+
+.send {
+  cursor: pointer;
+}

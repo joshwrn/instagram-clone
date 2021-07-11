@@ -16,6 +16,7 @@ export const signIn = () => {
   firebase.auth().signInWithPopup(provider);
 };
 
+export const firestoreFieldValue = firebase.firestore.FieldValue;
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

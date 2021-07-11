@@ -14,6 +14,7 @@
   z-index: 200;
   backdrop-filter: blur(0.5rem);
   position: fixed;
+  animation: anim ease-out 0.1s forwards;
 }
 
 .avatar {
@@ -22,7 +23,6 @@
   object-fit: cover;
   border-radius: 100%;
   cursor: pointer;
-  animation: anim ease-in 0.25s forwards;
 }
 
 @keyframes anim {

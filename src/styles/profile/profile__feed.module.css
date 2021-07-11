@@ -11,3 +11,39 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.outer {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  top: 50%;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 16px;
+  color: var(--secondary-font-color);
+}
+
+.notFoundButton {
+  background-color: var(--primary-background-color);
+  color: var(--secondary-font-color);
+  padding: 0 60px;
+  height: 60px;
+  font-size: 19px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--secondary-border);
+}

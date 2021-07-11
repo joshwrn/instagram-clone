@@ -1,70 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IoShareOutline,
   IoHeartOutline,
   IoChatbubbleOutline,
   IoSendOutline,
 } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PostComments from './PostComments';
 import PostMenu from './PostMenu';
+import Styles from '../../styles/post/post__sidebar.module.css';
+import { firestore, storage, firestoreFieldValue } from '../../services/firebase';
+import PostLikeButton from './PostLikeButton';
 
-const PostSidebar = ({ match, loaded, handleLoad, postUser, currentPost, ownPost }) => {
+const PostSidebar = ({
+  match,
+  loaded,
+  handleLoad,
+  postUser,
+  currentPost,
+  ownPost,
+  currentUser,
+  userProfile,
+}) => {
+  let history = useHistory();
+
   return (
-    <div id="post__sidebar">
-      <div id="post__sidebar__top">
+    <div className={Styles.sidebar}>
+      <div className={Styles.top}>
         <Link to={`/profile/${match.params.uid}`}>
-          <div id="post__profile__container">
-            <div id="post__image__container">
+          <div className={Styles.profileContainer}>
+            <div className={Styles.imageContainer}>
               <div id="post__profile__img-loading" style={loaded ? { display: 'none' } : null} />
               <img
                 style={!loaded ? { display: 'none' } : null}
                 onLoad={handleLoad}
-                id="post__profile__img"
                 src={postUser?.profilePhoto}
                 alt="avatar"
-                className="post__loading-image"
+                className={Styles.profileImg}
               />
               <img
-                className="blur"
-                id="post__profile__img-blur"
+                className={Styles.profileImgBlur}
                 style={!loaded ? { display: 'none' } : null}
                 src={postUser?.profilePhoto}
                 alt=""
               />
             </div>
-            <div id="post__name__container" style={loaded ? { display: 'none' } : null}>
+            <div className={Styles.nameContainer} style={loaded ? { display: 'none' } : null}>
               <div id="post__display-name-loading" />
               <div id="post__username-loading" />
             </div>
-            <div id="post__name__container" style={!loaded ? { display: 'none' } : null}>
-              <h2 id="post__display-name">{postUser?.displayName}</h2>
-              <p id="post__username">@{postUser?.username}</p>
+            <div className={Styles.nameContainer} style={!loaded ? { display: 'none' } : null}>
+              <h2 className={Styles.displayName}>{postUser?.displayName}</h2>
+              <p className={Styles.username}>@{postUser?.username}</p>
             </div>
           </div>
         </Link>
-        <div className="caption-container">
-          <p className="caption">{currentPost?.caption}</p>
+        <div className={Styles.captionContainer}>
+          <p className={Styles.caption}>{currentPost?.caption}</p>
         </div>
       </div>
       {/*//+ comments */}
       <PostComments loaded={loaded} />
-      <div className="post__footer">
-        <div className="first-child">
-          <div className="left">
-            <IoHeartOutline className="post__icon like-icon" />
-            <IoChatbubbleOutline className="post__icon" />
-            <IoShareOutline className="post__icon" />
+      <div className={Styles.footer}>
+        <div className={Styles.firstChild}>
+          <div className={Styles.left}>
+            {/*//+ liked button */}
+            <PostLikeButton
+              Styles={Styles}
+              currentUser={currentUser}
+              userProfile={userProfile}
+              match={match}
+              history={history}
+              IoHeartOutline={IoHeartOutline}
+              firestore={firestore}
+              firestoreFieldValue={firestoreFieldValue}
+            />
+            <IoChatbubbleOutline className={Styles.postIcon} />
+            <IoShareOutline className={Styles.postIcon} />
           </div>
           {/* delete menu */}
-          <PostMenu match={match} ownPost={ownPost} currentPost={currentPost} />
+          <PostMenu
+            storage={storage}
+            firestore={firestore}
+            match={match}
+            ownPost={ownPost}
+            currentPost={currentPost}
+          />
         </div>
-        <p className="post__likes">{currentPost?.likesCounter} likes</p>
-        <div className="comment-box">
-          <form className="comment__form">
-            <input className="input-box" type="text" placeholder="Add a comment..." />
+        <p className={Styles.likes}>{currentPost?.likes.length} likes</p>
+        <div className={Styles.commentBox}>
+          <form className={Styles.commentForm}>
+            <input className={Styles.input} type="text" placeholder="Add a comment..." />
           </form>
-          <IoSendOutline className="send" />
+          <IoSendOutline className={Styles.send} />
         </div>
       </div>
     </div>

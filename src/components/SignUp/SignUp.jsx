@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { signIn, firestore } from '../../services/firebase';
 import '../../styles/sign-up/sign-up.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
 

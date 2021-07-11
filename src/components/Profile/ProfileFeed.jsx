@@ -2,7 +2,16 @@ import React, { useState, useEffect } from 'react';
 import ProfileCard from './ProfileCard';
 import Styles from '../../styles/profile/profile__feed.module.css';
 
-const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded }) => {
+const ProfileFeed = ({
+  firestore,
+  match,
+  newPost,
+  setLoading,
+  loading,
+  loaded,
+  setNoPosts,
+  noPosts,
+}) => {
   const [profileFeed, setProfileFeed] = useState([]);
   const [loads, setLoads] = useState(0);
 
@@ -45,26 +54,39 @@ const ProfileFeed = ({ firestore, match, newPost, setLoading, loading, loaded })
       setLoading((old) => [...old], {
         [loading[2]]: (loading[2].loading = false),
       });
+      setNoPosts(true);
     }
   };
 
   return (
-    <div className={Styles.feed}>
-      {profileFeed.map((item) => {
-        return (
-          <ProfileCard
-            key={item.id}
-            src={item.data().src}
-            match={match}
-            postId={item.id}
-            likes={item.data().likesCounter}
-            comments={item.data().commentsCounter}
-            handleLoad={handleLoad}
-            loaded={loaded}
-          />
-        );
-      })}
-    </div>
+    <>
+      {!noPosts ? (
+        <div className={Styles.feed}>
+          {profileFeed.map((item) => {
+            return (
+              <ProfileCard
+                key={item.id}
+                src={item.data().src}
+                match={match}
+                postId={item.id}
+                likes={item.data().likes}
+                comments={item.data().comments}
+                handleLoad={handleLoad}
+                loaded={loaded}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className={Styles.outer}>
+          <div className={Styles.notFound}>
+            <div className={Styles.notFoundContainer}>
+              <button className={Styles.notFoundButton}>No Posts</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

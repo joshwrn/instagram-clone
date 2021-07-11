@@ -21,11 +21,11 @@ const ProfileCard = ({ src, match, postId, likes, comments, handleLoad, loaded }
           />
           <div className={Styles.overlay}>
             <div className={Styles.icon}>
-              <IoHeartOutline /> <p>{likes}</p>
+              <IoHeartOutline /> <p>{likes.length}</p>
             </div>
             <div className={Styles.icon}>
               <IoChatbubbleOutline />
-              <p>{comments}</p>
+              <p>{comments.length}</p>
             </div>
           </div>
         </Link>

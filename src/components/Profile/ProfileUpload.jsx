@@ -35,8 +35,8 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
       .collection('posts')
       .add({
         date: timestamp,
-        likesCounter: 0,
-        commentsCounter: 0,
+        likes: [],
+        comments: [],
         caption: caption,
       });
     //+ upload image to storage

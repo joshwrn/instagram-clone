@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { IoShareSocialOutline, IoTrashOutline } from 'react-icons/io5';
 import Styles from '../../styles/post/post__menu.module.css';
-import { firestore, storage } from '../../services/firebase';
+
 import { useHistory } from 'react-router-dom';
 
-const PostMenu = ({ ownPost, match, currentPost }) => {
+const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
   const [menuStatus, setMenuStatus] = useState(false);
   let history = useHistory();
+
   const handleMenu = (e) => {
     e.preventDefault();
     console.log(menuStatus);
@@ -24,24 +25,18 @@ const PostMenu = ({ ownPost, match, currentPost }) => {
       .delete();
     let pictureRef = storage.refFromURL(currentPost.src);
     await pictureRef.delete();
-    firestore
+    const userDoc = await firestore.collection('users').doc(match.params.uid).get();
+    const userData = userDoc.data();
+    const dec = await firestore
       .collection('users')
       .doc(match.params.uid)
-      .get()
-      .then((userData) => {
-        if (userData.exists) {
-          firestore
-            .collection('users')
-            .doc(match.params.uid)
-            .set(
-              {
-                postsCounter: userData.data().postsCounter - 1,
-              },
-              { merge: true }
-            );
-          history.push(`/profile/${match.params.uid}`);
-        }
-      });
+      .set(
+        {
+          postsCounter: userData.postsCounter - 1,
+        },
+        { merge: true }
+      );
+    history.push(`/profile/${match.params.uid}`);
   };
 
   let menu;
@@ -68,7 +63,7 @@ const PostMenu = ({ ownPost, match, currentPost }) => {
   return (
     <div>
       {menuStatus ? menu : null}
-      <MoreHorizIcon onClick={handleMenu} className="post__icon" />
+      <MoreHorizIcon onClick={handleMenu} className={Styles.postIcon} />
     </div>
   );
 };
