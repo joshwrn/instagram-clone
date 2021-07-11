@@ -20,6 +20,11 @@ const ProfileFeed = ({
     return getFeed();
   }, [newPost]);
 
+  useEffect(() => {
+    getFeed();
+    setLoads(0);
+  }, [match]);
+
   //+ every time loads complete check the count to see if all the posts match the feed length
   useEffect(() => {
     if (profileFeed.length > 0 && loads === profileFeed.length) {

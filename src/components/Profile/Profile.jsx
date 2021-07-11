@@ -7,7 +7,7 @@ import ProfileAvatarModal from './ProfileAvatarModal';
 import Styles from '../../styles/profile/profile.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import ProfileButton from './ProfileButton';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
@@ -40,13 +40,28 @@ const Profile = (props) => {
     setLoading((old) => [...old], {
       [loading[imgIndex]]: (loading[imgIndex].loading = false),
     });
+    console.log('updating');
   };
 
   //+ when theres a new post update the user profile
   useEffect(() => {
     setNoPosts(false);
+    console.log('huh');
     return getUserObject();
   }, [newPost]);
+
+  useEffect(() => {
+    console.log('match');
+    getUserObject();
+
+    //# has issues because pics don't reload on save
+    // setLoaded(false);
+    // setLoading([
+    //   { image: 'avatar', loading: true },
+    //   { image: 'banner', loading: true },
+    //   { image: 'feed', loading: true },
+    // ]);
+  }, [match]);
 
   //+ get the current profiles data
   const getUserObject = () => {
@@ -59,6 +74,7 @@ const Profile = (props) => {
           setCurrentProfile(userData.data());
         }
       });
+    console.log('user obj');
   };
 
   //+ avatar modal
@@ -96,16 +112,6 @@ const Profile = (props) => {
       <button onClick={getModal} className={Styles.actionBtn}>
         <IoAddOutline className="action-icon" />
       </button>
-    );
-  }
-
-  //+ decides if profile button should be follow or edit
-  let profileButton = <button className={Styles.profileBtn}>Follow</button>;
-  if (currentUser?.uid === match.params.uid) {
-    profileButton = (
-      <Link to="/settings" className="link">
-        <button className={Styles.profileBtn}>Edit Profile</button>
-      </Link>
     );
   }
 
@@ -157,7 +163,15 @@ const Profile = (props) => {
             )}
             <div className={Styles.topRight}>
               <div className={Styles.topIconRow}>
-                {profileButton}
+                {/*//+ following button */}
+                <ProfileButton
+                  firestore={firestore}
+                  Styles={Styles}
+                  currentUser={currentUser}
+                  match={match}
+                  currentUser={currentUser}
+                  currentProfile={currentProfile}
+                />
                 {actionButton}
               </div>
               {renderModal && (

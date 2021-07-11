@@ -29,14 +29,7 @@ function App() {
                 <SignUp />
               </Route>
               {/*//+ Profile */}
-              <Route
-                exact
-                path="/profile/:uid"
-                render={(props) => (
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  <Profile {...props} />
-                )}
-              />
+              <Route exact path="/profile/:uid" component={Profile} />
               {/*//+ post */}
               <Route
                 exact
