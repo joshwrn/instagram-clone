@@ -68,7 +68,7 @@ const Post = ({ match }) => {
   const handleLoad = (e) => {
     const { alt } = e.target;
     const imgIndex = loading.findIndex((img) => img.image === alt);
-    setLoading((old) => [...old], {
+    setLoading((prev) => [...prev], {
       [loading[imgIndex]]: (loading[imgIndex].loading = false),
     });
   };

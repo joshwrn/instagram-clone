@@ -71,7 +71,7 @@
   cursor: pointer;
   gap: 27px;
   opacity: 0;
-  transition: opacity 0.25s;
+  transition: opacity 0.15s;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0) scale(1, 1);
 }

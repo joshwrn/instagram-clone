@@ -6,7 +6,7 @@ import {
   IoSendOutline,
 } from 'react-icons/io5';
 import { Link, useHistory } from 'react-router-dom';
-import PostComments from './PostComments';
+import PostCommentSection from './PostCommentSection';
 import PostMenu from './PostMenu';
 import Styles from '../../styles/post/post__sidebar.module.css';
 import { firestore, storage, firestoreFieldValue } from '../../services/firebase';
@@ -62,7 +62,7 @@ const PostSidebar = ({
         </div>
       </div>
       {/*//+ comments */}
-      <PostComments loaded={loaded} />
+      <PostCommentSection currentPost={currentPost} currentUser={currentUser} loaded={loaded} />
       <div className={Styles.footer}>
         <div className={Styles.firstChild}>
           <div className={Styles.left}>
@@ -92,7 +92,15 @@ const PostSidebar = ({
         </div>
         <p className={Styles.likes}>{currentPost?.likes.length} likes</p>
         {/*//+ comment box */}
-        <PostCommentBox IoSendOutline={IoSendOutline} Styles={Styles} />
+        <PostCommentBox
+          currentUser={currentUser}
+          firestore={firestore}
+          match={match}
+          firestoreFieldValue={firestoreFieldValue}
+          IoSendOutline={IoSendOutline}
+          Styles={Styles}
+          getCurrentPost={getCurrentPost}
+        />
       </div>
     </div>
   );

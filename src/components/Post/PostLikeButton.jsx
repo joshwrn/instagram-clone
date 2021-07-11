@@ -37,14 +37,14 @@ const PostLikeButton = ({
         .doc(match.params.uid)
         .collection('posts')
         .doc(match.params.postid);
-
       const thisUser = firestore.collection('users').doc(currentUser.uid);
 
       //@ add this post to likes
       if (!liked) {
+        setLiked(true);
         const addPost = () => {
           thisPost.update({
-            likes: firestoreFieldValue.arrayUnion(match.params.uid),
+            likes: firestoreFieldValue.arrayUnion(currentUser.uid),
           });
         };
         const addUser = () => {
@@ -53,14 +53,14 @@ const PostLikeButton = ({
           });
         };
         await Promise.all([addPost(), addUser()]);
-        setLiked(true);
         getUserProfile();
         getCurrentPost();
       } else {
         //@ remove post from likes
         const removePost = () => {
+          setLiked(false);
           thisPost.update({
-            likes: firestoreFieldValue.arrayRemove(match.params.uid),
+            likes: firestoreFieldValue.arrayRemove(currentUser.uid),
           });
         };
         const removeUser = () => {
@@ -69,7 +69,6 @@ const PostLikeButton = ({
           });
         };
         await Promise.all([removePost(), removeUser()]);
-        setLiked(false);
         getUserProfile();
         getCurrentPost();
       }
