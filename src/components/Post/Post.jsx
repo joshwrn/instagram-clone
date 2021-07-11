@@ -97,6 +97,7 @@ const Post = ({ match }) => {
           currentPost={currentPost}
           currentUser={currentUser}
           userProfile={userProfile}
+          getCurrentPost={getCurrentPost}
         />
       </div>
     </div>

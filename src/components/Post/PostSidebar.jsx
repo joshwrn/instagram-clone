@@ -11,6 +11,7 @@ import PostMenu from './PostMenu';
 import Styles from '../../styles/post/post__sidebar.module.css';
 import { firestore, storage, firestoreFieldValue } from '../../services/firebase';
 import PostLikeButton from './PostLikeButton';
+import PostCommentBox from './PostCommentBox';
 
 const PostSidebar = ({
   match,
@@ -21,6 +22,7 @@ const PostSidebar = ({
   ownPost,
   currentUser,
   userProfile,
+  getCurrentPost,
 }) => {
   let history = useHistory();
 
@@ -74,11 +76,12 @@ const PostSidebar = ({
               IoHeartOutline={IoHeartOutline}
               firestore={firestore}
               firestoreFieldValue={firestoreFieldValue}
+              getCurrentPost={getCurrentPost}
             />
             <IoChatbubbleOutline className={Styles.postIcon} />
             <IoShareOutline className={Styles.postIcon} />
           </div>
-          {/* delete menu */}
+          {/*//+ delete menu */}
           <PostMenu
             storage={storage}
             firestore={firestore}
@@ -88,12 +91,8 @@ const PostSidebar = ({
           />
         </div>
         <p className={Styles.likes}>{currentPost?.likes.length} likes</p>
-        <div className={Styles.commentBox}>
-          <form className={Styles.commentForm}>
-            <input className={Styles.input} type="text" placeholder="Add a comment..." />
-          </form>
-          <IoSendOutline className={Styles.send} />
-        </div>
+        {/*//+ comment box */}
+        <PostCommentBox IoSendOutline={IoSendOutline} Styles={Styles} />
       </div>
     </div>
   );

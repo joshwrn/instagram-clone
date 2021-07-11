@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { IoHeartOutline } from 'react-icons/io5';
+import Styles from '../../styles/post/post__sidebar.module.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 const PostLikeButton = ({
   match,
@@ -6,15 +9,24 @@ const PostLikeButton = ({
   history,
   firestore,
   firestoreFieldValue,
-  Styles,
-  IoHeartOutline,
-  userProfile,
+  getCurrentPost,
 }) => {
   const [liked, setLiked] = useState(false);
+  const { userProfile, getUserProfile } = useAuth();
 
   useEffect(() => {
-    userProfile?.likedPosts.includes(match.params.postid) && setLiked(true);
+    updateLikes();
   }, [userProfile]);
+
+  const updateLikes = async () => {
+    if (userProfile) {
+      if (userProfile.likedPosts.includes(match.params.postid)) {
+        setLiked(true);
+      } else {
+        setLiked(false);
+      }
+    }
+  };
 
   //! handle like
   const handleLike = async (e) => {
@@ -42,6 +54,8 @@ const PostLikeButton = ({
         };
         await Promise.all([addPost(), addUser()]);
         setLiked(true);
+        getUserProfile();
+        getCurrentPost();
       } else {
         //@ remove post from likes
         const removePost = () => {
@@ -56,6 +70,8 @@ const PostLikeButton = ({
         };
         await Promise.all([removePost(), removeUser()]);
         setLiked(false);
+        getUserProfile();
+        getCurrentPost();
       }
     } else {
       history.push('/sign-up');
