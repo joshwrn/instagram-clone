@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Styles from '../../styles/profile/profile__sidebar.module.css';
-import ProfileFollowers from './ProfileFollowers';
+import ProfileFollowersModal from './ProfileFollowersModal';
 
-const ProfileSidebar = ({ currentProfile, loaded }) => {
+const ProfileSidebar = ({ currentProfile, loaded, currentUser, getUserObject }) => {
   const [openFollowers, setOpenFollowers] = useState(false);
+  const [currentTab, setCurrentTab] = useState();
 
   const handleFollowers = (e) => {
     e.preventDefault();
+    const choice = e.target.getAttribute('data-type');
+    setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
   };
 
@@ -41,20 +44,36 @@ const ProfileSidebar = ({ currentProfile, loaded }) => {
             <p className={Styles.posts}>Posts</p>
           </div>
           {/*//+ followers / following */}
-          <ProfileFollowers
+          <ProfileFollowersModal
             currentProfile={currentProfile}
             handleFollowers={handleFollowers}
             setOpenFollowers={setOpenFollowers}
             openFollowers={openFollowers}
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
+            currentUser={currentUser}
+            getUserObject={getUserObject}
           />
-          <div onClick={handleFollowers} className={Styles.userInfo}>
-            <div className={Styles.followingContainer}>
-              <h3> {currentProfile.following.length} </h3>
-              <p className={Styles.following}>Following</p>
+          <div className={Styles.userInfo}>
+            <div
+              onClick={handleFollowers}
+              data-type="following"
+              className={Styles.followingContainer}
+            >
+              <h3 data-type="following"> {currentProfile.following.length} </h3>
+              <p data-type="following" className={Styles.following}>
+                Following
+              </p>
             </div>
-            <div onClick={handleFollowers} className={Styles.followersContainer}>
-              <h3>{currentProfile.followers.length}</h3>
-              <p className={Styles.followers}>Followers</p>
+            <div
+              data-type="followers"
+              onClick={handleFollowers}
+              className={Styles.followersContainer}
+            >
+              <h3 data-type="followers">{currentProfile.followers.length}</h3>
+              <p data-type="followers" className={Styles.followers}>
+                Followers
+              </p>
             </div>
           </div>
         </div>

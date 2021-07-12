@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../../services/firebase';
 import { useHistory } from 'react-router-dom';
+import ProfileButton from './ProfileButton';
 
-const ProfileFollowerListItem = ({ item, Styles, handleFollowers }) => {
+const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, currentUser }) => {
   const [current, setCurrent] = useState(null);
+
   let history = useHistory();
+  const getUser = async () => {
+    const userRef = firestore.collection('users').doc(item);
+    const thisUser = await userRef.get();
+    setCurrent(thisUser.data());
+  };
   useEffect(() => {
-    const getUser = async () => {
-      const userRef = firestore.collection('users').doc(item);
-      const thisUser = await userRef.get();
-      setCurrent(thisUser.data());
-    };
     getUser();
-  }, []);
+  }, [currentTab]);
 
   const handleLink = (e) => {
     e.preventDefault();
     handleFollowers(e);
     history.push(`/profile/${current?.userID}`);
   };
+
   return (
     <div className={Styles.listItem}>
       <div onClick={handleLink} className={Styles.start}>
@@ -29,7 +32,13 @@ const ProfileFollowerListItem = ({ item, Styles, handleFollowers }) => {
         </div>
       </div>
 
-      <button className={Styles.button}>Follow</button>
+      <ProfileButton
+        currentProfile={current}
+        match={current?.userID}
+        currentUser={currentUser}
+        getUserObject={getUser}
+        Styles={Styles}
+      />
     </div>
   );
 };

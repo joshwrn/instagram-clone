@@ -168,7 +168,7 @@ const Profile = (props) => {
                   firestore={firestore}
                   Styles={Styles}
                   currentUser={currentUser}
-                  match={match}
+                  match={match.params.uid}
                   currentUser={currentUser}
                   currentProfile={currentProfile}
                   getUserObject={getUserObject}
@@ -193,6 +193,8 @@ const Profile = (props) => {
             firestore={firestore}
             match={match}
             currentProfile={currentProfile}
+            currentUser={currentUser}
+            getUserObject={getUserObject}
           />
           {/*//@ posts */}
           <ProfileFeed

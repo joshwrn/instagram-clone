@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
 const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObject }) => {
   const [following, setFollowing] = useState(false);
-  const { userProfile, getUserProfile } = useAuth();
+  const { userProfile } = useAuth();
+  let history = useHistory();
 
   useEffect(() => {
     const check = currentProfile?.followers.includes(userProfile?.userID);
@@ -14,14 +15,13 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
     } else {
       setFollowing(false);
     }
-    console.log(currentProfile?.followers[0], check, currentProfile?.userID);
   }, [currentProfile]);
 
   //+ follow
   const handleFollow = async (e) => {
     e.preventDefault();
 
-    const thisUser = firestore.collection('users').doc(match.params.uid);
+    const thisUser = firestore.collection('users').doc(match);
     const userRef = firestore.collection('users').doc(userProfile.userID);
 
     await thisUser.update({
@@ -37,7 +37,7 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
   const handleUnfollow = async (e) => {
     e.preventDefault();
 
-    const thisUser = firestore.collection('users').doc(match.params.uid);
+    const thisUser = firestore.collection('users').doc(match);
     const userRef = firestore.collection('users').doc(userProfile.userID);
 
     await thisUser.update({
@@ -47,6 +47,11 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
       following: firestoreFieldValue.arrayRemove(currentProfile.userID),
     });
     getUserObject();
+  };
+
+  const handleLink = (e) => {
+    e.preventDefault();
+    history.push('/settings');
   };
 
   //+ decides if profile button should be follow or edit
@@ -64,11 +69,11 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
     );
   }
   // if contains user. set following
-  if (currentUser?.uid === match.params.uid) {
+  if (currentUser?.uid === match) {
     button = (
-      <Link to="/settings" className="link">
-        <button className={Styles.profileBtn}>Edit Profile</button>
-      </Link>
+      <button onClick={handleLink} className={Styles.profileBtn}>
+        Edit Profile
+      </button>
     );
   }
 
