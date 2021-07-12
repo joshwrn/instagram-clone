@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
 
 const SignUp = () => {
-  const { login, currentUser, firebaseRegister } = useAuth();
+  const { login, currentUser, firebaseRegister, anon } = useAuth();
   const [userInput, setUserInput] = useState('');
   const [nameTaken, setNameTaken] = useState(false);
 
@@ -52,6 +52,11 @@ const SignUp = () => {
 
   const doNothing = (e) => {
     e.preventDefault();
+  };
+
+  const handleAnon = (e) => {
+    e.preventDefault();
+    anon();
   };
 
   let nameHelper = <p className="name-helper">Name must be 4-15 characters.</p>;
@@ -123,6 +128,7 @@ const SignUp = () => {
               <button onClick={login} className="sign-up__form__login-button">
                 Login
               </button>
+              <button onClick={handleAnon}>anon</button>
             </div>
           </div>
         </div>

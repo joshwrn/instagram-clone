@@ -5,16 +5,13 @@ import { firestore } from '../../services/firebase';
 import '../../styles/home/home__login.css';
 
 const LoginButton = () => {
-  const { login, logout, currentUser } = useAuth();
+  const { login, logout, currentUser, anon } = useAuth();
 
   const fireTest = async (e) => {
     e.preventDefault();
     if (currentUser) {
       console.log(currentUser.uid);
-      const userTest = await firestore
-        .collection('users')
-        .doc(currentUser.uid)
-        .get();
+      const userTest = await firestore.collection('users').doc(currentUser.uid).get();
       console.log(userTest.data().bio);
       console.log(currentUser.metadata.creationTime);
     }

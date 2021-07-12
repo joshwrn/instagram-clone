@@ -4,16 +4,15 @@
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 100vh;
+  height: 101vh;
   margin: 0;
   position: fixed;
   top: 50%;
   left: 0;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 200;
-  backdrop-filter: blur(0.5rem);
   animation: anim ease-out 0.1s forwards;
 }
 
@@ -52,7 +51,7 @@
 
 /*# upload */
 
-.upload-container {
+.uploadContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,38 +61,35 @@
 }
 
 .upload {
-  font-size: 3rem;
-  padding: 0.5em;
+  font-size: 2rem;
+  padding: 30px;
   border-radius: 0.5rem;
-  border: 2px dashed var(--secondary-font-color);
+  border: 1px dashed var(--secondary-font-color);
   color: var(--secondary-font-color);
-  transition: box-shadow 0.25s;
   cursor: pointer;
 }
 
-.upload:hover {
-  box-shadow: 0px 0.25em 0.5em 1px rgba(0, 0, 0, 0.103);
-}
-
-.button-container {
+.buttonContainer {
   position: absolute;
   height: 6.2em;
   width: 6.2em;
 }
 
-.file-input {
+.fileInput {
   position: absolute;
   height: 7em;
   width: 6em;
   z-index: -1;
   opacity: 0;
 }
-.top-container > form > p {
+
+.topContainer > form > p {
   font-size: 0.7rem;
   color: var(--secondary-font-color);
 }
+
 /*# caption */
-.caption-container {
+.captionContainer {
   margin-top: 2em;
   display: flex;
   flex-direction: column;
@@ -103,7 +99,7 @@
   box-sizing: border-box;
 }
 
-.caption-input {
+.captionInput {
   padding: 1em 1em 0 1em;
   border: 1px solid rgba(124, 124, 124, 0.281);
   border-radius: 0.5rem;
@@ -115,12 +111,12 @@
   background-color: var(--primary-background-color);
 }
 
-.caption-input:focus {
+.captionInput:focus {
   text-align: left;
 }
 
 /*# post button  */
-.post-btn {
+.postButton {
   margin-top: 1.5em;
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);

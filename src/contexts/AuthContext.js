@@ -28,6 +28,10 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  function anon() {
+    return auth.signInAnonymously();
+  }
+
   // only check user on component mount
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -123,6 +127,7 @@ export function AuthProvider({ children }) {
     login,
     logout,
     firebaseRegister,
+    anon,
   };
 
   // Takes all value props

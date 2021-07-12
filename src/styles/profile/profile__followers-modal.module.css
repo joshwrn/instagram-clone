@@ -1,0 +1,155 @@
+.modal {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 101vh;
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  animation: anim ease-out 0.1s forwards;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+  width: 740px;
+  height: 590px;
+  max-height: 90%;
+  max-width: 90vw;
+  border-radius: 16px;
+  background-color: var(--primary-background-color);
+  box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.2);
+  border: var(--primary-border);
+}
+
+.header {
+  display: flex;
+  width: 93%;
+  box-sizing: border-box;
+  justify-self: center;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--secondary-border);
+}
+
+.activeHeader {
+  display: flex;
+  border-bottom: 1px solid var(--primary-font-color);
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inactiveHeader {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inactiveHeader > h3 {
+  color: var(--secondary-font-color);
+}
+
+.activeHeader > h3 {
+  color: var(--primary-font-color);
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  height: 100%;
+}
+
+.close {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+/*+ list item */
+
+.listItem {
+  display: flex;
+  align-items: center;
+  padding: 25px 25px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.link {
+  width: 100%;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.displayName {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.username {
+  font-size: 14px;
+  color: var(--secondary-font-color);
+}
+
+.button {
+  background-color: var(--primary-background-color);
+  color: var(--secondary-font-color);
+  padding: 0 2em;
+  height: 2.25em;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--secondary-border);
+}
+
+.button:hover {
+  color: var(--primary-background-color);
+  background-color: var(--primary-font-color);
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

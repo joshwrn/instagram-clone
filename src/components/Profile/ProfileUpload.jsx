@@ -79,30 +79,30 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
           <h3>Create New Post</h3>
           <IoCloseOutline onClick={getModal} className={Styles.close} />
         </div>
-        <div className={Styles['top-container']}>
+        <div className={Styles.topContainer}>
           <form>
-            <div className={Styles['upload-container']}>
-              <label className={Styles['button-container']}>
+            <div className={Styles.uploadContainer}>
+              <label className={Styles.buttonContainer}>
                 <input
                   onChange={handleFileChange}
                   type="file"
                   accept="image/jpeg, image/png, image/jpg"
-                  className={Styles['file-input']}
+                  className={Styles.fileInput}
                 />
                 {postFile === null ? (
                   <IoCloudUploadOutline className={Styles.upload} />
                 ) : (
                   <IoCheckmarkCircleOutline
                     className={Styles.upload}
-                    style={{ color: '#00C138', border: '2px solid #00C138' }}
+                    style={{ color: '#00C138', border: '1px solid #00C138' }}
                   />
                 )}
               </label>
             </div>
             <p>{postFile === null ? 'File size limit 2 mb.' : 'ready to post'}</p>
-            <div className={Styles['caption-container']}>
+            <div className={Styles.captionContainer}>
               <textarea
-                className={Styles['caption-input']}
+                className={Styles.captionInput}
                 name="caption"
                 maxLength="150"
                 placeholder="Enter Caption..."
@@ -114,7 +114,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
                 <button
                   onClick={postFile !== null ? handleSubmit : doNothing}
                   type="submit"
-                  className={Styles['post-btn']}
+                  className={Styles.postButton}
                   style={
                     postFile === null
                       ? { backgroundColor: 'var(--primary-background-color)' }

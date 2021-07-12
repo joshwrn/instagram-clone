@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
-const ProfileButton = ({ Styles, currentUser, match, currentProfile }) => {
+const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObject }) => {
   const [following, setFollowing] = useState(false);
   const { userProfile, getUserProfile } = useAuth();
 
   useEffect(() => {
-    const check = userProfile?.following.includes(currentProfile?.userID);
+    const check = currentProfile?.followers.includes(userProfile?.userID);
     if (check) {
       setFollowing(true);
-      console.log('gi');
+    } else {
+      setFollowing(false);
     }
-    console.log(userProfile?.following[0], check, currentProfile?.userID);
+    console.log(currentProfile?.followers[0], check, currentProfile?.userID);
   }, [currentProfile]);
 
   //+ follow
@@ -29,6 +30,7 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile }) => {
     await userRef.update({
       following: firestoreFieldValue.arrayUnion(currentProfile.userID),
     });
+    getUserObject();
   };
 
   //+ unfollow
@@ -44,6 +46,7 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile }) => {
     await userRef.update({
       following: firestoreFieldValue.arrayRemove(currentProfile.userID),
     });
+    getUserObject();
   };
 
   //+ decides if profile button should be follow or edit

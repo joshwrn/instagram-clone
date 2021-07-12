@@ -119,3 +119,7 @@ input::placeholder:focus {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }
+
+.nav-profile-link {
+  cursor: default;
+}

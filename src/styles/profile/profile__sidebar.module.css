@@ -11,7 +11,7 @@
   gap: 3px;
 }
 
-.display-name {
+.displayName {
   color: var(--primary-font-color);
 }
 
@@ -19,7 +19,7 @@
   color: var(--secondary-font-color);
 }
 
-.posts-container {
+.postsContainer {
   display: flex;
   align-items: center;
   padding: 16px 0 0 0;
@@ -32,7 +32,7 @@
   font-weight: bold;
 }
 
-.user-info {
+.userInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -40,6 +40,11 @@
   border-bottom: 1px solid rgba(124, 124, 124, 0.281);
   padding: 16px 0;
   margin: 16px 0;
+}
+
+.followersContainer,
+.followingContainer {
+  cursor: pointer;
 }
 
 .followers,
@@ -61,25 +66,25 @@
 }
 /*+ loading */
 
-.name-loading {
+.nameLoading {
   border-radius: 8px;
   width: 160px;
   height: 32px;
 }
 
-.username-loading {
+.usernameLoading {
   margin-top: 8px;
   border-radius: 8px;
   width: 96px;
   height: 16px;
 }
 
-.counters-loading {
+.countersLoading {
   display: flex;
   flex-direction: column;
 }
 
-.counter-loading {
+.counterLoading {
   margin-top: 20px;
   border-radius: 8px;
   width: 208px;

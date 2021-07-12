@@ -171,6 +171,7 @@ const Profile = (props) => {
                   match={match}
                   currentUser={currentUser}
                   currentProfile={currentProfile}
+                  getUserObject={getUserObject}
                 />
                 {actionButton}
               </div>
