@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__sidebar.module.css';
 import ProfileFollowersModal from './ProfileFollowersModal';
 

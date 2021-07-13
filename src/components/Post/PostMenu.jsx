@@ -10,7 +10,6 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
 
   const handleMenu = (e) => {
     e.preventDefault();
-    console.log(menuStatus);
     menuStatus ? setMenuStatus(false) : setMenuStatus(true);
   };
 

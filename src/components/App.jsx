@@ -1,5 +1,5 @@
 import '../styles/app.css';
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
@@ -7,7 +7,8 @@ import Profile from './Profile/Profile.jsx';
 import Post from './Post/Post';
 import SignUp from './SignUp/SignUp';
 import Settings from './Settings/Settings';
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import Messages from './Messages/Messages';
+import { AuthProvider } from '../contexts/AuthContext';
 
 function App() {
   const BrowserRouter = require('react-router-dom').BrowserRouter;
@@ -24,6 +25,10 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
+              {/*//+ Messages */}
+              <Route exact path="/messages">
+                <Messages />
+              </Route>
               {/*//+ Sign up */}
               <Route exact path="/sign-up">
                 <SignUp />
@@ -31,14 +36,7 @@ function App() {
               {/*//+ Profile */}
               <Route exact path="/profile/:uid" component={Profile} />
               {/*//+ post */}
-              <Route
-                exact
-                path="/post/:uid/:postid"
-                render={(props) => (
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  <Post {...props} />
-                )}
-              />
+              <Route exact path="/post/:uid/:postid" component={Post} />
               {/*//+ settings */}
               <Route exact path="/settings">
                 <Settings />

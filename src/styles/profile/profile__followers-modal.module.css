@@ -85,7 +85,7 @@
 .listItem {
   display: flex;
   align-items: center;
-  padding: 25px 25px;
+  padding: 20px 25px;
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
@@ -95,13 +95,13 @@
 .start {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
 }
 
 .avatar {
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
   border-radius: 100%;
 }
 
@@ -109,16 +109,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 2px;
 }
 
 .displayName {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .username {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: bold;
   color: var(--secondary-font-color);
 }
 
@@ -138,7 +139,7 @@
   cursor: pointer;
   box-sizing: border-box;
   font-weight: bold;
-  transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s, transform 0.25s;
   border: var(--secondary-border);
 }
 
@@ -146,6 +147,7 @@
   color: var(--primary-background-color);
   background-color: var(--primary-font-color);
   box-shadow: 0px 5px 20px 1px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
 }
 
 @keyframes anim {

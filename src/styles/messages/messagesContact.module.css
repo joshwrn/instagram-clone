@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 15px;
+  transition: background-color 0.15s;
+}
+
+.container:hover {
+  background-color: var(--nav-background-color);
+  cursor: pointer;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.message {
+}

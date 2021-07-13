@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Styles from '../../styles/profile/profile__followers-modal.module.css';
-import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
-import { firestore, storageRef, timestamp } from '../../services/firebase';
+import { IoCloseOutline } from 'react-icons/io5';
 import ProfileFollowerListItem from './ProfileFollowerListItem';
 const ProfileFollowers = ({
   openFollowers,
@@ -12,8 +11,8 @@ const ProfileFollowers = ({
   currentUser,
   getUserObject,
 }) => {
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
+  // const [followers, setFollowers] = useState([]);
+  // const [following, setFollowing] = useState([]);
 
   //   useEffect(() => {
   //     setFollowing(currentProfile?.following);

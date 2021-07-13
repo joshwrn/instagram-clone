@@ -43,7 +43,6 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
     const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
     await fileRef.put(postFile);
     const fileUrl = await fileRef.getDownloadURL();
-    console.log(fileUrl);
     //+ set src to image url
     await createPost.set(
       {

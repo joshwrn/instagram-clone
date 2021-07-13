@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, signIn, firestore, timestamp } from '../services/firebase';
+import { auth, signIn, firestore } from '../services/firebase';
 import { useHistory } from 'react-router-dom';
 
 // Create context
@@ -51,7 +51,6 @@ export function AuthProvider({ children }) {
       getUserProfile();
     }
     if (attemptLogin && currentUser) {
-      console.log(currentUser);
       return firestore
         .collection('users')
         .doc(currentUser.uid)
@@ -59,7 +58,6 @@ export function AuthProvider({ children }) {
         .then((userData) => {
           //# if user data does not exist
           if (!userData.exists) {
-            console.log('huh');
             auth.signOut();
             setAttemptLogin(false);
             //do something redirect idk
@@ -85,9 +83,8 @@ export function AuthProvider({ children }) {
               foundName = doc.data();
             });
           });
-        console.log(usernameInput, foundName);
+
         if (foundName === undefined) {
-          console.log('new user', foundName);
           firestore
             .collection('users')
             .doc(currentUser.uid)

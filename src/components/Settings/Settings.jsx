@@ -28,8 +28,6 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file && file.size < 1000000) {
       handleUpload(e.target.name, file);
-    } else {
-      console.log('fail');
     }
   };
 

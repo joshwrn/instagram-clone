@@ -29,7 +29,6 @@ const SignUp = () => {
           .then((searchResults) => {
             return searchResults.forEach((doc) => {
               foundName = doc.data();
-              console.log(foundName);
             });
           });
         if (foundName === undefined) {

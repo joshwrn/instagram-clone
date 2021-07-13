@@ -40,18 +40,15 @@ const Profile = (props) => {
     setLoading((old) => [...old], {
       [loading[imgIndex]]: (loading[imgIndex].loading = false),
     });
-    console.log('updating');
   };
 
   //+ when theres a new post update the user profile
   useEffect(() => {
     setNoPosts(false);
-    console.log('huh');
     return getUserObject();
   }, [newPost]);
 
   useEffect(() => {
-    console.log('match');
     getUserObject();
 
     //# has issues because pics don't reload on save
@@ -74,7 +71,6 @@ const Profile = (props) => {
           setCurrentProfile(userData.data());
         }
       });
-    console.log('user obj');
   };
 
   //+ avatar modal

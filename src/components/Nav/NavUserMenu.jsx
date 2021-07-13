@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import '../../styles/nav/nav__user-menu.css';
 import { NavLink, Link } from 'react-router-dom';
 import { IoPersonCircleOutline, IoPersonAddOutline, IoLogOut } from 'react-icons/io5';
@@ -23,6 +23,7 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--secondary-border', '1px solid rgb(41, 41, 41)');
       root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #000000, #353535)');
       setTheme('dark');
+      root.style.setProperty('--messages-sidebar-background', 'rgba(0, 0, 0, 0.87)');
     } else if (theme === 'dark') {
       root.style.setProperty('--primary-font-color', 'black');
       root.style.setProperty('--nav-background-color', 'rgba(255, 255, 255, 0.733)');
@@ -32,6 +33,7 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41, 0)');
       root.style.setProperty('--secondary-border', '1px solid rgb(206, 206, 206)');
       root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #ffffff, #c2c2c2)');
+      root.style.setProperty('--messages-sidebar-background', 'rgba(255, 255, 255, 0.87)');
       setTheme('light');
     }
   };

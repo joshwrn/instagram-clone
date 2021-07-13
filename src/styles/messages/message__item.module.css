@@ -1,0 +1,42 @@
+.item {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  padding: 0 40px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.itemSent {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+}
+
+.bubble {
+  background-color: #303030;
+  border-radius: 32px;
+  padding: 16px;
+  max-width: 50%;
+  box-sizing: border-box;
+  color: white;
+}
+
+.bubbleSent {
+  background-color: #4d2dff;
+  border-radius: 32px;
+  padding: 16px;
+  max-width: 50%;
+  box-sizing: border-box;
+  color: white;
+  z-index: 0;
+  position: relative;
+}

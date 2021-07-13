@@ -54,7 +54,9 @@ const Nav = () => {
           <NavLink exact to="/">
             <IoHomeOutline className="nav__icon home" />
           </NavLink>
-          <IoChatbubbleOutline className="nav__icon chat" />
+          <NavLink exact to="/messages">
+            <IoChatbubbleOutline className="nav__icon chat" />
+          </NavLink>
           <IoHeartOutline className="nav__icon heart" />
           <div id="nav__user-menu-container" ref={menuRef}>
             <NavLink
@@ -65,7 +67,7 @@ const Nav = () => {
             >
               <IoPersonOutline onClick={handleUserIcon} className="nav__icon person" />
             </NavLink>
-            {openMenu ? (
+            {openMenu && (
               <NavUserMenu
                 theme={theme}
                 setTheme={setTheme}
@@ -73,7 +75,7 @@ const Nav = () => {
                 logout={logout}
                 currentUser={currentUser}
               />
-            ) : null}
+            )}
           </div>
         </div>
       </div>
