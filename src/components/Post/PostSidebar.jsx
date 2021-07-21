@@ -9,6 +9,7 @@ import { Link, useHistory } from 'react-router-dom';
 import PostCommentSection from './PostCommentSection';
 import PostMenu from './PostMenu';
 import Styles from '../../styles/post/post__sidebar.module.css';
+import Loading from '../../styles/post/post__loading.module.css';
 import { firestore, storage, firestoreFieldValue } from '../../services/firebase';
 import PostLikeButton from './PostLikeButton';
 import PostCommentBox from './PostCommentBox';
@@ -32,7 +33,7 @@ const PostSidebar = ({
         <Link to={`/profile/${match.params.uid}`}>
           <div className={Styles.profileContainer}>
             <div className={Styles.imageContainer}>
-              <div id="post__profile__img-loading" style={loaded ? { display: 'none' } : null} />
+              <div className={Loading.profileImg} style={loaded ? { display: 'none' } : null} />
               <img
                 style={!loaded ? { display: 'none' } : null}
                 onLoad={handleLoad}
@@ -48,8 +49,8 @@ const PostSidebar = ({
               />
             </div>
             <div className={Styles.nameContainer} style={loaded ? { display: 'none' } : null}>
-              <div id="post__display-name-loading" />
-              <div id="post__username-loading" />
+              <div className={Loading.displayName} />
+              <div className={Loading.username} />
             </div>
             <div className={Styles.nameContainer} style={!loaded ? { display: 'none' } : null}>
               <h2 className={Styles.displayName}>{postUser?.displayName}</h2>

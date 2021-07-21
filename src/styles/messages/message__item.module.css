@@ -1,42 +1,103 @@
 .item {
   display: flex;
   width: 100%;
-  height: 50px;
+  height: fit-content;
   align-items: center;
-  padding: 0 40px;
-  margin: 5px 0;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  flex: 0 0 auto;
+
   box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+  border-style: solid;
+  border-color: var(--primary-background-color);
+  border-width: 10px 40px 10px 40px;
+}
+
+.item:before {
+  content: '';
+  flex: 1;
+  background: var(--primary-background-color);
+  pointer-events: none;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .itemSent {
   display: flex;
   width: 100%;
-  height: 50px;
+  height: fit-content;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0 40px;
-  margin: 5px 0;
+
+  overflow: hidden;
+  flex: 0 0 auto;
+
   box-sizing: border-box;
   position: relative;
   z-index: 0;
+  border-style: solid;
+  border-color: var(--primary-background-color);
+  border-width: 10px 40px 10px 40px;
+}
+
+.itemSent:before {
+  content: '';
+  flex: 1;
+  background: var(--primary-background-color);
+  pointer-events: none;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .bubble {
-  background-color: #303030;
+  background-color: var(--messages-bubble-background);
   border-radius: 32px;
-  padding: 16px;
-  max-width: 50%;
+  padding: 16px 18px;
+  max-width: 60%;
   box-sizing: border-box;
-  color: white;
+  color: var(--primary-font-color);
+  z-index: 0;
+  position: relative;
+  font-size: 15px;
+}
+
+.bubble:before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  bottom: -15px;
+  right: -15px;
+  border: 18px solid var(--primary-background-color);
+  border-radius: 40px;
+  pointer-events: none;
 }
 
 .bubbleSent {
-  background-color: #4d2dff;
+  background-color: none;
   border-radius: 32px;
-  padding: 16px;
-  max-width: 50%;
+  padding: 16px 18px;
+  max-width: 60%;
   box-sizing: border-box;
   color: white;
   z-index: 0;
   position: relative;
+  font-size: 15px;
+}
+
+.bubbleSent:before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  bottom: -15px;
+  right: -15px;
+  border: 18px solid var(--primary-background-color);
+  border-radius: 40px;
+  pointer-events: none;
 }

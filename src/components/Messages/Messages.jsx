@@ -55,7 +55,7 @@ const Messages = () => {
           </form>
           <IoSendOutline type="submit" className={Styles.send} />
         </div>
-        <div className={Styles.messageArea}>
+        <div id="msg" className={Styles.messageArea}>
           <div className={Styles.overlay}></div>
           <MessageItem sentStatus={true} />
           <MessageItem sentStatus={false} />
@@ -74,7 +74,7 @@ const Messages = () => {
           <MessageItem sentStatus={false} />
           <MessageItem sentStatus={true} />
           <MessageItem sentStatus={true} />
-          <MessageItem sentStatus={true} />
+          <MessageItem sentStatus={false} />
         </div>
       </div>
     </div>

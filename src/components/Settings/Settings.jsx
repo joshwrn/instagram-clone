@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/settings/settings.css';
+import Styles from '../../styles/settings/settings.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
@@ -91,57 +91,61 @@ const Settings = () => {
   };
 
   return (
-    <div id="settings">
-      <div id="settings__container">
+    <div className={Styles.settings}>
+      <div className={Styles.container}>
         <h3>Settings</h3>
-        <div id="settings__inner">
+        <div className={Styles.inner}>
           <div>
-            <label id="banner-ov-con">
+            <label className={Styles.bannerOverlayContainer}>
               <input
                 name="banner"
                 type="file"
                 accept="image/jpeg, image/png, image/jpg"
-                className="file-input"
+                className={Styles.fileInput}
                 onChange={handlePhotoChange}
               />
-              <div className="banner-container">
-                <img className="banner-image" src={userProfile && userProfile.banner} alt="" />
+              <div className={Styles.bannerContainer}>
+                <img
+                  className={Styles.bannerImage}
+                  src={userProfile && userProfile.banner}
+                  alt=""
+                />
               </div>
-              <div className="banner-overlay">
-                <IoPencil className="banner-icon" />
+              <div className={Styles.bannerOverlay}>
+                <IoPencil className={Styles.bannerIcon} />
               </div>
             </label>
             <form>
-              <div id="settings__profile-container-bar">
-                <label id="o-con">
+              <div className={Styles.containerBar}>
+                <label className={Styles.profileOverlayContainer}>
                   <input
                     onChange={handlePhotoChange}
                     type="file"
                     accept="image/jpeg, image/png, image/jpg"
-                    className="file-input"
+                    className={Styles.fileInput}
                     name="profilePhoto"
                   />
                   <img
-                    id="settings__profile-container__image"
+                    className={Styles.profileImage}
                     src={userProfile && userProfile.profilePhoto}
                     alt=""
                   />
-                  <div className="p-overlay">
-                    <IoImage className="p-icon" />
+                  <div className={Styles.profileOverlay}>
+                    <IoImage className={Styles.profileIcon} />
                   </div>
                 </label>
               </div>
             </form>
           </div>
-          <div id="settings__text-inputs">
-            <form id="settings__text-form">
-              <div className="settings__input-container">
+          <div className={Styles.textInputs}>
+            <form className={Styles.textForm}>
+              <div className={Styles.inputContainer}>
                 <p>Display Name:</p>
-                <div className="settings__input">
+                <div className={Styles.input}>
                   <input
                     autoComplete="off"
                     name="displayName"
-                    className="input-box-display"
+                    className={Styles.inputBoxDisplay}
                     type="text"
                     placeholder={userProfile && userProfile.displayName}
                     maxLength="25"
@@ -151,10 +155,10 @@ const Settings = () => {
                   />
                 </div>
               </div>
-              <div className="settings__input-container">
+              <div className={Styles.inputContainer}>
                 <p>Bio:</p>
                 <textarea
-                  id="settings__bio-input"
+                  className={Styles.bioInput}
                   name="bio"
                   maxLength="150"
                   placeholder={userProfile && userProfile.bio}
@@ -165,7 +169,7 @@ const Settings = () => {
               {uploading ? (
                 <div class="loader"></div>
               ) : (
-                <button onClick={handleTextUpload} type="submit" id="settings__text-save-btn">
+                <button onClick={handleTextUpload} type="submit" className={Styles.textBtn}>
                   Save
                 </button>
               )}
@@ -173,11 +177,9 @@ const Settings = () => {
           </div>
         </div>
 
-        <div id="settings__profile-btn-container">
-          <Link id="settings__profile-link" to={`/profile/${userProfile && userProfile.userID}`}>
-            <button className="button" id="settings__profile-btn">
-              View Profile
-            </button>
+        <div className={Styles.profileButtonContainer}>
+          <Link className={Styles.profileLink} to={`/profile/${userProfile && userProfile.userID}`}>
+            <button className={Styles.profileBtn}>View Profile</button>
           </Link>
         </div>
       </div>

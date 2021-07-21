@@ -1,4 +1,4 @@
-#nav {
+.nav {
   display: flex;
   position: fixed;
   top: 0;
@@ -14,21 +14,27 @@
   box-sizing: border-box;
 }
 
-#nav__inner {
+@-moz-document url-prefix() {
+  .nav {
+    background-color: var(--primary-background-color);
+  }
+}
+
+.inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1150px;
-  width: 100%;
+  max-width: 1600px;
+  width: 90%;
   padding: 0 1em 0 1em;
   box-sizing: border-box;
 }
 
-#nav__logo__img {
+.logoImg {
   height: 30px;
 }
 
-#nav__logo {
+.logo {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -36,7 +42,7 @@
 }
 
 /* search box */
-#nav__search-input {
+.searchInput {
   padding: 0em 1em 0 1em;
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0.281);
@@ -46,7 +52,7 @@
   transition: text-align 1s;
 }
 
-#nav__search-input:focus {
+.searchInput:focus {
   padding: 0em 1em 0 1em;
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0.281);
@@ -73,53 +79,53 @@ input::placeholder:focus {
 }
 
 /* nav icons */
-#nav__icons {
+.icons {
   display: flex;
   gap: 0.95em;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav__icon {
+.icon {
   cursor: pointer;
   font-size: 1.5rem !important;
 }
-#nav__icons > div > .person {
+.icons > div > .person {
   transform: translateY(2px) translateX(-1px);
   font-size: 1.45rem !important;
 }
 
-#nav__icons > a > .home {
+.icons > a > .home {
   transform: translateY(1px);
   font-size: 1.5rem !important;
 }
 
-#nav__icons > .heart {
+.icons > .heart {
   font-size: 1.65rem !important;
 }
 
-#nav__icons > .chat {
+.icons > .chat {
   transform: translateY(-1px);
 }
 
-#nav__icons > a {
+.icons > a {
   color: var(--primary-font-color);
 }
 
-#nav__icons > .active {
+.icons > .active {
   color: var(--primary-font-color);
 }
 
-.active > .nav__icon > path {
+.active path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }
 
-.nav__icon:hover > path {
+.icon:hover > path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }
 
-.nav-profile-link {
+.profileLink {
   cursor: default;
 }

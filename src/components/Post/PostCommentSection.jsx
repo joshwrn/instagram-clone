@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PostComment from './PostComment';
 import Styles from '../../styles/post/post__comment-section.module.css';
+import Loading from '../../styles/post/post__loading.module.css';
 
 const PostCommentSection = ({ loaded, currentPost }) => {
   const [comments, setComments] = useState([]);
@@ -22,17 +23,17 @@ const PostCommentSection = ({ loaded, currentPost }) => {
       {/* <p className="view-all">View All Comments</p> */}
       {!loaded ? (
         <>
-          <div className="post__comment__container">
-            <div className="post__comment__profile-img-loading" />
-            <div className="comment-loading"></div>
+          <div className={Styles.commentContainer}>
+            <div className={Loading.commentProfile} />
+            <div className={Loading.comment}></div>
           </div>
-          <div className="post__comment__container">
-            <div className="post__comment__profile-img-loading" />
-            <div className="comment-loading"></div>
+          <div className={Styles.commentContainer}>
+            <div className={Loading.commentProfile} />
+            <div className={Loading.comment}></div>
           </div>
-          <div className="post__comment__container">
-            <div className="post__comment__profile-img-loading" />
-            <div className="comment-loading"></div>
+          <div className={Styles.commentContainer}>
+            <div className={Loading.commentProfile} />
+            <div className={Loading.comment}></div>
           </div>
         </>
       ) : (

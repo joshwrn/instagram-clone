@@ -1,10 +1,10 @@
-#user-menu__container {
+.container {
   position: fixed;
   transform: translateX(-7.2em) translateY(1em);
   width: 10em;
 }
 
-#user-menu__container:after {
+.container:after {
   bottom: 100%;
   left: 80%;
   border: solid transparent;
@@ -18,7 +18,7 @@
   margin-left: -8px;
 }
 
-#user-menu__inner {
+.inner {
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -34,7 +34,7 @@
   border-radius: 0.25rem;
 }
 
-.user-menu__option {
+.option {
   display: flex;
   align-items: center;
   height: 2.2em;
@@ -48,10 +48,10 @@
   gap: 5px;
 }
 
-.user-menu__option:hover {
+.option:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.nav__menu__icon {
+.icon {
   font-size: 1.05rem;
 }

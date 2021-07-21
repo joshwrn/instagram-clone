@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../../services/firebase';
-import '../../styles/post/post.css';
-import '../../styles/post/post__loading.css';
+import Styles from '../../styles/post/post.module.css';
+import Loading from '../../styles/post/post__loading.module.css';
 import { Link } from 'react-router-dom';
 import PostSidebar from './PostSidebar';
 import { useAuth } from '../../contexts/AuthContext';
@@ -77,16 +77,15 @@ const Post = ({ match }) => {
 
   //+ if finished loading
   postState = (
-    <div id="post">
-      <div id="post__container">
-        <div id="post__image-loading" style={loaded ? { display: 'none' } : null} />
+    <div className={Styles.post}>
+      <div className={Styles.container}>
+        <div className={Loading.image} style={loaded ? { display: 'none' } : null} />
         <img
           style={!loaded ? { display: 'none' } : null}
           onLoad={handleLoad}
-          id="post__image"
           src={currentPost?.src}
           alt="post"
-          className="post__loading-image"
+          className={Styles.image}
         />
         <PostSidebar
           match={match}
@@ -106,11 +105,11 @@ const Post = ({ match }) => {
   //+ if there was an error
   if (loaded === 'error') {
     postState = (
-      <div id="post">
-        <div id="post__not-found-container">
+      <div className={Styles.post}>
+        <div className={Styles.notFoundContainer}>
           <h3>Post Not Found</h3>
           <Link to="/">
-            <button id="post__return-button">Return Home</button>
+            <button className={Styles.returnButton}>Return Home</button>
           </Link>
         </div>
       </div>

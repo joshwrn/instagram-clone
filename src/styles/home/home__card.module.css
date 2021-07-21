@@ -11,7 +11,7 @@
 }
 
 /*@ Contain main overflow */
-.card__container {
+.container {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -21,7 +21,7 @@
 
 /*+ card top and profile picture */
 
-.card__header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,22 +34,22 @@
   padding: 1.5em;
 }
 
-.card__header > .left {
+.header > .left {
   display: flex;
 }
 
-.card__header > .right {
+.header > .right {
   display: flex;
   height: 100%;
   align-items: center;
 }
 
-.more-icon {
+.moreIcon {
   cursor: pointer;
 }
 
 /*# card profile picture */
-.card__profile-picture {
+.avatar {
   border-radius: 100%;
   height: 2.25em;
   width: 2.25em;
@@ -60,20 +60,20 @@
 }
 
 /* card user info */
-.card__user-info {
+.userInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 16px;
 }
 
-.card__display-name {
+.displayName {
   font-weight: bold;
   font-size: 0.9em;
   cursor: pointer;
 }
 
-.card__username {
+.username {
   color: var(--secondary-font-color);
   font-size: 0.85em;
   cursor: pointer;
@@ -81,12 +81,12 @@
 
 /*+ image */
 
-.card__image-link {
+.imageLink {
   width: inherit;
   height: inherit;
 }
 
-.card__image {
+.image {
   position: absolute;
   width: inherit;
   height: inherit;
@@ -96,7 +96,7 @@
   cursor: pointer;
 }
 
-.card__image-blur {
+.imageBlur {
   position: absolute;
   filter: blur(2em);
   opacity: 0.25;
@@ -109,7 +109,7 @@
 }
 
 /*+ card__footer */
-.card__footer {
+.footer {
   position: absolute;
   width: 100%;
   height: 12em;
@@ -120,27 +120,27 @@
   box-sizing: border-box;
 }
 
-.card__footer > .first-child {
+.footer > .firstChild {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card__footer > .first-child > .left > .card__icon {
+.footer > .firstChild > .left > .icon {
   margin: 0 0.25em 0 0;
 }
 
-.card__icon {
+.icon {
   cursor: pointer;
 }
 
-.like-icon > path:hover {
+.likeIcon > path:hover {
   fill: red;
   stroke: red;
 }
 
-.card__likes {
+.likes {
   cursor: pointer;
   margin: 0.5rem 0;
   font-weight: bold;
@@ -149,28 +149,28 @@
 
 /*+ comments */
 
-.card__comments > .view-all {
+.comments > .viewAll {
   color: var(--secondary-font-color);
   margin: 0 0 0.35rem 0;
   cursor: pointer;
 }
 
-.card__comments {
+.comments {
   font-size: 0.85rem;
 }
 
-.card__comments > .comment {
+.comments > .comment {
   margin: 0.35em 0;
 }
 
-.card__comments > .comment > .comment__user {
+.comments > .comment > .commentUser {
   font-weight: bold;
   cursor: pointer;
 }
 
 /*+ comment input */
 
-.card__footer > .comment-box {
+.footer .commentBox {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -182,11 +182,11 @@
   padding-top: 0.65em;
 }
 
-.card__footer > .comment-box > .comment__form {
+.footer .commentForm {
   width: 100%;
 }
 
-.card__footer > .comment-box > .comment__form > .input-box {
+.footer .inputBox {
   width: 100%;
   text-align: left;
   border: 0px solid rgba(124, 124, 124, 0);
@@ -194,6 +194,6 @@
   color: var(--primary-font-color);
 }
 
-.card__footer > .comment-box > .send {
+.footer .send {
   cursor: pointer;
 }

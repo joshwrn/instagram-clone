@@ -9,7 +9,7 @@ import {
 } from 'react-icons/io5';
 import logo from '../../assets/img/logo/logo-2.png';
 import NavUserMenu from './NavUserMenu';
-import '../../styles/nav/nav.css';
+import Styles from '../../styles/nav/nav.module.css';
 
 const Nav = () => {
   const { currentUser, logout } = useAuth();
@@ -37,35 +37,38 @@ const Nav = () => {
   }, []);
 
   return (
-    <div id="nav">
-      <div id="nav__inner">
+    <div className={Styles.nav}>
+      <div className={Styles.inner}>
         <Link to="/">
-          <div id="nav__logo">
-            <img id="nav__logo__img" src={logo} alt="" />
+          <div className={Styles.logo}>
+            <img className={Styles.logoImg} src={logo} alt="" />
             <h2>Instagram</h2>
           </div>
         </Link>
-        <div id="nav__search">
+        <div className={Styles.search}>
           <form autoComplete="off">
-            <input id="nav__search-input" type="text" placeholder="Search" />
+            <input className={Styles.searchInput} type="text" placeholder="Search" />
           </form>
         </div>
-        <div id="nav__icons">
+        <div className={Styles.icons}>
           <NavLink exact to="/">
-            <IoHomeOutline className="nav__icon home" />
+            <IoHomeOutline className={Styles.icon + ' ' + Styles.home} />
           </NavLink>
           <NavLink exact to="/messages">
-            <IoChatbubbleOutline className="nav__icon chat" />
+            <IoChatbubbleOutline className={Styles.icon + ' ' + Styles.chat} />
           </NavLink>
-          <IoHeartOutline className="nav__icon heart" />
-          <div id="nav__user-menu-container" ref={menuRef}>
+          <IoHeartOutline className={Styles.icon + ' ' + Styles.heart} />
+          <div className="user-menu-container" ref={menuRef}>
             <NavLink
-              className="nav-profile-link"
+              className={Styles.profileLink}
               onClick={(e) => e.preventDefault()}
               exact
               to={`/profile/${currentUser?.uid}`}
             >
-              <IoPersonOutline onClick={handleUserIcon} className="nav__icon person" />
+              <IoPersonOutline
+                onClick={handleUserIcon}
+                className={Styles.icon + ' ' + Styles.person}
+              />
             </NavLink>
             {openMenu && (
               <NavUserMenu

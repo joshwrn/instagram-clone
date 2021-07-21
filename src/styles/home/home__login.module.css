@@ -1,4 +1,4 @@
-#home__sidebar__login-buttons {
+.loginButtons {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,8 +6,7 @@
   gap: 0.5em;
   color: var(--secondary-font-color);
 }
-#home__sidebar__sign-up > .google-sign-in,
-#home__sidebar__login-buttons > .google-sign-in {
+.google {
   border: none;
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);

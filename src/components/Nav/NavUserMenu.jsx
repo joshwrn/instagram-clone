@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/nav/nav__user-menu.css';
+import Styles from '../../styles/nav/nav__user-menu.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import { IoPersonCircleOutline, IoPersonAddOutline, IoLogOut } from 'react-icons/io5';
 import { CgDarkMode } from 'react-icons/cg';
@@ -24,6 +24,8 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #000000, #353535)');
       setTheme('dark');
       root.style.setProperty('--messages-sidebar-background', 'rgba(0, 0, 0, 0.87)');
+      root.style.setProperty('--messages-bubble-background', '#303030');
+      root.style.setProperty('--messages-input-shadow', '0px -5px 20px 0px rgba(0, 0, 0, 0.651)');
     } else if (theme === 'dark') {
       root.style.setProperty('--primary-font-color', 'black');
       root.style.setProperty('--nav-background-color', 'rgba(255, 255, 255, 0.733)');
@@ -34,40 +36,42 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--secondary-border', '1px solid rgb(206, 206, 206)');
       root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #ffffff, #c2c2c2)');
       root.style.setProperty('--messages-sidebar-background', 'rgba(255, 255, 255, 0.87)');
+      root.style.setProperty('--messages-bubble-background', '#d3d3d3');
+      root.style.setProperty('--messages-input-shadow', 'none');
       setTheme('light');
     }
   };
 
   return (
-    <div onClick={handleClick} id="user-menu__container">
-      <div id="user-menu__inner">
+    <div onClick={handleClick} className={Styles.container}>
+      <div className={Styles.inner}>
         {currentUser ? (
           <>
-            <NavLink className="user-menu__option" to={`/profile/${currentUser.uid}`}>
-              <IoPersonCircleOutline className="nav__menu__icon" />
+            <NavLink className={Styles.option} to={`/profile/${currentUser.uid}`}>
+              <IoPersonCircleOutline className={Styles.icon} />
               <div>
                 <p>Profile</p>
               </div>
             </NavLink>
-            <div onClick={changeTheme} className="user-menu__option">
-              <CgDarkMode className="nav__menu__icon" />
+            <div onClick={changeTheme} className={Styles.option}>
+              <CgDarkMode className={Styles.icon} />
               <p>Change Theme</p>
             </div>
-            <div onClick={logout} className="user-menu__option">
-              <IoLogOut className="nav__menu__icon" />
+            <div onClick={logout} className={Styles.option}>
+              <IoLogOut className={Styles.icon} />
               <p>Logout</p>
             </div>
           </>
         ) : (
           <>
-            <Link className="user-menu__option" to={'/sign-up'}>
-              <IoPersonAddOutline className="nav__menu__icon" />
+            <Link className={Styles.option} to={'/sign-up'}>
+              <IoPersonAddOutline className={Styles.icon} />
               <div>
                 <p>Sign Up</p>
               </div>
             </Link>
-            <div onClick={changeTheme} className="user-menu__option">
-              <CgDarkMode className="nav__menu__icon" />
+            <div onClick={changeTheme} className={Styles.option}>
+              <CgDarkMode className={Styles.icon} />
               <p>Change Theme</p>
             </div>
           </>

@@ -1,4 +1,4 @@
-#post {
+.post {
   display: grid;
   justify-content: center;
   text-align: center;
@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-#post__not-found-container {
+.notFoundContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,11 +26,11 @@
   gap: 1.5em;
 }
 
-#post__not-found-container > h3 {
+.notFoundContainer > h3 {
   color: var(--secondary-font-color);
 }
 
-#post__return-button {
+.returnButton {
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);
   padding: 0 2em;
@@ -44,7 +44,7 @@
   border: var(--secondary-border);
 }
 
-#post__container {
+.container {
   display: flex;
   box-shadow: 0px 0px 1em 1px rgba(0, 0, 0, 0.103);
   overflow: hidden;
@@ -52,7 +52,7 @@
   border: var(--primary-border);
 }
 
-#post__image {
+.image {
   object-fit: cover;
   width: 35em;
   height: 39.5em;

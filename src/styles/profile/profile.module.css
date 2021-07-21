@@ -25,8 +25,8 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  max-width: 1150px;
-  width: 100%;
+  max-width: 1600px;
+  width: 90%;
   box-sizing: border-box;
   padding: 0 16px;
 }
@@ -34,8 +34,8 @@
 .inner {
   display: grid;
   grid-template-columns: minmax(240px, 1fr) 5fr;
-  max-width: 1150px;
-  width: 100%;
+  max-width: 1600px;
+  width: 90%;
   box-sizing: border-box;
   padding: 0 16px;
 }
@@ -106,7 +106,6 @@
   box-sizing: border-box;
   font-weight: bold;
   transition: box-shadow 0.25s;
-  border: var(--primary-border);
 }
 
 .profileBtn:hover {
@@ -129,7 +128,6 @@
   box-sizing: border-box;
   font-weight: bold;
   transition: box-shadow 0.25s;
-  border: var(--primary-border);
 }
 
 .actionBtn:hover {

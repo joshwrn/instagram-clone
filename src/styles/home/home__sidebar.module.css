@@ -1,4 +1,4 @@
-#sidebar {
+.sidebar {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,7 +10,7 @@
   position: relative;
 }
 
-#home__sidebar__container {
+.container {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -19,16 +19,16 @@
 }
 
 /*+ profile */
-#home__sidebar__profile__container {
+.profileContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#home__sidebar__profile__container:hover {
+.profileContainer:hover {
 }
 
-#home__sidebar__image__container {
+.imageContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,11 +38,11 @@
   cursor: pointer;
 }
 
-#home__sidebar__image__container:hover {
+.imageContainer:hover {
   transform: translateY(-0.1em);
 }
 
-#home__sidebar__profile__img {
+.profileImg {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -50,7 +50,7 @@
   object-fit: cover;
 }
 
-#home__sidebar__profile__img-blur {
+.profileImgBlur {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -63,32 +63,32 @@
 
 /*+ user info */
 
-#home__sidebar__name__container {
+.nameContainer {
   margin-left: 16px;
   cursor: pointer;
 }
 
-#home__sidebar__username {
+.username {
   color: var(--secondary-font-color);
 }
 
 /*+ user stats */
 
-#home__sidebar__stats {
+.stats {
   display: flex;
   justify-content: center;
   width: 100%;
   margin: 16px 0 0 0em;
 }
 
-.home__sidebar__stat {
+.stat {
   margin: 0 0.5em;
   font-size: 0.85rem;
   color: var(--secondary-font-color);
   cursor: pointer;
 }
 
-.stat__number {
+.number {
   font-weight: bold;
   font-size: 0.9rem;
   color: var(--primary-font-color);
@@ -96,7 +96,7 @@
 
 /*+ links */
 
-#home__sidebar__container > .info-links {
+.infoLinks {
   display: flex;
   margin: 1.5em 0 0 0;
   gap: 0 0.75em;
@@ -105,19 +105,19 @@
   width: 70%;
 }
 
-#home__sidebar__container > .info-links > .link {
+.infoLinks > .link {
   color: rgb(180, 180, 180);
   font-size: 0.65rem;
 }
 
-#home__sidebar__container > .footer {
+.footer {
   display: flex;
   margin: 0.5em 0 0 0;
   justify-content: center;
   width: 100%;
 }
 
-#home__sidebar__container > .footer > .copyright {
+.copyright {
   margin: 16px 0 0 0;
   color: rgb(180, 180, 180);
   font-size: 0.65rem;

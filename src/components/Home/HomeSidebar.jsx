@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/home/home__sidebar.css';
+import Styles from '../../styles/home/home__sidebar.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import LoginButton from './LoginButton.jsx';
@@ -8,23 +8,18 @@ const Sidebar = () => {
   const { userProfile } = useAuth();
 
   return (
-    <div id="sidebar">
-      <div id="home__sidebar__container">
+    <div className={Styles.sidebar}>
+      <div className={Styles.container}>
         {userProfile ? (
           <Link to={`/profile/${userProfile.userID}`}>
-            <div id="home__sidebar__profile__container">
-              <div id="home__sidebar__image__container">
-                <img id="home__sidebar__profile__img" src={userProfile.profilePhoto} alt="" />
-                <img
-                  className="blur"
-                  id="home__sidebar__profile__img-blur"
-                  src={userProfile.profilePhoto}
-                  alt=""
-                />
+            <div className={Styles.profileContainer}>
+              <div className={Styles.imageContainer}>
+                <img className={Styles.profileImg} src={userProfile.profilePhoto} alt="" />
+                <img className={Styles.profileImgBlur} src={userProfile.profilePhoto} alt="" />
               </div>
-              <div id="home__sidebar__name__container">
-                <h2 id="home__sidebar__display-name">{userProfile.displayName}</h2>
-                <p id="home__sidebar__username">@{userProfile.username}</p>
+              <div className={Styles.nameContainer}>
+                <h2 className={Styles.displayName}>{userProfile.displayName}</h2>
+                <p className={Styles.username}>@{userProfile.username}</p>
               </div>
             </div>
           </Link>
@@ -47,8 +42,8 @@ const Sidebar = () => {
           </div>
         )} */}
 
-        <div className="footer">
-          <p className="copyright">© 2021 COPYRIGHT GOES HERE</p>
+        <div className={Styles.footer}>
+          <p className={Styles.copyright}>© 2021 COPYRIGHT GOES HERE</p>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-#sign-up {
+.signUp {
   display: grid;
   justify-content: center;
   text-align: center;
@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-#sign-up__container {
+.container {
   display: grid;
   align-items: center;
   grid-template-rows: 1fr 3fr;
@@ -27,7 +27,7 @@
   height: 80vh;
 }
 
-#sign-up__header {
+.header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,22 +46,22 @@
   background-clip: text;
 } */
 
-#sign-up__logo__img {
+.logoImg {
   height: 64px;
   width: 64px;
   margin: 48px 0 16px 0;
 }
 
-#sign-up__header__text {
+.headerText {
   color: rgb(104, 104, 104);
   cursor: default;
 }
 
-#sign-up__form-container {
+.formContainer {
   height: 100%;
 }
 
-.sign-up__form {
+.form {
   margin-top: 64px;
   width: 100%;
   display: flex;
@@ -70,7 +70,7 @@
   box-sizing: border-box;
 }
 
-.sign-up__input {
+.input {
   display: flex;
   width: 60%;
   justify-content: center;
@@ -81,7 +81,7 @@
   margin: 0 0 4px 0;
 }
 
-.sign-up__input > .username {
+.username {
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -90,7 +90,7 @@
   border-right: var(--secondary-border);
 }
 
-.sign-up__input > .input-box {
+.inputBox {
   width: 100%;
   text-align: left;
   border: 0px solid rgba(124, 124, 124, 0);
@@ -100,19 +100,19 @@
   margin-left: 8px;
 }
 
-.sign-up__helper-div {
+.helperDiv {
   display: flex;
   width: 60%;
   justify-content: flex-start;
 }
 
-.sign-up__helper-div > .name-helper {
+.nameHelper {
   font-size: 11px;
   margin-left: 16px;
   color: var(--secondary-font-color);
 }
 
-.sign-up__form > .sign-up {
+.signUpButton {
   background-color: black;
   padding: 0 32px;
   height: 36px;
@@ -128,13 +128,13 @@
   margin: 48px 0 16px 0;
 }
 
-#sign-up__form-container > .or {
+.or {
   color: var(--primary-font-color);
   font-size: 13px;
   margin: 8px 0 8px 0;
 }
 
-.sign-up__form__login-button {
+.loginButton {
   background-color: rgba(0, 0, 0, 0);
   color: var(--secondary-font-color);
   padding: 0 32px;
@@ -151,7 +151,7 @@
 
 /*! already logged in */
 
-#sign-up__not-found-container {
+.notFoundContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,11 +164,11 @@
   gap: 24px;
 }
 
-#sign-up__not-found-container > h3 {
+.notFoundContainer > h3 {
   color: var(--secondary-font-color);
 }
 
-#sign-up__return-button {
+.returnButton {
   background-color: rgb(255, 255, 255);
   color: var(--secondary-font-color);
   padding: 0 32px;

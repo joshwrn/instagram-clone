@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { signIn, firestore } from '../../services/firebase';
-import '../../styles/sign-up/sign-up.css';
+import Styles from '../../styles/sign-up/sign-up.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
@@ -58,20 +58,20 @@ const SignUp = () => {
     anon();
   };
 
-  let nameHelper = <p className="name-helper">Name must be 4-15 characters.</p>;
+  let nameHelper = <p className={Styles.nameHelper}>Name must be 4-15 characters.</p>;
 
   if (userInput.length !== 0) {
     if (userInput.length <= 3) {
-      nameHelper = <p className="name-helper">Too Short.</p>;
+      nameHelper = <p className={Styles.nameHelper}>Too Short.</p>;
     } else if (nameTaken === false) {
       nameHelper = (
-        <p style={{ color: '#00C138' }} className="name-helper">
+        <p style={{ color: '#00C138' }} className={Styles.nameHelper}>
           Name is available.
         </p>
       );
     } else {
       nameHelper = (
-        <p style={{ color: '#ff0000' }} className="name-helper">
+        <p style={{ color: '#ff0000' }} className={Styles.nameHelper}>
           Name has already been taken.
         </p>
       );
@@ -81,24 +81,24 @@ const SignUp = () => {
   return (
     <>
       {!currentUser ? (
-        <div id="sign-up">
-          <div id="sign-up__container">
-            <div id="sign-up__header">
-              <img id="sign-up__logo__img" src={logo} alt="" />
-              <div id="sign-up__header__text-container">
-                <h2 id="sign-up__header__text">Sign Up</h2>
+        <div className={Styles.signUp}>
+          <div className={Styles.container}>
+            <div className={Styles.header}>
+              <img className={Styles.logoImg} src={logo} alt="" />
+              <div className={Styles.textContainer}>
+                <h2 className={Styles.headerText}>Sign Up</h2>
               </div>
             </div>
-            <div id="sign-up__form-container">
-              <form pattern="[0-9a-zA-Z_.-]*" className="sign-up__form">
-                <div className="sign-up__input">
-                  <div className="username">
+            <div className={Styles.formContainer}>
+              <form pattern="[0-9a-zA-Z_.-]*" className={Styles.form}>
+                <div className={Styles.input}>
+                  <div className={Styles.username}>
                     <p>@</p>
                   </div>
                   <input
                     required
                     onChange={handleChange}
-                    className="input-box"
+                    className={Styles.inputBox}
                     type="text"
                     placeholder="username"
                     maxLength="15"
@@ -106,11 +106,11 @@ const SignUp = () => {
                     value={userInput}
                   />
                 </div>
-                <div className="sign-up__helper-div">{nameHelper}</div>
+                <div className={Styles.helperDiv}>{nameHelper}</div>
                 <button
                   type={'submit'}
                   onClick={!nameTaken && userInput.length > 3 ? handleSubmit : doNothing}
-                  className="sign-up"
+                  className={Styles.signUpButton}
                   style={
                     !nameTaken && userInput.length > 3
                       ? {
@@ -123,8 +123,8 @@ const SignUp = () => {
                   Sign Up With Google
                 </button>
               </form>
-              <p className="or">Already signed up?</p>
-              <button onClick={login} className="sign-up__form__login-button">
+              <p className={Styles.or}>Already signed up?</p>
+              <button onClick={login} className={Styles.loginButton}>
                 Login
               </button>
               <button onClick={handleAnon}>anon</button>
@@ -132,11 +132,11 @@ const SignUp = () => {
           </div>
         </div>
       ) : (
-        <div id="sign-up">
-          <div id="sign-up__not-found-container">
+        <div className={Styles.signUp}>
+          <div className={Styles.notFoundContainer}>
             <h3>Already Logged In</h3>
             <Link to="/">
-              <button id="sign-up__return-button">Return Home</button>
+              <button className={Styles.returnButton}>Return Home</button>
             </Link>
           </div>
         </div>

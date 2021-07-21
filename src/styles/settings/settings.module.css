@@ -1,4 +1,4 @@
-#settings {
+.settings {
   display: grid;
   justify-content: center;
   text-align: center;
@@ -13,32 +13,32 @@
   box-sizing: border-box;
 }
 
-#settings__container {
+.container {
   display: grid;
   flex-direction: column;
   align-items: center;
   grid-template-rows: 1fr 8fr 2fr;
-  box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.103);
   overflow: hidden;
   border-radius: 16px;
-  border: var(--secondary-border);
+  border: var(--primary-border);
   width: 400px;
   height: 672px;
   box-sizing: border-box;
 }
 
-#settings__inner {
+.inner {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-#banner-ov-con {
+.bannerOverlayContainer {
   display: flex;
   cursor: pointer;
 }
 
-.banner-container {
+.bannerContainer {
   display: flex;
   align-items: center;
   height: 144px;
@@ -48,7 +48,7 @@
   justify-self: flex-start;
 }
 
-.banner-container > .banner-image {
+.bannerImage {
   position: relative;
   width: 100%;
   height: 100%;
@@ -58,7 +58,7 @@
   box-sizing: border-box;
 }
 
-.banner-overlay {
+.bannerOverlay {
   display: flex;
   position: absolute;
   justify-content: flex-end;
@@ -72,17 +72,17 @@
   padding: 19px;
 }
 
-#banner-ov-con:hover > .banner-overlay {
+.bannerOverlayContainer:hover > .bannerOverlay {
   opacity: 1;
 }
 
-.banner-icon {
+.bannerIcon {
   position: absolute;
   color: white;
   font-size: 24px;
 }
 
-#banner-ov-con > .file-input {
+.bannerOverlayContainer > .fileInput {
   position: absolute;
   width: 400px;
   height: 144px;
@@ -92,14 +92,14 @@
 
 /*! profile picture */
 
-#settings__profile-container-bar {
+.containerBar {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 56px;
 }
 
-#o-con {
+.profileOverlayContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,7 +111,7 @@
   cursor: pointer;
 }
 
-#settings__profile-container__image {
+.profileImage {
   position: absolute;
   border-radius: 100%;
   width: 112px;
@@ -121,7 +121,7 @@
   object-fit: cover;
 }
 
-.p-overlay {
+.profileOverlay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,18 +134,18 @@
   transition: opacity 0.25s;
 }
 
-#o-con:hover > .p-overlay {
+.profileOverlayContainer:hover > .profileOverlay {
   opacity: 1;
 }
 
-.p-icon {
+.profileIcon {
   z-index: 2;
   position: absolute;
   color: white;
   font-size: 40px;
 }
 
-#o-con > .file-input {
+.profileOverlayContainer > .fileInput {
   position: absolute;
   height: 112px;
   width: 112px;
@@ -155,7 +155,7 @@
 }
 
 /*! text inputs */
-#settings__text-inputs {
+.textInputs {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,7 +166,7 @@
   margin-top: 32px;
 }
 
-#settings__text-form {
+.textForm {
   width: 100%;
   height: 100%;
   display: flex;
@@ -176,7 +176,7 @@
   gap: 16px;
 }
 
-.settings__input-container {
+.inputContainer {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -185,7 +185,7 @@
   text-align: left;
 }
 
-.settings__input-container > p {
+.inputContainer > p {
   width: 50%;
   font-size: 11px;
   text-align: left;
@@ -194,7 +194,7 @@
   margin-bottom: 5px;
 }
 
-.settings__input {
+.input {
   display: flex;
   width: 60%;
   justify-content: center;
@@ -204,7 +204,7 @@
   height: 32px;
 }
 
-.settings__input > .input-box-display {
+.input > .inputBoxDisplay {
   width: 100%;
   text-align: center;
   border: 0px solid rgba(124, 124, 124, 0);
@@ -213,12 +213,12 @@
   font-size: 13px;
 }
 
-.settings__input > .input-box-display:focus {
+.input > .inputBoxDisplay:focus {
   text-align: left;
   margin-left: 16px;
 }
 
-#settings__bio-input {
+.bioInput {
   padding: 16px 16px 0 16px;
   border: 1px solid rgba(124, 124, 124, 0.281);
   border-radius: 8px;
@@ -230,15 +230,15 @@
   background-color: var(--primary-background-color);
 }
 
-#settings__bio-input:focus {
+.bioInput:focus {
   text-align: left;
 }
 
-#settings__bio-input::placeholder:focus {
+.bioInput::placeholder:focus {
   text-align: left;
 }
 
-#settings__text-save-btn {
+.textBtn {
   box-shadow: 0px 4px 8px 1px var(--save-shadow-color);
   background-color: var(--save-color);
   color: white;
@@ -254,19 +254,19 @@
   margin-top: 16px;
 }
 
-#settings__profile-btn-container {
+.profileBtnContainer {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
 }
 
-#settings__profile-link {
+.profileLink {
   height: 36px;
   margin-top: 19px;
 }
 
-#settings__profile-btn {
+.profileBtn {
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);
   padding: 0 32px;

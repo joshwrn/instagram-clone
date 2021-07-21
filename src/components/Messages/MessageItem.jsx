@@ -6,7 +6,11 @@ const MessageItem = (sentStatus) => {
   return (
     <div className={sentStatus.sentStatus ? Styles.itemSent : Styles.item}>
       <div className={sentStatus.sentStatus ? Styles.bubbleSent : Styles.bubble}>
-        <p>hey whats up</p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
       </div>
     </div>
   );

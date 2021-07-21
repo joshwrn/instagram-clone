@@ -11,6 +11,8 @@
   --secondary-border: 1px solid rgb(206, 206, 206);
   --loading-gradient: linear-gradient(to right, #ffffff, #c2c2c2);
   --messages-sidebar-background: rgba(255, 255, 255, 0.87);
+  --messages-bubble-background: #d3d3d3;
+  --messages-input-shadow: none;
 }
 
 * {

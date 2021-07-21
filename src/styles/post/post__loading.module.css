@@ -1,4 +1,4 @@
-#post__image-loading {
+.image {
   width: 35em;
   height: 39.5em;
   background: var(--loading-gradient);
@@ -6,7 +6,7 @@
   animation: 2s linear infinite gradientMove;
 }
 
-#post__profile__img-loading {
+.profileImg {
   border-radius: 100%;
   width: 5em;
   height: 5em;
@@ -17,7 +17,7 @@
   animation: 2s linear infinite gradientMove;
 }
 
-#post__display-name-loading {
+.displayName {
   border-radius: 0.5rem;
   width: 10rem;
   height: 2rem;
@@ -26,7 +26,7 @@
   animation: 2s linear infinite gradientMove;
 }
 
-#post__username-loading {
+.username {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
   width: 6rem;
@@ -36,7 +36,7 @@
   animation: 2s linear infinite gradientMove;
 }
 
-.post__comment__profile-img-loading {
+.commentProfile {
   border-radius: 100%;
   width: 2em;
   height: 2em;
@@ -47,7 +47,7 @@
   animation: 2s linear infinite gradientMove;
 }
 
-.comment-loading {
+.comment {
   width: 70%;
   height: 2em;
   margin: 0.5rem 0;
