@@ -1,14 +1,24 @@
+.active {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 15px;
+  transition: background-color 0.15s;
+  cursor: pointer;
+  background-color: var(--nav-background-color);
+}
+
 .container {
   display: flex;
   align-items: center;
   padding: 10px 16px;
   gap: 15px;
   transition: background-color 0.15s;
+  cursor: pointer;
 }
 
 .container:hover {
   background-color: var(--nav-background-color);
-  cursor: pointer;
 }
 
 .avatar {

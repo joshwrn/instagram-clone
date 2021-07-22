@@ -12,7 +12,7 @@
   z-index: 0;
   border-style: solid;
   border-color: var(--primary-background-color);
-  border-width: 10px 40px 10px 40px;
+  border-width: 10px 10px;
 }
 
 .item:before {
@@ -40,7 +40,7 @@
   z-index: 0;
   border-style: solid;
   border-color: var(--primary-background-color);
-  border-width: 10px 40px 10px 40px;
+  border-width: 10px 10px;
 }
 
 .itemSent:before {
@@ -52,6 +52,14 @@
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.topGroup {
+  border-width: 20px 10px 0 10px;
+}
+
+.group {
+  border-width: 0px 10px;
 }
 
 .bubble {
@@ -100,4 +108,23 @@
   border: 18px solid var(--primary-background-color);
   border-radius: 40px;
   pointer-events: none;
+}
+
+.avatar {
+  border-radius: 100%;
+  width: 38px;
+  height: 38px;
+
+  position: relative;
+  object-fit: cover;
+  transform: translateY(5px);
+}
+
+.avatarContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50px;
+  height: 100%;
+  background-color: var(--primary-background-color);
 }

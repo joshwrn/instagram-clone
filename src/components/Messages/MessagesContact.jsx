@@ -1,17 +1,42 @@
-import React from 'react';
 import Styles from '../../styles/messages/messagesContact.module.css';
+import { firestore } from '../../services/firebase';
+import React, { useEffect, useState } from 'react';
 
-const MessagesContact = () => {
+const MessagesContact = ({ user, last, getCurrentMessage, index, currentIndex }) => {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    getUserObject();
+  }, []);
+
+  const getUserObject = () => {
+    firestore
+      .collection('users')
+      .doc(user)
+      .get()
+      .then((userData) => {
+        if (userData.exists) {
+          setCurrentUser(userData.data());
+        }
+      });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    getCurrentMessage(index);
+  };
+
   return (
-    <div className={Styles.container}>
-      <img
-        className={Styles.avatar}
-        src="https://i.pinimg.com/564x/9c/8e/92/9c8e9263fd13dbbfba7a02a8fe79715c.jpg"
-        alt=""
-      />
+    <div
+      onClick={handleClick}
+      className={index === currentIndex ? Styles.active : Styles.container}
+    >
+      <img className={Styles.avatar} src={currentUser?.profilePhoto} alt="" />
       <div className={Styles.contactInfo}>
-        <p className={Styles.name}>Snoop Dogg</p>
-        <p className={Styles.message}>Yo</p>
+        <p className={Styles.name}>{currentUser?.displayName}</p>
+        <p className={Styles.message}>
+          {last?.message.length >= 20 ? last?.message.substring(0, 20) + '...' : last?.message}
+        </p>
       </div>
     </div>
   );

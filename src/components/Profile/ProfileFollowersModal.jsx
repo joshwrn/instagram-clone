@@ -85,6 +85,7 @@ const ProfileFollowers = ({
               </div>
               <IoCloseOutline onClick={handleFollowers} className={Styles.close} />
             </div>
+            {/*//+ list of followers is here */}
             <div className={Styles.listContainer}>{map}</div>
           </div>
         </div>
