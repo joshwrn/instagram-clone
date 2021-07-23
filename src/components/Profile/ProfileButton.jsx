@@ -30,6 +30,13 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
     await userRef.update({
       following: firestoreFieldValue.arrayUnion(currentProfile.userID),
     });
+    await thisUser.update({
+      notifications: firestoreFieldValue.arrayUnion({
+        user: userProfile.userID,
+        type: 'followed',
+        time: Date.now(),
+      }),
+    });
     getUserObject();
   };
 

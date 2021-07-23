@@ -92,7 +92,7 @@ const Messages = () => {
       if (input.length > 0 && input.length < 501) {
         const contactThread = firestore
           .collection('users')
-          .doc(currentProfile.userID)
+          .doc(currentMessage?.user)
           .collection('messages')
           .doc(userProfile?.userID);
 
@@ -100,7 +100,7 @@ const Messages = () => {
           .collection('users')
           .doc(userProfile?.userID)
           .collection('messages')
-          .doc(currentProfile.userID);
+          .doc(currentMessage?.user);
 
         await userThread.set(
           {
@@ -113,7 +113,7 @@ const Messages = () => {
         await contactThread.set(
           {
             time: time,
-            user: currentProfile.userID,
+            user: userProfile?.userID,
           },
           { merge: true }
         );

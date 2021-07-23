@@ -32,6 +32,7 @@ const PostCommentBox = ({
           .doc(match.params.uid)
           .collection('posts')
           .doc(match.params.postid);
+        const thisUser = firestore.collection('users').doc(match.params.uid);
         //@ add comment to post
         const addPost = () => {
           thisPost.update({
@@ -42,8 +43,18 @@ const PostCommentBox = ({
             }),
           });
         };
-
-        await Promise.all([addPost()]);
+        const notify = () => {
+          thisUser.update({
+            notifications: firestoreFieldValue.arrayUnion({
+              user: currentUser.uid,
+              type: 'comment',
+              comment: input,
+              post: match.params.postid,
+              time: Date.now(),
+            }),
+          });
+        };
+        await Promise.all([notify(), addPost()]);
         getUserProfile();
         getCurrentPost();
         setInput('');

@@ -103,6 +103,7 @@ export function AuthProvider({ children }) {
               followers: [],
               following: [],
               messagesCounter: 0,
+              notifications: [],
             })
             .then(history.push('/settings'))
             .catch(function (error) {

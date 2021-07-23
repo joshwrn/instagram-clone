@@ -100,7 +100,7 @@ input::placeholder:focus {
   font-size: 1.5rem !important;
 }
 
-.icons > .heart {
+.icons .heart {
   font-size: 1.65rem !important;
 }
 
@@ -112,11 +112,11 @@ input::placeholder:focus {
   color: var(--primary-font-color);
 }
 
-.icons > .active {
+.icons > :global(.active) {
   color: var(--primary-font-color);
 }
 
-.active path {
+:global(.active) > .icon > path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }
@@ -128,4 +128,9 @@ input::placeholder:focus {
 
 .profileLink {
   cursor: default;
+}
+
+.notiContainer {
+  display: flex;
+  align-items: center;
 }

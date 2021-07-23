@@ -38,6 +38,7 @@ const PostLikeButton = ({
         .collection('posts')
         .doc(match.params.postid);
       const thisUser = firestore.collection('users').doc(currentUser.uid);
+      const postUser = firestore.collection('users').doc(match.params.uid);
 
       //@ add this post to likes
       if (!liked) {
@@ -52,7 +53,17 @@ const PostLikeButton = ({
             likedPosts: firestoreFieldValue.arrayUnion(match.params.postid),
           });
         };
-        await Promise.all([addPost(), addUser()]);
+        const notify = () => {
+          postUser.update({
+            notifications: firestoreFieldValue.arrayUnion({
+              user: currentUser.uid,
+              type: 'liked',
+              post: match.params.postid,
+              time: Date.now(),
+            }),
+          });
+        };
+        await Promise.all([notify(), addPost(), addUser()]);
         getUserProfile();
         getCurrentPost();
       } else {

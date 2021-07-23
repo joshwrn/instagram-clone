@@ -52,10 +52,10 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
   if (!sent && group === 'true') {
     item = (
       <div className={Styles.item + ' ' + Styles.group}>
-        <div className={Styles.avatarContainer}></div>
         <div className={Styles.bubble}>
           <p>{message}</p>
         </div>
+        <div className={Styles.avatarContainer}></div>
       </div>
     );
   }

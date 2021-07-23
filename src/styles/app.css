@@ -2,7 +2,7 @@
   --primary-font-color: rgb(0, 0, 0);
   --secondary-font-color: rgb(136, 136, 136);
   --nav-background-color: rgba(255, 255, 255, 0.733);
-  --primary-transparent-color: rgba(255, 255, 255, 0.9);
+  --primary-transparent-color: rgba(255, 255, 255, 0.95);
   --user-menu-font-color: rgb(0, 0, 0);
   --save-color: rgb(73, 209, 107);
   --save-shadow-color: rgba(73, 209, 107, 0.336);
@@ -12,7 +12,6 @@
   --loading-gradient: linear-gradient(to right, #ffffff, #c2c2c2);
   --messages-sidebar-background: rgba(255, 255, 255, 0.87);
   --messages-bubble-background: #d3d3d3;
-  --messages-input-shadow: none;
 }
 
 * {

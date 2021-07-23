@@ -25,7 +25,6 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       setTheme('dark');
       root.style.setProperty('--messages-sidebar-background', 'rgba(0, 0, 0, 0.87)');
       root.style.setProperty('--messages-bubble-background', '#303030');
-      root.style.setProperty('--messages-input-shadow', '0px -5px 20px 0px rgba(0, 0, 0, 0.651)');
     } else if (theme === 'dark') {
       root.style.setProperty('--primary-font-color', 'black');
       root.style.setProperty('--nav-background-color', 'rgba(255, 255, 255, 0.733)');
@@ -37,7 +36,6 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
       root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #ffffff, #c2c2c2)');
       root.style.setProperty('--messages-sidebar-background', 'rgba(255, 255, 255, 0.87)');
       root.style.setProperty('--messages-bubble-background', '#d3d3d3');
-      root.style.setProperty('--messages-input-shadow', 'none');
       setTheme('light');
     }
   };

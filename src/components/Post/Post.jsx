@@ -28,7 +28,7 @@ const Post = ({ match }) => {
   useEffect(() => {
     getCurrentPost();
     getPostUser();
-  }, []);
+  }, [match]);
 
   //+ check if postUser and currentUser are defined then set loading false
   useEffect(() => {
