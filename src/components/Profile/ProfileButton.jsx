@@ -35,6 +35,7 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
         user: userProfile.userID,
         type: 'followed',
         time: Date.now(),
+        seen: false,
       }),
     });
     getUserObject();

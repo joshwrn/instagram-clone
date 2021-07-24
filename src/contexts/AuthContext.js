@@ -7,11 +7,13 @@ const AuthContext = React.createContext();
 
 // Function allows you to use the context
 export function useAuth() {
+  // console.log('using auth');
   return useContext(AuthContext);
 }
 
 // Function that uses provider in return
 export function AuthProvider({ children }) {
+  console.log('auth provider');
   const [currentUser, setCurrentUser] = useState();
   const [userProfile, setUserProfile] = useState();
   const [attemptLogin, setAttemptLogin] = useState();
@@ -37,16 +39,19 @@ export function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
+      console.log('unsubscribe change');
     });
     return unsubscribe;
   }, []);
 
   const getUserProfile = async () => {
+    console.log('getting user profile');
     const profileData = await firestore.collection('users').doc(currentUser.uid).get();
     setUserProfile(profileData.data());
   };
 
   useEffect(() => {
+    console.log('current user useeffect');
     if (currentUser) {
       getUserProfile();
     }

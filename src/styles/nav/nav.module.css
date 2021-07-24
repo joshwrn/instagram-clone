@@ -102,6 +102,24 @@ input::placeholder:focus {
 
 .icons .heart {
   font-size: 1.65rem !important;
+  transform: translateY(-1px);
+}
+
+.notiBadge {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 5px;
+  max-width: 10px;
+  height: 15px;
+  background: rgb(255, 0, 98);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 100%;
+  transform: translate(19px, -9px);
 }
 
 .icons > .chat {

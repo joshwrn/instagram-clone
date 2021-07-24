@@ -13,10 +13,11 @@ import Styles from '../../styles/nav/nav.module.css';
 import Notifications from '../Notifications/Notifications';
 
 const Nav = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, userProfile } = useAuth();
   const [theme, setTheme] = useState('light');
   const [openMenu, setOpenMenu] = useState(false);
   const [openNoti, setOpenNoti] = useState(false);
+  const [currentNotis, setCurrentNotis] = useState([]);
 
   const handleUserIcon = (e) => {
     e.preventDefault();
@@ -48,6 +49,17 @@ const Nav = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (userProfile && userProfile.notifications) {
+      const unseen = userProfile.notifications.filter((item) => {
+        if (item.time > userProfile.lastNotify) {
+          return true;
+        }
+      });
+      setCurrentNotis(unseen);
+    }
+  }, [userProfile]);
+
   return (
     <div className={Styles.nav}>
       <div className={Styles.inner}>
@@ -72,7 +84,12 @@ const Nav = () => {
           {/*//+ notifications */}
           <div className={Styles.notiContainer} ref={notiRef}>
             <IoHeartOutline onClick={handleNoti} className={Styles.icon + ' ' + Styles.heart} />
-            {openNoti && <Notifications handleNoti={handleNoti} />}
+            {currentNotis.length > 0 ? (
+              <div className={Styles.notiBadge}>{currentNotis.length}</div>
+            ) : null}
+            {openNoti && (
+              <Notifications setCurrentNotis={setCurrentNotis} handleNoti={handleNoti} />
+            )}
           </div>
           {/*//+ profile menu */}
           <div className="user-menu-container" ref={menuRef}>

@@ -33,7 +33,10 @@ const PostSidebar = ({
         <Link to={`/profile/${match.params.uid}`}>
           <div className={Styles.profileContainer}>
             <div className={Styles.imageContainer}>
-              <div className={Loading.profileImg} style={loaded ? { display: 'none' } : null} />
+              <div
+                className={Loading.profileImg + ' ' + 'gradientLoad'}
+                style={loaded ? { display: 'none' } : null}
+              />
               <img
                 style={!loaded ? { display: 'none' } : null}
                 onLoad={handleLoad}
@@ -49,8 +52,8 @@ const PostSidebar = ({
               />
             </div>
             <div className={Styles.nameContainer} style={loaded ? { display: 'none' } : null}>
-              <div className={Loading.displayName} />
-              <div className={Loading.username} />
+              <div className={Loading.displayName + ' ' + 'gradientLoad'} />
+              <div className={Loading.username + ' ' + 'gradientLoad'} />
             </div>
             <div className={Styles.nameContainer} style={!loaded ? { display: 'none' } : null}>
               <h2 className={Styles.displayName}>{postUser?.displayName}</h2>

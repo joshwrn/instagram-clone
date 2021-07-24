@@ -19,7 +19,7 @@ const PostLikeButton = ({
   }, [userProfile]);
 
   const updateLikes = async () => {
-    if (userProfile) {
+    if (userProfile && userProfile.likedPosts) {
       if (userProfile.likedPosts.includes(match.params.postid)) {
         setLiked(true);
       } else {
@@ -60,6 +60,7 @@ const PostLikeButton = ({
               type: 'liked',
               post: match.params.postid,
               time: Date.now(),
+              seen: false,
             }),
           });
         };

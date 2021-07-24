@@ -7,10 +7,11 @@
   padding: 0 10px;
   box-sizing: border-box;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .container:hover {
-  background-color: var(--nav-background-color);
+  background-color: var(--menu-hover-color);
 }
 
 .link {

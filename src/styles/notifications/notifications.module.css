@@ -21,17 +21,19 @@
 .inner {
   display: flex;
   position: fixed;
-  flex-direction: column;
+  flex-direction: column-reverse;
   top: 0;
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
   background-color: var(--primary-transparent-color);
   height: fit-content;
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: scroll;
   border: var(--primary-border);
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.137);
+  box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089);
   backdrop-filter: blur(100px);
   border-radius: 0.25rem;
+  box-sizing: border-box;
+  padding: 10px 10px;
 }

@@ -79,7 +79,10 @@ const Post = ({ match }) => {
   postState = (
     <div className={Styles.post}>
       <div className={Styles.container}>
-        <div className={Loading.image} style={loaded ? { display: 'none' } : null} />
+        <div
+          className={Loading.image + ' ' + 'gradientLoad'}
+          style={loaded ? { display: 'none' } : null}
+        />
         <img
           style={!loaded ? { display: 'none' } : null}
           onLoad={handleLoad}

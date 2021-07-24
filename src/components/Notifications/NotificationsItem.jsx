@@ -55,7 +55,6 @@ const NotificationsItem = ({ item, userProfile }) => {
         );
       }
       if (item.type === 'comment') {
-        console.log(item.comment);
         setType(
           <Link className={Styles.link} to={`/post/${userProfile.userID}/${item.post}`}>
             <div className={Styles.container}>
