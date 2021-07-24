@@ -82,8 +82,8 @@ const Nav = () => {
             <IoChatbubbleOutline className={Styles.icon + ' ' + Styles.chat} />
           </NavLink>
           {/*//+ notifications */}
-          <div className={Styles.notiContainer} ref={notiRef}>
-            <IoHeartOutline onClick={handleNoti} className={Styles.icon + ' ' + Styles.heart} />
+          <div onClick={handleNoti} className={Styles.notiContainer} ref={notiRef}>
+            <IoHeartOutline className={Styles.icon + ' ' + Styles.heart} />
             {currentNotis.length > 0 ? (
               <div className={Styles.notiBadge}>{currentNotis.length}</div>
             ) : null}

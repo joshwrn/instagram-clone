@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoCreateOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 
-const Messages = () => {
+const Messages = ({ match }) => {
   const { userProfile } = useAuth();
 
   const [messages, setMessages] = useState([]);
@@ -15,13 +15,29 @@ const Messages = () => {
   const [currentProfile, setCurrentProfile] = useState();
   const [thread, setThread] = useState([]);
 
-  const [input, setInput] = useState('');
+  const [inputBox, setInputBox] = useState('');
   const [currentIndex, setCurrentIndex] = useState();
 
   const [createModal, setCreateModal] = useState(false);
 
   useEffect(() => {
-    listen();
+    if (match) {
+      console.log('match', match.params.uid);
+      const check = messages.some((item) => item.user === match.params.uid);
+      if (!check) {
+        console.log('create');
+        setMessages([{ user: match.params.uid, time: Date.now(), messages: [] }, ...messages]);
+      } else {
+        console.log('find');
+        const index = messages.findIndex((item) => item.user === match.params.uid);
+        getCurrentMessage(index);
+      }
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    console.log('message listening');
+    return listen();
   }, [userProfile]);
 
   useEffect(() => {
@@ -58,6 +74,7 @@ const Messages = () => {
       .collection('messages')
       .orderBy('time', 'desc')
       .onSnapshot((querySnapshot) => {
+        console.log('message snapshot');
         let temp = [];
         querySnapshot.forEach((doc) => {
           temp.push(doc.data());
@@ -72,6 +89,7 @@ const Messages = () => {
   };
 
   const getUserObject = () => {
+    console.log('getting');
     firestore
       .collection('users')
       .doc(currentMessage?.user)
@@ -86,10 +104,11 @@ const Messages = () => {
   //+ send
 
   const handleSubmit = async (e) => {
+    console.log('submiting');
     e.preventDefault();
     const time = Date.now();
     if (currentProfile) {
-      if (input.length > 0 && input.length < 501) {
+      if (inputBox.length > 0 && inputBox.length < 501) {
         const contactThread = firestore
           .collection('users')
           .doc(currentMessage?.user)
@@ -122,7 +141,7 @@ const Messages = () => {
           userThread.update({
             messages: firestoreFieldValue.arrayUnion({
               user: userProfile?.userID,
-              message: input,
+              message: inputBox,
               time: time,
             }),
           });
@@ -132,14 +151,14 @@ const Messages = () => {
           contactThread.update({
             messages: firestoreFieldValue.arrayUnion({
               user: userProfile?.userID,
-              message: input,
+              message: inputBox,
               time: time,
             }),
           });
         };
 
         await Promise.all([addUserThread(), addContactThread()]);
-        setInput('');
+        setInputBox('');
         setCurrentIndex(0);
       }
     }
@@ -147,8 +166,9 @@ const Messages = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
+    console.log('handle change');
     const { value } = e.target;
-    setInput(value);
+    setInputBox(value);
   };
 
   const handleCreate = (e) => {
@@ -188,6 +208,7 @@ const Messages = () => {
             return (
               <MessagesContact
                 key={item.time}
+                time={item.time}
                 index={index}
                 user={item.user}
                 last={item.messages?.length > 0 ? item.messages[item.messages?.length - 1] : null}
@@ -209,17 +230,18 @@ const Messages = () => {
               minLength="1"
               placeholder="New Message..."
               onChange={handleChange}
-              value={input}
+              value={inputBox}
             />
           </form>
           <IoSendOutline type="submit" onClick={handleSubmit} className={Styles.send} />
         </div>
         <div id="msg" className={Styles.messageArea}>
           <div className={Styles.overlay}></div>
-          {thread?.map((item, index, array) => {
+          {thread?.map((item, index) => {
             return (
               <MessageItem
                 key={item.time}
+                time={item.time}
                 currentProfile={currentProfile}
                 user={item.user}
                 thread={thread}

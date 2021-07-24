@@ -47,14 +47,14 @@
 
 .userAvatarContainer {
   border-radius: 100%;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
 }
 
 .userAvatar {
   border-radius: 100%;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
   position: absolute;
 }
@@ -91,7 +91,7 @@
 }
 
 .contactsContainer {
-  padding-top: 100px;
+  padding: 100px 10px 0 10px;
   height: 100%;
   box-sizing: border-box;
   overflow-y: scroll;

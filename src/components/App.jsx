@@ -12,7 +12,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 
 function App() {
   const BrowserRouter = require('react-router-dom').BrowserRouter;
-
+  // memory leak from auth provider context even when everything is removed
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Router>
@@ -26,6 +26,7 @@ function App() {
                 <Home />
               </Route>
               {/*//+ Messages */}
+              <Route exact path="/messages/:uid" component={Messages} />
               <Route exact path="/messages">
                 <Messages />
               </Route>

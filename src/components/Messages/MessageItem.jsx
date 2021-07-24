@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Styles from '../../styles/messages/message__item.module.css';
 
-const MessageItem = ({ user, message, userProfile, currentProfile, thread, index }) => {
+import Styles from '../../styles/messages/message__item.module.css';
+import { Link } from 'react-router-dom';
+
+const MessageItem = ({ user, message, time, userProfile, currentProfile, thread, index }) => {
   const [sent, setSent] = useState(false);
   const [group, setGroup] = useState('false');
 
@@ -43,7 +45,9 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
           <p>{message}</p>
         </div>
         <div className={Styles.avatarContainer}>
-          <img className={Styles.avatar} src={userProfile.profilePhoto} alt="user-avi" />
+          <Link to={`/profile/${userProfile.userID}`}>
+            <img className={Styles.avatar} src={userProfile.profilePhoto} alt="user-avi" />
+          </Link>
         </div>
       </div>
     );
@@ -67,7 +71,9 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
           <p>{message}</p>
         </div>
         <div className={Styles.avatarContainer}>
-          <img className={Styles.avatar} src={currentProfile?.profilePhoto} alt="contact-avi" />
+          <Link to={`/profile/${currentProfile?.userID}`}>
+            <img className={Styles.avatar} src={currentProfile?.profilePhoto} alt="contact-avi" />
+          </Link>
         </div>
       </div>
     );

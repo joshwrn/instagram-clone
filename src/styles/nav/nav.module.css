@@ -120,6 +120,7 @@ input::placeholder:focus {
   font-weight: bold;
   border-radius: 100%;
   transform: translate(19px, -9px);
+  cursor: pointer;
 }
 
 .icons > .chat {

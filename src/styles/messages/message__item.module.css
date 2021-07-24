@@ -72,6 +72,7 @@
   z-index: 0;
   position: relative;
   font-size: 15px;
+  word-break: break-word;
 }
 
 .bubble:before {
@@ -96,6 +97,7 @@
   z-index: 0;
   position: relative;
   font-size: 15px;
+  word-break: break-word;
 }
 
 .bubbleSent:before {
@@ -114,7 +116,7 @@
   border-radius: 100%;
   width: 38px;
   height: 38px;
-
+  cursor: pointer;
   position: relative;
   object-fit: cover;
   transform: translateY(5px);

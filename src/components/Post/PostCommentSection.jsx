@@ -15,7 +15,7 @@ const PostCommentSection = ({ loaded, currentPost }) => {
     currentPost?.comments.forEach((element) => {
       temp.push(element);
     });
-    setComments(temp);
+    setComments(temp.slice(0).reverse());
   };
 
   return (

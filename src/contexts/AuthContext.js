@@ -7,7 +7,7 @@ const AuthContext = React.createContext();
 
 // Function allows you to use the context
 export function useAuth() {
-  // console.log('using auth');
+  console.log('using auth');
   return useContext(AuthContext);
 }
 

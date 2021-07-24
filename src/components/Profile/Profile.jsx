@@ -8,6 +8,7 @@ import Styles from '../../styles/profile/profile.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
+import { useHistory } from 'react-router';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
@@ -23,7 +24,7 @@ const Profile = (props) => {
     { image: 'banner', loading: true },
     { image: 'feed', loading: true }, //change
   ]);
-
+  let history = useHistory();
   //+ if the every item in loading is set to false set loaded to true
   useEffect(() => {
     if (currentProfile) {
@@ -97,9 +98,14 @@ const Profile = (props) => {
     }
   };
 
+  //+ new message link
+  const newMessage = () => {
+    history.push(`/messages/${currentProfile.userID}`);
+  };
+
   //+ decides if action button should be post or message
   let actionButton = (
-    <button className={Styles.actionBtn}>
+    <button onClick={newMessage} className={Styles.actionBtn}>
       <IoSendOutline className="action-icon" />
     </button>
   );
