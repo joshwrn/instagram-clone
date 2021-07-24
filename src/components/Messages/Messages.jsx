@@ -21,19 +21,19 @@ const Messages = ({ match }) => {
   const [createModal, setCreateModal] = useState(false);
 
   useEffect(() => {
-    if (match) {
+    if (match && messages) {
       console.log('match', match.params.uid);
       const check = messages.some((item) => item.user === match.params.uid);
       if (!check) {
         console.log('create');
         setMessages([{ user: match.params.uid, time: Date.now(), messages: [] }, ...messages]);
       } else {
-        console.log('find');
+        console.log('finde');
         const index = messages.findIndex((item) => item.user === match.params.uid);
         getCurrentMessage(index);
       }
     }
-  }, [messages]);
+  }, [messages, match]);
 
   useEffect(() => {
     console.log('message listening');
@@ -42,12 +42,14 @@ const Messages = ({ match }) => {
 
   useEffect(() => {
     console.log('current', currentMessage);
-    if (currentMessage) {
-      console.log('set current message from messages');
-      setCurrentMessage(messages[currentIndex]);
-    }
-    if (messages[0]?.messages?.length === 0) {
-      getCurrentMessage(0);
+    if (!match) {
+      if (currentMessage) {
+        console.log('set current message from messages');
+        setCurrentMessage(messages[currentIndex]);
+      }
+      if (messages[0]?.messages?.length === 0) {
+        getCurrentMessage(0);
+      }
     }
   }, [messages]);
 
