@@ -31,7 +31,7 @@ const Card = ({ src }) => {
         <div className={Styles.footer}>
           <div className={Styles.firstChild}>
             <div className={Styles.left}>
-              <IoHeartOutline className="card__icon like-icon" />
+              <IoHeartOutline className={`${Styles.icon} ${Styles.likeIcon}`} />
               <IoChatbubbleOutline className={Styles.icon} />
               <IoShareOutline className={Styles.icon} />
             </div>

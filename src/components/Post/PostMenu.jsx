@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { IoShareSocialOutline, IoTrashOutline } from 'react-icons/io5';
 import Styles from '../../styles/post/post__menu.module.css';
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
   const [menuStatus, setMenuStatus] = useState(false);
   let history = useHistory();
+  let menuRef = useRef();
 
   const handleMenu = (e) => {
     e.preventDefault();
@@ -37,15 +38,33 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
     history.push(`/profile/${match.params.uid}`);
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setMenuStatus(false);
+  };
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuStatus(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+    };
+  }, []);
+
   let menu;
 
   menu = (
-    <div className={Styles.container}>
+    <div ref={menuRef} className={Styles.container}>
       <div className={Styles.inner}>
-        <div className={Styles.option}>
+        <div onClick={handleShare} className={Styles.option}>
           <IoShareSocialOutline className={Styles.icon} />
           <div>
-            <p>Share</p>
+            <p>Copy Link</p>
           </div>
         </div>
         {ownPost ? (

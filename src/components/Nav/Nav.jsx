@@ -11,6 +11,7 @@ import logo from '../../assets/img/logo/logo-2.png';
 import NavUserMenu from './NavUserMenu';
 import Styles from '../../styles/nav/nav.module.css';
 import Notifications from '../Notifications/Notifications';
+import NavSearch from './NavSearch';
 import { light, dark } from '../../functions/theme';
 
 const Nav = () => {
@@ -18,7 +19,9 @@ const Nav = () => {
   const [theme, setTheme] = useState('light');
   const [openMenu, setOpenMenu] = useState(false);
   const [openNoti, setOpenNoti] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
   const [currentNotis, setCurrentNotis] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
 
   const handleUserIcon = (e) => {
     e.preventDefault();
@@ -70,6 +73,18 @@ const Nav = () => {
     }
   }, [userProfile]);
 
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const searchRef = useRef();
+
+  const handleSearchModal = (e) => {
+    e.preventDefault();
+
+    !openSearch && setOpenSearch(true);
+  };
+
   return (
     <div className={Styles.nav}>
       <div className={Styles.inner}>
@@ -79,10 +94,27 @@ const Nav = () => {
             <h2>Instagram</h2>
           </div>
         </Link>
+        {/*//+ search box */}
         <div className={Styles.search}>
           <form autoComplete="off">
-            <input className={Styles.searchInput} type="text" placeholder="Search" />
+            <input
+              ref={searchRef}
+              onChange={handleSearch}
+              value={searchInput}
+              className={Styles.searchInput}
+              onClick={handleSearchModal}
+              type="text"
+              placeholder="Search"
+            />
           </form>
+          {openSearch && searchInput !== '' ? (
+            <NavSearch
+              setSearchInput={setSearchInput}
+              searchInput={searchInput}
+              setOpenSearch={setOpenSearch}
+              searchRef={searchRef}
+            />
+          ) : null}
         </div>
         <div className={Styles.icons}>
           <NavLink exact to="/">

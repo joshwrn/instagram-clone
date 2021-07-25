@@ -36,7 +36,7 @@ const NotificationsItem = ({ item, userProfile }) => {
       .collection('posts')
       .doc(item.post)
       .get();
-    const url = postRef.data().src;
+    const url = postRef.data()?.src;
     setPreview(url);
   };
 

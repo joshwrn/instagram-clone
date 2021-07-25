@@ -47,18 +47,18 @@
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0.281);
   border-radius: 0.65em;
-  height: 2em;
+  height: 28px;
   text-align: center;
-  transition: text-align 1s;
+  transition: width 0.5s;
+  box-sizing: border-box;
+  width: 175px;
+  color: var(--secondary-font-color);
 }
 
 .searchInput:focus {
-  padding: 0em 1em 0 1em;
-  background: rgba(32, 32, 32, 0);
-  border: 1px solid rgba(124, 124, 124, 0.281);
-  border-radius: 0.65em;
-  height: 2em;
   text-align: left;
+  width: 250px;
+  color: var(--primary-font-color);
 }
 
 input,
@@ -90,19 +90,21 @@ input::placeholder:focus {
   cursor: pointer;
   font-size: 1.5rem !important;
 }
-.icons > div > .person {
+.person {
   transform: translateY(2px) translateX(-1px);
   font-size: 1.45rem !important;
 }
 
-.icons > a > .home {
+.home {
   transform: translateY(1px);
   font-size: 1.5rem !important;
 }
 
-.icons .heart {
+.heart {
   font-size: 1.65rem !important;
   transform: translateY(-1px);
+}
+.chat {
 }
 
 .notiBadge {
@@ -123,8 +125,8 @@ input::placeholder:focus {
   cursor: pointer;
 }
 
-.icons > .chat {
-  transform: translateY(-1px);
+.icon path {
+  stroke-width: 25px;
 }
 
 .icons > a {

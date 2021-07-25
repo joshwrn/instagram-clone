@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.link {
+  width: 100%;
+}
+
+.container:hover {
+  background-color: var(--menu-hover-color);
+}
+
+.start {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.displayName {
+  font-size: 13.5px;
+  font-weight: bold;
+}
+
+.type {
+  font-size: 13.5px;
+  color: var(--notification-type-color);
+}
