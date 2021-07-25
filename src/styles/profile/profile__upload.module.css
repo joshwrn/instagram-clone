@@ -14,13 +14,14 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 200;
   animation: anim ease-out 0.1s forwards;
+  box-sizing: border-box;
 }
 
 .container {
   display: grid;
-  grid-template-rows: 1fr 6fr;
-  width: 40em;
-  height: 30em;
+  grid-template-rows: 70px 7fr 2fr;
+  width: 400px;
+  height: 550px;
   border-radius: 1em;
   gap: 1.5em;
   background-color: var(--primary-background-color);
@@ -30,7 +31,7 @@
 
 .header {
   display: flex;
-  width: 93%;
+  width: 90%;
   box-sizing: border-box;
   justify-self: center;
   justify-content: space-between;
@@ -40,6 +41,7 @@
 
 .header > h3 {
   color: var(--secondary-font-color);
+  margin-left: 5px;
 }
 
 .close {
@@ -49,6 +51,15 @@
 
 /*+ main section */
 
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
 /*# upload */
 
 .uploadContainer {
@@ -56,41 +67,57 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 1em;
-  height: 7em;
+  height: 250px;
+  width: 250px;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(124, 124, 124, 0.281);
+  color: var(--secondary-font-color);
+  justify-self: center;
 }
 
 .upload {
-  font-size: 2rem;
-  padding: 30px;
-  border-radius: 0.5rem;
-  border: 1px dashed var(--secondary-font-color);
-  color: var(--secondary-font-color);
+  font-size: 100px;
+
   cursor: pointer;
 }
 
+.upload path {
+  stroke-width: 10px;
+}
+
 .buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  height: 6.2em;
-  width: 6.2em;
 }
 
 .fileInput {
   position: absolute;
-  height: 7em;
-  width: 6em;
-  z-index: -1;
+  height: 250px;
+  width: 250px;
+  z-index: 1;
   opacity: 0;
+  justify-self: center;
+  cursor: pointer;
 }
 
-.topContainer > form > p {
+.buttonContainer p {
   font-size: 0.7rem;
   color: var(--secondary-font-color);
 }
 
+.preview {
+  justify-self: center;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border-radius: 16px;
+}
+
 /*# caption */
 .captionContainer {
-  margin-top: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,10 +131,10 @@
   border: 1px solid rgba(124, 124, 124, 0.281);
   border-radius: 0.5rem;
   height: 5rem;
-  width: 40%;
+  width: 250px;
   box-sizing: border-box;
   resize: none;
-  text-align: center;
+
   background-color: var(--primary-background-color);
 }
 
@@ -117,11 +144,10 @@
 
 /*# post button  */
 .postButton {
-  margin-top: 1.5em;
   background-color: var(--primary-background-color);
   color: var(--secondary-font-color);
-  padding: 0 2em;
-  height: 2.25em;
+  padding: 0 32px;
+  height: 40px;
   font-size: 1.2rem;
   border-radius: 1em;
   cursor: pointer;
@@ -129,12 +155,13 @@
   font-weight: bold;
   transition: box-shadow 0.25s;
   border: var(--secondary-border);
+  justify-self: center;
 }
 
 /*! loading icon */
 
 .loader {
-  margin-top: 2.7em;
+  justify-self: center;
 }
 
 @keyframes anim {

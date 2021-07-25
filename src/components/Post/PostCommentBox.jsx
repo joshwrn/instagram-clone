@@ -24,7 +24,7 @@ const PostCommentBox = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const time = Date();
+    const time = Date.now();
     if (currentUser) {
       if (input.length > 0 && input.length < 100) {
         const thisPost = firestore
@@ -50,7 +50,7 @@ const PostCommentBox = ({
               type: 'comment',
               comment: input,
               post: match.params.postid,
-              time: Date.now(),
+              time: time,
               seen: false,
             }),
           });

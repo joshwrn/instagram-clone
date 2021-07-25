@@ -3,17 +3,25 @@ import Styles from '../../styles/notifications/notifications__item.module.css';
 import { firestore } from '../../services/firebase';
 import { IoPersonAdd } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import convertTime from '../../functions/convertTime';
 
 const NotificationsItem = ({ item, userProfile }) => {
   const [profile, setProfile] = useState();
   const [preview, setPreview] = useState();
   const [type, setType] = useState();
+  const [addTime, setAddTime] = useState();
 
   useEffect(() => {
     getProfile();
     if (item.type === 'liked' || item.type === 'comment') {
       getPost();
     }
+  }, []);
+
+  useEffect(() => {
+    const currentTime = Date.now();
+    const converted = convertTime(item.time, currentTime);
+    setAddTime(converted);
   }, []);
 
   const getProfile = async () => {
@@ -45,9 +53,10 @@ const NotificationsItem = ({ item, userProfile }) => {
                   </div>
                   <div className={Styles.displayName}>{profile.displayName}</div>
                 </Link>
-                <div className={Styles.type}>liked your post</div>
+                <div className={Styles.type}>liked your post.</div>
               </div>
               <div className={Styles.end}>
+                <span className={Styles.time}>{`${addTime}`}</span>
                 <img className={Styles.preview} src={preview} alt="" />
               </div>
             </div>
@@ -67,10 +76,11 @@ const NotificationsItem = ({ item, userProfile }) => {
                 </Link>
                 <div className={Styles.type}>left a comment:</div>
                 <div className={Styles.comment}>
-                  {item.comment.length >= 20 ? item.comment.substring(0, 20) + '...' : item.comment}
+                  {item.comment.length >= 15 ? item.comment.substring(0, 15) + '...' : item.comment}
                 </div>
               </div>
               <div className={Styles.end}>
+                <span className={Styles.time}>{`${addTime}`}</span>
                 <img className={Styles.preview} src={preview} alt="" />
               </div>
             </div>
@@ -86,9 +96,10 @@ const NotificationsItem = ({ item, userProfile }) => {
                 <img className={Styles.avatar} src={profile.profilePhoto} alt="" />
               </div>
               <div className={Styles.displayName}>{profile.displayName}</div>
-              <div className={Styles.type}>followed you</div>
+              <div className={Styles.type}>followed you.</div>
             </div>
             <div className={Styles.end}>
+              <span className={Styles.time}>{`${addTime}`}</span>
               <IoPersonAdd className={Styles.followed} />
             </div>
           </div>

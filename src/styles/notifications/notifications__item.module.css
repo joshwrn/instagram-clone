@@ -46,10 +46,16 @@
 
 .type {
   font-size: 13.5px;
+  color: var(--notification-type-color);
 }
 
 .comment {
-  padding-left: 5px;
+  font-size: 13.5px;
+  color: var(--secondary-font-color);
+}
+
+.time {
+  padding-left: 1px;
   font-size: 13.5px;
   color: var(--secondary-font-color);
 }
@@ -58,7 +64,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
+  width: fit-content;
+  gap: 15px;
   height: 25px;
 }
 

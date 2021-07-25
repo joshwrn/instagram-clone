@@ -11,6 +11,7 @@ import logo from '../../assets/img/logo/logo-2.png';
 import NavUserMenu from './NavUserMenu';
 import Styles from '../../styles/nav/nav.module.css';
 import Notifications from '../Notifications/Notifications';
+import { light, dark } from '../../functions/theme';
 
 const Nav = () => {
   const { currentUser, logout, userProfile } = useAuth();
@@ -57,6 +58,15 @@ const Nav = () => {
         }
       });
       setCurrentNotis(unseen);
+    }
+    if (userProfile && userProfile.theme) {
+      if (userProfile.theme === 'dark') {
+        dark();
+        setTheme('dark');
+      } else if (userProfile.theme === 'light') {
+        light();
+        setTheme('light');
+      }
     }
   }, [userProfile]);
 

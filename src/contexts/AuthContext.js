@@ -7,7 +7,7 @@ const AuthContext = React.createContext();
 
 // Function allows you to use the context
 export function useAuth() {
-  console.log('using auth');
+  // console.log('using auth');
   return useContext(AuthContext);
 }
 
@@ -109,6 +109,7 @@ export function AuthProvider({ children }) {
               following: [],
               messagesCounter: 0,
               notifications: [],
+              theme: 'light',
             })
             .then(history.push('/settings'))
             .catch(function (error) {

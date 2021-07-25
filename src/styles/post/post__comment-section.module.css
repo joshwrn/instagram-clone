@@ -17,6 +17,18 @@
 .commentContainer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.commentContainer:hover {
+  background-color: var(--menu-hover-color);
+}
+
+.start {
+  display: flex;
+  align-items: center;
   gap: 0.75em;
   word-break: break-all;
 }
@@ -36,4 +48,8 @@
 .user {
   font-weight: bold;
   cursor: pointer;
+}
+
+.time {
+  color: var(--secondary-font-color);
 }

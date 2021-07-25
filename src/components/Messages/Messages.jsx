@@ -28,7 +28,7 @@ const Messages = ({ match }) => {
         console.log('create');
         setMessages([{ user: match.params.uid, time: Date.now(), messages: [] }, ...messages]);
       } else {
-        console.log('finde');
+        console.log('find');
         const index = messages.findIndex((item) => item.user === match.params.uid);
         getCurrentMessage(index);
       }

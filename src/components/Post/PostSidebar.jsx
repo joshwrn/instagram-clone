@@ -13,6 +13,7 @@ import Loading from '../../styles/post/post__loading.module.css';
 import { firestore, storage, firestoreFieldValue } from '../../services/firebase';
 import PostLikeButton from './PostLikeButton';
 import PostCommentBox from './PostCommentBox';
+import convertTime from '../../functions/convertTime';
 
 const PostSidebar = ({
   match,
@@ -26,6 +27,15 @@ const PostSidebar = ({
   getCurrentPost,
 }) => {
   let history = useHistory();
+  const [addTime, setAddTime] = useState('');
+
+  useEffect(() => {
+    if (currentPost) {
+      const getCur = convertTime(currentPost.date, Date.now());
+      console.log(currentPost, getCur);
+      setAddTime(getCur);
+    }
+  }, [currentPost]);
 
   return (
     <div className={Styles.sidebar}>
@@ -94,7 +104,10 @@ const PostSidebar = ({
             currentPost={currentPost}
           />
         </div>
-        <p className={Styles.likes}>{currentPost?.likes.length} likes</p>
+        <div className={Styles.infoContainer}>
+          <p className={Styles.likes}>{currentPost?.likes.length} likes</p>
+          <p className={Styles.time}>{addTime}</p>
+        </div>
         {/*//+ comment box */}
         <PostCommentBox
           currentUser={currentUser}

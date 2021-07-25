@@ -97,6 +97,11 @@
   align-items: center;
 }
 
+.left {
+  display: flex;
+  align-items: center;
+}
+
 .postIcon {
   margin: 0 4px 0 0;
   cursor: pointer;
@@ -109,6 +114,13 @@
 .likeIcon {
   margin: 0 4px 0 0;
   cursor: pointer;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 2px;
 }
 
 .likeIcon > path:hover {
@@ -128,10 +140,15 @@
 
 .likes {
   cursor: pointer;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0 0;
   font-weight: bold;
   font-size: 0.85rem;
   text-align: left;
+}
+
+.time {
+  font-size: 0.75rem;
+  color: var(--secondary-font-color);
 }
 
 /*+ comment input */

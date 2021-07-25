@@ -1,18 +1,47 @@
 import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__upload.module.css';
 import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
-import { firestore, storageRef, timestamp } from '../../services/firebase';
+import { firestore, storageRef } from '../../services/firebase';
 
 const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
   const [caption, setCaption] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [imageFile, setImageFile] = useState();
 
   //+ after choosing a file store it in state
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.size < 3000000) {
-      setPostFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (event) {
+        console.log('test');
+        const imgEl = document.createElement('img');
+        imgEl.src = event.target.result;
+
+        imgEl.onload = function (e) {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 1000;
+          const scaleSize = MAX_WIDTH / e.target.width;
+          canvas.width = MAX_WIDTH;
+          canvas.height = e.target.height * scaleSize;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+          const srcEncoded = ctx.canvas.toDataURL(e.target, 'image/jpeg');
+          setImageFile(srcEncoded);
+          ctx.canvas.toBlob(
+            (blob) => {
+              setPostFile(blob);
+              console.log(blob);
+            },
+            'image/jpeg',
+            0.7
+          );
+        };
+      };
     } else {
       setPostFile(null);
     }
@@ -26,6 +55,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
 
   //+ submit the post
   const handleSubmit = async (e) => {
+    const timestamp = Date.now();
     e.preventDefault();
     setUploading(true);
     //+ create post info
@@ -79,26 +109,26 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
           <IoCloseOutline onClick={getModal} className={Styles.close} />
         </div>
         <div className={Styles.topContainer}>
-          <form>
-            <div className={Styles.uploadContainer}>
-              <label className={Styles.buttonContainer}>
-                <input
-                  onChange={handleFileChange}
-                  type="file"
-                  accept="image/jpeg, image/png, image/jpg"
-                  className={Styles.fileInput}
-                />
-                {postFile === null ? (
-                  <IoCloudUploadOutline className={Styles.upload} />
-                ) : (
-                  <IoCheckmarkCircleOutline
-                    className={Styles.upload}
-                    style={{ color: '#00C138', border: '1px solid #00C138' }}
-                  />
-                )}
-              </label>
-            </div>
-            <p>{postFile === null ? 'File size limit 2 mb.' : 'ready to post'}</p>
+          <img
+            style={!imageFile ? { display: 'none' } : null}
+            className={Styles.preview}
+            src={imageFile}
+            alt=""
+          />
+
+          <div style={imageFile && { display: 'none' }} className={Styles.uploadContainer}>
+            <label className={Styles.buttonContainer}>
+              <input
+                onChange={handleFileChange}
+                type="file"
+                accept="image/jpeg, image/png, image/jpg"
+                className={Styles.fileInput}
+              />
+              <IoCloudUploadOutline className={Styles.upload} />
+              <p>{postFile === null ? 'File size limit 2 mb.' : 'ready to post'}</p>
+            </label>
+          </div>
+          <div>
             <div className={Styles.captionContainer}>
               <textarea
                 className={Styles.captionInput}
@@ -107,29 +137,29 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
                 placeholder="Enter Caption..."
                 onChange={handleTextChange}
               />
-              {uploading ? (
-                <div className={`${Styles.loader} loader`}></div>
-              ) : (
-                <button
-                  onClick={postFile !== null ? handleSubmit : doNothing}
-                  type="submit"
-                  className={Styles.postButton}
-                  style={
-                    postFile === null
-                      ? { backgroundColor: 'var(--primary-background-color)' }
-                      : {
-                          backgroundColor: 'var(--save-color)',
-                          color: 'white',
-                          boxShadow: '0px 0.25em 0.5em 1px var(--save-shadow-color)',
-                        }
-                  }
-                >
-                  Post
-                </button>
-              )}
             </div>
-          </form>
+          </div>
         </div>
+        {uploading ? (
+          <div className={`${Styles.loader} loader`}></div>
+        ) : (
+          <button
+            onClick={postFile !== null ? handleSubmit : doNothing}
+            type="submit"
+            className={Styles.postButton}
+            style={
+              postFile === null
+                ? { backgroundColor: 'var(--primary-background-color)' }
+                : {
+                    backgroundColor: 'var(--save-color)',
+                    color: 'white',
+                    boxShadow: '0px 0.25em 0.5em 1px var(--save-shadow-color)',
+                  }
+            }
+          >
+            Post
+          </button>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import Styles from '../../styles/nav/nav__user-menu.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import { IoPersonCircleOutline, IoPersonAddOutline, IoLogOut } from 'react-icons/io5';
 import { CgDarkMode } from 'react-icons/cg';
+import { light, dark } from '../../functions/theme';
+import { firestore } from '../../services/firebase';
 
 const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
   const handleClick = (e) => {
@@ -12,33 +14,30 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
 
   const changeTheme = (e) => {
     e.preventDefault();
-    const root = document.documentElement;
     if (theme === 'light') {
-      root.style.setProperty('--primary-font-color', 'white');
-      root.style.setProperty('--nav-background-color', 'rgba(0, 0, 0, 0.733)');
-      root.style.setProperty('--primary-transparent-color', 'rgba(0, 0, 0, 0.95)');
-      root.style.setProperty('--user-menu-font-color', 'white');
-      root.style.setProperty('--primary-background-color', 'black');
-      root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41)');
-      root.style.setProperty('--secondary-border', '1px solid rgb(41, 41, 41)');
-      root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #000000, #353535)');
+      dark();
       setTheme('dark');
-      root.style.setProperty('--messages-sidebar-background', 'rgba(0, 0, 0, 0.87)');
-      root.style.setProperty('--messages-bubble-background', '#303030');
-      root.style.setProperty('--menu-hover-color', 'rgba(255, 255, 255, 0.1)');
+      if (currentUser) {
+        const userRef = firestore.collection('users').doc(currentUser.uid);
+        userRef.set(
+          {
+            theme: 'dark',
+          },
+          { merge: true }
+        );
+      }
     } else if (theme === 'dark') {
-      root.style.setProperty('--primary-font-color', 'black');
-      root.style.setProperty('--nav-background-color', 'rgba(255, 255, 255, 0.733)');
-      root.style.setProperty('--primary-transparent-color', 'rgba(255, 255, 255, 0.95)');
-      root.style.setProperty('--user-menu-font-color', 'black');
-      root.style.setProperty('--primary-background-color', 'white');
-      root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41, 0)');
-      root.style.setProperty('--secondary-border', '1px solid rgb(206, 206, 206)');
-      root.style.setProperty('--loading-gradient', 'linear-gradient(to right, #ffffff, #c2c2c2)');
-      root.style.setProperty('--messages-sidebar-background', 'rgba(255, 255, 255, 0.87)');
-      root.style.setProperty('--messages-bubble-background', '#d3d3d3');
-      root.style.setProperty('--menu-hover-color', 'rgba(0, 0, 0, 0.1)');
+      light();
       setTheme('light');
+      if (currentUser) {
+        const userRef = firestore.collection('users').doc(currentUser.uid);
+        userRef.set(
+          {
+            theme: 'light',
+          },
+          { merge: true }
+        );
+      }
     }
   };
 
