@@ -1,0 +1,85 @@
+import React, { useEffect, useState } from 'react';
+import { IoHeartOutline } from 'react-icons/io5';
+import Styles from '../../styles/post/post__sidebar.module.css';
+import { useAuth } from '../../contexts/AuthContext';
+import { firestore, firestoreFieldValue } from '../../services/firebase';
+
+const HomeCardLike = ({ likes, post, userID, history, setLikeState }) => {
+  const [liked, setLiked] = useState(false);
+  const { userProfile, getUserProfile } = useAuth();
+
+  useEffect(() => {
+    updateLikes();
+  }, [userProfile]);
+
+  const updateLikes = async () => {
+    if (userProfile && userProfile.likedPosts) {
+      if (userProfile.likedPosts.includes(post.id)) {
+        setLiked(true);
+      } else {
+        setLiked(false);
+      }
+    }
+  };
+
+  //! handle like
+  const handleLike = async (e) => {
+    e.preventDefault();
+    console.log(userID);
+    if (userProfile && userID) {
+      const thisPost = firestore.collection('users').doc(userID).collection('posts').doc(post.id);
+      const thisUser = firestore.collection('users').doc(userProfile.userID);
+      const postUser = firestore.collection('users').doc(userID);
+
+      //@ add this post to likes
+      if (!liked) {
+        setLiked(true);
+        setLikeState((prev) => prev + 1);
+        const addPost = () => {
+          thisPost.update({
+            likes: firestoreFieldValue.arrayUnion(userProfile.userID),
+          });
+        };
+        const addUser = () => {
+          thisUser.update({
+            likedPosts: firestoreFieldValue.arrayUnion(post.id),
+          });
+        };
+        const notify = () => {
+          postUser.update({
+            notifications: firestoreFieldValue.arrayUnion({
+              user: userProfile.userID,
+              type: 'liked',
+              post: post.id,
+              time: Date.now(),
+              seen: false,
+            }),
+          });
+        };
+        await Promise.all([notify(), addPost(), addUser()]);
+      } else {
+        //@ remove post from likes
+        const removePost = () => {
+          setLiked(false);
+          setLikeState((prev) => prev - 1);
+          thisPost.update({
+            likes: firestoreFieldValue.arrayRemove(userProfile.userID),
+          });
+        };
+        const removeUser = () => {
+          thisUser.update({
+            likedPosts: firestoreFieldValue.arrayRemove(post.id),
+          });
+        };
+        await Promise.all([removePost(), removeUser()]);
+      }
+    } else {
+      history.push('/sign-up');
+    }
+  };
+  return (
+    <IoHeartOutline onClick={handleLike} className={liked ? Styles.likedIcon : Styles.likeIcon} />
+  );
+};
+
+export default HomeCardLike;

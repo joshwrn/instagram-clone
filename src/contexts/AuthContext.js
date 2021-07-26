@@ -90,11 +90,13 @@ export function AuthProvider({ children }) {
           });
 
         if (foundName === undefined) {
+          const lower = currentUser.displayName.toLowerCase();
           firestore
             .collection('users')
             .doc(currentUser.uid)
             .set({
               displayName: currentUser.displayName,
+              searchName: lower,
               profilePhoto: currentUser.photoURL,
               banner:
                 'https://images.unsplash.com/photo-1512319302256-dc970e613e2c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',

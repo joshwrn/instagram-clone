@@ -51,6 +51,13 @@
 .following {
   color: var(--secondary-font-color);
   font-size: 14px;
+  width: fit-content;
+  transition: color 0.25s;
+}
+
+.followersContainer:hover p,
+.followingContainer:hover p {
+  color: var(--primary-font-color);
 }
 
 .bio {

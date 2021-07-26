@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from '../../styles/home/home__sidebar.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -6,6 +6,11 @@ import LoginButton from './LoginButton.jsx';
 
 const Sidebar = () => {
   const { userProfile } = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  const handleLoad = () => {
+    setLoading(false);
+  };
 
   return (
     <div className={Styles.sidebar}>
@@ -14,7 +19,13 @@ const Sidebar = () => {
           <Link to={`/profile/${userProfile.userID}`}>
             <div className={Styles.profileContainer}>
               <div className={Styles.imageContainer}>
-                <img className={Styles.profileImg} src={userProfile.profilePhoto} alt="" />
+                <img
+                  onLoad={handleLoad}
+                  style={loading ? { opacity: 0 } : { opacity: 1 }}
+                  className={Styles.profileImg}
+                  src={userProfile.profilePhoto}
+                  alt=""
+                />
                 <img className={Styles.profileImgBlur} src={userProfile.profilePhoto} alt="" />
               </div>
               <div className={Styles.nameContainer}>

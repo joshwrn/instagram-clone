@@ -21,7 +21,7 @@ const SignUp = () => {
   useEffect(() => {
     let foundName;
     const check = (async () => {
-      if (userInput.length > 3) {
+      if (userInput.length > 2) {
         const userRef = await firestore
           .collection('users')
           .where('username', '==', userInput)
@@ -58,7 +58,7 @@ const SignUp = () => {
     anon();
   };
 
-  let nameHelper = <p className={Styles.nameHelper}>Name must be 4-15 characters.</p>;
+  let nameHelper = <p className={Styles.nameHelper}>Name must be 3-15 characters.</p>;
 
   if (userInput.length !== 0) {
     if (userInput.length <= 3) {
@@ -102,17 +102,17 @@ const SignUp = () => {
                     type="text"
                     placeholder="username"
                     maxLength="15"
-                    minLength="4"
+                    minLength="3"
                     value={userInput}
                   />
                 </div>
                 <div className={Styles.helperDiv}>{nameHelper}</div>
                 <button
                   type={'submit'}
-                  onClick={!nameTaken && userInput.length > 3 ? handleSubmit : doNothing}
+                  onClick={!nameTaken && userInput.length > 2 ? handleSubmit : doNothing}
                   className={Styles.signUpButton}
                   style={
-                    !nameTaken && userInput.length > 3
+                    !nameTaken && userInput.length > 2
                       ? {
                           backgroundColor: 'black',
                           cursor: 'pointer',

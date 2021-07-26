@@ -51,14 +51,9 @@ input:focus {
 button:focus {
   outline: 0;
 }
-/* 
-@font-face {
-  font-family: blonde;
-  src: url(../assets/fonts/AvantageSmall.ttf);
-} */
 
 html {
-  font-family: helvetica;
+  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -75,7 +70,7 @@ html {
 /* loading animation */
 .loader {
   border: 3px solid var(--primary-background-color);
-  border-top: 3px solid var(--primary-font-color);
+  border-top: 3px solid var(--secondary-font-color);
   border-radius: 50%;
   width: 21px;
   height: 21px;

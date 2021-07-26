@@ -37,3 +37,14 @@
   box-sizing: border-box;
   padding: 10px 10px;
 }
+
+.loader {
+  align-self: center;
+}
+
+.none {
+  font-size: 13px;
+  padding: 10px 10px;
+  align-self: center;
+  color: var(--secondary-font-color);
+}

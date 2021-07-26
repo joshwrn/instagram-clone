@@ -37,6 +37,12 @@
   padding: 10px 10px;
 }
 
+.loader {
+  align-self: center;
+  width: 11px;
+  height: 11px;
+}
+
 .noResults {
   font-size: 13px;
   padding: 10px 10px;

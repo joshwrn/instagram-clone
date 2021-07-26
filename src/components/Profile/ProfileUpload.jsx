@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__upload.module.css';
 import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { firestore, storageRef } from '../../services/firebase';
+import resizeImage from '../../functions/resizeImage.js';
 
 const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
@@ -12,36 +13,8 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
   //+ after choosing a file store it in state
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size < 3000000) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function (event) {
-        console.log('test');
-        const imgEl = document.createElement('img');
-        imgEl.src = event.target.result;
-
-        imgEl.onload = function (e) {
-          const canvas = document.createElement('canvas');
-          const MAX_WIDTH = 1000;
-          const scaleSize = MAX_WIDTH / e.target.width;
-          canvas.width = MAX_WIDTH;
-          canvas.height = e.target.height * scaleSize;
-
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-
-          const srcEncoded = ctx.canvas.toDataURL(e.target, 'image/jpeg');
-          setImageFile(srcEncoded);
-          ctx.canvas.toBlob(
-            (blob) => {
-              setPostFile(blob);
-              console.log(blob);
-            },
-            'image/jpeg',
-            0.7
-          );
-        };
-      };
+    if (file && file.size < 5000000) {
+      resizeImage(e, setImageFile, setPostFile, 1000);
     } else {
       setPostFile(null);
     }
@@ -68,6 +41,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
         likes: [],
         comments: [],
         caption: caption,
+        userID: currentUser.uid,
       });
     //+ upload image to storage
     const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
@@ -125,7 +99,7 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
                 className={Styles.fileInput}
               />
               <IoCloudUploadOutline className={Styles.upload} />
-              <p>{postFile === null ? 'File size limit 2 mb.' : 'ready to post'}</p>
+              <p>{postFile === null ? 'File size limit 5 mb.' : 'ready to post'}</p>
             </label>
           </div>
           <div>

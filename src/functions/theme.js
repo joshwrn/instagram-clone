@@ -3,7 +3,7 @@ const root = document.documentElement;
 const dark = () => {
   root.style.setProperty('--primary-font-color', 'white');
   root.style.setProperty('--nav-background-color', 'rgba(0, 0, 0, 0.733)');
-  root.style.setProperty('--primary-transparent-color', 'rgba(0, 0, 0, 0.95)');
+  root.style.setProperty('--primary-transparent-color', 'rgba(0, 0, 0, 0.93)');
   root.style.setProperty('--user-menu-font-color', 'white');
   root.style.setProperty('--primary-background-color', 'black');
   root.style.setProperty('--primary-border', '1px solid rgb(41, 41, 41)');

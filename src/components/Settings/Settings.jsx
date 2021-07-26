@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { firestore, initFire, storageRef } from '../../services/firebase';
+import resizeImage from '../../functions/resizeImage';
 
 const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
@@ -26,21 +27,42 @@ const Settings = () => {
   const handlePhotoChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    if (file && file.size < 1000000) {
-      handleUpload(e.target.name, file);
+    if (file && file.size < 5000000) {
+      if (e.target.name === 'profilePhoto') {
+        resizeImage(e, 'none', handleAvatar, 1000);
+      } else if (e.target.name === 'banner') {
+        resizeImage(e, 'none', handleBanner, 2000);
+      }
     }
   };
 
-  //+ upload
-  const handleUpload = async (imgType, file) => {
+  //+ upload profile photo
+  const handleAvatar = async (file) => {
     setUploading(true);
-    const fileRef = storageRef.child(`${currentUser.uid}/${imgType}`);
+    const fileRef = storageRef.child(`${currentUser.uid}/profilePhoto`);
     await fileRef.put(file);
     const fileUrl = await fileRef.getDownloadURL();
     const userRef = firestore.collection('users').doc(currentUser.uid);
     await userRef.set(
       {
-        [imgType]: fileUrl,
+        ['profilePhoto']: fileUrl,
+      },
+      { merge: true }
+    );
+    setUploading(false);
+    getUserProfile();
+  };
+
+  //+ upload banner
+  const handleBanner = async (file) => {
+    setUploading(true);
+    const fileRef = storageRef.child(`${currentUser.uid}/banner`);
+    await fileRef.put(file);
+    const fileUrl = await fileRef.getDownloadURL();
+    const userRef = firestore.collection('users').doc(currentUser.uid);
+    await userRef.set(
+      {
+        ['banner']: fileUrl,
       },
       { merge: true }
     );
@@ -79,10 +101,12 @@ const Settings = () => {
       setUploading(false);
     }
     if (userInput !== userProfile.displayName && userInput !== '') {
+      const lower = userInput.toLowerCase();
       setUploading(true);
       await firestore.collection('users').doc(currentUser.uid).set(
         {
           displayName: userInput,
+          searchName: lower,
         },
         { merge: true }
       );

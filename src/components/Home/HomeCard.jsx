@@ -1,65 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from '../../styles/home/home__card.module.css';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Link } from 'react-router-dom';
-import {
-  IoShareOutline,
-  IoHeartOutline,
-  IoChatbubbleOutline,
-  IoSendOutline,
-  IoShareSocialOutline,
-} from 'react-icons/io5';
+import { IoShareOutline, IoChatbubbleOutline, IoShareSocialOutline } from 'react-icons/io5';
+import { firestore } from '../../services/firebase';
+import HomeCardLike from './HomeCardLike';
+import HomeCardComments from './HomeCardComments';
+import HomeCardImage from './HomeCardImage';
 
-import profilePic from '../../assets/misc/toa-heftiba-YCi4c79ZDIE-unsplash.jpg';
+const Card = ({ post }) => {
+  const [user, setUser] = useState();
+  const [likeState, setLikeState] = useState();
+  const { src, userID, likes } = post.data();
 
-const Card = ({ src }) => {
+  useEffect(async () => {
+    const userRef = await firestore.collection('users').doc(userID).get();
+    setUser(userRef.data());
+    setLikeState(likes.length);
+  }, [post]);
+
   return (
-    <div className={Styles.card}>
-      <div className={Styles.container}>
-        <div className={Styles.header}>
-          <div className={Styles.left}>
-            <img src={profilePic} alt="" className={Styles.avatar} />
-            <div className={Styles.userInfo}>
-              <p className={Styles.displayName}>Emily Browning</p>
-              <p className={Styles.username}>@embr32</p>
+    <>
+      {post && user ? (
+        <div className={Styles.card}>
+          <div className={Styles.container}>
+            {/*//+ header */}
+            <div className={Styles.header}>
+              <Link to={`/profile/${userID}`}>
+                <div className={Styles.left}>
+                  <img src={user.profilePhoto} alt="" className={Styles.avatar} />
+                  <div className={Styles.userInfo}>
+                    <p className={Styles.displayName}>{user.displayName}</p>
+                    <p className={Styles.username}>@{user.username}</p>
+                  </div>
+                </div>
+              </Link>
+              <div className={Styles.right}>
+                <MoreHorizIcon className={Styles.moreIcon} />
+              </div>
+            </div>
+            {/*//+ image */}
+            <HomeCardImage Styles={Styles} postID={post.id} userID={userID} src={src} />
+            {/*//+ footer */}
+            <div className={Styles.footer}>
+              <div className={Styles.firstChild}>
+                <div className={Styles.left}>
+                  {/*//! likes button */}
+                  <HomeCardLike setLikeState={setLikeState} post={post} userID={userID} />
+                  <IoChatbubbleOutline className={Styles.icon} />
+                  <IoShareOutline className={Styles.icon} />
+                </div>
+                <IoShareSocialOutline className={Styles.icon} />
+              </div>
+              <Link className={Styles.imageLink} to={`/Post/${userID}/${post.id}`}>
+                <p className={Styles.likes}>{likeState} likes</p>
+              </Link>
+              {/*//+ comment section */}
+              <HomeCardComments Styles={Styles} userID={userID} post={post} />
             </div>
           </div>
-          <div className={Styles.right}>
-            <MoreHorizIcon className={Styles.moreIcon} />
-          </div>
+          <img className={Styles.imageBlur + ' ' + 'blur'} src={src} alt="" />
         </div>
-        <div className={Styles.footer}>
-          <div className={Styles.firstChild}>
-            <div className={Styles.left}>
-              <IoHeartOutline className={`${Styles.icon} ${Styles.likeIcon}`} />
-              <IoChatbubbleOutline className={Styles.icon} />
-              <IoShareOutline className={Styles.icon} />
-            </div>
-            <IoShareSocialOutline className={Styles.icon} />
-          </div>
-          <p className={Styles.likes}>3,543 likes</p>
-          <div className={Styles.comments}>
-            <p className={Styles.viewAll}>View All Comments</p>
-            <p className={Styles.comment}>
-              <span className={Styles.commentUser}>Andrew G</span> awesome 🔥
-            </p>
-            <p className={Styles.comment}>
-              <span className={Styles.commentUser}>Sofie Smith</span> wow so cool!
-            </p>
-          </div>
-          <div className={Styles.commentBox}>
-            <form className={Styles.commentForm}>
-              <input className={Styles.inputBox} type="text" placeholder="Add a comment..." />
-            </form>
-            <IoSendOutline className={Styles.send} />
-          </div>
-        </div>
-        <Link className={Styles.imageLink} to="/Post">
-          <img className={Styles.image} src={src} alt="" />
-        </Link>
-      </div>
-      <img className={Styles.imageBlur + ' ' + 'blur'} src={src} alt="" />
-    </div>
+      ) : null}
+    </>
   );
 };
 

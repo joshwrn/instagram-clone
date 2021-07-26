@@ -1,7 +1,7 @@
 .card {
   display: flex;
-  width: 35em;
-  height: 55em;
+  width: 560px;
+  height: 750px;
   margin: 0 0 4em 0;
   justify-content: center;
   /* box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089); */
@@ -13,8 +13,8 @@
 /*@ Contain main overflow */
 .container {
   position: absolute;
-  width: inherit;
-  height: inherit;
+  width: 560px;
+  height: 750px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -25,20 +25,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
+  position: relative;
   z-index: 2;
   width: 100%;
   box-sizing: border-box;
-  height: 3.5em;
+  height: 56px;
   background-color: var(--primary-background-color);
   padding: 1.5em;
 }
 
-.header > .left {
+.header .left {
   display: flex;
 }
 
-.header > .right {
+.header .right {
   display: flex;
   height: 100%;
   align-items: center;
@@ -81,25 +81,49 @@
 
 /*+ image */
 
+.loading {
+  width: 560px;
+  height: 500px;
+  position: absolute;
+  z-index: 1;
+  background: var(--loading-gradient);
+  background-size: 200%;
+  animation: 2s linear infinite gradientMove;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .imageLink {
   width: inherit;
   height: inherit;
 }
 
 .image {
-  position: absolute;
-  width: inherit;
-  height: inherit;
+  position: relative;
+  width: 560px;
+  height: 500px;
   object-fit: cover;
   display: block;
   object-position: top;
   cursor: pointer;
+  transition: opacity 1s;
+  opacity: 0;
 }
 
 .imageBlur {
   position: absolute;
   filter: blur(2em);
-  opacity: 0.25;
+  opacity: 0.3;
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -110,9 +134,9 @@
 
 /*+ card__footer */
 .footer {
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 12em;
+  height: 200px;
   padding: 16px 1.25em;
   background-color: var(--primary-background-color);
   z-index: 3;
@@ -149,9 +173,16 @@
 
 /*+ comments */
 
-.comments > .viewAll {
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 48px;
+  width: 100%;
+}
+
+.comments .viewAll {
   color: var(--secondary-font-color);
-  margin: 0 0 0.35rem 0;
+  margin: 0 0 6px 0;
   cursor: pointer;
 }
 
@@ -159,11 +190,12 @@
   font-size: 0.85rem;
 }
 
-.comments > .comment {
-  margin: 0.35em 0;
+.comments .comment {
+  padding: 0 0 6px 0;
+  height: 15px;
 }
 
-.comments > .comment > .commentUser {
+.comments .commentUser {
   font-weight: bold;
   cursor: pointer;
 }
@@ -178,8 +210,7 @@
   background: rgba(32, 32, 32, 0);
   border: 1px solid rgba(124, 124, 124, 0);
   border-top: 1px solid rgba(124, 124, 124, 0.281);
-  margin-top: 0.75em;
-  padding-top: 0.65em;
+  padding-top: 10px;
 }
 
 .footer .commentForm {

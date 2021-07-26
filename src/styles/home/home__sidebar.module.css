@@ -32,8 +32,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5em;
-  height: 5em;
+  width: 80px;
+  height: 80px;
   transition: transform 0.25s;
   cursor: pointer;
 }
@@ -44,16 +44,17 @@
 
 .profileImg {
   border-radius: 100%;
-  width: 5em;
-  height: 5em;
+  width: 80px;
+  height: 80px;
   position: absolute;
   object-fit: cover;
+  transition: opacity 1s;
 }
 
 .profileImgBlur {
   border-radius: 100%;
-  width: 5em;
-  height: 5em;
+  width: 80px;
+  height: 80px;
   position: absolute;
   filter: blur(16px);
   opacity: 0.65;

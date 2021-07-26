@@ -78,6 +78,7 @@
 .listContainer {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 /*+ list item */
@@ -89,7 +90,12 @@
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 10px;
   cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: var(--menu-hover-color);
 }
 
 .start {

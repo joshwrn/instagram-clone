@@ -5,7 +5,8 @@ import Styles from '../../styles/nav/nav__search.module.css';
 
 const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) => {
   const [searchResults, setSearchResults] = useState([]);
-  const [noResults, setNoResults] = useState(false);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let handler = (e) => {
@@ -21,38 +22,35 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
   }, []);
 
   useEffect(async () => {
-    console.log('tf');
     if (searchInput !== '') {
+      setLoading(true);
       let temp = [];
       const userRef = await firestore
         .collection('users')
-        .where('username', '>=', searchInput)
-        .where('username', '<=', searchInput + '\uf8ff')
+        .where('searchName', '>=', searchInput.toLowerCase())
+        .where('searchName', '<=', searchInput.toLowerCase() + '\uf8ff')
+        .limit(5)
         .get()
         .then((results) => {
           return results.forEach((doc) => {
-            console.log('ok', doc.data());
             temp.push(doc.data());
           });
         });
       setSearchResults(temp);
+      setLoading(false);
     }
   }, [searchInput]);
 
-  useEffect(() => {
-    if (searchResults.length === 0) {
-      console.log(searchResults.length);
-      setNoResults(true);
-    } else if (searchResults.length > 0) {
-      console.log('huh');
-      setNoResults(false);
-    }
-  }, [searchResults]);
+  let searchInner;
 
-  return (
-    <div ref={searchRef} className={Styles.container}>
-      <div className={Styles.inner}>
-        {noResults && <p className={Styles.noResults}>No Results</p>}
+  if (loading) {
+    searchInner = <div className={`loader ${Styles.loader}`}></div>;
+  }
+
+  if (!loading) {
+    searchInner = (
+      <>
+        {searchResults.length === 0 && <p className={Styles.noResults}>No Results</p>}
         {searchResults.map((item) => (
           <NavSearchItem
             setSearchInput={setSearchInput}
@@ -60,7 +58,13 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
             item={item}
           />
         ))}
-      </div>
+      </>
+    );
+  }
+
+  return (
+    <div ref={searchRef} className={Styles.container}>
+      <div className={Styles.inner}>{searchInner}</div>
     </div>
   );
 };
