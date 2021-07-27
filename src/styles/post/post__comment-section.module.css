@@ -53,3 +53,9 @@
 .time {
   color: var(--secondary-font-color);
 }
+
+@media only screen and (max-width: 850px) {
+  .comments {
+    height: 250px;
+  }
+}

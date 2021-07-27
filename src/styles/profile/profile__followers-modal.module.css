@@ -79,6 +79,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 /*+ list item */
@@ -162,5 +163,39 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    height: 90%;
+    width: 90vw;
+  }
+  .listItem {
+    display: flex;
+    align-items: center;
+    padding: 20px 25px;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .listItem {
+    padding: 10px;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .profileBtn {
+    width: 50%;
+    max-width: 150px;
+    height: 35px;
+    font-size: 14px;
+  }
+  .displayName {
+    font-size: 16px;
+  }
+
+  .username {
+    font-size: 12px;
   }
 }

@@ -1,0 +1,83 @@
+"filename", "language", "JSON", "JavaScript React", "Markdown", "JavaScript", "HTML", "CSS", "comment", "blank", "total"
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/README.md", "Markdown", 0, 0, 38, 0, 0, 0, 0, 33, 71
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/package-lock.json", "JSON", 40143, 0, 0, 0, 0, 0, 0, 1, 40144
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/package.json", "JSON", 42, 0, 0, 0, 0, 0, 0, 1, 43
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/public/index.html", "HTML", 0, 0, 0, 0, 19, 0, 23, 4, 46
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/public/manifest.json", "JSON", 25, 0, 0, 0, 0, 0, 0, 1, 26
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/App.jsx", "JavaScript React", 0, 50, 0, 0, 0, 0, 1, 3, 54
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/Home.jsx", "JavaScript React", 0, 15, 0, 0, 0, 0, 0, 3, 18
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeCard.jsx", "JavaScript React", 0, 65, 0, 0, 0, 0, 0, 5, 70
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeCardCommentItem.jsx", "JavaScript React", 0, 27, 0, 0, 0, 0, 0, 4, 31
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeCardComments.jsx", "JavaScript React", 0, 83, 0, 0, 0, 0, 1, 9, 93
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeCardImage.jsx", "JavaScript React", 0, 24, 0, 0, 0, 0, 0, 5, 29
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeCardLike.jsx", "JavaScript React", 0, 76, 0, 0, 0, 0, 3, 7, 86
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeFeed.jsx", "JavaScript React", 0, 53, 0, 0, 0, 0, 4, 10, 67
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/HomeSidebar.jsx", "JavaScript React", 0, 45, 0, 0, 0, 0, 14, 6, 65
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Home/LoginButton.jsx", "JavaScript React", 0, 27, 0, 0, 0, 0, 0, 5, 32
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Messages/MessageItem.jsx", "JavaScript React", 0, 73, 0, 0, 0, 0, 0, 13, 86
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Messages/Messages.jsx", "JavaScript React", 0, 236, 0, 0, 0, 0, 2, 25, 263
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Messages/MessagesContact.jsx", "JavaScript React", 0, 51, 0, 0, 0, 0, 0, 8, 59
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Messages/MessagesCreateMenu.jsx", "JavaScript React", 0, 43, 0, 0, 0, 0, 0, 4, 47
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Messages/MessagesCreateMenuItem.jsx", "JavaScript React", 0, 46, 0, 0, 0, 0, 0, 6, 52
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Nav/Nav.jsx", "JavaScript React", 0, 150, 0, 0, 0, 0, 0, 15, 165
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Nav/NavSearch.jsx", "JavaScript React", 0, 62, 0, 0, 0, 0, 0, 11, 73
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Nav/NavSearchItem.jsx", "JavaScript React", 0, 26, 0, 0, 0, 0, 0, 5, 31
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Nav/NavUserMenu.jsx", "JavaScript React", 0, 79, 0, 0, 0, 0, 0, 5, 84
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Notifications/Notifications.jsx", "JavaScript React", 0, 61, 0, 0, 0, 0, 0, 10, 71
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Notifications/NotificationsItem.jsx", "JavaScript React", 0, 106, 0, 0, 0, 0, 0, 9, 115
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/Post.jsx", "JavaScript React", 0, 105, 0, 0, 0, 0, 8, 13, 126
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostComment.jsx", "JavaScript React", 0, 40, 0, 0, 0, 0, 0, 6, 46
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostCommentBox.jsx", "JavaScript React", 0, 78, 0, 0, 0, 0, 1, 7, 86
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostCommentSection.jsx", "JavaScript React", 0, 47, 0, 0, 0, 0, 0, 6, 53
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostLikeButton.jsx", "JavaScript React", 0, 80, 0, 0, 0, 0, 3, 7, 90
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostMenu.jsx", "JavaScript React", 0, 78, 0, 0, 0, 0, 0, 11, 89
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Post/PostSidebar.jsx", "JavaScript React", 0, 117, 0, 0, 0, 0, 0, 5, 122
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/Profile.jsx", "JavaScript React", 0, 193, 0, 0, 0, 0, 15, 13, 221
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileAvatarModal.jsx", "JavaScript React", 0, 10, 0, 0, 0, 0, 0, 3, 13
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileButton.jsx", "JavaScript React", 0, 74, 0, 0, 0, 0, 4, 14, 92
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileCard.jsx", "JavaScript React", 0, 36, 0, 0, 0, 0, 0, 3, 39
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileFeed.jsx", "JavaScript React", 0, 85, 0, 0, 0, 0, 5, 9, 99
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileFollowerListItem.jsx", "JavaScript React", 0, 40, 0, 0, 0, 0, 0, 7, 47
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileFollowersModal.jsx", "JavaScript React", 0, 84, 0, 0, 0, 0, 6, 8, 98
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileSidebar.jsx", "JavaScript React", 0, 84, 0, 0, 0, 0, 0, 8, 92
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Profile/ProfileUpload.jsx", "JavaScript React", 0, 126, 0, 0, 0, 0, 8, 9, 143
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/Settings/Settings.jsx", "JavaScript React", 0, 193, 0, 0, 0, 0, 9, 13, 215
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/components/SignUp/SignUp.jsx", "JavaScript React", 0, 138, 0, 0, 0, 0, 0, 12, 150
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/contexts/AuthContext.js", "JavaScript", 0, 0, 0, 153, 0, 0, 16, 16, 185
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/functions/convertTime.js", "JavaScript", 0, 0, 0, 35, 0, 0, 0, 2, 37
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/functions/resizeImage.js", "JavaScript", 0, 0, 0, 32, 0, 0, 0, 5, 37
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/functions/theme.js", "JavaScript", 0, 0, 0, 30, 0, 0, 0, 4, 34
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/index.jsx", "JavaScript React", 0, 9, 0, 0, 0, 0, 0, 2, 11
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/services/firebase.js", "JavaScript", 0, 0, 0, 21, 0, 0, 0, 4, 25
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/app.css", "CSS", 0, 0, 0, 0, 0, 109, 7, 16, 132
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/home/home.module.css", "CSS", 0, 0, 0, 0, 0, 24, 1, 3, 28
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/home/home__card.module.css", "CSS", 0, 0, 0, 0, 0, 211, 10, 36, 257
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/home/home__feed.module.css", "CSS", 0, 0, 0, 0, 0, 11, 0, 2, 13
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/home/home__login.module.css", "CSS", 0, 0, 0, 0, 0, 24, 0, 1, 25
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/home/home__sidebar.module.css", "CSS", 0, 0, 0, 0, 0, 112, 5, 22, 139
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/messages/message__item.module.css", "CSS", 0, 0, 0, 0, 0, 118, 0, 15, 133
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/messages/messages.module.css", "CSS", 0, 0, 0, 0, 0, 194, 17, 26, 237
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/messages/messagesContact.module.css", "CSS", 0, 0, 0, 0, 0, 50, 0, 8, 58
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/messages/messages__create-menu.module.css", "CSS", 0, 0, 0, 0, 0, 86, 1, 13, 100
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/messages/messages__create-menu__item.module.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/nav/nav.module.css", "CSS", 0, 0, 0, 0, 0, 177, 4, 30, 211
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/nav/nav__search.module.css", "CSS", 0, 0, 0, 0, 0, 47, 0, 5, 52
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/nav/nav__search__item.module.css", "CSS", 0, 0, 0, 0, 0, 37, 0, 7, 44
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/nav/nav__user-menu.module.css", "CSS", 0, 0, 0, 0, 0, 98, 0, 8, 106
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/notifications/notifications.module.css", "CSS", 0, 0, 0, 0, 0, 95, 0, 7, 102
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/notifications/notifications__item.module.css", "CSS", 0, 0, 0, 0, 0, 71, 0, 15, 86
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/post/post.module.css", "CSS", 0, 0, 0, 0, 0, 54, 0, 6, 60
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/post/post__comment-section.module.css", "CSS", 0, 0, 0, 0, 0, 45, 1, 10, 56
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/post/post__loading.module.css", "CSS", 0, 0, 0, 0, 0, 64, 0, 7, 71
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/post/post__menu.module.css", "CSS", 0, 0, 0, 0, 0, 55, 0, 7, 62
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/post/post__sidebar.module.css", "CSS", 0, 0, 0, 0, 0, 150, 4, 29, 183
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile.module.css", "CSS", 0, 0, 0, 0, 0, 155, 2, 23, 180
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__avatar__modal.module.css", "CSS", 0, 0, 0, 0, 0, 38, 0, 4, 42
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__card.module.css", "CSS", 0, 0, 0, 0, 0, 88, 3, 12, 103
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__feed.module.css", "CSS", 0, 0, 0, 0, 0, 51, 1, 5, 57
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__followers-modal.module.css", "CSS", 0, 0, 0, 0, 0, 144, 1, 22, 167
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__sidebar.module.css", "CSS", 0, 0, 0, 0, 0, 109, 2, 20, 131
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/profile/profile__upload.module.css", "CSS", 0, 0, 0, 0, 0, 146, 5, 24, 175
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/settings/settings.module.css", "CSS", 0, 0, 0, 0, 0, 248, 2, 32, 282
+"/Users/josh/Documents/git/the_odin_project/instagram-clone/src/styles/sign-up/sign-up.module.css", "CSS", 0, 0, 0, 0, 0, 152, 13, 19, 184
+"Total", "-", 40210, 3015, 38, 271, 19, 2963, 202, 830, 47548

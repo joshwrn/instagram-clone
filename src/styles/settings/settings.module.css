@@ -279,3 +279,16 @@
   transition: box-shadow 0.25s;
   border: var(--secondary-border);
 }
+
+@media only screen and (max-width: 850px) {
+  .settings {
+    padding-top: 0;
+    padding: 0 0 54px 0;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 95vw;
+    height: 80vh;
+  }
+}

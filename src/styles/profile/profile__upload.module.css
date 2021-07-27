@@ -172,3 +172,15 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 850px) {
+  .modal {
+    overflow: hidden;
+  }
+
+  .container {
+    width: 95vw;
+    height: 80vh;
+    overflow: scroll;
+  }
+}

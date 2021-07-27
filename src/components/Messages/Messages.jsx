@@ -4,7 +4,7 @@ import MessageItem from './MessageItem';
 import MessagesCreateMenu from './MessagesCreateMenu';
 import Styles from '../../styles/messages/messages.module.css';
 import { useAuth } from '../../contexts/AuthContext';
-import { IoSendOutline, IoCreateOutline } from 'react-icons/io5';
+import { IoSendOutline, IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 
 const Messages = ({ match }) => {
@@ -19,16 +19,14 @@ const Messages = ({ match }) => {
   const [currentIndex, setCurrentIndex] = useState();
 
   const [createModal, setCreateModal] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
 
   useEffect(() => {
     if (match && messages) {
-      console.log('match', match.params.uid);
       const check = messages.some((item) => item.user === match.params.uid);
       if (!check) {
-        console.log('create');
         setMessages([{ user: match.params.uid, time: Date.now(), messages: [] }, ...messages]);
       } else {
-        console.log('find');
         const index = messages.findIndex((item) => item.user === match.params.uid);
         getCurrentMessage(index);
       }
@@ -36,15 +34,14 @@ const Messages = ({ match }) => {
   }, [messages, match]);
 
   useEffect(() => {
-    console.log('message listening');
     return listen();
   }, [userProfile]);
 
   useEffect(() => {
-    console.log('current', currentMessage);
     if (!match) {
-      if (currentMessage) {
-        console.log('set current message from messages');
+      if (!currentMessage) {
+        setCurrentMessage(messages[0]);
+      } else if (currentMessage) {
         setCurrentMessage(messages[currentIndex]);
       }
       if (messages[0]?.messages?.length === 0) {
@@ -62,7 +59,6 @@ const Messages = ({ match }) => {
     currentMessage?.messages?.length > 0
       ? setThread(currentMessage?.messages.slice(0).reverse())
       : setThread([]);
-    console.log('thread current', currentMessage);
   }, [currentMessage]);
 
   useEffect(() => {
@@ -76,7 +72,6 @@ const Messages = ({ match }) => {
       .collection('messages')
       .orderBy('time', 'desc')
       .onSnapshot((querySnapshot) => {
-        console.log('message snapshot');
         let temp = [];
         querySnapshot.forEach((doc) => {
           temp.push(doc.data());
@@ -86,12 +81,10 @@ const Messages = ({ match }) => {
   };
 
   const setSnap = (arr) => {
-    console.log('temp:', arr);
     setMessages(arr);
   };
 
   const getUserObject = () => {
-    console.log('getting');
     firestore
       .collection('users')
       .doc(currentMessage?.user)
@@ -103,10 +96,14 @@ const Messages = ({ match }) => {
       });
   };
 
+  //! MOBILE Sidebar
+  const handleSidebar = () => {
+    sidebar ? setSidebar(false) : setSidebar(true);
+  };
+
   //+ send
 
   const handleSubmit = async (e) => {
-    console.log('submiting');
     e.preventDefault();
     const time = Date.now();
     if (currentProfile) {
@@ -168,7 +165,6 @@ const Messages = ({ match }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log('handle change');
     const { value } = e.target;
     setInputBox(value);
   };
@@ -193,18 +189,33 @@ const Messages = ({ match }) => {
         />
       )}
       <div className={Styles.navBg}></div>
-      <div className={Styles.sidebar}>
+      <div className={sidebar ? Styles.sidebar : `${Styles.sidebar} ${Styles.hide}`}>
         <div className={Styles.header}>
-          <div className={Styles.userAvatarContainer}>
+          <div
+            className={
+              sidebar
+                ? Styles.userAvatarContainer
+                : `${Styles.userAvatarContainer} ${Styles.remove}`
+            }
+          >
             <img className={Styles.userAvatar} src={userProfile?.profilePhoto} alt="avatar" />
             <img className={Styles.userAvatarBlur} src={userProfile?.profilePhoto} alt="avatar" />
           </div>
+          {sidebar ? null : (
+            <div className={Styles.backArrowContainer}>
+              <IoChevronBackOutline onClick={handleSidebar} className={Styles.backArrow} />
+            </div>
+          )}
           <p className={Styles.headerTitle}>Messages</p>
           <div onClick={handleCreate} className={Styles.createIconContainer}>
             <IoCreateOutline className={Styles.createIcon} />
           </div>
         </div>
-        <div className={Styles.contactsContainer}>
+        <div
+          className={
+            sidebar ? Styles.contactsContainer : `${Styles.contactsContainer} ${Styles.hide}`
+          }
+        >
           {/* map over messages */}
           {messages.map((item, index) => {
             return (
@@ -216,6 +227,7 @@ const Messages = ({ match }) => {
                 last={item.messages?.length > 0 ? item.messages[item.messages?.length - 1] : null}
                 getCurrentMessage={getCurrentMessage}
                 currentIndex={currentIndex}
+                handleSidebar={handleSidebar}
               />
             );
           })}

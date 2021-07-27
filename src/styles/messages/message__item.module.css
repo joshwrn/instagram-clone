@@ -130,3 +130,13 @@
   height: 100%;
   background-color: var(--primary-background-color);
 }
+
+@media only screen and (max-width: 850px) {
+  .bubble {
+    max-width: 80%;
+  }
+
+  .bubbleSent {
+    max-width: 75%;
+  }
+}

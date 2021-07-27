@@ -3,7 +3,15 @@ import { firestore } from '../../services/firebase';
 import React, { useEffect, useState } from 'react';
 import convertTime from '../../functions/convertTime';
 
-const MessagesContact = ({ user, time, last, getCurrentMessage, index, currentIndex }) => {
+const MessagesContact = ({
+  user,
+  time,
+  last,
+  getCurrentMessage,
+  index,
+  currentIndex,
+  handleSidebar,
+}) => {
   const [currentUser, setCurrentUser] = useState();
   const [addTime, setAddTime] = useState('');
 
@@ -34,6 +42,7 @@ const MessagesContact = ({ user, time, last, getCurrentMessage, index, currentIn
   const handleClick = (e) => {
     e.preventDefault();
     getCurrentMessage(index);
+    handleSidebar();
   };
 
   return (
