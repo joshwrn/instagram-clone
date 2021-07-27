@@ -38,7 +38,7 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser, getUserObject }) 
           <h2 className={Styles.displayName}>{currentProfile.displayName}</h2>
           <h3 className={Styles.username}>@{currentProfile.username}</h3>
         </div>
-        <div>
+        <div className={Styles.secondContainer}>
           <div className={Styles.postsContainer}>
             <h3>{currentProfile.postsCounter}</h3>
             <p className={Styles.posts}>Posts</p>

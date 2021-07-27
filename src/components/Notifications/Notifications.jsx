@@ -3,12 +3,14 @@ import Styles from '../../styles/notifications/notifications.module.css';
 import NotificationsItem from './NotificationsItem';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore } from '../../services/firebase';
+import { useHistory } from 'react-router';
 
 const Notifications = ({ handleNoti, setCurrentNotis }) => {
   const [notiArray, setNotiArray] = useState([]);
   const { userProfile, getUserProfile } = useAuth();
   const [time, setTime] = useState();
   const [loading, setLoading] = useState(true);
+  let history = useHistory();
 
   useEffect(() => {
     const currentTime = new Date().getTime();
@@ -16,11 +18,16 @@ const Notifications = ({ handleNoti, setCurrentNotis }) => {
   }, []);
 
   useEffect(() => {
-    getUserProfile();
+    if (userProfile) {
+      getUserProfile();
+    } else {
+      history.push('/sign-up');
+      handleNoti();
+    }
   }, []);
 
   useEffect(async () => {
-    if (time) {
+    if (time && userProfile) {
       const userRef = firestore.collection('users').doc(userProfile.userID);
       await userRef.set(
         {

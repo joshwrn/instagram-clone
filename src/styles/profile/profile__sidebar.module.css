@@ -97,3 +97,34 @@
   width: 208px;
   height: 32px;
 }
+
+/*! mobile */
+@media only screen and (max-width: 850px) {
+  .inner {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: minmax(240px, 1fr) 5fr;
+  }
+
+  .sidebar {
+    display: grid;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 12px;
+    width: 60%;
+    min-width: 256px;
+    height: 170px;
+    justify-self: center;
+    justify-content: center;
+  }
+
+  .secondContainer {
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+  }
+  .bio {
+    display: none;
+  }
+}

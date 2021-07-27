@@ -13,8 +13,8 @@
 /*@ Contain main overflow */
 .container {
   position: absolute;
-  width: 560px;
-  height: 750px;
+  width: inherit;
+  height: inherit;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -114,7 +114,7 @@
   height: 500px;
   object-fit: cover;
   display: block;
-  object-position: top;
+  object-position: center;
   cursor: pointer;
   transition: opacity 1s;
   opacity: 0;
@@ -128,7 +128,7 @@
   height: inherit;
   object-fit: cover;
   display: block;
-  object-position: top;
+  object-position: center;
   z-index: -2;
 }
 
@@ -227,4 +227,30 @@
 
 .footer .send {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 850px) {
+  .card {
+    display: flex;
+    width: 340px;
+    height: 600px;
+    margin: 0 0 4em 0;
+    justify-content: center;
+    /* box-shadow: 0px 0px 26px 5px rgba(0, 0, 0, 0.089); */
+    border: var(--primary-border);
+    position: relative;
+    border-radius: 16px;
+  }
+
+  .image {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+    object-position: center;
+    cursor: pointer;
+    transition: opacity 1s;
+    opacity: 0;
+  }
 }

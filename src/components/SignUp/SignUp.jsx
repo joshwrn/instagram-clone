@@ -15,7 +15,8 @@ const SignUp = () => {
     const { value } = e.target;
     const reg = /[^a-zA-Z\d]/gi;
     const newVal = value.replace(reg, '');
-    setUserInput(newVal);
+    const lower = newVal.toLowerCase();
+    setUserInput(lower);
   };
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const SignUp = () => {
   let nameHelper = <p className={Styles.nameHelper}>Name must be 3-15 characters.</p>;
 
   if (userInput.length !== 0) {
-    if (userInput.length <= 3) {
+    if (userInput.length <= 2) {
       nameHelper = <p className={Styles.nameHelper}>Too Short.</p>;
     } else if (nameTaken === false) {
       nameHelper = (

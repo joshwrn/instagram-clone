@@ -13,10 +13,6 @@ const HomeFeed = () => {
     }
   }, [userProfile]);
 
-  useEffect(() => {
-    console.log(feed);
-  }, [feed]);
-
   const getFollowed = async () => {
     let following = [userProfile];
 
@@ -24,7 +20,7 @@ const HomeFeed = () => {
     const userRef = await firestore
       .collection('users')
       .where('followers', 'array-contains', userProfile.userID)
-      //   .orderBy('lastPostDate', 'desc')
+      .orderBy('lastPostDate', 'desc')
       .limit(10)
       .get();
     userRef.forEach((user) => {
@@ -54,8 +50,7 @@ const HomeFeed = () => {
     });
 
     // sort all the posts by date
-    const sort = temp.sort((a, b) => b.date - a.date);
-
+    const sort = temp.sort((a, b) => b.data().date - a.data().date);
     setFeed(sort);
   };
 

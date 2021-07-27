@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/AuthContext';
 const PostCommentBox = ({
   Styles,
   IoSendOutline,
-  currentUser,
   firestore,
   match,
   firestoreFieldValue,
@@ -25,7 +24,7 @@ const PostCommentBox = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const time = Date.now();
-    if (currentUser) {
+    if (userProfile) {
       if (input.length > 0 && input.length < 100) {
         const thisPost = firestore
           .collection('users')
@@ -37,7 +36,7 @@ const PostCommentBox = ({
         const addPost = () => {
           thisPost.update({
             comments: firestoreFieldValue.arrayUnion({
-              user: currentUser.uid,
+              user: userProfile.userID,
               comment: input,
               time: time,
             }),
@@ -46,7 +45,7 @@ const PostCommentBox = ({
         const notify = () => {
           thisUser.update({
             notifications: firestoreFieldValue.arrayUnion({
-              user: currentUser.uid,
+              user: userProfile.userID,
               type: 'comment',
               comment: input,
               post: match.params.postid,

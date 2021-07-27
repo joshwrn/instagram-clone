@@ -136,7 +136,7 @@
 }
 
 .profileBtn {
-  background-color: var(--primary-background-color);
+  background-color: transparent;
   color: var(--secondary-font-color);
   height: 43px;
   font-size: 16px;

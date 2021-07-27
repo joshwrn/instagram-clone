@@ -51,6 +51,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     getUserObject();
+    setNoPosts(false);
 
     //# has issues because pics don't reload on save
     // setLoaded(false);

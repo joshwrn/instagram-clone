@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   IoHomeOutline,
@@ -29,7 +29,6 @@ const Nav = () => {
   };
 
   const handleNoti = (e) => {
-    e.preventDefault();
     openNoti ? setOpenNoti(false) : setOpenNoti(true);
   };
 
@@ -120,7 +119,7 @@ const Nav = () => {
           <NavLink exact to="/">
             <IoHomeOutline className={Styles.icon + ' ' + Styles.home} />
           </NavLink>
-          <NavLink exact to="/messages">
+          <NavLink exact to={userProfile ? '/messages' : '/sign-up'}>
             <IoChatbubbleOutline className={Styles.icon + ' ' + Styles.chat} />
           </NavLink>
           {/*//+ notifications */}

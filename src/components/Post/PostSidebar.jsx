@@ -22,8 +22,6 @@ const PostSidebar = ({
   postUser,
   currentPost,
   ownPost,
-  currentUser,
-  userProfile,
   getCurrentPost,
 }) => {
   let history = useHistory();
@@ -76,15 +74,13 @@ const PostSidebar = ({
         </div>
       </div>
       {/*//+ comments */}
-      <PostCommentSection currentPost={currentPost} currentUser={currentUser} loaded={loaded} />
+      <PostCommentSection currentPost={currentPost} loaded={loaded} />
       <div className={Styles.footer}>
         <div className={Styles.firstChild}>
           <div className={Styles.left}>
             {/*//+ liked button */}
             <PostLikeButton
               Styles={Styles}
-              currentUser={currentUser}
-              userProfile={userProfile}
               match={match}
               history={history}
               IoHeartOutline={IoHeartOutline}
@@ -110,7 +106,6 @@ const PostSidebar = ({
         </div>
         {/*//+ comment box */}
         <PostCommentBox
-          currentUser={currentUser}
           firestore={firestore}
           match={match}
           firestoreFieldValue={firestoreFieldValue}

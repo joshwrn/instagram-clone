@@ -17,7 +17,6 @@
   height: 320px;
   object-fit: cover;
   display: block;
-
   object-position: center;
 }
 
@@ -149,4 +148,32 @@
   border-radius: 100%;
   width: 200px;
   height: 200px;
+}
+
+/*! mobile */
+@media only screen and (max-width: 850px) {
+  .inner {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .hero {
+    height: 270px;
+  }
+
+  .topSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+  }
+
+  .imgContainer {
+    background: none;
+    margin-bottom: -150px;
+  }
 }

@@ -123,3 +123,16 @@
   color: rgb(180, 180, 180);
   font-size: 0.65rem;
 }
+
+@media only screen and (max-width: 850px) {
+  .sidebar {
+    padding-top: 50px;
+    position: relative;
+    height: fit-content;
+    margin-bottom: 50px;
+  }
+
+  .container {
+    position: relative;
+  }
+}

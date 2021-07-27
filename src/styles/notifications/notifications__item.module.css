@@ -8,6 +8,7 @@
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 10px;
+  font-size: 13.5px;
 }
 
 .container:hover {
@@ -40,23 +41,20 @@
 }
 
 .displayName {
-  font-size: 13.5px;
   font-weight: bold;
 }
 
 .type {
-  font-size: 13.5px;
   color: var(--notification-type-color);
 }
 
 .comment {
-  font-size: 13.5px;
   color: var(--secondary-font-color);
 }
 
 .time {
   padding-left: 1px;
-  font-size: 13.5px;
+
   color: var(--secondary-font-color);
 }
 
@@ -78,4 +76,10 @@
 
 .followed {
   font-size: 18px;
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    font-size: 11px;
+  }
 }

@@ -19,35 +19,39 @@ const HomeCardComments = ({ Styles, userID, post }) => {
 
   const handleComment = async (e) => {
     e.preventDefault();
-    const time = Date.now();
-    const commentObject = { time: time, comment: commentInput, user: userProfile.userID };
-    const temp = commentArr.slice(Math.max(commentArr.length - 1, 0));
-    temp.push(commentObject);
+    if (userProfile) {
+      if (commentInput.length > 0 && commentInput.length < 100) {
+        const time = Date.now();
+        const commentObject = { time: time, comment: commentInput, user: userProfile.userID };
+        const temp = commentArr.slice(Math.max(commentArr.length - 1, 0));
+        temp.push(commentObject);
 
-    const thisPost = firestore.collection('users').doc(userID).collection('posts').doc(post.id);
-    const thisUser = firestore.collection('users').doc(userID);
-    //@ add comment to post
-    const addPost = () => {
-      thisPost.update({
-        comments: firestoreFieldValue.arrayUnion(commentObject),
-      });
-    };
-    const notify = () => {
-      thisUser.update({
-        notifications: firestoreFieldValue.arrayUnion({
-          user: userProfile.userID,
-          type: 'comment',
-          comment: commentInput,
-          post: post.id,
-          time: time,
-          seen: false,
-        }),
-      });
-    };
-    await Promise.all([notify(), addPost()]);
+        const thisPost = firestore.collection('users').doc(userID).collection('posts').doc(post.id);
+        const thisUser = firestore.collection('users').doc(userID);
+        //@ add comment to post
+        const addPost = () => {
+          thisPost.update({
+            comments: firestoreFieldValue.arrayUnion(commentObject),
+          });
+        };
+        const notify = () => {
+          thisUser.update({
+            notifications: firestoreFieldValue.arrayUnion({
+              user: userProfile.userID,
+              type: 'comment',
+              comment: commentInput,
+              post: post.id,
+              time: time,
+              seen: false,
+            }),
+          });
+        };
+        await Promise.all([notify(), addPost()]);
 
-    setCommentArr(temp);
-    setCommentInput('');
+        setCommentArr(temp);
+        setCommentInput('');
+      }
+    }
   };
 
   const handleChange = (e) => {
@@ -76,6 +80,7 @@ const HomeCardComments = ({ Styles, userID, post }) => {
             onChange={handleChange}
             type="text"
             placeholder="Add a comment..."
+            maxLength="99"
           />
         </form>
         <IoSendOutline onClick={handleComment} className={Styles.send} />

@@ -52,7 +52,7 @@
   -webkit-transform: translateZ(0) scale(1, 1);
 }
 
-.card:hover > .imageBlur {
+.card:hover .blur {
   filter: blur(21px);
   opacity: 0.75;
 }

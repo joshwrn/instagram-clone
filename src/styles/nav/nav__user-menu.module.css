@@ -55,3 +55,51 @@
 .icon {
   font-size: 1.05rem;
 }
+
+@media only screen and (max-width: 850px) {
+  .container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-105%) translateX(22%);
+  }
+
+  .container:after {
+    bottom: -16px;
+    left: 60.5%;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: var(--primary-transparent-color);
+    border-width: 8px;
+    transform: rotateX(180deg);
+  }
+  .inner {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    top: initial;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: var(--primary-transparent-color);
+    min-height: 50px;
+    min-width: 200px;
+    max-height: 50vh;
+    overflow-y: scroll;
+    border: var(--primary-border);
+    backdrop-filter: none;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+}

@@ -155,3 +155,57 @@ input::placeholder:focus {
   display: flex;
   align-items: center;
 }
+
+/*! mobile */
+/*! mobile */
+@media only screen and (max-width: 850px) {
+  .nav {
+    top: initial;
+    height: fit-content;
+    bottom: 0;
+    box-sizing: initial;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  /* search box */
+  .searchInput {
+    display: none;
+  }
+
+  .inner {
+    justify-content: center;
+  }
+
+  .icons {
+    display: flex;
+    gap: 0.95em;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10%;
+  }
+  .notiContainer {
+    display: initial;
+    align-items: initial;
+  }
+
+  .notiBadge {
+    transform: translate(19px, -35px);
+    width: 7px;
+    padding: 5px 5px;
+    height: 7px;
+  }
+
+  .icon {
+    transform: scale(1.11);
+  }
+  @supports (padding: max(0px)) {
+    .nav {
+      padding-top: 12px;
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+  }
+}

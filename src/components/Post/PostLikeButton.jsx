@@ -3,14 +3,7 @@ import { IoHeartOutline } from 'react-icons/io5';
 import Styles from '../../styles/post/post__sidebar.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 
-const PostLikeButton = ({
-  match,
-  currentUser,
-  history,
-  firestore,
-  firestoreFieldValue,
-  getCurrentPost,
-}) => {
+const PostLikeButton = ({ match, history, firestore, firestoreFieldValue, getCurrentPost }) => {
   const [liked, setLiked] = useState(false);
   const { userProfile, getUserProfile } = useAuth();
 
@@ -31,13 +24,13 @@ const PostLikeButton = ({
   //! handle like
   const handleLike = async (e) => {
     e.preventDefault();
-    if (currentUser) {
+    if (userProfile) {
       const thisPost = firestore
         .collection('users')
         .doc(match.params.uid)
         .collection('posts')
         .doc(match.params.postid);
-      const thisUser = firestore.collection('users').doc(currentUser.uid);
+      const thisUser = firestore.collection('users').doc(userProfile.userID);
       const postUser = firestore.collection('users').doc(match.params.uid);
 
       //@ add this post to likes
@@ -45,7 +38,7 @@ const PostLikeButton = ({
         setLiked(true);
         const addPost = () => {
           thisPost.update({
-            likes: firestoreFieldValue.arrayUnion(currentUser.uid),
+            likes: firestoreFieldValue.arrayUnion(userProfile.userID),
           });
         };
         const addUser = () => {
@@ -56,7 +49,7 @@ const PostLikeButton = ({
         const notify = () => {
           postUser.update({
             notifications: firestoreFieldValue.arrayUnion({
-              user: currentUser.uid,
+              user: userProfile.userID,
               type: 'liked',
               post: match.params.postid,
               time: Date.now(),
@@ -72,7 +65,7 @@ const PostLikeButton = ({
         const removePost = () => {
           setLiked(false);
           thisPost.update({
-            likes: firestoreFieldValue.arrayRemove(currentUser.uid),
+            likes: firestoreFieldValue.arrayRemove(userProfile.userID),
           });
         };
         const removeUser = () => {

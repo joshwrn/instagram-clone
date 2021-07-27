@@ -203,3 +203,34 @@
     background-color: var(--primary-background-color);
   }
 }
+/*! mobile */
+@media only screen and (max-width: 850px) {
+  .messages {
+    display: grid;
+    grid-template-columns: 25vw 4fr;
+    height: 100vh;
+    width: 100vw;
+
+    box-sizing: border-box;
+    background: url(../../assets/misc/blur.jpg);
+    background-size: cover;
+    position: relative;
+  }
+
+  .messageArea:before {
+    content: '';
+    background: var(--primary-background-color);
+    padding-top: 115px;
+  }
+  .navBg {
+    top: initial;
+    bottom: 0;
+  }
+  .sidebar {
+    padding-top: 0;
+    padding-bottom: 54px;
+  }
+  .messageBox {
+    margin: 0 0 54px 0;
+  }
+}

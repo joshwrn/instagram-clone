@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const HomeCardCommentItem = ({ Styles, item }) => {
   const [current, setCurrent] = useState();
+
   useEffect(() => {
     const getUser = async () => {
       const userRef = firestore.collection('users').doc(item.user);
@@ -19,7 +20,7 @@ const HomeCardCommentItem = ({ Styles, item }) => {
           <Link to={`/profile/${current.userID}`}>
             <span className={Styles.commentUser}>{current.displayName}</span>
           </Link>{' '}
-          {item.comment}
+          {item.comment.length >= 15 ? item.comment.substring(0, 50) + '...' : item.comment}
         </p>
       )}
     </>

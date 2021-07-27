@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, signIn, firestore } from '../services/firebase';
+import { auth, signIn, firestore, firestoreFieldValue } from '../services/firebase';
 import { useHistory } from 'react-router-dom';
 
 // Create context
@@ -90,16 +90,18 @@ export function AuthProvider({ children }) {
           });
 
         if (foundName === undefined) {
-          const lower = currentUser.displayName.toLowerCase();
-          firestore
+          // const lower = currentUser.displayName.toLowerCase();
+          const currentTime = Date.now();
+          //+ create the user account
+          await firestore
             .collection('users')
             .doc(currentUser.uid)
             .set({
               displayName: currentUser.displayName,
-              searchName: lower,
+              searchName: 'john',
               profilePhoto: currentUser.photoURL,
               banner:
-                'https://images.unsplash.com/photo-1512319302256-dc970e613e2c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+                'https://firebasestorage.googleapis.com/v0/b/insta-a107a.appspot.com/o/default-banner.jpg?alt=media&token=d3c53902-0e3a-4761-8705-8991db9d7b68',
               bio: `Hi my name is ${currentUser.displayName}`,
               username: usernameInput,
               userID: currentUser.uid,
@@ -108,15 +110,56 @@ export function AuthProvider({ children }) {
               likedPosts: [],
               postsCounter: 0,
               followers: [],
-              following: [],
+              following: ['e9x1NbFsE8VqLAqAKfbpHkH0QS93'],
               messagesCounter: 0,
               notifications: [],
               theme: 'light',
             })
-            .then(history.push('/settings'))
             .catch(function (error) {
               console.error('Error writing new message to database', error);
             });
+          //+ add default message
+          const addMessage = () => {
+            firestore
+              .collection('users')
+              .doc(currentUser.uid)
+              .collection('messages')
+              .doc('e9x1NbFsE8VqLAqAKfbpHkH0QS93')
+              .set({
+                messages: [
+                  {
+                    message: `Hi There, Thanks for signing up and testing my website. Please look around and test all the features you can. You can reply to this message if you'd like, but I might not see it. So, to get in touch please email me at joshnwarren@gmail.com.`,
+                    time: currentTime,
+                    user: 'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
+                  },
+                ],
+                time: currentTime,
+                user: 'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
+              });
+          };
+          //+ update my followers
+          const addFollower = () => {
+            const userRef = firestore.collection('users').doc('e9x1NbFsE8VqLAqAKfbpHkH0QS93');
+            userRef.update({
+              followers: firestoreFieldValue.arrayUnion(currentUser.uid),
+            });
+          };
+
+          //+ notify me
+          const notify = () => {
+            const userRef = firestore.collection('users').doc('e9x1NbFsE8VqLAqAKfbpHkH0QS93');
+            userRef.update({
+              notifications: firestoreFieldValue.arrayUnion({
+                user: currentUser.uid,
+                type: 'followed',
+                time: currentTime,
+                seen: false,
+              }),
+            });
+          };
+
+          await Promise.all([addMessage(), addFollower(), notify()]);
+          history.push('/settings');
         } else {
           auth.signOut();
         }

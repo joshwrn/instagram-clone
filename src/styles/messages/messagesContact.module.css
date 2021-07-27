@@ -41,7 +41,7 @@
   height: 50px;
   gap: 5px;
   font-size: 15px;
-  height: 18px;
+  height: fit-content;
   align-items: flex-end;
   color: rgb(109, 109, 109);
 }
