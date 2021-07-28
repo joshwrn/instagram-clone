@@ -60,6 +60,8 @@
   opacity: 0.65;
   z-index: -3;
   object-fit: cover;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
 }
 
 /*+ user info */

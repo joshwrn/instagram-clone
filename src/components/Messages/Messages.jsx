@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MessagesContact from './MessagesContact';
 import MessageItem from './MessageItem';
 import MessagesCreateMenu from './MessagesCreateMenu';
@@ -9,6 +9,7 @@ import { firestore, firestoreFieldValue } from '../../services/firebase';
 
 const Messages = ({ match }) => {
   const { userProfile } = useAuth();
+  const dummyRef = useRef(null);
 
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState();
@@ -77,6 +78,7 @@ const Messages = ({ match }) => {
           temp.push(doc.data());
         });
         setSnap(temp);
+        scrollToBottom('smooth');
       });
   };
 
@@ -99,6 +101,13 @@ const Messages = ({ match }) => {
   //! MOBILE Sidebar
   const handleSidebar = () => {
     sidebar ? setSidebar(false) : setSidebar(true);
+    scrollToBottom();
+  };
+
+  const scrollToBottom = (type) => {
+    type === 'smooth'
+      ? dummyRef.current?.scrollIntoView({ behavior: 'smooth' })
+      : dummyRef.current?.scrollIntoView();
   };
 
   //+ send
@@ -250,7 +259,7 @@ const Messages = ({ match }) => {
           <IoSendOutline type="submit" onClick={handleSubmit} className={Styles.send} />
         </div>
         <div id="msg" className={Styles.messageArea}>
-          <div className={Styles.overlay}></div>
+          <div ref={dummyRef} className={Styles.dummy}></div>
           {thread?.map((item, index) => {
             return (
               <MessageItem

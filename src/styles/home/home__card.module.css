@@ -230,6 +230,10 @@
 }
 
 @media only screen and (max-width: 850px) {
+  .footer input::placeholder {
+    font-size: 13px;
+  }
+
   .card {
     display: flex;
     width: 340px;

@@ -164,20 +164,6 @@
   backdrop-filter: blur(50px);
 }
 
-/* .messageContainer {
-  display: flex;
-  align-items: center;
-  background: var(--nav-background-color);
-  height: 55px;
-  padding: 0 20px;
-  border-radius: 32px;
-  transform: translateY(-5px);
-  gap: 16px;
-  width: 100%;
-  box-sizing: border-box;
-  backdrop-filter: blur(50px);
-} */
-
 .messageForm {
   width: 100%;
 }
@@ -210,41 +196,21 @@
 /*! mobile */
 @media only screen and (max-width: 850px) {
   .messages {
-    display: grid;
     grid-template-columns: none;
     height: initial;
-    width: 100vw;
-    box-sizing: border-box;
-    background: url(../../assets/misc/blur.jpg);
-    background-size: cover;
-    position: relative;
     overflow: hidden;
   }
 
   .messageArea {
-    display: flex;
-    width: 100%;
-    height: fit-content;
-    flex-direction: column;
-    box-sizing: border-box;
-    overflow-y: scroll;
-    position: relative;
-    z-index: 10;
-    background-image: linear-gradient(to top, #00a3e4, #1982fc, #6e39ff);
-    background-position: bottom;
     background-size: 100vw 100%;
   }
 
   .messageArea:after {
-    content: '';
-    background: var(--primary-background-color);
     padding-top: 150px;
   }
 
   .messageArea:before {
-    content: '';
-    background: var(--primary-background-color);
-    padding-top: 100px;
+    padding-top: 110px;
   }
   .navBg {
     top: initial;
@@ -292,19 +258,12 @@
     margin: 0 0 54px 0;
   }
   .messageBox {
-    display: flex;
-    position: fixed;
     width: 100vw;
-    align-items: center;
     justify-content: center;
     box-sizing: initial;
-    background: var(--nav-background-color);
-    height: 55px;
+    height: fit-content;
     padding: 0;
-    bottom: 0;
-    gap: 16px;
     z-index: 50;
-    backdrop-filter: blur(50px);
   }
 
   .messageForm {
@@ -312,31 +271,28 @@
   }
 
   .input {
-    width: 100%;
-    text-align: left;
-    border: var(--secondary-border);
-    border-radius: 32px;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    color: var(--primary-font-color);
-    background: #9c9c9c24;
+    border: none;
+
+    height: 30px;
   }
 
-  .send {
-    cursor: pointer;
-    font-size: 20px;
-    transform: translateY(1px);
+  .messageForm input::placeholder {
+    font-size: 14px;
   }
+
+  .dummy {
+  }
+
   @supports (padding: max(0px)) {
     .messageBox {
       padding-top: 12px;
       padding-bottom: max(12px, env(safe-area-inset-bottom));
     }
 
-    .messageArea:after {
+    .messageArea:before {
       content: '';
       background: var(--primary-background-color);
-      padding-top: max(160px, env(safe-area-inset-bottom));
+      padding-top: max(150px, env(safe-area-inset-bottom));
     }
   }
 }

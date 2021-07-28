@@ -285,10 +285,15 @@
     padding-top: 0;
     padding: 0 0 54px 0;
     overflow: hidden;
+    top: 0;
+    -ms-transform: none;
+    transform: none;
   }
 
   .container {
-    width: 95vw;
+    width: 100vw;
     height: 80vh;
+    border: none;
+    box-shadow: none;
   }
 }

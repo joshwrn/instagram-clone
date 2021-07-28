@@ -132,11 +132,29 @@
 }
 
 @media only screen and (max-width: 850px) {
+  .item {
+    border-width: 2px 2px;
+  }
+
+  .itemSent {
+    border-width: 2px 2px;
+  }
+
   .bubble {
     max-width: 80%;
   }
 
   .bubbleSent {
     max-width: 75%;
+  }
+  .avatar {
+    width: 25px;
+    height: 25px;
+
+    transform: translateY(5px);
+  }
+
+  .avatarContainer {
+    width: 30px;
   }
 }
