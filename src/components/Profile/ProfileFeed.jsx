@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProfileCard from './ProfileCard';
 import Styles from '../../styles/profile/profile__feed.module.css';
-import debounce from '../../functions/debounce';
 
 const ProfileFeed = ({
   firestore,
@@ -19,6 +18,8 @@ const ProfileFeed = ({
   const [isFetching, setIsFetching] = useState(false);
   const [endFeed, setEndFeed] = useState(false);
   const endFeedRef = useRef(false);
+
+  const dummyRef = useRef();
 
   // get the feed after a new post
   useEffect(() => {
@@ -46,25 +47,25 @@ const ProfileFeed = ({
     setLoads((prev) => prev + 1);
   };
 
-  //< add scroll event listener
   useEffect(() => {
-    window.addEventListener('scroll', debounce(handleScroll, 250));
-    return () => window.removeEventListener('scroll', debounce(handleScroll, 250));
-  }, []);
-
-  //< get more posts on scroll down
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      isFetching
-    )
-      return;
-    console.log('bottom', endFeedRef.current);
-    if (endFeedRef.current === false) {
-      setIsFetching(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isFetching) {
+          if (endFeedRef.current === false) {
+            setIsFetching(true);
+          }
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+    if (dummyRef.current) {
+      observer.observe(dummyRef.current);
     }
-  };
+  }, [dummyRef]);
 
   //# after feed updates set load to false
   useEffect(() => {
@@ -99,6 +100,8 @@ const ProfileFeed = ({
 
   const getMore = async () => {
     let temp = [];
+    console.log('get more');
+    if (!lastPost) return;
     const snap = await firestore
       .collection('users')
       .doc(match.params.uid)
@@ -158,7 +161,7 @@ const ProfileFeed = ({
               );
             })}
           </div>
-          <div className={`${Styles.loaderContainer}`}>
+          <div ref={dummyRef} className={`${Styles.loaderContainer}`}>
             {isFetching && <div className="loader"></div>}
             {endFeed && feed.length > 6 ? (
               <div className={Styles.endFeed}>No More Posts</div>

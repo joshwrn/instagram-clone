@@ -6,6 +6,7 @@ import Styles from '../../styles/messages/messages.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
+import debounce from '../../functions/debounce.js';
 
 const Messages = ({ match }) => {
   const { userProfile } = useAuth();
@@ -21,6 +22,12 @@ const Messages = ({ match }) => {
 
   const [createModal, setCreateModal] = useState(false);
   const [sidebar, setSidebar] = useState(true);
+
+  const [lastUser, setLastUser] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+  const [noMessages, setNoMessages] = useState(false);
+  const noMessagesRef = useRef(false);
+  const topRef = useRef();
 
   useEffect(() => {
     if (match && messages) {
@@ -56,11 +63,59 @@ const Messages = ({ match }) => {
     setCurrentMessage(messages[num]);
   };
 
+  //> Scroll functionality
+
   useEffect(() => {
-    currentMessage?.messages?.length > 0
-      ? setThread(currentMessage?.messages.slice(0).reverse())
-      : setThread([]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isFetching) {
+          if (noMessagesRef.current === false) {
+            console.log('interecting');
+            setIsFetching(true);
+          }
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+    if (topRef.current) {
+      observer.observe(topRef.current);
+    }
+  }, [topRef]);
+
+  //+ GET more from storage
+  const createFeed = () => {
+    if (!currentMessage) return;
+    if (currentMessage.messages.length === thread.length) return setNoMessages(true);
+    const sliced = currentMessage.messages.slice(thread.length, thread.length + 20);
+    const combine = [...thread, ...sliced];
+    setThread(combine);
+  };
+
+  useEffect(() => {
+    if (!isFetching || noMessages) return;
+    createFeed();
+  }, [isFetching]);
+
+  //# after feed updates set load to false
+  useEffect(() => {
+    setIsFetching(false);
+  }, [thread]);
+
+  useEffect(() => {
+    if (currentMessage?.messages?.length > 0) {
+      const reverse = currentMessage?.messages.slice(0).reverse();
+      const sliced = reverse.slice(0, 20);
+      setThread(sliced);
+    } else {
+      setThread([]);
+    }
   }, [currentMessage]);
+
+  //> END SCROLL
 
   useEffect(() => {
     getUserObject();
@@ -258,6 +313,7 @@ const Messages = ({ match }) => {
           </form>
           <IoSendOutline type="submit" onClick={handleSubmit} className={Styles.send} />
         </div>
+        {/*//+ messages section */}
         <div id="msg" className={Styles.messageArea}>
           <div ref={dummyRef} className={Styles.dummy}></div>
           {thread?.map((item, index) => {
@@ -274,6 +330,7 @@ const Messages = ({ match }) => {
               />
             );
           })}
+          <div ref={topRef} className={Styles.dummy}></div>
         </div>
       </div>
     </div>

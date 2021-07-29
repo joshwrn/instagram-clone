@@ -3,12 +3,14 @@ import Styles from '../../styles/profile/profile__upload.module.css';
 import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage.js';
+import { useAuth } from '../../contexts/AuthContext';
 
-const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) => {
+const ProfileUpload = ({ getModal, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
   const [caption, setCaption] = useState('');
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState();
+  const { userProfile } = useAuth();
 
   //+ after choosing a file store it in state
   const handleFileChange = (e) => {
@@ -34,17 +36,17 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
     //+ create post info
     const createPost = await firestore
       .collection('users')
-      .doc(currentUser.uid)
+      .doc(userProfile.userID)
       .collection('posts')
       .add({
         date: timestamp,
         likes: [],
         comments: [],
         caption: caption,
-        userID: currentUser.uid,
+        userID: userProfile.userID,
       });
     //+ upload image to storage
-    const fileRef = storageRef.child(`${currentUser.uid}/${createPost.id}`);
+    const fileRef = storageRef.child(`${userProfile.userID}/${createPost.id}`);
     await fileRef.put(postFile);
     const fileUrl = await fileRef.getDownloadURL();
     //+ set src to image url
@@ -57,10 +59,10 @@ const ProfileUpload = ({ getModal, currentUser, currentProfile, setNewPost }) =>
     //+ update post count
     await firestore
       .collection('users')
-      .doc(currentUser.uid)
+      .doc(userProfile.userID)
       .set(
         {
-          postsCounter: currentProfile.postsCounter + 1,
+          postsCounter: userProfile.postsCounter + 1,
           lastPostDate: timestamp,
         },
         { merge: true }

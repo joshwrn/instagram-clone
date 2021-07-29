@@ -3,9 +3,8 @@ import Card from './HomeCard.jsx';
 import Styles from '../../styles/home/home__feed.module.css';
 import { firestore } from '../../services/firebase.js';
 import { useAuth } from '../../contexts/AuthContext';
-import debounce from '../../functions/debounce.js';
 
-const HomeFeed = () => {
+const HomeFeed = ({ newPost }) => {
   const { userProfile } = useAuth();
   const [stored, setStored] = useState([]);
   const [feed, setFeed] = useState([]);
@@ -13,6 +12,7 @@ const HomeFeed = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [noPosts, setNoPosts] = useState(false);
   const noPostsRef = useRef(false);
+  const dummyRef = useRef();
 
   // get followed users on load
   useEffect(() => {
@@ -21,27 +21,48 @@ const HomeFeed = () => {
     }
   }, [userProfile]);
 
+  //+ on upload
+  useEffect(async () => {
+    if (newPost === 0) return;
+    let temp = [];
+    const next = await firestore
+      .collection('users')
+      .doc(userProfile.userID)
+      .collection('posts')
+      .orderBy('date', 'desc')
+      .limit(1)
+      .get();
+    if (!next) return;
+    next.forEach((post) => {
+      temp.push(post);
+    });
+    console.log(temp);
+    const combine = [...temp, ...feed];
+    setFeed(combine);
+    window.scrollTo(0, 0);
+  }, [newPost]);
+
   //+ Scroll functionality
 
-  //< add scroll event listener
   useEffect(() => {
-    window.addEventListener('scroll', debounce(handleScroll, 250));
-    return () => window.removeEventListener('scroll', debounce(handleScroll, 250));
-  }, []);
-
-  //< get more posts on scroll down
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      isFetching
-    )
-      return;
-    console.log('bottom');
-    if (noPostsRef.current === false) {
-      setIsFetching(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isFetching) {
+          if (noPostsRef.current === false) {
+            setIsFetching(true);
+          }
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+    if (dummyRef.current) {
+      observer.observe(dummyRef.current);
     }
-  };
+  }, [dummyRef]);
 
   //# decide from local or firestore
   useEffect(() => {
@@ -159,7 +180,7 @@ const HomeFeed = () => {
         return <Card key={post.id} post={post} />;
       })}
 
-      <div className={`${Styles.loaderContainer}`}>
+      <div ref={dummyRef} className={`${Styles.loaderContainer}`}>
         {isFetching && <div className="loader"></div>}
         {noPosts && <div className={Styles.noPosts}>No More Posts</div>}
       </div>

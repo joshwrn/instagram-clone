@@ -4,19 +4,53 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import LoginButton from './LoginButton.jsx';
 import { IoAddCircleOutline } from 'react-icons/io5';
+import ProfileFollowersModal from '../Profile/ProfileFollowersModal';
+import ProfileUpload from '../Profile/ProfileUpload';
 
-const Sidebar = () => {
+const Sidebar = ({ setNewPost }) => {
   const { userProfile } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [openFollowers, setOpenFollowers] = useState(false);
+  const [currentTab, setCurrentTab] = useState();
+  const [renderModal, setRenderModal] = useState(false);
+
+  const handleFollowers = (e) => {
+    e.preventDefault();
+    const choice = e.target.getAttribute('data-type');
+    setCurrentTab(choice);
+    openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
+  };
 
   const handleLoad = () => {
     setLoading(false);
   };
 
+  //+ new post modal
+  const getModal = (e) => {
+    e.preventDefault();
+    if (renderModal === false) {
+      setRenderModal(true);
+      document.body.classList.add('stop-scrolling');
+    } else {
+      setRenderModal(false);
+      document.body.classList.remove('stop-scrolling');
+    }
+  };
+
   return (
     <div className={Styles.sidebar}>
+      <ProfileFollowersModal
+        currentProfile={userProfile}
+        handleFollowers={handleFollowers}
+        setOpenFollowers={setOpenFollowers}
+        openFollowers={openFollowers}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+        currentUser={userProfile}
+      />
+      {renderModal && <ProfileUpload setNewPost={setNewPost} getModal={getModal} />}
       <div className={Styles.container}>
-        {userProfile ? (
+        {userProfile && (
           <Link to={`/profile/${userProfile.userID}`}>
             <div className={Styles.profileContainer}>
               <div className={Styles.imageContainer}>
@@ -35,28 +69,34 @@ const Sidebar = () => {
               </div>
             </div>
           </Link>
-        ) : null}
+        )}
         {userProfile && (
           <div className={Styles.stats}>
-            <div className={Styles.statContainer}>
-              <div className={Styles.stat}>
-                <p className={Styles.number}>{userProfile.following.length}</p>
+            <div onClick={handleFollowers} data-type="following" className={Styles.statContainer}>
+              <div data-type="following" className={Styles.stat}>
+                <p data-type="following" className={Styles.number}>
+                  {userProfile.following.length}
+                </p>
               </div>
-              <p>Following</p>
+              <p data-type="following">Following</p>
             </div>
-            <div className={Styles.statContainer}>
-              <div className={Styles.stat}>
-                <p className={Styles.number}>{userProfile.followers.length}</p>
+            <div onClick={handleFollowers} data-type="followers" className={Styles.statContainer}>
+              <div data-type="followers" className={Styles.stat}>
+                <p data-type="followers" className={Styles.number}>
+                  {userProfile.followers.length}
+                </p>
               </div>
-              <p>Followers</p>
+              <p data-type="followers">Followers</p>
             </div>
-            <div className={Styles.statContainer}>
-              <div className={Styles.stat}>
-                <p className={Styles.number}>{userProfile.postsCounter}</p>
+            <Link className={Styles.postsLink} to={`/profile/${userProfile.userID}`}>
+              <div className={Styles.statContainer}>
+                <div className={Styles.stat}>
+                  <p className={Styles.number}>{userProfile.postsCounter}</p>
+                </div>
+                <p>Posts</p>
               </div>
-              <p>Posts</p>
-            </div>
-            <div className={Styles.statContainer}>
+            </Link>
+            <div onClick={getModal} className={Styles.statContainer}>
               <div className={Styles.stat}>
                 <IoAddCircleOutline />
               </div>

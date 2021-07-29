@@ -100,6 +100,14 @@
   transform: translateY(-3px);
 }
 
+.postsLink {
+  transition: color 0.25s;
+}
+
+.stats:hover .postsLink {
+  color: var(--primary-background-color);
+}
+
 .statContainer {
   display: flex;
   flex-direction: column;

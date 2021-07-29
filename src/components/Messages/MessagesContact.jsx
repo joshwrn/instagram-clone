@@ -22,7 +22,6 @@ const MessagesContact = ({
 
   const getTime = () => {
     const currentTime = Date.now();
-    console.log(time, currentTime);
     const converted = convertTime(time, currentTime);
     setAddTime(converted);
   };

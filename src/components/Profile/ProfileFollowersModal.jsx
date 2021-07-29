@@ -9,16 +9,7 @@ const ProfileFollowers = ({
   currentTab,
   setCurrentTab,
   currentUser,
-  getUserObject,
 }) => {
-  // const [followers, setFollowers] = useState([]);
-  // const [following, setFollowing] = useState([]);
-
-  //   useEffect(() => {
-  //     setFollowing(currentProfile?.following);
-  //     setFollowers(currentProfile?.followers);
-  //   }, [currentProfile]);
-
   const handleSwitch = (e) => {
     e.preventDefault();
     const choice = e.target.getAttribute('data-type');
@@ -36,7 +27,6 @@ const ProfileFollowers = ({
           item={item}
           Styles={Styles}
           currentUser={currentUser}
-          getUserObject={getUserObject}
         />
       );
     });
@@ -51,7 +41,6 @@ const ProfileFollowers = ({
           item={item}
           Styles={Styles}
           currentUser={currentUser}
-          getUserObject={getUserObject}
         />
       );
     });

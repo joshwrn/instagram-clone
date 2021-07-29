@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__sidebar.module.css';
 import ProfileFollowersModal from './ProfileFollowersModal';
 
-const ProfileSidebar = ({ currentProfile, loaded, currentUser, getUserObject }) => {
+const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
   const [openFollowers, setOpenFollowers] = useState(false);
   const [currentTab, setCurrentTab] = useState();
 
@@ -52,7 +52,6 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser, getUserObject }) 
             currentTab={currentTab}
             setCurrentTab={setCurrentTab}
             currentUser={currentUser}
-            getUserObject={getUserObject}
           />
           <div className={Styles.userInfo}>
             <div

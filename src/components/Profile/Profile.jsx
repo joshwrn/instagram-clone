@@ -180,14 +180,7 @@ const Profile = (props) => {
                 />
                 {actionButton}
               </div>
-              {renderModal && (
-                <ProfileUpload
-                  setNewPost={setNewPost}
-                  currentUser={currentUser}
-                  currentProfile={currentProfile}
-                  getModal={getModal}
-                />
-              )}
+              {renderModal && <ProfileUpload setNewPost={setNewPost} getModal={getModal} />}
             </div>
           </div>
         </div>

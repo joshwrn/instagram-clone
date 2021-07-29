@@ -128,7 +128,7 @@ export function AuthProvider({ children }) {
               .set({
                 messages: [
                   {
-                    message: `Hi There, Thanks for signing up and testing my website. Please look around and test all the features you can. You can reply to this message if you'd like, but I might not see it. So, to get in touch please email me at joshnwarren@gmail.com.`,
+                    message: `Hi There, Thanks for signing up and testing my project. Please look around and test all the features you can. You can reply to this message if you'd like, but I might not see it. So, to get in touch please email me at joshnwarren@gmail.com.`,
                     time: currentTime,
                     user: 'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
                   },
