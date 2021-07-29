@@ -80,21 +80,60 @@
 .stats {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin: 16px 0 0 0em;
+  width: 70%;
+  margin: 20px 0 0 0px;
+  align-items: center;
+  gap: 20px;
+  height: 45px;
+  box-shadow: 0px 5px 20px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  /* border: var(--secondary-border); */
+  transition: box-shadow 0.5s, background-color 0.5s, color 0.25s, transform 0.5s;
+  border: var(--primary-border);
+  color: var(--primary-font-color);
+}
+
+.stats:hover {
+  box-shadow: 0px 5px 20px 1px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-font-color);
+  color: var(--primary-background-color);
+  transform: translateY(-3px);
+}
+
+.statContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 .stat {
-  margin: 0 0.5em;
-  font-size: 0.85rem;
-  color: var(--secondary-font-color);
+  display: flex;
+  font-size: 14px;
+  gap: 5px;
+  cursor: pointer;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* .stat path {
+  stroke-width: 40px;
+} */
+
+.statContainer {
   cursor: pointer;
 }
 
+.statContainer > p {
+  font-size: 11px;
+  color: var(--secondary-font-color);
+}
+
 .number {
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: var(--primary-font-color);
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
 }
 
 /*+ links */

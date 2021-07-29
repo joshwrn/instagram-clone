@@ -5,6 +5,7 @@ import Loading from '../../styles/post/post__loading.module.css';
 import { Link } from 'react-router-dom';
 import PostSidebar from './PostSidebar';
 import { useAuth } from '../../contexts/AuthContext';
+import ScrollToTop from '../../functions/ScrollToTop';
 
 const Post = ({ match }) => {
   const [currentPost, setCurrentPost] = useState();
@@ -78,6 +79,7 @@ const Post = ({ match }) => {
   //+ if finished loading
   postState = (
     <div className={Styles.post}>
+      <ScrollToTop />
       <div className={Styles.container}>
         <div
           className={Loading.image + ' ' + 'gradientLoad'}

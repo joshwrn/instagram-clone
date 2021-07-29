@@ -267,7 +267,12 @@
   }
 
   .messageForm {
-    width: 65%;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .send {
+    padding-right: 20px;
   }
 
   .input {

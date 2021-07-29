@@ -95,6 +95,10 @@ input::placeholder:focus {
   font-size: 1.45rem !important;
 }
 
+.add {
+  display: none;
+}
+
 .home {
   transform: translateY(1px);
   font-size: 1.5rem !important;
@@ -176,6 +180,8 @@ input::placeholder:focus {
 
   .inner {
     justify-content: center;
+    padding: 0;
+    width: 100%;
   }
 
   .icons {
@@ -184,7 +190,7 @@ input::placeholder:focus {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 10%;
+    padding: 0 25px;
   }
   .notiContainer {
     display: initial;
@@ -201,6 +207,16 @@ input::placeholder:focus {
   .icon {
     transform: scale(1.11);
   }
+
+  .add {
+    display: initial;
+    font-size: 1.88rem !important;
+    transform: translateY(-2px);
+  }
+  .add path {
+    stroke-width: 20px;
+  }
+
   @supports (padding: max(0px)) {
     .nav {
       padding-top: 12px;

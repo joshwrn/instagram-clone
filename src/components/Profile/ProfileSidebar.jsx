@@ -78,8 +78,8 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser, getUserObject }) 
           </div>
         </div>
         <div className={Styles.bio}>
-          <h3 className={Styles.header}>Bio</h3>
-          <p className={Styles.text}>{currentProfile.bio}</p>
+          <h3 className={Styles.bioHeader}>Bio</h3>
+          <p className={Styles.bioText}>{currentProfile.bio}</p>
         </div>
       </div>
     );

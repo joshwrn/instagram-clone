@@ -3,6 +3,7 @@ import Styles from '../../styles/home/home__sidebar.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import LoginButton from './LoginButton.jsx';
+import { IoAddCircleOutline } from 'react-icons/io5';
 
 const Sidebar = () => {
   const { userProfile } = useAuth();
@@ -35,27 +36,35 @@ const Sidebar = () => {
             </div>
           </Link>
         ) : null}
-        <LoginButton />
-        {/* {userProfile && (
-          <div id="home__sidebar__stats">
-            <p className="home__sidebar__stat">
-              <span className="stat__number">
-                {userProfile.followersCounter}
-              </span>{' '}
-              Followers
-            </p>
-            <p className="home__sidebar__stat">
-              <span className="stat__number">
-                {userProfile.followingCounter}
-              </span>{' '}
-              Following
-            </p>
+        {userProfile && (
+          <div className={Styles.stats}>
+            <div className={Styles.statContainer}>
+              <div className={Styles.stat}>
+                <p className={Styles.number}>{userProfile.following.length}</p>
+              </div>
+              <p>Following</p>
+            </div>
+            <div className={Styles.statContainer}>
+              <div className={Styles.stat}>
+                <p className={Styles.number}>{userProfile.followers.length}</p>
+              </div>
+              <p>Followers</p>
+            </div>
+            <div className={Styles.statContainer}>
+              <div className={Styles.stat}>
+                <p className={Styles.number}>{userProfile.postsCounter}</p>
+              </div>
+              <p>Posts</p>
+            </div>
+            <div className={Styles.statContainer}>
+              <div className={Styles.stat}>
+                <IoAddCircleOutline />
+              </div>
+              <p>New Post</p>
+            </div>
           </div>
-        )} */}
-
-        <div className={Styles.footer}>
-          <p className={Styles.copyright}>© 2021 COPYRIGHT GOES HERE</p>
-        </div>
+        )}
+        <LoginButton />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   IoChatbubbleOutline,
   IoHeartOutline,
   IoPersonOutline,
+  IoAddCircleOutline,
 } from 'react-icons/io5';
 import logo from '../../assets/img/logo/logo-2.png';
 import NavUserMenu from './NavUserMenu';
@@ -122,6 +123,7 @@ const Nav = () => {
           <NavLink exact to={userProfile ? '/messages' : '/sign-up'}>
             <IoChatbubbleOutline className={Styles.icon + ' ' + Styles.chat} />
           </NavLink>
+          <IoAddCircleOutline className={Styles.icon + ' ' + Styles.add} />
           {/*//+ notifications */}
           <div onClick={handleNoti} className={Styles.notiContainer} ref={notiRef}>
             <IoHeartOutline className={Styles.icon + ' ' + Styles.heart} />

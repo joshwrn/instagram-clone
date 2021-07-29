@@ -296,4 +296,12 @@
     border: none;
     box-shadow: none;
   }
+
+  .input > .inputBoxDisplay {
+    font-size: 16px;
+  }
+
+  .bioInput {
+    font-size: 16px;
+  }
 }

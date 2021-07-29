@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
 import { useHistory } from 'react-router';
+import ScrollToTop from '../../functions/ScrollToTop';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
@@ -121,6 +122,7 @@ const Profile = (props) => {
   return (
     <>
       <div className={Styles.profile}>
+        <ScrollToTop />
         {/*//+ banner */}
         <div className={Styles.header}>
           <div
