@@ -6,9 +6,7 @@ const MessagesCreateMenuItem = ({
   contactID,
   setMessages,
   messages,
-  setCurrentMessage,
   handleCreate,
-  setCurrentIndex,
   getCurrentMessage,
 }) => {
   const [current, setCurrent] = useState(null);

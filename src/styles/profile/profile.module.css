@@ -77,6 +77,8 @@
   filter: blur(16px);
   opacity: 0.75;
   z-index: -3;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
 }
 
 .topRight {

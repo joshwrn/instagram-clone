@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Styles from '../../styles/messages/message__item.module.css';
 import { Link } from 'react-router-dom';
 
-const MessageItem = ({ user, message, time, userProfile, currentProfile, thread, index }) => {
+const MessageItem = ({ user, message, userProfile, currentProfile, thread, index }) => {
   const [sent, setSent] = useState(false);
   const [group, setGroup] = useState('false');
 

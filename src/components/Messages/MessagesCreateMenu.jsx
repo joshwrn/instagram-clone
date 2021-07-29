@@ -9,7 +9,6 @@ const MessagesCreateMenu = ({
   setMessages,
   messages,
   setCurrentMessage,
-  currentMessage,
   setCurrentIndex,
   getCurrentMessage,
 }) => {
