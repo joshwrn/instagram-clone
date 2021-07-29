@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   IoHomeOutline,
@@ -14,6 +14,7 @@ import Styles from '../../styles/nav/nav.module.css';
 import Notifications from '../Notifications/Notifications';
 import NavSearch from './NavSearch';
 import { light, dark } from '../../functions/theme';
+import debounce from '../../functions/debounce';
 
 const Nav = () => {
   const { currentUser, logout, userProfile } = useAuth();
@@ -23,6 +24,7 @@ const Nav = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [currentNotis, setCurrentNotis] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   const handleUserIcon = (e) => {
     e.preventDefault();
@@ -74,14 +76,19 @@ const Nav = () => {
   }, [userProfile]);
 
   const handleSearch = (e) => {
-    setSearchInput(e.target.value);
+    setSearchValue(e.target.value);
+    debounceChange(e.target.value);
   };
+
+  const debounceChange = useCallback(
+    debounce((nextValue) => setSearchInput(nextValue), 500),
+    []
+  );
 
   const searchRef = useRef();
 
   const handleSearchModal = (e) => {
     e.preventDefault();
-
     !openSearch && setOpenSearch(true);
   };
 
@@ -100,7 +107,7 @@ const Nav = () => {
             <input
               ref={searchRef}
               onChange={handleSearch}
-              value={searchInput}
+              value={searchValue}
               className={Styles.searchInput}
               onClick={handleSearchModal}
               type="text"

@@ -204,6 +204,10 @@ input::placeholder:focus {
     height: 7px;
   }
 
+  .icon path {
+    stroke-width: 30px;
+  }
+
   .icon {
     transform: scale(1.11);
   }
@@ -214,7 +218,7 @@ input::placeholder:focus {
     transform: translateY(-2px);
   }
   .add path {
-    stroke-width: 20px;
+    stroke-width: 25px;
   }
 
   @supports (padding: max(0px)) {

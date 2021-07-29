@@ -1,8 +1,14 @@
+.feedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .feed {
   display: grid;
   grid-template-columns: repeat(auto-fill, 256px);
   grid-template-rows: repeat(auto-fill, 1fr);
-  padding: 0 0 400px 24px;
+  padding: 0 0 100px 24px;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -44,6 +50,24 @@
   border-radius: 4px;
   box-sizing: border-box;
   font-weight: bold;
+  transition: box-shadow 0.25s;
+  border: var(--secondary-border);
+}
+
+.loaderContainer {
+  margin-bottom: 100px;
+}
+
+.endFeed {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-background-color);
+  color: var(--secondary-font-color);
+  padding: 0 60px;
+  height: 60px;
+  border-radius: 4px;
+  box-sizing: border-box;
+
   transition: box-shadow 0.25s;
   border: var(--secondary-border);
 }

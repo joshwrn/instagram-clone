@@ -25,7 +25,7 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
     if (searchInput !== '') {
       setLoading(true);
       let temp = [];
-      const userRef = await firestore
+      await firestore
         .collection('users')
         .where('searchName', '>=', searchInput.toLowerCase())
         .where('searchName', '<=', searchInput.toLowerCase() + '\uf8ff')
