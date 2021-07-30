@@ -13,21 +13,23 @@
 
 .displayName {
   color: var(--primary-font-color);
+  font-size: 28px;
 }
 
 .username {
   color: var(--secondary-font-color);
+  font-size: 20px;
 }
 
 .postsContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding: 16px 0 0 0;
 }
 
 .posts {
   color: var(--secondary-font-color);
-  font-size: 1rem;
+  font-size: 16px;
   margin-left: 0.5rem;
   font-weight: bold;
 }
@@ -36,8 +38,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  border-top: 1px solid rgba(124, 124, 124, 0.281);
-  border-bottom: 1px solid rgba(124, 124, 124, 0.281);
+  border-top: 1px solid rgba(124, 124, 124, 0.2);
+  border-bottom: 1px solid rgba(124, 124, 124, 0.2);
   padding: 16px 0;
   margin: 16px 0;
   font-weight: bold;
@@ -72,6 +74,7 @@
 
 .bioText {
   font-size: 14px;
+  line-height: 18px;
   color: var(--primary-font-color);
 }
 

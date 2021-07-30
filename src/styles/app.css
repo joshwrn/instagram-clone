@@ -53,13 +53,21 @@ button:focus {
 }
 
 html {
-  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   color: var(--primary-font-color);
   background-color: var(--primary-background-color);
   font-size: 16px;
+}
+
+* {
+  font-family: Helvetica, sans-serif;
+}
+
+::selection {
+  background-color: var(--primary-font-color);
+  color: var(--primary-background-color);
 }
 
 @media screen and (max-width: 850px) {

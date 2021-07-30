@@ -3,10 +3,12 @@ import { IoHeartOutline } from 'react-icons/io5';
 import Styles from '../../styles/post/post__sidebar.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
+import { useHistory } from 'react-router';
 
-const HomeCardLike = ({ likes, post, userID, history, setLikeState }) => {
+const HomeCardLike = ({ post, userID, setLikeState }) => {
   const [liked, setLiked] = useState(false);
-  const { userProfile, getUserProfile } = useAuth();
+  const { userProfile } = useAuth();
+  let history = useHistory();
 
   useEffect(() => {
     updateLikes();

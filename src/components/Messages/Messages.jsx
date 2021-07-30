@@ -34,6 +34,20 @@ const Messages = ({ match }) => {
   const getCurrentMessage = (num) => {
     setCurrentIndex(num);
     setCurrentMessage(messages[num]);
+    listen(userProfile.userID, messages[num].user);
+  };
+
+  const listen = async (user, message) => {
+    console.log('listen');
+    firestore
+      .collection('users')
+      .doc(user)
+      .collection('messages')
+      .doc(message)
+      .onSnapshot((doc) => {
+        setCurrentMessage(doc.data());
+        scrollToBottom('smooth');
+      });
   };
 
   const scrollToBottom = (type) => {
@@ -49,14 +63,14 @@ const Messages = ({ match }) => {
 
   useEffect(() => {
     getInitial();
-    return listen();
   }, [userProfile]);
 
   const getInitial = async () => {
+    if (!userProfile) return;
     let temp = [];
     const arr = await firestore
       .collection('users')
-      .doc(userProfile?.userID)
+      .doc(userProfile.userID)
       .collection('messages')
       .orderBy('time', 'desc')
       .limit(10)
@@ -69,24 +83,6 @@ const Messages = ({ match }) => {
     setLastContact(arr.docs[arr.docs.length - 1]);
 
     setMessages(temp);
-  };
-
-  const listen = async () => {
-    if (messages.length === 0) return;
-    firestore
-      .collection('users')
-      .doc(userProfile?.userID)
-      .collection('messages')
-      .orderBy('time', 'desc')
-      .limit(messages.length)
-      .onSnapshot((querySnapshot) => {
-        let temp = [];
-        querySnapshot.forEach((doc) => {
-          temp.push(doc.data());
-        });
-        setMessages(temp);
-        scrollToBottom('smooth');
-      });
   };
 
   return (
@@ -139,6 +135,7 @@ const Messages = ({ match }) => {
           messages={messages}
           setMessages={setMessages}
           scrollToBottom={scrollToBottom}
+          getCurrentMessage={getCurrentMessage}
         />
       </div>
     </div>

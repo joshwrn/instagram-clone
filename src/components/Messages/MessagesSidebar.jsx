@@ -67,7 +67,7 @@ const MessagesSidebar = ({
       .collection('messages')
       .orderBy('time', 'desc')
       .startAfter(lastContact)
-      .limit(10)
+      .limit(1)
       .get();
 
     arr.forEach((doc) => {
@@ -75,6 +75,7 @@ const MessagesSidebar = ({
     });
     setLastContact(arr.docs[arr.docs.length - 1]);
     const combine = [...messages, ...temp];
+
     setMessages(combine);
   };
 

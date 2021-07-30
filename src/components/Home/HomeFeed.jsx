@@ -18,8 +18,16 @@ const HomeFeed = ({ newPost }) => {
   useEffect(() => {
     if (userProfile) {
       getFollowed();
+    } else {
+      getNone();
     }
   }, [userProfile]);
+
+  const getNone = async () => {
+    const sort = await firestoreFunction('none');
+    //add to stored posts
+    setStored(sort);
+  };
 
   //+ on upload
   useEffect(async () => {
@@ -123,15 +131,31 @@ const HomeFeed = ({ newPost }) => {
         .collection('users')
         .where('followers', 'array-contains', userProfile.userID)
         .orderBy('lastPostDate', 'desc')
-        .limit(1)
+        .limit(5)
         .get();
     } else if (type === 'infinite') {
+      // if no user is signed in
+      if (!userProfile) {
+        setIsFetching(false);
+        return setNoPosts(true);
+      }
       userRef = await firestore
         .collection('users')
         .where('followers', 'array-contains', userProfile.userID)
         .orderBy('lastPostDate', 'desc')
         .startAfter(lastUser)
-        .limit(1)
+        .limit(5)
+        .get();
+    } else if (type === 'none') {
+      userRef = await firestore
+        .collection('users')
+        .where('followers', 'array-contains-any', [
+          'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
+          'Jz9eufQ3zGUHVS4QnJrLVOHmRQ72',
+          'rivUGxnKCrZD6cwBOFzwyClaQZP2',
+        ])
+        .orderBy('lastPostDate', 'desc')
+        .limit(5)
         .get();
     }
 

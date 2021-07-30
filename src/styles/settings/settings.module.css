@@ -17,7 +17,7 @@
   display: grid;
   flex-direction: column;
   align-items: center;
-  grid-template-rows: 1fr 8fr 2fr;
+  grid-template-rows: 1fr 8fr 3fr;
   box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.103);
   overflow: hidden;
   border-radius: 16px;
@@ -239,25 +239,31 @@
 }
 
 .textBtn {
-  box-shadow: 0px 4px 8px 1px var(--save-shadow-color);
-  background-color: var(--save-color);
-  color: white;
+  background-color: var(--primary-font-color);
+  color: var(--primary-background-color);
   padding: 0 32px;
-  height: 36px;
-  font-size: 16px;
-  border-radius: 16px;
+  height: 40px;
+  font-size: 17px;
+  border-radius: 20px;
   cursor: pointer;
   box-sizing: border-box;
   font-weight: bold;
-  transition: box-shadow 0.25s;
-  border: var(--primary-border);
+  border: var(--secondary-border);
+  justify-self: center;
+  transition: box-shadow 0.25s, transform 0.25s;
   margin-top: 16px;
+}
+
+.textBtn:hover {
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .profileBtnContainer {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   height: 100%;
 }
 

@@ -122,16 +122,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
           <button
             onClick={postFile !== null ? handleSubmit : doNothing}
             type="submit"
-            className={Styles.postButton}
-            style={
-              postFile === null
-                ? { backgroundColor: 'var(--primary-background-color)' }
-                : {
-                    backgroundColor: 'var(--save-color)',
-                    color: 'white',
-                    boxShadow: '0px 0.25em 0.5em 1px var(--save-shadow-color)',
-                  }
-            }
+            className={postFile === null ? Styles.postButton : Styles.saveBtn}
           >
             Post
           </button>

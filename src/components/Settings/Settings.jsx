@@ -190,18 +190,18 @@ const Settings = () => {
                   onChange={handleBioChange}
                 />
               </div>
-              {uploading ? (
-                <div class="loader"></div>
-              ) : (
-                <button onClick={handleTextUpload} type="submit" className={Styles.textBtn}>
-                  Save
-                </button>
-              )}
             </form>
           </div>
         </div>
 
-        <div className={Styles.profileButtonContainer}>
+        <div className={Styles.profileBtnContainer}>
+          {uploading ? (
+            <div class="loader"></div>
+          ) : (
+            <button onClick={handleTextUpload} type="submit" className={Styles.textBtn}>
+              Save
+            </button>
+          )}
           <Link className={Styles.profileLink} to={`/profile/${userProfile && userProfile.userID}`}>
             <button className={Styles.profileBtn}>View Profile</button>
           </Link>
