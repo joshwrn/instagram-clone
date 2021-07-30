@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__upload.module.css';
-import { IoCloseOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
+import { IoCloseOutline, IoCloudUploadOutline } from 'react-icons/io5';
 import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage.js';
 import { useAuth } from '../../contexts/AuthContext';

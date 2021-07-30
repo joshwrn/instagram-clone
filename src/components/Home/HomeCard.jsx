@@ -19,6 +19,19 @@ const Card = ({ post }) => {
     setLikeState(likes.length);
   }, [post]);
 
+  const handleShare = () => {
+    copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
+  };
+
+  const copyToClipboard = (content) => {
+    const el = document.createElement('textarea');
+    el.value = content;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
   return (
     <>
       {post && user ? (
@@ -50,7 +63,7 @@ const Card = ({ post }) => {
                   <IoChatbubbleOutline className={Styles.icon} />
                   <IoShareOutline className={Styles.icon} />
                 </div>
-                <IoShareSocialOutline className={Styles.icon} />
+                <IoShareSocialOutline className={Styles.icon} onClick={handleShare} />
               </div>
               <Link className={Styles.imageLink} to={`/Post/${userID}/${post.id}`}>
                 <p className={Styles.likes}>{likeState} likes</p>

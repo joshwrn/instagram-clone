@@ -102,7 +102,6 @@ const Sidebar = ({ setNewPost }) => {
             <div onClick={getModal} className={Styles.statContainer}>
               <div className={Styles.stat}>
                 <IoAddCircleOutline />
-                <p className={Styles.number}>{userProfile.postsCounter}</p>
               </div>
               <p>New Post</p>
             </div>

@@ -25,20 +25,6 @@ const MessageArea = ({
   // const [isFetching, setIsFetching] = useIntersect(topRef);
 
   useEffect(() => {
-    if (!match) {
-      if (!currentMessage) {
-        setCurrentMessage(messages[0]);
-        setCurrentIndex(0);
-      } else if (currentMessage) {
-        setCurrentMessage(messages[currentIndex]);
-      }
-      if (messages[0]?.messages?.length === 0) {
-        getCurrentMessage(0);
-      }
-    }
-  }, [messages]);
-
-  useEffect(() => {
     console.log('fetching');
   }, [isFetching]);
 

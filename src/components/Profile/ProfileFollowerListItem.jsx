@@ -10,6 +10,7 @@ const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, cu
   const getUser = async () => {
     const userRef = firestore.collection('users').doc(item);
     const thisUser = await userRef.get();
+    console.log(thisUser.data());
     setCurrent(thisUser.data());
   };
   useEffect(() => {

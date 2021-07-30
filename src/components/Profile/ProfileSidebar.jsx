@@ -10,6 +10,7 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
   const handleFollowers = (e) => {
     e.preventDefault();
     const choice = e.target.getAttribute('data-type');
+    console.log(choice);
     setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
     stopScroll(openFollowers);

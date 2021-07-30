@@ -81,7 +81,7 @@ input::placeholder:focus {
 /* nav icons */
 .icons {
   display: flex;
-  gap: 0.95em;
+  gap: 24px;
   justify-content: space-between;
   align-items: center;
 }

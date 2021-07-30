@@ -63,7 +63,6 @@ const MessageInputBox = ({ currentMessage, currentProfile, setCurrentIndex, Styl
 
         await Promise.all([addUserThread(), addContactThread()]);
         setInputBox('');
-        setCurrentIndex(0);
       }
     }
   };

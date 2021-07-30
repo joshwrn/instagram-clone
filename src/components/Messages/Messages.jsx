@@ -31,24 +31,41 @@ const Messages = ({ match }) => {
     }
   }, [messages, match]);
 
+  useEffect(() => {
+    if (!match) {
+      if (!currentMessage && messages && userProfile) {
+        console.log('wtf');
+        setCurrentMessage(messages[0]);
+        setCurrentIndex(0);
+        getCurrentMessage(0);
+      } else if (currentMessage) {
+        setCurrentMessage(messages[currentIndex]);
+      }
+      if (messages[0]?.messages?.length === 0) {
+        getCurrentMessage(0);
+      }
+    }
+  }, [messages]);
+
   const getCurrentMessage = (num) => {
     setCurrentIndex(num);
     setCurrentMessage(messages[num]);
-    listen(userProfile.userID, messages[num].user);
   };
 
-  const listen = async (user, message) => {
-    console.log('listen');
-    firestore
+  useEffect(() => {
+    var unsubscribe = firestore
       .collection('users')
-      .doc(user)
+      .doc(userProfile?.userID)
       .collection('messages')
-      .doc(message)
+      .doc(messages[currentIndex]?.user)
       .onSnapshot((doc) => {
         setCurrentMessage(doc.data());
         scrollToBottom('smooth');
       });
-  };
+    return () => {
+      unsubscribe();
+    };
+  }, [currentIndex]);
 
   const scrollToBottom = (type) => {
     type === 'smooth'

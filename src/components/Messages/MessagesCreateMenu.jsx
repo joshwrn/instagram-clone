@@ -90,6 +90,7 @@ const MessagesCreateMenu = ({
                 handleCreate={handleCreate}
                 setCurrentIndex={setCurrentIndex}
                 getCurrentMessage={getCurrentMessage}
+                key={item}
               />
             );
           })}

@@ -108,7 +108,7 @@ const ProfileFeed = ({
       .collection('posts')
       .orderBy('date', 'desc')
       .startAfter(lastPost)
-      .limit(6)
+      .limit(8)
       .get();
     await snap.forEach((doc) => {
       doc.complete = false;
@@ -131,7 +131,7 @@ const ProfileFeed = ({
       .doc(match.params.uid)
       .collection('posts')
       .orderBy('date', 'desc')
-      .limit(6)
+      .limit(8)
       .get();
     await snap.forEach((doc) => {
       doc.complete = false;

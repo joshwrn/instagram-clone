@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { signIn, firestore } from '../../services/firebase';
 import Styles from '../../styles/sign-up/sign-up.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
+import debounce from '../../functions/debounce';
 
 const SignUp = () => {
   const { login, currentUser, firebaseRegister, anon } = useAuth();
   const [userInput, setUserInput] = useState('');
+  const [userValue, setUserValue] = useState('');
   const [nameTaken, setNameTaken] = useState(false);
 
   const handleChange = (e) => {
@@ -18,6 +20,16 @@ const SignUp = () => {
     const lower = newVal.toLowerCase();
     setUserInput(lower);
   };
+
+  const handleValue = (e) => {
+    setUserValue(e.target.value);
+    debounceChange(e);
+  };
+
+  const debounceChange = useCallback(
+    debounce((nextValue) => handleChange(nextValue), 500),
+    []
+  );
 
   useEffect(() => {
     let foundName;
@@ -98,13 +110,13 @@ const SignUp = () => {
                   </div>
                   <input
                     required
-                    onChange={handleChange}
+                    onChange={handleValue}
                     className={Styles.inputBox}
                     type="text"
                     placeholder="username"
                     maxLength="15"
                     minLength="3"
-                    value={userInput}
+                    value={userValue}
                   />
                 </div>
                 <div className={Styles.helperDiv}>{nameHelper}</div>

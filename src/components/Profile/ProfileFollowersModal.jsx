@@ -26,11 +26,13 @@ const ProfileFollowers = ({
     if (!currentProfile) return;
     const { followers, following } = currentProfile;
     let current;
+    console.log(currentTab);
     currentTab === 'following' ? (current = following) : (current = followers);
 
     const reverse = current.slice(0).reverse();
     const slice = reverse.slice(0, 20);
-    setList(slice);
+    console.log(slice);
+    setList([...slice]);
   }, [currentTab]);
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const ProfileFollowers = ({
           item={item}
           Styles={Styles}
           currentUser={currentUser}
+          key={item}
         />
       );
     });
@@ -100,6 +103,7 @@ const ProfileFollowers = ({
           item={item}
           Styles={Styles}
           currentUser={currentUser}
+          key={item}
         />
       );
     });
