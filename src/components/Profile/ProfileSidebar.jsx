@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Styles from '../../styles/profile/profile__sidebar.module.css';
 import ProfileFollowersModal from './ProfileFollowersModal';
+import stopScroll from '../../functions/stopScroll';
 
 const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
   const [openFollowers, setOpenFollowers] = useState(false);
@@ -11,6 +12,7 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
     const choice = e.target.getAttribute('data-type');
     setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
+    stopScroll(openFollowers);
   };
 
   let sidebar;
@@ -44,15 +46,17 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
             <p className={Styles.posts}>Posts</p>
           </div>
           {/*//+ followers / following */}
-          <ProfileFollowersModal
-            currentProfile={currentProfile}
-            handleFollowers={handleFollowers}
-            setOpenFollowers={setOpenFollowers}
-            openFollowers={openFollowers}
-            currentTab={currentTab}
-            setCurrentTab={setCurrentTab}
-            currentUser={currentUser}
-          />
+          {openFollowers && (
+            <ProfileFollowersModal
+              currentProfile={currentProfile}
+              handleFollowers={handleFollowers}
+              setOpenFollowers={setOpenFollowers}
+              openFollowers={openFollowers}
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
+              currentUser={currentUser}
+            />
+          )}
           <div className={Styles.userInfo}>
             <div
               onClick={handleFollowers}

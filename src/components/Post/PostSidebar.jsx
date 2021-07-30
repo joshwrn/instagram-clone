@@ -30,7 +30,6 @@ const PostSidebar = ({
   useEffect(() => {
     if (currentPost) {
       const getCur = convertTime(currentPost.date, Date.now());
-      console.log(currentPost, getCur);
       setAddTime(getCur);
     }
   }, [currentPost]);

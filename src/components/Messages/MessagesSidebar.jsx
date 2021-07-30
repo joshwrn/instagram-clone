@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MessagesContact from './MessagesContact';
 import { IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
 import { useAuth } from '../../contexts/AuthContext';
+import { firestore } from '../../services/firebase';
+import { Link } from 'react-router-dom';
 
 const MessagesSidebar = ({
   Styles,
@@ -10,14 +12,70 @@ const MessagesSidebar = ({
   currentIndex,
   scrollToBottom,
   handleCreate,
+  setMessages,
+  lastContact,
+  setLastContact,
 }) => {
   const [sidebar, setSidebar] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
   const { userProfile } = useAuth();
+  const contactRef = useRef();
 
   //! MOBILE Sidebar
   const handleSidebar = () => {
     sidebar ? setSidebar(false) : setSidebar(true);
     scrollToBottom();
+  };
+
+  //+ scroll
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isFetching) {
+          console.log('yay');
+          setIsFetching(true);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+  }, [contactRef]);
+
+  useEffect(() => {
+    if (!isFetching) return;
+    getMore();
+  }, [isFetching]);
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [messages]);
+
+  const getMore = async () => {
+    console.log(lastContact);
+    if (!lastContact) return;
+    let temp = [];
+    const arr = await firestore
+      .collection('users')
+      .doc(userProfile?.userID)
+      .collection('messages')
+      .orderBy('time', 'desc')
+      .startAfter(lastContact)
+      .limit(10)
+      .get();
+
+    arr.forEach((doc) => {
+      temp.push(doc.data());
+    });
+    setLastContact(arr.docs[arr.docs.length - 1]);
+    const combine = [...messages, ...temp];
+    setMessages(combine);
   };
 
   return (
@@ -28,8 +86,10 @@ const MessagesSidebar = ({
             sidebar ? Styles.userAvatarContainer : `${Styles.userAvatarContainer} ${Styles.remove}`
           }
         >
-          <img className={Styles.userAvatar} src={userProfile?.profilePhoto} alt="avatar" />
-          <img className={Styles.userAvatarBlur} src={userProfile?.profilePhoto} alt="avatar" />
+          <Link to={`/profile/${userProfile?.userID}`}>
+            <img className={Styles.userAvatar} src={userProfile?.profilePhoto} alt="avatar" />
+            <img className={Styles.userAvatarBlur} src={userProfile?.profilePhoto} alt="avatar" />
+          </Link>
         </div>
         {sidebar ? null : (
           <div className={Styles.backArrowContainer}>
@@ -61,6 +121,7 @@ const MessagesSidebar = ({
             />
           );
         })}
+        <div ref={contactRef}></div>
       </div>
     </div>
   );

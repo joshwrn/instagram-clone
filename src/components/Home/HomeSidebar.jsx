@@ -6,6 +6,7 @@ import LoginButton from './LoginButton.jsx';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import ProfileFollowersModal from '../Profile/ProfileFollowersModal';
 import ProfileUpload from '../Profile/ProfileUpload';
+import stopScroll from '../../functions/stopScroll';
 
 const Sidebar = ({ setNewPost }) => {
   const { userProfile } = useAuth();
@@ -19,6 +20,7 @@ const Sidebar = ({ setNewPost }) => {
     const choice = e.target.getAttribute('data-type');
     setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
+    stopScroll(openFollowers);
   };
 
   const handleLoad = () => {
@@ -35,6 +37,7 @@ const Sidebar = ({ setNewPost }) => {
       setRenderModal(false);
       document.body.classList.remove('stop-scrolling');
     }
+    stopScroll(renderModal);
   };
 
   return (
@@ -99,6 +102,7 @@ const Sidebar = ({ setNewPost }) => {
             <div onClick={getModal} className={Styles.statContainer}>
               <div className={Styles.stat}>
                 <IoAddCircleOutline />
+                <p className={Styles.number}>{userProfile.postsCounter}</p>
               </div>
               <p>New Post</p>
             </div>

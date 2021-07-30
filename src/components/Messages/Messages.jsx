@@ -3,22 +3,21 @@ import React, { useEffect, useState, useRef } from 'react';
 import MessagesCreateMenu from './MessagesCreateMenu';
 import Styles from '../../styles/messages/messages.module.css';
 import { useAuth } from '../../contexts/AuthContext';
-
+import { firestore } from '../../services/firebase';
 import MessageArea from './MessageArea';
 import MessageInputBox from './MessageInputBox';
 import MessagesSidebar from './MessagesSidebar';
 
 const Messages = ({ match }) => {
-  const { userProfile } = useAuth();
-  const dummyRef = useRef(null);
-
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState();
   const [currentProfile, setCurrentProfile] = useState();
-
+  const [lastContact, setLastContact] = useState();
   const [currentIndex, setCurrentIndex] = useState();
-
   const [createModal, setCreateModal] = useState(false);
+  const { userProfile } = useAuth();
+  const dummyRef = useRef(null);
+  const contactRef = useRef();
 
   useEffect(() => {
     if (match && messages) {
@@ -48,6 +47,48 @@ const Messages = ({ match }) => {
     createModal ? setCreateModal(false) : setCreateModal(true);
   };
 
+  useEffect(() => {
+    getInitial();
+    return listen();
+  }, [userProfile]);
+
+  const getInitial = async () => {
+    let temp = [];
+    const arr = await firestore
+      .collection('users')
+      .doc(userProfile?.userID)
+      .collection('messages')
+      .orderBy('time', 'desc')
+      .limit(10)
+      .get();
+
+    arr.forEach((doc) => {
+      temp.push(doc.data());
+    });
+    console.log(arr.docs[arr.docs.length - 1]);
+    setLastContact(arr.docs[arr.docs.length - 1]);
+
+    setMessages(temp);
+  };
+
+  const listen = async () => {
+    if (messages.length === 0) return;
+    firestore
+      .collection('users')
+      .doc(userProfile?.userID)
+      .collection('messages')
+      .orderBy('time', 'desc')
+      .limit(messages.length)
+      .onSnapshot((querySnapshot) => {
+        let temp = [];
+        querySnapshot.forEach((doc) => {
+          temp.push(doc.data());
+        });
+        setMessages(temp);
+        scrollToBottom('smooth');
+      });
+  };
+
   return (
     <div className={Styles.messages}>
       {/*//+ create message menu */}
@@ -72,6 +113,10 @@ const Messages = ({ match }) => {
         getCurrentMessage={getCurrentMessage}
         scrollToBottom={scrollToBottom}
         handleCreate={handleCreate}
+        contactRef={contactRef}
+        setMessages={setMessages}
+        lastContact={lastContact}
+        setLastContact={setLastContact}
       />
       {/*//+ input */}
       <div className={Styles.main}>

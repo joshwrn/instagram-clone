@@ -49,6 +49,7 @@
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 /*+ list item */

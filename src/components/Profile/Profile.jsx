@@ -10,6 +10,7 @@ import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
 import { useHistory } from 'react-router';
 import ScrollToTop from '../../functions/ScrollToTop';
+import stopScroll from '../../functions/stopScroll';
 
 const Profile = (props) => {
   const [currentProfile, setCurrentProfile] = useState();
@@ -79,25 +80,15 @@ const Profile = (props) => {
   //+ avatar modal
   const getAvatarModal = (e) => {
     e.preventDefault();
-    if (avatarModal === false) {
-      setAvatarModal(true);
-      document.body.classList.add('stop-scrolling');
-    } else {
-      setAvatarModal(false);
-      document.body.classList.remove('stop-scrolling');
-    }
+    avatarModal ? setAvatarModal(false) : setAvatarModal(true);
+    stopScroll(avatarModal);
   };
 
   //+ new post modal
   const getModal = (e) => {
     e.preventDefault();
-    if (renderModal === false) {
-      setRenderModal(true);
-      document.body.classList.add('stop-scrolling');
-    } else {
-      setRenderModal(false);
-      document.body.classList.remove('stop-scrolling');
-    }
+    renderModal ? setRenderModal(false) : setRenderModal(true);
+    stopScroll(renderModal);
   };
 
   //+ new message link

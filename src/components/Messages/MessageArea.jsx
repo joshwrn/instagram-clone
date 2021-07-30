@@ -14,6 +14,7 @@ const MessageArea = ({
   currentIndex,
   getCurrentMessage,
   scrollToBottom,
+  setCurrentIndex,
   match,
 }) => {
   const [isFetching, setIsFetching] = useState(false);
@@ -21,15 +22,13 @@ const MessageArea = ({
   const dummyRef = useRef(null);
   const [thread, setThread] = useState([]);
   const { userProfile } = useAuth();
-
-  useEffect(() => {
-    return listen();
-  }, [userProfile]);
+  // const [isFetching, setIsFetching] = useIntersect(topRef);
 
   useEffect(() => {
     if (!match) {
       if (!currentMessage) {
         setCurrentMessage(messages[0]);
+        setCurrentIndex(0);
       } else if (currentMessage) {
         setCurrentMessage(messages[currentIndex]);
       }
@@ -38,6 +37,10 @@ const MessageArea = ({
       }
     }
   }, [messages]);
+
+  useEffect(() => {
+    console.log('fetching');
+  }, [isFetching]);
 
   //> Scroll functionality
 
@@ -58,6 +61,9 @@ const MessageArea = ({
     if (topRef.current) {
       observer.observe(topRef.current);
     }
+    return () => {
+      observer.disconnect();
+    };
   }, [topRef]);
 
   //+ GET more from storage
@@ -93,26 +99,6 @@ const MessageArea = ({
   useEffect(() => {
     getUserObject();
   }, [currentMessage]);
-
-  const listen = async () => {
-    firestore
-      .collection('users')
-      .doc(userProfile?.userID)
-      .collection('messages')
-      .orderBy('time', 'desc')
-      .onSnapshot((querySnapshot) => {
-        let temp = [];
-        querySnapshot.forEach((doc) => {
-          temp.push(doc.data());
-        });
-        setSnap(temp);
-        scrollToBottom('smooth');
-      });
-  };
-
-  const setSnap = (arr) => {
-    setMessages(arr);
-  };
 
   const getUserObject = () => {
     firestore
