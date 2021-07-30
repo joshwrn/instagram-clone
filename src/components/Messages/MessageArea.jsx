@@ -2,55 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import { firestore } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import MessageItem from './MessageItem';
+import useIntersect from '../../hooks/useIntersect';
 
-const MessageArea = ({
-  currentMessage,
-  setCurrentMessage,
-  currentProfile,
-  setCurrentProfile,
-  Styles,
-  messages,
-  setMessages,
-  currentIndex,
-  getCurrentMessage,
-  scrollToBottom,
-  setCurrentIndex,
-  match,
-}) => {
-  const [isFetching, setIsFetching] = useState(false);
+const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles }) => {
   const topRef = useRef();
   const dummyRef = useRef(null);
   const [thread, setThread] = useState([]);
   const { userProfile } = useAuth();
-  // const [isFetching, setIsFetching] = useIntersect(topRef);
-
-  useEffect(() => {
-    console.log('fetching');
-  }, [isFetching]);
-
-  //> Scroll functionality
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          console.log('interecting');
-          setIsFetching(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (topRef.current) {
-      observer.observe(topRef.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, [topRef]);
+  const [isFetching, setIsFetching] = useIntersect(topRef);
 
   //+ GET more from storage
   const createFeed = () => {

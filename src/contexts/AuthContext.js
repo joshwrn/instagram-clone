@@ -13,7 +13,6 @@ export function useAuth() {
 
 // Function that uses provider in return
 export function AuthProvider({ children }) {
-  console.log('auth provider');
   const [currentUser, setCurrentUser] = useState();
   const [userProfile, setUserProfile] = useState();
   const [attemptLogin, setAttemptLogin] = useState();
@@ -45,13 +44,11 @@ export function AuthProvider({ children }) {
   }, []);
 
   const getUserProfile = async () => {
-    console.log('getting user profile');
     const profileData = await firestore.collection('users').doc(currentUser.uid).get();
     setUserProfile(profileData.data());
   };
 
   useEffect(() => {
-    console.log('current user useeffect');
     if (currentUser) {
       getUserProfile();
     }

@@ -4,6 +4,7 @@ import { IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore } from '../../services/firebase';
 import { Link } from 'react-router-dom';
+import useIntersect from '../../hooks/useIntersect';
 
 const MessagesSidebar = ({
   Styles,
@@ -17,36 +18,16 @@ const MessagesSidebar = ({
   setLastContact,
 }) => {
   const [sidebar, setSidebar] = useState(true);
-  const [isFetching, setIsFetching] = useState(false);
+
   const { userProfile } = useAuth();
   const contactRef = useRef();
+  const [isFetching, setIsFetching] = useIntersect(contactRef);
 
   //! MOBILE Sidebar
   const handleSidebar = () => {
     sidebar ? setSidebar(false) : setSidebar(true);
     scrollToBottom();
   };
-
-  //+ scroll
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          console.log('yay');
-          setIsFetching(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
-    }
-  }, [contactRef]);
 
   useEffect(() => {
     if (!isFetching) return;
@@ -67,7 +48,7 @@ const MessagesSidebar = ({
       .collection('messages')
       .orderBy('time', 'desc')
       .startAfter(lastContact)
-      .limit(1)
+      .limit(5)
       .get();
 
     arr.forEach((doc) => {

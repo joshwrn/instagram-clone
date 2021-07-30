@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProfileCard from './ProfileCard';
 import Styles from '../../styles/profile/profile__feed.module.css';
+import useIntersect from '../../hooks/useIntersect';
 
 const ProfileFeed = ({
   firestore,
@@ -15,11 +16,12 @@ const ProfileFeed = ({
   const [feed, setFeed] = useState([]);
   const [loads, setLoads] = useState(0);
   const [lastPost, setLastPost] = useState();
-  const [isFetching, setIsFetching] = useState(false);
+
   const [endFeed, setEndFeed] = useState(false);
   const endFeedRef = useRef(false);
 
   const dummyRef = useRef();
+  const [isFetching, setIsFetching] = useIntersect(dummyRef, endFeedRef);
 
   // get the feed after a new post
   useEffect(() => {
@@ -46,26 +48,6 @@ const ProfileFeed = ({
   const handleLoad = () => {
     setLoads((prev) => prev + 1);
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          if (endFeedRef.current === false) {
-            setIsFetching(true);
-          }
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (dummyRef.current) {
-      observer.observe(dummyRef.current);
-    }
-  }, [dummyRef]);
 
   //# after feed updates set load to false
   useEffect(() => {

@@ -2,33 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import PostComment from './PostComment';
 import Styles from '../../styles/post/post__comment-section.module.css';
 import Loading from '../../styles/post/post__loading.module.css';
+import useIntersect from '../../hooks/useIntersect';
 
 const PostCommentSection = ({ loaded, currentPost }) => {
   const [comments, setComments] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const ref = useRef();
-  const bottomRef = useRef();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          setIsFetching(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref]);
+  const ref = useRef();
+  const [isFetching, setIsFetching] = useIntersect(ref);
 
   useEffect(() => {
     if (!isFetching) return;

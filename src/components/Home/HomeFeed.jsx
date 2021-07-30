@@ -3,16 +3,18 @@ import Card from './HomeCard.jsx';
 import Styles from '../../styles/home/home__feed.module.css';
 import { firestore } from '../../services/firebase.js';
 import { useAuth } from '../../contexts/AuthContext';
+import useIntersect from '../../hooks/useIntersect.js';
 
 const HomeFeed = ({ newPost }) => {
   const { userProfile } = useAuth();
   const [stored, setStored] = useState([]);
   const [feed, setFeed] = useState([]);
   const [lastUser, setLastUser] = useState();
-  const [isFetching, setIsFetching] = useState(false);
+
   const [noPosts, setNoPosts] = useState(false);
   const noPostsRef = useRef(false);
   const dummyRef = useRef();
+  const [isFetching, setIsFetching] = useIntersect(dummyRef, noPostsRef);
 
   // get followed users on load
   useEffect(() => {
@@ -49,28 +51,6 @@ const HomeFeed = ({ newPost }) => {
     setFeed(combine);
     window.scrollTo(0, 0);
   }, [newPost]);
-
-  //+ Scroll functionality
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          if (noPostsRef.current === false) {
-            setIsFetching(true);
-          }
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (dummyRef.current) {
-      observer.observe(dummyRef.current);
-    }
-  }, [dummyRef]);
 
   //# decide from local or firestore
   useEffect(() => {

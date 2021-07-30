@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Styles from '../../styles/messages/messages__create-menu.module.css';
 import MessagesCreateMenuItem from './MessagesCreateMenuItem';
 import { IoCloseOutline } from 'react-icons/io5';
+import useIntersect from '../../hooks/useIntersect';
 
 const MessagesCreateMenu = ({
   handleCreate,
@@ -13,26 +14,9 @@ const MessagesCreateMenu = ({
   getCurrentMessage,
 }) => {
   const [list, setList] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const ref = useRef();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          setIsFetching(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-  }, [ref]);
+  const ref = useRef();
+  const [isFetching, setIsFetching] = useIntersect(ref);
 
   useEffect(() => {
     if (!userProfile) return;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Styles from '../../styles/profile/profile__followers-modal.module.css';
 import { IoCloseOutline } from 'react-icons/io5';
 import ProfileFollowerListItem from './ProfileFollowerListItem';
-import stopScroll from '../../functions/stopScroll';
+import useIntersect from '../../hooks/useIntersect';
 
 const ProfileFollowers = ({
   openFollowers,
@@ -13,8 +13,9 @@ const ProfileFollowers = ({
   currentUser,
 }) => {
   const [list, setList] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
+
   const ref = useRef();
+  const [isFetching, setIsFetching] = useIntersect(ref);
 
   const handleSwitch = (e) => {
     e.preventDefault();
@@ -26,32 +27,12 @@ const ProfileFollowers = ({
     if (!currentProfile) return;
     const { followers, following } = currentProfile;
     let current;
-    console.log(currentTab);
     currentTab === 'following' ? (current = following) : (current = followers);
 
     const reverse = current.slice(0).reverse();
     const slice = reverse.slice(0, 20);
-    console.log(slice);
     setList([...slice]);
   }, [currentTab]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isFetching) {
-          setIsFetching(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-  }, [ref]);
 
   //+ GET more from storage
   const createMore = () => {
@@ -69,7 +50,6 @@ const ProfileFollowers = ({
 
   useEffect(() => {
     if (!isFetching) return;
-    console.log('yay');
     createMore();
   }, [isFetching]);
 
