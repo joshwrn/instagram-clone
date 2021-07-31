@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Card from './HomeCard.jsx';
+import Card from './HomeCard';
 import Styles from '../../styles/home/home__feed.module.css';
-import { firestore } from '../../services/firebase.js';
+import { firestore } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
-import useIntersect from '../../hooks/useIntersect.js';
+import useIntersect from '../../hooks/useIntersect';
 
 const HomeFeed = ({ newPost }) => {
   const { userProfile } = useAuth();
@@ -15,89 +15,6 @@ const HomeFeed = ({ newPost }) => {
   const noPostsRef = useRef(false);
   const dummyRef = useRef();
   const [isFetching, setIsFetching] = useIntersect(dummyRef, noPostsRef);
-
-  // get followed users on load
-  useEffect(() => {
-    if (userProfile) {
-      getFollowed();
-    } else {
-      getNone();
-    }
-  }, [userProfile]);
-
-  const getNone = async () => {
-    const sort = await firestoreFunction('none');
-    //add to stored posts
-    setStored(sort);
-  };
-
-  //+ on upload
-  useEffect(async () => {
-    if (newPost === 0) return;
-    let temp = [];
-    const next = await firestore
-      .collection('users')
-      .doc(userProfile.userID)
-      .collection('posts')
-      .orderBy('date', 'desc')
-      .limit(1)
-      .get();
-    if (!next) return;
-    next.forEach((post) => {
-      temp.push(post);
-    });
-    console.log(temp);
-    const combine = [...temp, ...feed];
-    setFeed(combine);
-    window.scrollTo(0, 0);
-  }, [newPost]);
-
-  //# decide from local or firestore
-  useEffect(() => {
-    if (!isFetching) return;
-    if (feed.length === stored.length) {
-      getMore();
-    } else {
-      createFeed();
-    }
-  }, [isFetching]);
-
-  //# after feed updates set load to false
-  useEffect(() => {
-    setIsFetching(false);
-  }, [feed]);
-
-  //+ GET more from storage
-  const createFeed = () => {
-    const sliced = stored.slice(feed.length, feed.length + 2);
-    const combine = [...feed, ...sliced];
-    setFeed(combine);
-  };
-
-  //+ when storage is updated set the feed
-  useEffect(() => {
-    createFeed();
-  }, [stored]);
-
-  //@ get followed users posts
-  const getFollowed = async () => {
-    const sort = await firestoreFunction('first');
-    //add to stored posts
-    setStored(sort);
-  };
-
-  //@ get more posts on scroll
-  const getMore = async () => {
-    // if no more users return
-    if (!lastUser) {
-      setIsFetching(false);
-      return;
-    }
-    const sort = await firestoreFunction('infinite');
-    if (!sort) return;
-    const combine = [...stored, ...sort];
-    setStored(combine);
-  };
 
   //# firestore
   const firestoreFunction = async (type) => {
@@ -178,6 +95,88 @@ const HomeFeed = ({ newPost }) => {
     return sort;
   };
 
+  const getNone = async () => {
+    const sort = await firestoreFunction('none');
+    //add to stored posts
+    setStored(sort);
+  };
+
+  //@ get followed users posts
+  const getFollowed = async () => {
+    const sort = await firestoreFunction('first');
+    //add to stored posts
+    setStored(sort);
+  };
+
+  //+ GET more from storage
+  const createFeed = () => {
+    const sliced = stored.slice(feed.length, feed.length + 2);
+    const combine = [...feed, ...sliced];
+    setFeed(combine);
+  };
+
+  //+ when storage is updated set the feed
+  useEffect(() => {
+    createFeed();
+  }, [stored]);
+
+  //@ get more posts on scroll
+  const getMore = async () => {
+    // if no more users return
+    if (!lastUser) {
+      setIsFetching(false);
+      return;
+    }
+    const sort = await firestoreFunction('infinite');
+    if (!sort) return;
+    const combine = [...stored, ...sort];
+    setStored(combine);
+  };
+
+  // get followed users on load
+  useEffect(() => {
+    if (userProfile) {
+      getFollowed();
+    } else {
+      getNone();
+    }
+  }, [userProfile]);
+
+  //+ on upload
+  useEffect(async () => {
+    if (newPost === 0) return;
+    let temp = [];
+    const next = await firestore
+      .collection('users')
+      .doc(userProfile.userID)
+      .collection('posts')
+      .orderBy('date', 'desc')
+      .limit(1)
+      .get();
+    if (!next) return;
+    next.forEach((post) => {
+      temp.push(post);
+    });
+    const combine = [...temp, ...feed];
+    setFeed(combine);
+    window.scrollTo(0, 0);
+  }, [newPost]);
+
+  //# decide from local or firestore
+  useEffect(() => {
+    if (!isFetching) return;
+    if (feed.length === stored.length) {
+      getMore();
+    } else {
+      createFeed();
+    }
+  }, [isFetching]);
+
+  //# after feed updates set load to false
+  useEffect(() => {
+    setIsFetching(false);
+  }, [feed]);
+
   return (
     <div className={Styles.container}>
       {feed.map((post) => {
@@ -185,7 +184,7 @@ const HomeFeed = ({ newPost }) => {
       })}
 
       <div ref={dummyRef} className={`${Styles.loaderContainer}`}>
-        {isFetching && <div className="loader"></div>}
+        {isFetching && <div className="loader" />}
         {noPosts && <div className={Styles.noPosts}>No More Posts</div>}
       </div>
     </div>

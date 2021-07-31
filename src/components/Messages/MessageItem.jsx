@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
-
-import Styles from '../../styles/messages/message__item.module.css';
 import { Link } from 'react-router-dom';
-import ImageLoader from '../reusable/ImageLoader';
+import Styles from '../../styles/messages/message__item.module.css';
 
 const MessageItem = ({ user, message, userProfile, currentProfile, thread, index }) => {
   const [sent, setSent] = useState(false);
   const [group, setGroup] = useState('false');
-
-  useEffect(() => {
-    getStatus();
-  }, [currentProfile]);
 
   const getStatus = () => {
     if (user === userProfile?.userID) {
       setSent(true);
     }
   };
+
+  useEffect(() => {
+    getStatus();
+  }, [currentProfile]);
 
   useEffect(() => {
     if (user === thread[index + 1]?.user) {
@@ -34,7 +32,7 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubbleSent}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer}></div>
+        <div className={Styles.avatarContainer} />
       </div>
     );
   }
@@ -60,7 +58,7 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubble}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer}></div>
+        <div className={Styles.avatarContainer} />
       </div>
     );
   }

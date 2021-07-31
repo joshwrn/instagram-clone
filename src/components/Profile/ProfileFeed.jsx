@@ -3,14 +3,7 @@ import ProfileCard from './ProfileCard';
 import Styles from '../../styles/profile/profile__feed.module.css';
 import useIntersect from '../../hooks/useIntersect';
 
-const ProfileFeed = ({
-  firestore,
-  match,
-  newPost,
-
-  setNoPosts,
-  noPosts,
-}) => {
+const ProfileFeed = ({ firestore, match, newPost, noPosts }) => {
   const [feed, setFeed] = useState([]);
   const [lastPost, setLastPost] = useState();
 
@@ -20,46 +13,8 @@ const ProfileFeed = ({
   const dummyRef = useRef();
   const [isFetching, setIsFetching] = useIntersect(dummyRef, endFeedRef);
 
-  // get the feed after a new post
-  useEffect(() => {
-    return getFeed();
-  }, [newPost]);
-
-  useEffect(() => {
-    getFeed();
-    setEndFeed(false);
-    endFeedRef.current = false;
-  }, [match]);
-
-  // every time loads complete check the count to see if all the posts match the feed length
-
-  //# after feed updates set load to false
-  useEffect(() => {
-    setIsFetching(false);
-  }, [feed]);
-
-  //# decide from local or firestore
-  useEffect(() => {
-    if (!isFetching || endFeed) return;
-    updateFeed();
-  }, [isFetching]);
-
-  const updateFeed = async () => {
-    const temp = await getMore();
-    if (!temp) return;
-    const combine = [...feed, ...temp];
-    setFeed(combine);
-  };
-
-  //! get the feed
-  const getFeed = async () => {
-    const temp = await getInitial();
-    setFeed(temp);
-  };
-
   const getMore = async () => {
     let temp = [];
-    console.log('get more');
     if (!lastPost) return;
     const snap = await firestore
       .collection('users')
@@ -100,6 +55,43 @@ const ProfileFeed = ({
     return temp;
   };
 
+  const updateFeed = async () => {
+    const temp = await getMore();
+    if (!temp) return;
+    const combine = [...feed, ...temp];
+    setFeed(combine);
+  };
+
+  //! get the feed
+  const getFeed = async () => {
+    const temp = await getInitial();
+    setFeed(temp);
+  };
+
+  // get the feed after a new post
+  useEffect(() => {
+    return getFeed();
+  }, [newPost]);
+
+  useEffect(() => {
+    getFeed();
+    setEndFeed(false);
+    endFeedRef.current = false;
+  }, [match]);
+
+  // every time loads complete check the count to see if all the posts match the feed length
+
+  //# after feed updates set load to false
+  useEffect(() => {
+    setIsFetching(false);
+  }, [feed]);
+
+  //# decide from local or firestore
+  useEffect(() => {
+    if (!isFetching || endFeed) return;
+    updateFeed();
+  }, [isFetching]);
+
   return (
     <>
       {!noPosts ? (
@@ -119,7 +111,7 @@ const ProfileFeed = ({
             })}
           </div>
           <div ref={dummyRef} className={`${Styles.loaderContainer}`}>
-            {isFetching && <div className="loader"></div>}
+            {isFetching && <div className="loader" />}
             {endFeed && feed.length > 6 ? (
               <div className={Styles.endFeed}>No More Posts</div>
             ) : null}

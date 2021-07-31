@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { firestore } from '../../services/firebase';
 import Styles from '../../styles/post/post.module.css';
 import Loading from '../../styles/post/post__loading.module.css';
-import { Link } from 'react-router-dom';
 import PostSidebar from './PostSidebar';
 import { useAuth } from '../../contexts/AuthContext';
 import ScrollToTop from '../../functions/ScrollToTop';
@@ -24,21 +24,6 @@ const Post = ({ match }) => {
       setOwnPost(true);
     }
   }, [postUser]);
-
-  //+ get the current post and user on page load
-  useEffect(() => {
-    getCurrentPost();
-    getPostUser();
-  }, [match]);
-
-  //+ check if postUser and currentUser are defined then set loading false
-  useEffect(() => {
-    if (postUser && currentPost) {
-      if (loading.every((item) => item.loading === false)) {
-        setLoaded(true);
-      }
-    }
-  }, [loading]);
 
   //+ get the current post
   const getCurrentPost = async () => {
@@ -64,6 +49,21 @@ const Post = ({ match }) => {
       setLoaded('error');
     }
   };
+
+  //+ get the current post and user on page load
+  useEffect(() => {
+    getCurrentPost();
+    getPostUser();
+  }, [match]);
+
+  //+ check if postUser and currentUser are defined then set loading false
+  useEffect(() => {
+    if (postUser && currentPost) {
+      if (loading.every((item) => item.loading === false)) {
+        setLoaded(true);
+      }
+    }
+  }, [loading]);
 
   //+ update the loading state
   const handleLoad = (e) => {

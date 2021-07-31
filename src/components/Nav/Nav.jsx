@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import {
   IoHomeOutline,
   IoChatbubbleOutline,
@@ -18,6 +17,7 @@ import debounce from '../../functions/debounce';
 import stopScroll from '../../functions/stopScroll';
 import ProfileUpload from '../Profile/ProfileUpload';
 import { firestore } from '../../services/firebase';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Nav = () => {
   const { currentUser, logout, userProfile } = useAuth();
@@ -44,7 +44,6 @@ const Nav = () => {
 
   const handleNoti = async () => {
     if (openNoti) {
-      console.log('setting');
       setOpenNoti(false);
     } else {
       setNotiArray(userProfile.notifications);
@@ -82,7 +81,6 @@ const Nav = () => {
 
   useEffect(() => {
     if (userProfile && userProfile.notifications) {
-      console.log(userProfile.notifications.length);
       const unseen = userProfile.notifications.length;
       setCurrentNotis(unseen);
     }
@@ -97,15 +95,15 @@ const Nav = () => {
     }
   }, [userProfile]);
 
-  const handleSearch = (e) => {
-    setSearchValue(e.target.value);
-    debounceChange(e.target.value);
-  };
-
   const debounceChange = useCallback(
     debounce((nextValue) => setSearchInput(nextValue), 500),
     []
   );
+
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+    debounceChange(e.target.value);
+  };
 
   const searchRef = useRef();
 

@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import Styles from '../../styles/messages/messagesContact.module.css';
 import { firestore } from '../../services/firebase';
-import React, { useEffect, useState } from 'react';
 import convertTime from '../../functions/convertTime';
 import ImageLoader from '../reusable/ImageLoader';
 
@@ -15,11 +15,6 @@ const MessagesContact = ({
 }) => {
   const [currentUser, setCurrentUser] = useState();
   const [addTime, setAddTime] = useState('');
-
-  useEffect(() => {
-    getUserObject();
-    getTime();
-  }, []);
 
   const getTime = () => {
     const currentTime = Date.now();
@@ -39,6 +34,11 @@ const MessagesContact = ({
       });
   };
 
+  useEffect(() => {
+    getUserObject();
+    getTime();
+  }, []);
+
   const handleClick = (e) => {
     e.preventDefault();
     getCurrentMessage(index);
@@ -53,9 +53,9 @@ const MessagesContact = ({
       <div className={Styles.avatarContainer}>
         <ImageLoader
           src={currentUser?.profilePhoto}
-          width={'65px'}
-          height={'65px'}
-          borderRadius={'100%'}
+          width="65px"
+          height="65px"
+          borderRadius="100%"
         />
       </div>
 

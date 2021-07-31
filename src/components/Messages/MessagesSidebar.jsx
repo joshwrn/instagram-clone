@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import MessagesContact from './MessagesContact';
 import { IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore } from '../../services/firebase';
-import { Link } from 'react-router-dom';
 import useIntersect from '../../hooks/useIntersect';
 import ImageLoader from '../reusable/ImageLoader';
+import MessagesContact from './MessagesContact';
 
 const MessagesSidebar = ({
   Styles,
@@ -30,17 +30,7 @@ const MessagesSidebar = ({
     scrollToBottom();
   };
 
-  useEffect(() => {
-    if (!isFetching) return;
-    getMore();
-  }, [isFetching]);
-
-  useEffect(() => {
-    setIsFetching(false);
-  }, [messages]);
-
   const getMore = async () => {
-    console.log(lastContact);
     if (!lastContact) return;
     let temp = [];
     const arr = await firestore
@@ -61,6 +51,15 @@ const MessagesSidebar = ({
     setMessages(combine);
   };
 
+  useEffect(() => {
+    if (!isFetching) return;
+    getMore();
+  }, [isFetching]);
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [messages]);
+
   return (
     <div className={sidebar ? Styles.sidebar : `${Styles.sidebar} ${Styles.hide}`}>
       <div className={Styles.header}>
@@ -72,10 +71,10 @@ const MessagesSidebar = ({
           <Link to={`/profile/${userProfile?.userID}`}>
             <ImageLoader
               src={userProfile?.profilePhoto}
-              width={'65px'}
-              height={'65px'}
-              borderRadius={'100%'}
-              position={'absolute'}
+              width="65px"
+              height="65px"
+              borderRadius="100%"
+              position="absolute"
             />
             <img className={Styles.userAvatarBlur} src={userProfile?.profilePhoto} alt="avatar" />
           </Link>

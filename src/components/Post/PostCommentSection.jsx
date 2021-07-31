@@ -10,19 +10,6 @@ const PostCommentSection = ({ loaded, currentPost }) => {
   const ref = useRef();
   const [isFetching, setIsFetching] = useIntersect(ref);
 
-  useEffect(() => {
-    if (!isFetching) return;
-    getMore();
-  }, [isFetching]);
-
-  useEffect(() => {
-    getComments();
-  }, [currentPost]);
-
-  useEffect(() => {
-    setIsFetching(false);
-  }, [comments]);
-
   const getComments = () => {
     if (!currentPost) return;
     const reverse = currentPost.comments.slice(0).reverse();
@@ -38,6 +25,19 @@ const PostCommentSection = ({ loaded, currentPost }) => {
     setComments(combine);
   };
 
+  useEffect(() => {
+    if (!isFetching) return;
+    getMore();
+  }, [isFetching]);
+
+  useEffect(() => {
+    getComments();
+  }, [currentPost]);
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [comments]);
+
   return (
     <div className={Styles.commentsContainer}>
       <div className={Styles.comments}>
@@ -46,15 +46,15 @@ const PostCommentSection = ({ loaded, currentPost }) => {
           <>
             <div className={Styles.commentContainer}>
               <div className={Loading.commentProfile} />
-              <div className={Loading.comment}></div>
+              <div className={Loading.comment} />
             </div>
             <div className={Styles.commentContainer}>
               <div className={Loading.commentProfile} />
-              <div className={Loading.comment}></div>
+              <div className={Loading.comment} />
             </div>
             <div className={Styles.commentContainer}>
               <div className={Loading.commentProfile} />
-              <div className={Loading.comment}></div>
+              <div className={Loading.comment} />
             </div>
           </>
         ) : (

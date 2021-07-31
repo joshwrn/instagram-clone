@@ -9,6 +9,12 @@ const PostComment = ({ comment, user, time }) => {
   const [current, setCurrent] = useState(null);
   const [addTime, setAddTime] = useState();
 
+  const getTime = () => {
+    const currentTime = Date.now();
+    const converted = convertTime(time, currentTime);
+    setAddTime(converted);
+  };
+
   useEffect(() => {
     const getUser = async () => {
       const userRef = firestore.collection('users').doc(user);
@@ -19,22 +25,11 @@ const PostComment = ({ comment, user, time }) => {
     getTime();
   }, []);
 
-  const getTime = () => {
-    const currentTime = Date.now();
-    const converted = convertTime(time, currentTime);
-    setAddTime(converted);
-  };
-
   return (
     <div className={Styles.commentContainer}>
       <div className={Styles.start}>
         <Link to={`/profile/${user}`}>
-          <ImageLoader
-            src={current?.profilePhoto}
-            width={'27px'}
-            height={'27px'}
-            borderRadius={'100%'}
-          />
+          <ImageLoader src={current?.profilePhoto} width="27px" height="27px" borderRadius="100%" />
         </Link>
         <p className={Styles.comment}>
           <span className={Styles.user}>

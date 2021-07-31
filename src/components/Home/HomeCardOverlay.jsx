@@ -1,9 +1,9 @@
 import React from 'react';
-import Styles from '../../styles/home/home__card__overlay.module.css';
-import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { IoCloseOutline } from 'react-icons/io5';
-import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router';
+import { firestore, firestoreFieldValue } from '../../services/firebase';
+import { useAuth } from '../../contexts/AuthContext';
+import Styles from '../../styles/home/home__card__overlay.module.css';
 
 const HomeCardOverlay = ({ getModal, type, userID, post }) => {
   const { userProfile } = useAuth();
@@ -21,10 +21,6 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
     });
   };
 
-  const handleShare = () => {
-    copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
-  };
-
   const copyToClipboard = (content) => {
     const el = document.createElement('textarea');
     el.value = content;
@@ -34,8 +30,12 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
     document.body.removeChild(el);
   };
 
-  const openLink = (type) => {
-    history.push(`/${type}`);
+  const handleShare = () => {
+    copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
+  };
+
+  const openLink = (linkType) => {
+    history.push(`/${linkType}`);
   };
 
   let button;

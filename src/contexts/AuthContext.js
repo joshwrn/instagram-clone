@@ -1,13 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, signIn, firestore, firestoreFieldValue } from '../services/firebase';
 import { useHistory } from 'react-router-dom';
+import { auth, signIn, firestore, firestoreFieldValue } from '../services/firebase';
 
 // Create context
 const AuthContext = React.createContext();
 
 // Function allows you to use the context
 export function useAuth() {
-  // console.log('using auth');
   return useContext(AuthContext);
 }
 
@@ -38,7 +37,6 @@ export function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
-      console.log('unsubscribe change');
     });
     return unsubscribe;
   }, []);
@@ -76,7 +74,7 @@ export function AuthProvider({ children }) {
       if (!userData.exists) {
         //currentUser.metadata.creationTime === currentUser.metadata.lastSignInTime
         let foundName;
-        const userRef = await firestore
+        await firestore
           .collection('users')
           .where('username', '==', usernameInput)
           .get()
@@ -125,7 +123,7 @@ export function AuthProvider({ children }) {
               .set({
                 messages: [
                   {
-                    message: `Hi There, Thanks for signing up and testing my project. Please look around and test all the features you can. You can reply to this message if you'd like, but I might not see it. So, to get in touch please email me at joshnwarren@gmail.com.`,
+                    message: `Hi ${currentUser.displayName}, Thanks for signing up and testing my project. Please look around and test all the features you can. You can reply to this message if you'd like, but I might not see it. So, to get in touch please email me at joshnwarren@gmail.com.`,
                     time: currentTime,
                     user: 'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
                   },

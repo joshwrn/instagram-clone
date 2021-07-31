@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import Styles from '../../styles/home/home__sidebar.module.css';
+import { IoAddCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import LoginButton from './LoginButton.jsx';
-import { IoAddCircleOutline } from 'react-icons/io5';
+import LoginButton from './LoginButton';
 import ProfileFollowersModal from '../Profile/ProfileFollowersModal';
 import ProfileUpload from '../Profile/ProfileUpload';
 import stopScroll from '../../functions/stopScroll';
 import ImageLoader from '../reusable/ImageLoader';
+import Styles from '../../styles/home/home__sidebar.module.css';
 
 const Sidebar = ({ setNewPost }) => {
   const { userProfile } = useAuth();
-  const [loading, setLoading] = useState(true);
   const [openFollowers, setOpenFollowers] = useState(false);
   const [currentTab, setCurrentTab] = useState();
   const [renderModal, setRenderModal] = useState(false);
@@ -22,10 +21,6 @@ const Sidebar = ({ setNewPost }) => {
     setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
     stopScroll(openFollowers);
-  };
-
-  const handleLoad = () => {
-    setLoading(false);
   };
 
   //+ new post modal
@@ -54,11 +49,11 @@ const Sidebar = ({ setNewPost }) => {
               <div className={Styles.imageContainer}>
                 <ImageLoader
                   src={userProfile.profilePhoto}
-                  position={'absolute'}
-                  width={'80px'}
-                  height={'80px'}
-                  cursor={'pointer'}
-                  borderRadius={'100%'}
+                  position="absolute"
+                  width="80px"
+                  height="80px"
+                  cursor="pointer"
+                  borderRadius="100%"
                 />
                 <img className={Styles.profileImgBlur} src={userProfile.profilePhoto} alt="" />
               </div>

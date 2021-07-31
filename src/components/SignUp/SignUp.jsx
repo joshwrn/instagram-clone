@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { signIn, firestore } from '../../services/firebase';
-import Styles from '../../styles/sign-up/sign-up.module.css';
 import { Link } from 'react-router-dom';
+import Styles from '../../styles/sign-up/sign-up.module.css';
+import { signIn, firestore } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
 import debounce from '../../functions/debounce';
@@ -20,22 +20,20 @@ const SignUp = () => {
     const lower = newVal.toLowerCase();
     setUserInput(lower);
   };
-
+  const debounceChange = useCallback(
+    debounce((nextValue) => handleChange(nextValue), 500),
+    []
+  );
   const handleValue = (e) => {
     setUserValue(e.target.value);
     debounceChange(e);
   };
 
-  const debounceChange = useCallback(
-    debounce((nextValue) => handleChange(nextValue), 500),
-    []
-  );
-
   useEffect(() => {
     let foundName;
-    const check = (async () => {
+    const check = async () => {
       if (userInput.length > 2) {
-        const userRef = await firestore
+        await firestore
           .collection('users')
           .where('username', '==', userInput)
           .get()
@@ -50,7 +48,8 @@ const SignUp = () => {
           setNameTaken(true);
         }
       }
-    })();
+    };
+    check();
   }, [userInput]);
 
   useEffect(() => {

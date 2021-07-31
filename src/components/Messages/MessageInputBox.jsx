@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { IoSendOutline, IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
+import { IoSendOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
-const MessageInputBox = ({ currentMessage, currentProfile, setCurrentIndex, Styles }) => {
+const MessageInputBox = ({ currentMessage, currentProfile, Styles }) => {
   const [inputBox, setInputBox] = useState('');
   const { userProfile } = useAuth();
   //+ send

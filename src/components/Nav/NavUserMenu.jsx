@@ -1,8 +1,8 @@
 import React from 'react';
-import Styles from '../../styles/nav/nav__user-menu.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import { IoPersonCircleOutline, IoPersonAddOutline, IoLogOut } from 'react-icons/io5';
 import { CgDarkMode } from 'react-icons/cg';
+import Styles from '../../styles/nav/nav__user-menu.module.css';
 import { light, dark } from '../../functions/theme';
 import { firestore } from '../../services/firebase';
 
@@ -63,7 +63,7 @@ const NavUserMenu = ({ setOpenMenu, currentUser, logout, theme, setTheme }) => {
           </>
         ) : (
           <>
-            <Link className={Styles.option} to={'/sign-up'}>
+            <Link className={Styles.option} to="/sign-up">
               <IoPersonAddOutline className={Styles.icon} />
               <div>
                 <p>Sign Up</p>

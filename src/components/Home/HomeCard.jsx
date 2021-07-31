@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Styles from '../../styles/home/home__card.module.css';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Link } from 'react-router-dom';
 import { IoShareOutline, IoChatbubbleOutline, IoShareSocialOutline } from 'react-icons/io5';
@@ -8,6 +7,7 @@ import HomeCardLike from './HomeCardLike';
 import HomeCardComments from './HomeCardComments';
 import HomeCardImage from './HomeCardImage';
 import HomeCardOverlay from './HomeCardOverlay';
+import Styles from '../../styles/home/home__card.module.css';
 
 const Card = ({ post }) => {
   const [user, setUser] = useState();
@@ -23,9 +23,9 @@ const Card = ({ post }) => {
     setLikeState(likes.length);
   }, [post]);
 
-  const getModal = (type) => {
+  const getModal = (modalType) => {
     modal ? setModal(false) : setModal(true);
-    setType(type);
+    setType(modalType);
   };
 
   return (

@@ -21,30 +21,33 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
     };
   }, []);
 
-  useEffect(async () => {
-    if (searchInput !== '') {
-      setLoading(true);
-      let temp = [];
-      await firestore
-        .collection('users')
-        .where('searchName', '>=', searchInput.toLowerCase())
-        .where('searchName', '<=', searchInput.toLowerCase() + '\uf8ff')
-        .limit(5)
-        .get()
-        .then((results) => {
-          return results.forEach((doc) => {
-            temp.push(doc.data());
+  useEffect(() => {
+    const searchFunc = async () => {
+      if (searchInput !== '') {
+        setLoading(true);
+        let temp = [];
+        await firestore
+          .collection('users')
+          .where('searchName', '>=', searchInput.toLowerCase())
+          .where('searchName', '<=', searchInput.toLowerCase() + '\uf8ff')
+          .limit(5)
+          .get()
+          .then((results) => {
+            return results.forEach((doc) => {
+              temp.push(doc.data());
+            });
           });
-        });
-      setSearchResults(temp);
-      setLoading(false);
-    }
+        setSearchResults(temp);
+        setLoading(false);
+      }
+    };
+    searchFunc();
   }, [searchInput]);
 
   let searchInner;
 
   if (loading) {
-    searchInner = <div className={`loader ${Styles.loader}`}></div>;
+    searchInner = <div className={`loader ${Styles.loader}`} />;
   }
 
   if (!loading) {

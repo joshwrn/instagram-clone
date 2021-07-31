@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Styles from '../../styles/profile/profile__followers-modal.module.css';
 import { IoCloseOutline } from 'react-icons/io5';
+import Styles from '../../styles/profile/profile__followers-modal.module.css';
 import ProfileFollowerListItem from './ProfileFollowerListItem';
 import useIntersect from '../../hooks/useIntersect';
 

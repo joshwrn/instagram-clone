@@ -10,7 +10,6 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
   const handleFollowers = (e) => {
     e.preventDefault();
     const choice = e.target.getAttribute('data-type');
-    console.log(choice);
     setCurrentTab(choice);
     openFollowers ? setOpenFollowers(false) : setOpenFollowers(true);
     stopScroll(openFollowers);
@@ -22,13 +21,13 @@ const ProfileSidebar = ({ currentProfile, loaded, currentUser }) => {
     sidebar = (
       <div className={Styles.sidebar}>
         <div className={Styles.usernames}>
-          <div className={`${Styles.nameLoading} gradientLoad`}></div>
-          <div className={`${Styles.usernameLoading} gradientLoad`}></div>
+          <div className={`${Styles.nameLoading} gradientLoad`} />
+          <div className={`${Styles.usernameLoading} gradientLoad`} />
         </div>
         <div className={`${Styles.counterLoading}`}>
-          <div className={`${Styles.counterLoading} gradientLoad`}></div>
-          <div className={`${Styles.counterLoading} gradientLoad`}></div>
-          <div className={`${Styles.counterLoading} gradientLoad`}></div>
+          <div className={`${Styles.counterLoading} gradientLoad`} />
+          <div className={`${Styles.counterLoading} gradientLoad`} />
+          <div className={`${Styles.counterLoading} gradientLoad`} />
         </div>
       </div>
     );

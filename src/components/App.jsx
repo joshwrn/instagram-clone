@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
-import Profile from './Profile/Profile.jsx';
+import Profile from './Profile/Profile';
 import Post from './Post/Post';
 import SignUp from './SignUp/SignUp';
 import Settings from './Settings/Settings';

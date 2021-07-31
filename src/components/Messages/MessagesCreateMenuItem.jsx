@@ -38,12 +38,7 @@ const MessagesCreateMenuItem = ({
     <div onClick={handleClick} className={Styles.listItem}>
       <div className={Styles.start}>
         <div className={Styles.avatarContainer}>
-          <ImageLoader
-            src={current?.profilePhoto}
-            width={'65px'}
-            height={'65px'}
-            borderRadius={'100%'}
-          />
+          <ImageLoader src={current?.profilePhoto} width="65px" height="65px" borderRadius="100%" />
         </div>
         <div className={Styles.names}>
           <p className={Styles.displayName}>{current?.displayName}</p>

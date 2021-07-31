@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoSendOutline } from 'react-icons/io5';
 import HomeCardCommentItem from './HomeCardCommentItem';
-import { FilterListRounded } from '@material-ui/icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 

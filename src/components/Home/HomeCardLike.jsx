@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { IoHeartOutline } from 'react-icons/io5';
+import { useHistory } from 'react-router';
 import Styles from '../../styles/home/home__card.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
-import { useHistory } from 'react-router';
 
 const HomeCardLike = ({ post, userID, setLikeState }) => {
   const [liked, setLiked] = useState(false);
   const { userProfile } = useAuth();
   let history = useHistory();
-
-  useEffect(() => {
-    updateLikes();
-  }, [userProfile]);
 
   const updateLikes = async () => {
     if (userProfile && userProfile.likedPosts) {
@@ -24,10 +20,13 @@ const HomeCardLike = ({ post, userID, setLikeState }) => {
     }
   };
 
+  useEffect(() => {
+    updateLikes();
+  }, [userProfile]);
+
   //! handle like
   const handleLike = async (e) => {
     e.preventDefault();
-    console.log(userID);
     if (userProfile && userID) {
       const thisPost = firestore.collection('users').doc(userID).collection('posts').doc(post.id);
       const thisUser = firestore.collection('users').doc(userProfile.userID);

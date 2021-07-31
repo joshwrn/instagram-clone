@@ -1,6 +1,6 @@
 import React from 'react';
-import Styles from '../../styles/nav/nav__search__item.module.css';
 import { useHistory } from 'react-router-dom';
+import Styles from '../../styles/nav/nav__search__item.module.css';
 
 const NavSearchItem = ({ item, setOpenSearch, setSearchInput }) => {
   let history = useHistory();
@@ -10,8 +10,6 @@ const NavSearchItem = ({ item, setOpenSearch, setSearchInput }) => {
     setOpenSearch(false);
     setSearchInput('');
   };
-
-  console.log(item.displayName);
   return (
     <div onClick={handleClick} className={Styles.container}>
       <div className={Styles.container}>

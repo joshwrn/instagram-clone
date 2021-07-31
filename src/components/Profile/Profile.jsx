@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
+import { useHistory } from 'react-router';
 import { firestore } from '../../services/firebase';
 import ProfileSidebar from './ProfileSidebar';
 import ProfileFeed from './ProfileFeed';
@@ -6,9 +8,7 @@ import ProfileUpload from './ProfileUpload';
 import ProfileAvatarModal from './ProfileAvatarModal';
 import Styles from '../../styles/profile/profile.module.css';
 import { useAuth } from '../../contexts/AuthContext';
-import { IoSendOutline, IoAddOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
-import { useHistory } from 'react-router';
 import ScrollToTop from '../../functions/ScrollToTop';
 import stopScroll from '../../functions/stopScroll';
 
@@ -44,17 +44,6 @@ const Profile = (props) => {
     });
   };
 
-  //+ when theres a new post update the user profile
-  useEffect(() => {
-    setNoPosts(false);
-    return getUserObject();
-  }, [newPost]);
-
-  useEffect(() => {
-    getUserObject();
-    setNoPosts(false);
-  }, [match]);
-
   //+ get the current profiles data
   const getUserObject = () => {
     firestore
@@ -67,6 +56,17 @@ const Profile = (props) => {
         }
       });
   };
+
+  //+ when theres a new post update the user profile
+  useEffect(() => {
+    setNoPosts(false);
+    return getUserObject();
+  }, [newPost]);
+
+  useEffect(() => {
+    getUserObject();
+    setNoPosts(false);
+  }, [match]);
 
   //+ avatar modal
   const getAvatarModal = (e) => {
@@ -156,7 +156,6 @@ const Profile = (props) => {
                   Styles={Styles}
                   currentUser={currentUser}
                   match={match.params.uid}
-                  currentUser={currentUser}
                   currentProfile={currentProfile}
                   getUserObject={getUserObject}
                 />

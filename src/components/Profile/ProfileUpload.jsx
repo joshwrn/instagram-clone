@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Styles from '../../styles/profile/profile__upload.module.css';
+
 import { IoCloseOutline, IoCloudUploadOutline } from 'react-icons/io5';
 import { firestore, storageRef } from '../../services/firebase';
-import resizeImage from '../../functions/resizeImage.js';
+import resizeImage from '../../functions/resizeImage';
 import { useAuth } from '../../contexts/AuthContext';
+import Styles from '../../styles/profile/profile__upload.module.css';
 
 const ProfileUpload = ({ getModal, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
@@ -118,7 +119,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
           </div>
         </div>
         {uploading ? (
-          <div className={`${Styles.loader} loader`}></div>
+          <div className={`${Styles.loader} loader`} />
         ) : (
           <button
             onClick={postFile !== null ? handleSubmit : doNothing}

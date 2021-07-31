@@ -6,7 +6,7 @@ const HomeCardImage = ({ Styles, src, userID, postID }) => {
   return (
     <Link className={Styles.imageLink} to={`/Post/${userID}/${postID}`}>
       <div className={Styles.imageContainer}>
-        <ImageLoader src={src} cursor={'pointer'} />
+        <ImageLoader src={src} cursor="pointer" />
       </div>
     </Link>
   );

@@ -41,10 +41,6 @@ const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles
     }
   }, [currentMessage]);
 
-  useEffect(() => {
-    getUserObject();
-  }, [currentMessage]);
-
   const getUserObject = () => {
     firestore
       .collection('users')
@@ -57,9 +53,13 @@ const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles
       });
   };
 
+  useEffect(() => {
+    getUserObject();
+  }, [currentMessage]);
+
   return (
     <div id="msg" className={Styles.messageArea}>
-      <div ref={dummyRef} className={Styles.dummy}></div>
+      <div ref={dummyRef} className={Styles.dummy} />
       {thread?.map((item, index) => {
         return (
           <MessageItem
@@ -74,7 +74,7 @@ const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles
           />
         );
       })}
-      <div ref={topRef} className={Styles.dummy}></div>
+      <div ref={topRef} className={Styles.dummy} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { firestore } from '../../services/firebase';
 import { useHistory } from 'react-router-dom';
+import { firestore } from '../../services/firebase';
 import ProfileButton from './ProfileButton';
 import ImageLoader from '../reusable/ImageLoader';
 
@@ -27,7 +27,7 @@ const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, cu
     <div className={Styles.listItem}>
       <div onClick={handleLink} className={Styles.start}>
         <div className={Styles.avatarContainer}>
-          <ImageLoader src={current?.profilePhoto} borderRadius={'100%'} />
+          <ImageLoader src={current?.profilePhoto} borderRadius="100%" />
         </div>
         <div className={Styles.names}>
           <p className={Styles.displayName}>{current?.displayName}</p>

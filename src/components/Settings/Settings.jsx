@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { IoImage, IoPencil } from 'react-icons/io5';
 import Styles from '../../styles/settings/settings.module.css';
 import { useAuth } from '../../contexts/AuthContext';
-import { IoImage, IoPencil } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
-import { firestore, initFire, storageRef } from '../../services/firebase';
+
+import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage';
 import ImageLoader from '../reusable/ImageLoader';
 
@@ -14,28 +15,16 @@ const Settings = () => {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    userProfile && setUserInput(userProfile.displayName);
-    userProfile && setUserBio(userProfile.bio);
+    if (!userProfile) return;
+    setUserInput(userProfile.displayName);
+    setUserBio(userProfile.bio);
   }, [userProfile]);
 
   //+ updates on account sign up
+
   useEffect(() => {
     getUserProfile();
   }, [currentUser]);
-
-  //! handle photo uploads
-  //@ add file to state
-  const handlePhotoChange = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    if (file && file.size < 5000000) {
-      if (e.target.name === 'profilePhoto') {
-        resizeImage(e, 'none', handleAvatar, 1000);
-      } else if (e.target.name === 'banner') {
-        resizeImage(e, 'none', handleBanner, 2000);
-      }
-    }
-  };
 
   //+ upload profile photo
   const handleAvatar = async (file) => {
@@ -69,6 +58,20 @@ const Settings = () => {
     );
     setUploading(false);
     getUserProfile();
+  };
+
+  //! handle photo uploads
+  //@ add file to state
+  const handlePhotoChange = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file && file.size < 5000000) {
+      if (e.target.name === 'profilePhoto') {
+        resizeImage(e, 'none', handleAvatar, 1000);
+      } else if (e.target.name === 'banner') {
+        resizeImage(e, 'none', handleBanner, 2000);
+      }
+    }
   };
 
   //! handle text input changes
@@ -148,11 +151,11 @@ const Settings = () => {
                   />
                   <ImageLoader
                     src={userProfile && userProfile.profilePhoto}
-                    position={'relative'}
-                    borderRadius={'100%'}
-                    width={'112px'}
-                    height={'112px'}
-                    shadow={'0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.1)'}
+                    position="relative"
+                    borderRadius="100%"
+                    width="112px"
+                    height="112px"
+                    shadow="0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.1)"
                   />
                   <div className={Styles.profileOverlay}>
                     <IoImage className={Styles.profileIcon} />
@@ -196,7 +199,7 @@ const Settings = () => {
 
         <div className={Styles.profileBtnContainer}>
           {uploading ? (
-            <div class="loader"></div>
+            <div className="loader"></div>
           ) : (
             <button onClick={handleTextUpload} type="submit" className={Styles.textBtn}>
               Save

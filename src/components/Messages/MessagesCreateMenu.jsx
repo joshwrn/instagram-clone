@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
 import Styles from '../../styles/messages/messages__create-menu.module.css';
 import MessagesCreateMenuItem from './MessagesCreateMenuItem';
-import { IoCloseOutline } from 'react-icons/io5';
 import useIntersect from '../../hooks/useIntersect';
 
 const MessagesCreateMenu = ({
@@ -14,23 +14,8 @@ const MessagesCreateMenu = ({
   getCurrentMessage,
 }) => {
   const [list, setList] = useState([]);
-
   const ref = useRef();
   const [isFetching, setIsFetching] = useIntersect(ref);
-
-  useEffect(() => {
-    if (!userProfile) return;
-    createInitial();
-  }, [userProfile]);
-
-  useEffect(() => {
-    if (!isFetching) return;
-    createMore();
-  }, [isFetching]);
-
-  useEffect(() => {
-    setIsFetching(false);
-  }, [list]);
 
   const createInitial = () => {
     if (!userProfile) return;
@@ -52,6 +37,20 @@ const MessagesCreateMenu = ({
     const combine = [...list, ...sliced];
     setList(combine);
   };
+
+  useEffect(() => {
+    if (!userProfile) return;
+    createInitial();
+  }, [userProfile]);
+
+  useEffect(() => {
+    if (!isFetching) return;
+    createMore();
+  }, [isFetching]);
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [list]);
 
   return (
     <div className={Styles.modal}>
@@ -78,7 +77,7 @@ const MessagesCreateMenu = ({
               />
             );
           })}
-          <div ref={ref}></div>
+          <div ref={ref} />
         </div>
       </div>
     </div>

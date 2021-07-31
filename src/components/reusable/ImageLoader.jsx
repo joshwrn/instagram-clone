@@ -18,50 +18,50 @@ const ImageLoader = ({
   };
 
   const loadingDiv = {
-    width: width,
-    height: height,
-    position: position,
-    zIndex: zIndex,
+    width,
+    height,
+    position,
+    zIndex,
     background: 'var(--loading-gradient)',
     backgroundSize: '200%',
     animation: '2s linear infinite gradientMove',
     display: 'block',
-    borderRadius: borderRadius,
+    borderRadius,
     boxShadow: shadow,
   };
 
   const hideDiv = {
-    width: width,
-    height: height,
-    position: position,
-    zIndex: zIndex,
+    width,
+    height,
+    position,
+    zIndex,
     background: 'var(--loading-gradient)',
     backgroundSize: '200%',
     animation: 'none',
     display: 'block',
-    borderRadius: borderRadius,
+    borderRadius,
     boxShadow: shadow,
   };
 
   const image = {
-    position: position,
-    width: width,
-    height: height,
+    position,
+    width,
+    height,
     objectFit: 'cover',
     objectPosition: 'center',
-    cursor: cursor,
+    cursor,
     opacity: '1',
     transition: `opacity ${transition}s`,
-    borderRadius: borderRadius,
+    borderRadius,
     boxShadow: shadow,
   };
 
   const hideImg = {
-    position: position,
-    width: width,
-    height: height,
+    position,
+    width,
+    height,
     opacity: '0',
-    borderRadius: borderRadius,
+    borderRadius,
   };
 
   return (

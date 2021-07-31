@@ -1,7 +1,7 @@
 import React from 'react';
-import Styles from '../../styles/profile/profile__card.module.css';
 import { Link } from 'react-router-dom';
 import { IoHeartOutline, IoChatbubbleOutline } from 'react-icons/io5';
+import Styles from '../../styles/profile/profile__card.module.css';
 import ImageLoader from '../reusable/ImageLoader';
 
 const ProfileCard = ({ src, match, postId, likes, comments }) => {

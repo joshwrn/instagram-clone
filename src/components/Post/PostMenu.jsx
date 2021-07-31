@@ -16,7 +16,7 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const img = await firestore
+    await firestore
       .collection('users')
       .doc(match.params.uid)
       .collection('posts')
@@ -26,7 +26,7 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
     await pictureRef.delete();
     const userDoc = await firestore.collection('users').doc(match.params.uid).get();
     const userData = userDoc.data();
-    const dec = await firestore
+    await firestore
       .collection('users')
       .doc(match.params.uid)
       .set(

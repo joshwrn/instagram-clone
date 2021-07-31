@@ -7,10 +7,6 @@ const PostLikeButton = ({ match, history, firestore, firestoreFieldValue, getCur
   const [liked, setLiked] = useState(false);
   const { userProfile, getUserProfile } = useAuth();
 
-  useEffect(() => {
-    updateLikes();
-  }, [userProfile]);
-
   const updateLikes = async () => {
     if (userProfile && userProfile.likedPosts) {
       if (userProfile.likedPosts.includes(match.params.postid)) {
@@ -20,6 +16,10 @@ const PostLikeButton = ({ match, history, firestore, firestoreFieldValue, getCur
       }
     }
   };
+
+  useEffect(() => {
+    updateLikes();
+  }, [userProfile]);
 
   //! handle like
   const handleLike = async (e) => {

@@ -12,7 +12,7 @@ export const initFire = firebase.initializeApp({
 });
 
 export const signIn = () => {
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
 };
 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Styles from '../../styles/notifications/notifications.module.css';
 import NotificationsItem from './NotificationsItem';
 import { useAuth } from '../../contexts/AuthContext';
-import { firestore } from '../../services/firebase';
 import { useHistory } from 'react-router';
+import Styles from '../../styles/notifications/notifications.module.css';
 
 const Notifications = ({ handleNoti, setCurrentNotis, notiArray }) => {
   const { userProfile, getUserProfile } = useAuth();
@@ -19,7 +18,7 @@ const Notifications = ({ handleNoti, setCurrentNotis, notiArray }) => {
     }
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (userProfile) {
       setLoading(false);
     }
@@ -33,7 +32,7 @@ const Notifications = ({ handleNoti, setCurrentNotis, notiArray }) => {
   let notiFragment;
 
   if (loading) {
-    notiFragment = <div className={`${Styles.loader} loader`}></div>;
+    notiFragment = <div className={`${Styles.loader} loader`} />;
   }
 
   if (!loading) {

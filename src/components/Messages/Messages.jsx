@@ -19,6 +19,11 @@ const Messages = ({ match }) => {
   const dummyRef = useRef(null);
   const contactRef = useRef();
 
+  const getCurrentMessage = (num) => {
+    setCurrentIndex(num);
+    setCurrentMessage(messages[num]);
+  };
+
   useEffect(() => {
     if (match && messages) {
       const check = messages.some((item) => item.user === match.params.uid);
@@ -34,7 +39,6 @@ const Messages = ({ match }) => {
   useEffect(() => {
     if (!match) {
       if (!currentMessage && messages && userProfile) {
-        console.log('wtf');
         setCurrentMessage(messages[0]);
         setCurrentIndex(0);
         getCurrentMessage(0);
@@ -47,13 +51,14 @@ const Messages = ({ match }) => {
     }
   }, [messages]);
 
-  const getCurrentMessage = (num) => {
-    setCurrentIndex(num);
-    setCurrentMessage(messages[num]);
+  const scrollToBottom = (type) => {
+    type === 'smooth'
+      ? dummyRef.current?.scrollIntoView({ behavior: 'smooth' })
+      : dummyRef.current?.scrollIntoView();
   };
 
   useEffect(() => {
-    var unsubscribe = firestore
+    const unsubscribe = firestore
       .collection('users')
       .doc(userProfile?.userID)
       .collection('messages')
@@ -67,20 +72,10 @@ const Messages = ({ match }) => {
     };
   }, [currentIndex]);
 
-  const scrollToBottom = (type) => {
-    type === 'smooth'
-      ? dummyRef.current?.scrollIntoView({ behavior: 'smooth' })
-      : dummyRef.current?.scrollIntoView();
-  };
-
   const handleCreate = (e) => {
     e.preventDefault();
     createModal ? setCreateModal(false) : setCreateModal(true);
   };
-
-  useEffect(() => {
-    getInitial();
-  }, [userProfile]);
 
   const getInitial = async () => {
     if (!userProfile) return;
@@ -96,11 +91,13 @@ const Messages = ({ match }) => {
     arr.forEach((doc) => {
       temp.push(doc.data());
     });
-    console.log(arr.docs[arr.docs.length - 1]);
     setLastContact(arr.docs[arr.docs.length - 1]);
-
     setMessages(temp);
   };
+
+  useEffect(() => {
+    getInitial();
+  }, [userProfile]);
 
   return (
     <div className={Styles.messages}>
@@ -117,7 +114,7 @@ const Messages = ({ match }) => {
           getCurrentMessage={getCurrentMessage}
         />
       )}
-      <div className={Styles.navBg}></div>
+      <div className={Styles.navBg} />
       {/*//+ sidebar */}
       <MessagesSidebar
         Styles={Styles}

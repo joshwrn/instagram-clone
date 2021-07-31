@@ -1,28 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Styles from '../../styles/notifications/notifications__item.module.css';
-import { firestore } from '../../services/firebase';
 import { IoPersonAdd } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { firestore } from '../../services/firebase';
 import convertTime from '../../functions/convertTime';
+import Styles from '../../styles/notifications/notifications__item.module.css';
 
 const NotificationsItem = ({ item, userProfile }) => {
   const [profile, setProfile] = useState();
   const [preview, setPreview] = useState();
   const [type, setType] = useState();
   const [addTime, setAddTime] = useState();
-
-  useEffect(() => {
-    getProfile();
-    if (item.type === 'liked' || item.type === 'comment') {
-      getPost();
-    }
-  }, []);
-
-  useEffect(() => {
-    const currentTime = Date.now();
-    const converted = convertTime(item.time, currentTime);
-    setAddTime(converted);
-  }, []);
 
   const getProfile = async () => {
     const profileRef = await firestore.collection('users').doc(item.user).get();
@@ -39,6 +26,19 @@ const NotificationsItem = ({ item, userProfile }) => {
     const url = postRef.data()?.src;
     setPreview(url);
   };
+
+  useEffect(() => {
+    getProfile();
+    if (item.type === 'liked' || item.type === 'comment') {
+      getPost();
+    }
+  }, []);
+
+  useEffect(() => {
+    const currentTime = Date.now();
+    const converted = convertTime(item.time, currentTime);
+    setAddTime(converted);
+  }, []);
 
   useEffect(() => {
     if (profile && preview) {
