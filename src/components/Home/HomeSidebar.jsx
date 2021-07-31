@@ -30,13 +30,7 @@ const Sidebar = ({ setNewPost }) => {
   //+ new post modal
   const getModal = (e) => {
     e.preventDefault();
-    if (renderModal === false) {
-      setRenderModal(true);
-      document.body.classList.add('stop-scrolling');
-    } else {
-      setRenderModal(false);
-      document.body.classList.remove('stop-scrolling');
-    }
+    renderModal ? setRenderModal(false) : setRenderModal(true);
     stopScroll(renderModal);
   };
 

@@ -59,3 +59,15 @@
 .postIcon {
   cursor: pointer;
 }
+
+@media only screen and (max-width: 850px) {
+  .container {
+    position: fixed;
+    transform: translateX(-175px) translateY(-25px);
+    width: 160px;
+  }
+
+  .inner:after {
+    display: none;
+  }
+}

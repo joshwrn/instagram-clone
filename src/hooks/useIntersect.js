@@ -7,7 +7,6 @@ const useIntersect = (ref, end) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isFetching) {
-          console.log('hook');
           if (!end) return setIsFetching(true);
           if (end.current === false) {
             setIsFetching(true);

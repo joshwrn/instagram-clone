@@ -5,17 +5,10 @@ import { useAuth } from '../../contexts/AuthContext';
 import { firestore } from '../../services/firebase';
 import { useHistory } from 'react-router';
 
-const Notifications = ({ handleNoti, setCurrentNotis }) => {
-  const [notiArray, setNotiArray] = useState([]);
+const Notifications = ({ handleNoti, setCurrentNotis, notiArray }) => {
   const { userProfile, getUserProfile } = useAuth();
-  const [time, setTime] = useState();
   const [loading, setLoading] = useState(true);
   let history = useHistory();
-
-  useEffect(() => {
-    const currentTime = new Date().getTime();
-    setTime(currentTime);
-  }, []);
 
   useEffect(() => {
     if (userProfile) {
@@ -27,21 +20,15 @@ const Notifications = ({ handleNoti, setCurrentNotis }) => {
   }, []);
 
   useEffect(async () => {
-    if (time && userProfile) {
-      const userRef = firestore.collection('users').doc(userProfile.userID);
-      await userRef.set(
-        {
-          lastNotify: time,
-        },
-        { merge: true }
-      );
-      setCurrentNotis(0);
-      setNotiArray(
-        userProfile.notifications?.slice(Math.max(userProfile.notifications.length - 10, 0))
-      );
+    if (userProfile) {
       setLoading(false);
     }
   }, [userProfile]);
+
+  useEffect(() => {
+    if (loading) return;
+    setCurrentNotis(0);
+  }, [loading]);
 
   let notiFragment;
 

@@ -151,15 +151,30 @@
   align-items: center;
 }
 
-.footer > .firstChild > .left > .icon {
-  margin: 0 0.25em 0 0;
+.footer > .firstChild > .left .icon {
+  margin: 0 7px 0 0;
 }
 
 .icon {
   cursor: pointer;
 }
 
+.likeIcon {
+  margin: 0 7px 0 0;
+  cursor: pointer;
+}
+
 .likeIcon > path:hover {
+  fill: red;
+  stroke: red;
+}
+
+.likedIcon {
+  margin: 0 7px 0 0;
+  cursor: pointer;
+}
+
+.likedIcon > path {
   fill: red;
   stroke: red;
 }

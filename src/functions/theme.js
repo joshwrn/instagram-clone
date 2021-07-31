@@ -13,6 +13,7 @@ const dark = () => {
   root.style.setProperty('--messages-bubble-background', '#303030');
   root.style.setProperty('--menu-hover-color', 'rgba(255, 255, 255, 0.1)');
   root.style.setProperty('--notification-type-color', 'rgb(221, 221, 221)');
+  root.style.setProperty('--home-card-overlay', 'rgba(0, 0, 0, 0.85)');
 };
 
 const light = () => {
@@ -28,6 +29,7 @@ const light = () => {
   root.style.setProperty('--messages-bubble-background', '#d3d3d3');
   root.style.setProperty('--menu-hover-color', 'rgba(0, 0, 0, 0.1)');
   root.style.setProperty('--notification-type-color', 'rgb(75, 75, 75)');
+  root.style.setProperty('--home-card-overlay', 'rgba(255, 255, 255, 0.85)');
 };
 
 export { light, dark };

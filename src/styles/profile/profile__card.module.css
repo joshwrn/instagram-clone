@@ -100,3 +100,11 @@
   object-position: top;
   cursor: pointer;
 }
+
+/*! mobile */
+@media only screen and (max-width: 850px) {
+  .card {
+    width: 85vw;
+    height: 85vw;
+  }
+}

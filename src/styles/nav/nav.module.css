@@ -146,7 +146,7 @@ input::placeholder:focus {
   stroke: var(--primary-font-color);
 }
 
-.icon:hover > path {
+.icon:hover:not(.add) > path {
   fill: var(--primary-font-color);
   stroke: var(--primary-font-color);
 }

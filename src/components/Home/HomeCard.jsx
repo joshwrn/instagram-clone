@@ -7,11 +7,15 @@ import { firestore } from '../../services/firebase';
 import HomeCardLike from './HomeCardLike';
 import HomeCardComments from './HomeCardComments';
 import HomeCardImage from './HomeCardImage';
+import HomeCardOverlay from './HomeCardOverlay';
 
 const Card = ({ post }) => {
   const [user, setUser] = useState();
   const [likeState, setLikeState] = useState();
+
   const { src, userID, likes } = post.data();
+  const [modal, setModal] = useState(false);
+  const [type, setType] = useState();
 
   useEffect(async () => {
     const userRef = await firestore.collection('users').doc(userID).get();
@@ -19,17 +23,9 @@ const Card = ({ post }) => {
     setLikeState(likes.length);
   }, [post]);
 
-  const handleShare = () => {
-    copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
-  };
-
-  const copyToClipboard = (content) => {
-    const el = document.createElement('textarea');
-    el.value = content;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
+  const getModal = (type) => {
+    modal ? setModal(false) : setModal(true);
+    setType(type);
   };
 
   return (
@@ -37,6 +33,9 @@ const Card = ({ post }) => {
       {post && user ? (
         <div className={Styles.card}>
           <div className={Styles.container}>
+            {modal && (
+              <HomeCardOverlay getModal={getModal} userID={userID} type={type} post={post} />
+            )}
             {/*//+ header */}
             <div className={Styles.header}>
               <Link to={`/profile/${userID}`}>
@@ -48,8 +47,14 @@ const Card = ({ post }) => {
                   </div>
                 </div>
               </Link>
+              {/*//+ more icon */}
               <div className={Styles.right}>
-                <MoreHorizIcon className={Styles.moreIcon} />
+                <MoreHorizIcon
+                  onClick={() => {
+                    getModal('follow');
+                  }}
+                  className={Styles.moreIcon}
+                />
               </div>
             </div>
             {/*//+ image */}
@@ -58,12 +63,21 @@ const Card = ({ post }) => {
             <div className={Styles.footer}>
               <div className={Styles.firstChild}>
                 <div className={Styles.left}>
-                  {/*//! likes button */}
+                  {/*//+ likes button */}
                   <HomeCardLike setLikeState={setLikeState} post={post} userID={userID} />
-                  <IoChatbubbleOutline className={Styles.icon} />
-                  <IoShareOutline className={Styles.icon} />
+                  <Link className={Styles.chatLink} to={`/Post/${userID}/${post.id}`}>
+                    <IoChatbubbleOutline className={Styles.icon} />
+                  </Link>
+                  <Link className={Styles.chatLink} to={`/Post/${userID}/${post.id}`}>
+                    <IoShareOutline className={Styles.icon} />
+                  </Link>
                 </div>
-                <IoShareSocialOutline className={Styles.icon} onClick={handleShare} />
+                <IoShareSocialOutline
+                  className={Styles.icon}
+                  onClick={() => {
+                    getModal('share');
+                  }}
+                />
               </div>
               <Link className={Styles.imageLink} to={`/Post/${userID}/${post.id}`}>
                 <p className={Styles.likes}>{likeState} likes</p>

@@ -70,6 +70,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
     //+ close modal and update state with new post
     getModal(e);
     setUploading(false);
+    if (!setNewPost) return;
     setNewPost((prev) => prev + 1);
   };
 

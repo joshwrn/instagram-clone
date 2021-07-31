@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IoHeartOutline } from 'react-icons/io5';
-import Styles from '../../styles/post/post__sidebar.module.css';
+import Styles from '../../styles/home/home__card.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useHistory } from 'react-router';
