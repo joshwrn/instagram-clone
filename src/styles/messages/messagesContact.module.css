@@ -25,11 +25,10 @@
   background-color: var(--nav-background-color);
 }
 
-.avatar {
+.avatarContainer {
   width: 65px;
   height: 65px;
-  object-fit: cover;
-  border-radius: 100%;
+  overflow: hidden;
 }
 
 .name {

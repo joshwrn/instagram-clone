@@ -2,6 +2,7 @@ import Styles from '../../styles/messages/messagesContact.module.css';
 import { firestore } from '../../services/firebase';
 import React, { useEffect, useState } from 'react';
 import convertTime from '../../functions/convertTime';
+import ImageLoader from '../reusable/ImageLoader';
 
 const MessagesContact = ({
   user,
@@ -49,7 +50,15 @@ const MessagesContact = ({
       onClick={handleClick}
       className={index === currentIndex ? Styles.active : Styles.container}
     >
-      <img className={Styles.avatar} src={currentUser?.profilePhoto} alt="" />
+      <div className={Styles.avatarContainer}>
+        <ImageLoader
+          src={currentUser?.profilePhoto}
+          width={'65px'}
+          height={'65px'}
+          borderRadius={'100%'}
+        />
+      </div>
+
       <div className={Styles.contactInfo}>
         <p className={Styles.name}>{currentUser?.displayName}</p>
         <div className={Styles.infoContainer}>

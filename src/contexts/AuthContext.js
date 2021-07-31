@@ -150,7 +150,6 @@ export function AuthProvider({ children }) {
                 user: currentUser.uid,
                 type: 'followed',
                 time: currentTime,
-                seen: false,
               }),
             });
           };

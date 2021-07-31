@@ -51,14 +51,6 @@
   height: 65px;
 }
 
-.userAvatar {
-  border-radius: 100%;
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-  position: absolute;
-}
-
 .userAvatarBlur {
   border-radius: 100%;
   width: 60px;

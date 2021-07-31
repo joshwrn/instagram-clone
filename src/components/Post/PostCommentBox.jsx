@@ -50,7 +50,6 @@ const PostCommentBox = ({
               comment: input,
               post: match.params.postid,
               time: time,
-              seen: false,
             }),
           });
         };

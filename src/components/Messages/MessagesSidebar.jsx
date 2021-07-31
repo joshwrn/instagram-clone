@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { firestore } from '../../services/firebase';
 import { Link } from 'react-router-dom';
 import useIntersect from '../../hooks/useIntersect';
+import ImageLoader from '../reusable/ImageLoader';
 
 const MessagesSidebar = ({
   Styles,
@@ -69,7 +70,13 @@ const MessagesSidebar = ({
           }
         >
           <Link to={`/profile/${userProfile?.userID}`}>
-            <img className={Styles.userAvatar} src={userProfile?.profilePhoto} alt="avatar" />
+            <ImageLoader
+              src={userProfile?.profilePhoto}
+              width={'65px'}
+              height={'65px'}
+              borderRadius={'100%'}
+              position={'absolute'}
+            />
             <img className={Styles.userAvatarBlur} src={userProfile?.profilePhoto} alt="avatar" />
           </Link>
         </div>

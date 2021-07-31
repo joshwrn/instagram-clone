@@ -24,7 +24,6 @@ const Profile = (props) => {
   const [loading, setLoading] = useState([
     { image: 'avatar', loading: true },
     { image: 'banner', loading: true },
-    { image: 'feed', loading: true }, //change
   ]);
   let history = useHistory();
   //+ if the every item in loading is set to false set loaded to true
@@ -54,14 +53,6 @@ const Profile = (props) => {
   useEffect(() => {
     getUserObject();
     setNoPosts(false);
-
-    //# has issues because pics don't reload on save
-    // setLoaded(false);
-    // setLoading([
-    //   { image: 'avatar', loading: true },
-    //   { image: 'banner', loading: true },
-    //   { image: 'feed', loading: true },
-    // ]);
   }, [match]);
 
   //+ get the current profiles data

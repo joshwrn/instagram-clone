@@ -111,16 +111,6 @@
   cursor: pointer;
 }
 
-.profileImage {
-  position: absolute;
-  border-radius: 100%;
-  width: 112px;
-  height: 112px;
-  cursor: pointer;
-  box-shadow: 0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.425);
-  object-fit: cover;
-}
-
 .profileOverlay {
   display: flex;
   justify-content: center;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../../services/firebase';
+import ImageLoader from '../reusable/ImageLoader';
 
 const MessagesCreateMenuItem = ({
   Styles,
@@ -36,7 +37,14 @@ const MessagesCreateMenuItem = ({
   return (
     <div onClick={handleClick} className={Styles.listItem}>
       <div className={Styles.start}>
-        <img className={Styles.avatar} src={current?.profilePhoto} alt="" />
+        <div className={Styles.avatarContainer}>
+          <ImageLoader
+            src={current?.profilePhoto}
+            width={'65px'}
+            height={'65px'}
+            borderRadius={'100%'}
+          />
+        </div>
         <div className={Styles.names}>
           <p className={Styles.displayName}>{current?.displayName}</p>
           <p className={Styles.username}>@{current?.username}</p>

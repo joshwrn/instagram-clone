@@ -5,6 +5,7 @@ import { IoImage, IoPencil } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { firestore, initFire, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage';
+import ImageLoader from '../reusable/ImageLoader';
 
 const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
@@ -129,11 +130,7 @@ const Settings = () => {
                 onChange={handlePhotoChange}
               />
               <div className={Styles.bannerContainer}>
-                <img
-                  className={Styles.bannerImage}
-                  src={userProfile && userProfile.banner}
-                  alt=""
-                />
+                <ImageLoader src={userProfile && userProfile.banner} />
               </div>
               <div className={Styles.bannerOverlay}>
                 <IoPencil className={Styles.bannerIcon} />
@@ -149,10 +146,13 @@ const Settings = () => {
                     className={Styles.fileInput}
                     name="profilePhoto"
                   />
-                  <img
-                    className={Styles.profileImage}
+                  <ImageLoader
                     src={userProfile && userProfile.profilePhoto}
-                    alt=""
+                    position={'absolute'}
+                    borderRadius={'100%'}
+                    width={'112px'}
+                    height={'112px'}
+                    shadow={'0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.225)'}
                   />
                   <div className={Styles.profileOverlay}>
                     <IoImage className={Styles.profileIcon} />

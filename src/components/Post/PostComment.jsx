@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Styles from '../../styles/post/post__comment-section.module.css';
 import { firestore } from '../../services/firebase';
 import convertTime from '../../functions/convertTime';
+import ImageLoader from '../reusable/ImageLoader';
 
 const PostComment = ({ comment, user, time }) => {
   const [current, setCurrent] = useState(null);
@@ -28,7 +29,12 @@ const PostComment = ({ comment, user, time }) => {
     <div className={Styles.commentContainer}>
       <div className={Styles.start}>
         <Link to={`/profile/${user}`}>
-          <img className={Styles.avatar} src={current?.profilePhoto} alt="" />
+          <ImageLoader
+            src={current?.profilePhoto}
+            width={'27px'}
+            height={'27px'}
+            borderRadius={'100%'}
+          />
         </Link>
         <p className={Styles.comment}>
           <span className={Styles.user}>

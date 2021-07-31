@@ -7,6 +7,7 @@ import { IoAddCircleOutline } from 'react-icons/io5';
 import ProfileFollowersModal from '../Profile/ProfileFollowersModal';
 import ProfileUpload from '../Profile/ProfileUpload';
 import stopScroll from '../../functions/stopScroll';
+import ImageLoader from '../reusable/ImageLoader';
 
 const Sidebar = ({ setNewPost }) => {
   const { userProfile } = useAuth();
@@ -51,12 +52,13 @@ const Sidebar = ({ setNewPost }) => {
           <Link to={`/profile/${userProfile.userID}`}>
             <div className={Styles.profileContainer}>
               <div className={Styles.imageContainer}>
-                <img
-                  onLoad={handleLoad}
-                  style={loading ? { opacity: 0 } : { opacity: 1 }}
-                  className={Styles.profileImg}
+                <ImageLoader
                   src={userProfile.profilePhoto}
-                  alt=""
+                  position={'absolute'}
+                  width={'80px'}
+                  height={'80px'}
+                  cursor={'pointer'}
+                  borderRadius={'100%'}
                 />
                 <img className={Styles.profileImgBlur} src={userProfile.profilePhoto} alt="" />
               </div>

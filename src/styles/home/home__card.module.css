@@ -91,45 +91,27 @@
   animation: 2s linear infinite gradientMove;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .imageLink {
   width: inherit;
   height: inherit;
 }
 
-.image {
-  position: relative;
+.imageContainer {
   width: 560px;
   height: 500px;
-  object-fit: cover;
-  display: block;
-  object-position: center;
-  cursor: pointer;
-  transition: opacity 1s;
-  opacity: 0;
 }
 
 .imageBlur {
   position: absolute;
   filter: blur(2em);
-  opacity: 0.3;
+  opacity: 0;
   width: inherit;
   height: inherit;
   object-fit: cover;
   display: block;
   object-position: center;
   z-index: -2;
+  animation: fade 1.5s forwards;
 }
 
 /*+ card__footer */
@@ -244,6 +226,15 @@
   cursor: pointer;
 }
 
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
 @media only screen and (max-width: 850px) {
   .footer input::placeholder {
     font-size: 13px;
@@ -261,16 +252,9 @@
     border-radius: 16px;
   }
 
-  .image {
-    position: relative;
+  .imageContainer {
     width: 340px;
     height: 340px;
-    object-fit: cover;
-    display: block;
-    object-position: center;
-    cursor: pointer;
-    transition: opacity 1s;
-    opacity: 0;
   }
 
   .imageBlur {

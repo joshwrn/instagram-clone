@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { firestore } from '../../services/firebase';
 import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
+import ImageLoader from '../reusable/ImageLoader';
 
 const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, currentUser }) => {
   const [current, setCurrent] = useState(null);
@@ -25,7 +26,9 @@ const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, cu
   return (
     <div className={Styles.listItem}>
       <div onClick={handleLink} className={Styles.start}>
-        <img className={Styles.avatar} src={current?.profilePhoto} alt="" />
+        <div className={Styles.avatarContainer}>
+          <ImageLoader src={current?.profilePhoto} borderRadius={'100%'} />
+        </div>
         <div className={Styles.names}>
           <p className={Styles.displayName}>{current?.displayName}</p>
           <p className={Styles.username}>@{current?.username}</p>

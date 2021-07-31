@@ -27,20 +27,10 @@
   height: inherit;
 }
 
-.image {
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  object-fit: cover;
-  display: block;
-  object-position: center;
-  cursor: pointer;
-}
-
 .blur {
   position: absolute;
   filter: blur(16px);
-  opacity: 0.5;
+  opacity: 0;
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -50,17 +40,13 @@
   transition: filter 0.35s, opacity 0.35s;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0) scale(1, 1);
-}
-
-.card:hover .blur {
-  filter: blur(21px);
-  opacity: 0.75;
+  animation: fade 1s 1s forwards;
 }
 
 .overlay {
   font-size: 24px;
   color: white;
-  z-index: 5;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.466);
   display: flex;
   align-items: center;
@@ -99,6 +85,15 @@
   display: block;
   object-position: top;
   cursor: pointer;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 /*! mobile */

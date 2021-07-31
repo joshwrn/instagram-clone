@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Styles from '../../styles/messages/message__item.module.css';
 import { Link } from 'react-router-dom';
+import ImageLoader from '../reusable/ImageLoader';
 
 const MessageItem = ({ user, message, userProfile, currentProfile, thread, index }) => {
   const [sent, setSent] = useState(false);

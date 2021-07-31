@@ -54,7 +54,6 @@ const HomeCardLike = ({ post, userID, setLikeState }) => {
               type: 'liked',
               post: post.id,
               time: Date.now(),
-              seen: false,
             }),
           });
         };

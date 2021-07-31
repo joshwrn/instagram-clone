@@ -42,7 +42,6 @@ const HomeCardComments = ({ Styles, userID, post }) => {
               comment: commentInput,
               post: post.id,
               time: time,
-              seen: false,
             }),
           });
         };

@@ -53,7 +53,6 @@ const PostLikeButton = ({ match, history, firestore, firestoreFieldValue, getCur
               type: 'liked',
               post: match.params.postid,
               time: Date.now(),
-              seen: false,
             }),
           });
         };
