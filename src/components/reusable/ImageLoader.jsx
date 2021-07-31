@@ -30,7 +30,16 @@ const ImageLoader = ({
   };
 
   const hideDiv = {
-    display: 'none',
+    width: width,
+    height: height,
+    position: position,
+    zIndex: '1',
+    background: 'var(--loading-gradient)',
+    backgroundSize: '200%',
+    animation: 'none',
+    display: 'block',
+    borderRadius: borderRadius,
+    boxShadow: shadow,
   };
 
   const image = {
@@ -47,13 +56,18 @@ const ImageLoader = ({
   };
 
   const hideImg = {
-    opacity: 0,
+    position: position,
+    width: width,
+    height: height,
+    opacity: '0',
+    borderRadius: borderRadius,
   };
 
   return (
     <>
-      <div style={!loading ? hideDiv : loadingDiv}></div>
-      <img style={!loading ? image : hideImg} onLoad={handleLoad} src={src} alt="" />
+      <div style={!loading ? hideDiv : loadingDiv}>
+        <img style={!loading ? image : hideImg} onLoad={handleLoad} src={src} alt="" />
+      </div>
     </>
   );
 };
