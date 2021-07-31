@@ -9,6 +9,7 @@ const ImageLoader = ({
   cursor = 'pointer',
   borderRadius = '0',
   shadow = 'none',
+  zIndex = '1',
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +21,7 @@ const ImageLoader = ({
     width: width,
     height: height,
     position: position,
-    zIndex: '1',
+    zIndex: zIndex,
     background: 'var(--loading-gradient)',
     backgroundSize: '200%',
     animation: '2s linear infinite gradientMove',
@@ -33,7 +34,7 @@ const ImageLoader = ({
     width: width,
     height: height,
     position: position,
-    zIndex: '1',
+    zIndex: zIndex,
     background: 'var(--loading-gradient)',
     backgroundSize: '200%',
     animation: 'none',

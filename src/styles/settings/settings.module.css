@@ -112,6 +112,7 @@
 }
 
 .profileOverlay {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,6 +123,8 @@
   border-radius: 100%;
   z-index: 1;
   transition: opacity 0.25s;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
 }
 
 .profileOverlayContainer:hover > .profileOverlay {

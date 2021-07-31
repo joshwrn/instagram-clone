@@ -130,7 +130,7 @@ const Settings = () => {
                 onChange={handlePhotoChange}
               />
               <div className={Styles.bannerContainer}>
-                <ImageLoader src={userProfile && userProfile.banner} />
+                <ImageLoader src={userProfile && userProfile.banner} zIndex={'0'} />
               </div>
               <div className={Styles.bannerOverlay}>
                 <IoPencil className={Styles.bannerIcon} />
@@ -148,11 +148,11 @@ const Settings = () => {
                   />
                   <ImageLoader
                     src={userProfile && userProfile.profilePhoto}
-                    position={'absolute'}
+                    position={'relative'}
                     borderRadius={'100%'}
                     width={'112px'}
                     height={'112px'}
-                    shadow={'0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.225)'}
+                    shadow={'0px 0.5em 1.5em 1px rgba(0, 0, 0, 0.1)'}
                   />
                   <div className={Styles.profileOverlay}>
                     <IoImage className={Styles.profileIcon} />
