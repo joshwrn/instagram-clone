@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
 
   function logout() {
     setUserProfile(null);
-    history.push('/instagram-clone');
+    history.push('/');
     return auth.signOut();
   }
 
@@ -153,7 +153,7 @@ export function AuthProvider({ children }) {
           auth.signOut();
         }
       } else {
-        history.push('/instagram-clone');
+        history.push('/');
       }
     }
   };

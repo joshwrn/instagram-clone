@@ -141,7 +141,7 @@ const SignUp = () => {
         <div className={Styles.signUp}>
           <div className={Styles.notFoundContainer}>
             <h3>Already Logged In</h3>
-            <Link to="/instagram-clone">
+            <Link to="/">
               <button className={Styles.returnButton}>Return Home</button>
             </Link>
           </div>
