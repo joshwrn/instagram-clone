@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/instagram-clone/static/css/main.d1879d36.chunk.css",
-    "main.js": "/instagram-clone/static/js/main.bd15ce17.chunk.js",
-    "main.js.map": "/instagram-clone/static/js/main.bd15ce17.chunk.js.map",
+    "main.js": "/instagram-clone/static/js/main.066c1ed5.chunk.js",
+    "main.js.map": "/instagram-clone/static/js/main.066c1ed5.chunk.js.map",
     "runtime-main.js": "/instagram-clone/static/js/runtime-main.710c3a47.js",
     "runtime-main.js.map": "/instagram-clone/static/js/runtime-main.710c3a47.js.map",
     "static/js/2.6948ae80.chunk.js": "/instagram-clone/static/js/2.6948ae80.chunk.js",
@@ -10,7 +10,7 @@
     "index.html": "/instagram-clone/index.html",
     "static/css/main.d1879d36.chunk.css.map": "/instagram-clone/static/css/main.d1879d36.chunk.css.map",
     "static/js/2.6948ae80.chunk.js.LICENSE.txt": "/instagram-clone/static/js/2.6948ae80.chunk.js.LICENSE.txt",
-    "static/js/main.bd15ce17.chunk.js.LICENSE.txt": "/instagram-clone/static/js/main.bd15ce17.chunk.js.LICENSE.txt",
+    "static/js/main.066c1ed5.chunk.js.LICENSE.txt": "/instagram-clone/static/js/main.066c1ed5.chunk.js.LICENSE.txt",
     "static/media/messages.module.css": "/instagram-clone/static/media/blur.76c967a9.jpg",
     "static/media/logo-2.6eea3ec0.png": "/instagram-clone/static/media/logo-2.6eea3ec0.png"
   },
@@ -18,6 +18,6 @@
     "static/js/runtime-main.710c3a47.js",
     "static/js/2.6948ae80.chunk.js",
     "static/css/main.d1879d36.chunk.css",
-    "static/js/main.bd15ce17.chunk.js"
+    "static/js/main.066c1ed5.chunk.js"
   ]
 }
