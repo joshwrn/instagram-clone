@@ -20,6 +20,13 @@
 * {
   margin: 0;
   padding: 0;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 img {
@@ -131,10 +138,3 @@ html {
     opacity: 1;
   }
 }
-
-/* .fade-in */
-/* img:not(.blur),
-.fade-in {
-  animation: ease-in fade 0.25s forwards;
-  opacity: 0;
-}*/
