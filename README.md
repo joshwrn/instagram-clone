@@ -68,3 +68,11 @@ In total it took me around 20 days to complete.
 ## Themes
 
 - light / dark mode.
+
+---
+
+## [Check it Out](https://joshwrn.github.io/instagram-clone/)
+
+---
+
+![dark-card](https://user-images.githubusercontent.com/81135679/127759890-8896ec32-eb43-4e55-8e03-d374663b0ca3.png)
