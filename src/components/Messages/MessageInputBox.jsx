@@ -3,7 +3,7 @@ import { IoSendOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
-const MessageInputBox = ({ currentMessage, currentProfile, Styles }) => {
+const MessageInputBox = ({ currentMessage, currentProfile, Styles, setCurrentIndex }) => {
   const [inputBox, setInputBox] = useState('');
   const { userProfile } = useAuth();
   //+ send
@@ -63,6 +63,7 @@ const MessageInputBox = ({ currentMessage, currentProfile, Styles }) => {
 
         await Promise.all([addUserThread(), addContactThread()]);
         setInputBox('');
+        setCurrentIndex(0);
       }
     }
   };

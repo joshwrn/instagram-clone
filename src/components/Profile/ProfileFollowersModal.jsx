@@ -30,7 +30,7 @@ const ProfileFollowers = ({
     currentTab === 'following' ? (current = following) : (current = followers);
 
     const reverse = current.slice(0).reverse();
-    const slice = reverse.slice(0, 20);
+    const slice = reverse.slice(0, 10);
     setList([...slice]);
   }, [currentTab]);
 
@@ -42,7 +42,7 @@ const ProfileFollowers = ({
     currentTab === 'following' ? (current = following) : (current = followers);
 
     const reverse = current.slice(0).reverse();
-    const sliced = reverse.slice(list.length, list.length + 20);
+    const sliced = reverse.slice(list.length, list.length + 10);
 
     const combine = [...list, ...sliced];
     setList(combine);

@@ -32,7 +32,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
   };
 
   const handleShare = () => {
-    copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
+    copyToClipboard(`${window.location.host}/#/post/${userID}/${post.id}`);
     getModal();
   };
 

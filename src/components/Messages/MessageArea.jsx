@@ -4,9 +4,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import MessageItem from './MessageItem';
 import useIntersect from '../../hooks/useIntersect';
 
-const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles }) => {
+const MessageArea = ({ currentMessage, currentProfile, setCurrentProfile, Styles, dummyRef }) => {
   const topRef = useRef();
-  const dummyRef = useRef(null);
   const [thread, setThread] = useState([]);
   const { userProfile } = useAuth();
   const [isFetching, setIsFetching] = useIntersect(topRef);

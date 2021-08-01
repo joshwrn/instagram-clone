@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { IoCreateOutline, IoChevronBackOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { firestore } from '../../services/firebase';
-import useIntersect from '../../hooks/useIntersect';
 import ImageLoader from '../reusable/ImageLoader';
 import MessagesContact from './MessagesContact';
 
@@ -14,51 +12,16 @@ const MessagesSidebar = ({
   currentIndex,
   scrollToBottom,
   handleCreate,
-  setMessages,
-  lastContact,
-  setLastContact,
 }) => {
   const [sidebar, setSidebar] = useState(true);
 
   const { userProfile } = useAuth();
-  const contactRef = useRef();
-  const [isFetching, setIsFetching] = useIntersect(contactRef);
 
   //! MOBILE Sidebar
   const handleSidebar = () => {
     sidebar ? setSidebar(false) : setSidebar(true);
     scrollToBottom();
   };
-
-  const getMore = async () => {
-    if (!lastContact) return;
-    let temp = [];
-    const arr = await firestore
-      .collection('users')
-      .doc(userProfile?.userID)
-      .collection('messages')
-      .orderBy('time', 'desc')
-      .startAfter(lastContact)
-      .limit(5)
-      .get();
-
-    arr.forEach((doc) => {
-      temp.push(doc.data());
-    });
-    setLastContact(arr.docs[arr.docs.length - 1]);
-    const combine = [...messages, ...temp];
-
-    setMessages(combine);
-  };
-
-  useEffect(() => {
-    if (!isFetching) return;
-    getMore();
-  }, [isFetching]);
-
-  useEffect(() => {
-    setIsFetching(false);
-  }, [messages]);
 
   return (
     <div className={sidebar ? Styles.sidebar : `${Styles.sidebar} ${Styles.hide}`}>
@@ -109,7 +72,6 @@ const MessagesSidebar = ({
             />
           );
         })}
-        <div ref={contactRef}></div>
       </div>
     </div>
   );

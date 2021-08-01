@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 import MessagesCreateMenu from './MessagesCreateMenu';
 import Styles from '../../styles/messages/messages.module.css';
@@ -12,18 +12,44 @@ const Messages = ({ match }) => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState();
   const [currentProfile, setCurrentProfile] = useState();
-  const [lastContact, setLastContact] = useState();
   const [currentIndex, setCurrentIndex] = useState();
   const [createModal, setCreateModal] = useState(false);
   const { userProfile } = useAuth();
   const dummyRef = useRef(null);
-  const contactRef = useRef();
+  const subRef = useRef();
+
+  const scrollToBottom = (type) => {
+    type === 'smooth'
+      ? dummyRef.current?.scrollIntoView({ behavior: 'smooth' })
+      : dummyRef.current?.scrollIntoView();
+  };
+
+  const listener = useCallback(
+    (event) => {
+      return firestore
+        .collection('users')
+        .doc(userProfile?.userID)
+        .collection('messages')
+        .orderBy('time', 'desc')
+        .onSnapshot((querySnapshot) => {
+          let temp = [];
+          querySnapshot.forEach((doc) => {
+            temp.push(doc.data());
+          });
+          setMessages(temp);
+          scrollToBottom('smooth');
+        });
+    },
+    [userProfile]
+  );
 
   const getCurrentMessage = (num) => {
     setCurrentIndex(num);
     setCurrentMessage(messages[num]);
+    scrollToBottom();
   };
 
+  // creating messages from profile
   useEffect(() => {
     if (match && messages) {
       const check = messages.some((item) => item.user === match.params.uid);
@@ -36,6 +62,7 @@ const Messages = ({ match }) => {
     }
   }, [messages, match]);
 
+  // on message update decide where
   useEffect(() => {
     if (!match) {
       if (!currentMessage && messages && userProfile) {
@@ -51,53 +78,21 @@ const Messages = ({ match }) => {
     }
   }, [messages]);
 
-  const scrollToBottom = (type) => {
-    type === 'smooth'
-      ? dummyRef.current?.scrollIntoView({ behavior: 'smooth' })
-      : dummyRef.current?.scrollIntoView();
-  };
+  useEffect(() => {
+    subRef.current = userProfile?.userID;
+  }, [userProfile]);
 
   useEffect(() => {
-    const unsubscribe = firestore
-      .collection('users')
-      .doc(userProfile?.userID)
-      .collection('messages')
-      .doc(messages[currentIndex]?.user)
-      .onSnapshot((doc) => {
-        setCurrentMessage(doc.data());
-        scrollToBottom('smooth');
-      });
+    let unsubscribe = listener();
     return () => {
       unsubscribe();
     };
-  }, [currentIndex]);
+  }, []);
 
   const handleCreate = (e) => {
     e.preventDefault();
     createModal ? setCreateModal(false) : setCreateModal(true);
   };
-
-  const getInitial = async () => {
-    if (!userProfile) return;
-    let temp = [];
-    const arr = await firestore
-      .collection('users')
-      .doc(userProfile.userID)
-      .collection('messages')
-      .orderBy('time', 'desc')
-      .limit(10)
-      .get();
-
-    arr.forEach((doc) => {
-      temp.push(doc.data());
-    });
-    setLastContact(arr.docs[arr.docs.length - 1]);
-    setMessages(temp);
-  };
-
-  useEffect(() => {
-    getInitial();
-  }, [userProfile]);
 
   return (
     <div className={Styles.messages}>
@@ -109,7 +104,6 @@ const Messages = ({ match }) => {
           setCurrentMessage={setCurrentMessage}
           userProfile={userProfile}
           handleCreate={handleCreate}
-          currentMessage={currentMessage}
           setCurrentIndex={setCurrentIndex}
           getCurrentMessage={getCurrentMessage}
         />
@@ -123,10 +117,6 @@ const Messages = ({ match }) => {
         getCurrentMessage={getCurrentMessage}
         scrollToBottom={scrollToBottom}
         handleCreate={handleCreate}
-        contactRef={contactRef}
-        setMessages={setMessages}
-        lastContact={lastContact}
-        setLastContact={setLastContact}
       />
       {/*//+ input */}
       <div className={Styles.main}>
@@ -141,15 +131,8 @@ const Messages = ({ match }) => {
           currentProfile={currentProfile}
           setCurrentProfile={setCurrentProfile}
           currentMessage={currentMessage}
-          setCurrentMessage={setCurrentMessage}
           Styles={Styles}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          match={match}
-          messages={messages}
-          setMessages={setMessages}
-          scrollToBottom={scrollToBottom}
-          getCurrentMessage={getCurrentMessage}
+          dummyRef={dummyRef}
         />
       </div>
     </div>

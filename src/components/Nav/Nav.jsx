@@ -34,6 +34,7 @@ const Nav = () => {
 
   const getModal = (e) => {
     e.preventDefault();
+    if (!userProfile) return history.push('/sign-up');
     renderModal ? setRenderModal(false) : setRenderModal(true);
     stopScroll(renderModal);
   };
@@ -156,12 +157,7 @@ const Nav = () => {
               <NavLink exact to={userProfile ? '/messages' : '/sign-up'}>
                 <IoChatbubbleOutline className={Styles.icon + ' ' + Styles.chat} />
               </NavLink>
-              <Link className={Styles.add} to={!userProfile && '/sign-up'}>
-                <IoAddCircleOutline
-                  onClick={userProfile && getModal}
-                  className={Styles.icon + ' ' + Styles.add}
-                />
-              </Link>
+              <IoAddCircleOutline onClick={getModal} className={Styles.icon + ' ' + Styles.add} />
               {/*//+ notifications */}
               <div onClick={handleNoti} className={Styles.notiContainer} ref={notiRef}>
                 <IoHeartOutline className={Styles.icon + ' ' + Styles.heart} />
