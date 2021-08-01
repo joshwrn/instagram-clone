@@ -7,7 +7,7 @@ import logo from '../../assets/img/logo/logo-2.png';
 import debounce from '../../functions/debounce';
 
 const SignUp = () => {
-  const { login, currentUser, firebaseRegister, anon } = useAuth();
+  const { login, currentUser, firebaseRegister } = useAuth();
   const [userInput, setUserInput] = useState('');
   const [userValue, setUserValue] = useState('');
   const [nameTaken, setNameTaken] = useState(false);
@@ -63,11 +63,6 @@ const SignUp = () => {
 
   const doNothing = (e) => {
     e.preventDefault();
-  };
-
-  const handleAnon = (e) => {
-    e.preventDefault();
-    anon();
   };
 
   let nameHelper = <p className={Styles.nameHelper}>Name must be 3-15 characters.</p>;
@@ -139,7 +134,6 @@ const SignUp = () => {
               <button onClick={login} className={Styles.loginButton}>
                 Login
               </button>
-              <button onClick={handleAnon}>anon</button>
             </div>
           </div>
         </div>

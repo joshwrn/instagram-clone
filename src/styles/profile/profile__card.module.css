@@ -47,7 +47,7 @@
   font-size: 24px;
   color: white;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.466);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,6 +93,14 @@
   }
   100% {
     opacity: 0.5;
+  }
+}
+
+/*! desktop */
+@media only screen and (min-width: 1500px) {
+  .card {
+    width: 20vw;
+    height: 20vw;
   }
 }
 

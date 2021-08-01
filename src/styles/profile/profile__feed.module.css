@@ -72,6 +72,13 @@
   border: var(--secondary-border);
 }
 
+/*! desktop */
+@media only screen and (min-width: 1500px) {
+  .feed {
+    grid-template-columns: repeat(auto-fill, 20vw);
+  }
+}
+
 /*! mobile */
 @media only screen and (max-width: 850px) {
   .feed {

@@ -215,7 +215,6 @@ input::placeholder:focus {
   .add {
     display: initial;
     font-size: 1.88rem !important;
-    transform: translateY(-2px);
   }
   .add path {
     stroke-width: 25px;

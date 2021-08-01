@@ -25,11 +25,8 @@ export function AuthProvider({ children }) {
 
   function logout() {
     setUserProfile(null);
+    history.push('/');
     return auth.signOut();
-  }
-
-  function anon() {
-    return auth.signInAnonymously();
   }
 
   // only check user on component mount
@@ -60,7 +57,6 @@ export function AuthProvider({ children }) {
           if (!userData.exists) {
             auth.signOut();
             setAttemptLogin(false);
-            //do something redirect idk
           }
         });
     }
@@ -72,7 +68,6 @@ export function AuthProvider({ children }) {
       const userData = await firestore.collection('users').doc(currentUser.uid).get();
       //# if user data does not exist
       if (!userData.exists) {
-        //currentUser.metadata.creationTime === currentUser.metadata.lastSignInTime
         let foundName;
         await firestore
           .collection('users')
@@ -85,7 +80,7 @@ export function AuthProvider({ children }) {
           });
 
         if (foundName === undefined) {
-          // const lower = currentUser.displayName.toLowerCase();
+          const lower = currentUser.displayName.toLowerCase();
           const currentTime = Date.now();
           //+ create the user account
           await firestore
@@ -93,7 +88,7 @@ export function AuthProvider({ children }) {
             .doc(currentUser.uid)
             .set({
               displayName: currentUser.displayName,
-              searchName: 'john',
+              searchName: lower,
               profilePhoto: currentUser.photoURL,
               banner:
                 'https://firebasestorage.googleapis.com/v0/b/insta-a107a.appspot.com/o/default-banner.jpg?alt=media&token=d3c53902-0e3a-4761-8705-8991db9d7b68',
@@ -170,7 +165,6 @@ export function AuthProvider({ children }) {
     login,
     logout,
     firebaseRegister,
-    anon,
   };
 
   // Takes all value props

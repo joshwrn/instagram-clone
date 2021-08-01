@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Instagram Redesign.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I built this project using react. Besides using create-react-app I built everything from scratch.
+In total it took me around 20 days to complete.
 
-## Available Scripts
+## [Live Demo](https://joshwrn.github.io/instagram-clone/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Fully functional
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![light-full](https://user-images.githubusercontent.com/81135679/127759363-ae01e135-041d-4f2e-9139-6e1a3ffed70b.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Post Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![light-post](https://user-images.githubusercontent.com/81135679/127759378-f87072b8-9640-4882-a9af-3e370b7452cb.png)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Realtime Messaging
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![dark-messages](https://user-images.githubusercontent.com/81135679/127759447-011a5111-8f03-4b75-9f0e-b9b77009649b.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## User Profiles
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![dark-profile](https://user-images.githubusercontent.com/81135679/127759580-7e0aa20d-d922-4e10-bc5f-9a7ab371cef0.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Sidebar
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![light-sidebar](https://user-images.githubusercontent.com/81135679/127759560-23af78b7-6327-4902-8512-c5ac58d8be8c.png)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Messaging
 
-### Code Splitting
+- Realtime messaging.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## User Profiles
 
-### Analyzing the Bundle Size
+- Edit profile.
+- Follow / Unfollow people.
+- add / delete posts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Posts
 
-### Making a Progressive Web App
+- Like posts.
+- Comment on posts.
+- Share posts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Notifications
 
-### Advanced Configuration
+- get notifications from other users
+- likes / comments / follows
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Search
 
-### Deployment
+- search for other users
+- updates as you type
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Themes
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- light / dark mode.

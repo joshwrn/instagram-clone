@@ -16,10 +16,9 @@ const LoginButton = () => {
       {!currentUser && (
         <div className={Styles.loginButtons}>
           <Link id="home__sidebar__sign-up" to="/sign-up">
-            <button className={Styles.google}>Sign Up</button>
+            <button className={Styles.signUp}>Sign Up</button>
           </Link>
-          or
-          <button className={Styles.google} onClick={handleLogin}>
+          <button className={Styles.login} onClick={handleLogin}>
             Login
           </button>
         </div>
