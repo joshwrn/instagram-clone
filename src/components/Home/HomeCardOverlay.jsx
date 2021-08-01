@@ -32,7 +32,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
   };
 
   const handleShare = () => {
-    copyToClipboard(`${window.location.host}/#/post/${userID}/${post.id}`);
+    copyToClipboard(`${window.location.href}post/${userID}/${post.id}`);
     getModal();
   };
 
@@ -47,7 +47,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
       <div className={Styles.share}>
         <input
           className={Styles.input}
-          value={`${window.location.host}/post/${userID}/${post.id}`}
+          value={`${window.location.href}post/${userID}/${post.id}`}
         />
         <button onClick={handleShare} className={Styles.button}>
           Copy Link
