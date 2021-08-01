@@ -121,7 +121,7 @@ const Nav = () => {
       ) : (
         <div className={Styles.nav}>
           <div className={Styles.inner}>
-            <Link to="/">
+            <Link to="/instagram-clone">
               <div className={Styles.logo}>
                 <img className={Styles.logoImg} src={logo} alt="" />
                 <h2>Instagram</h2>
@@ -150,7 +150,7 @@ const Nav = () => {
               ) : null}
             </div>
             <div className={Styles.icons}>
-              <NavLink exact to="/">
+              <NavLink exact to="/instagram-clone">
                 <IoHomeOutline className={Styles.icon + ' ' + Styles.home} />
               </NavLink>
               <NavLink exact to={userProfile ? '/messages' : '/sign-up'}>

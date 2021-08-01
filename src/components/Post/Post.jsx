@@ -113,7 +113,7 @@ const Post = ({ match }) => {
       <div className={Styles.post}>
         <div className={Styles.notFoundContainer}>
           <h3>Post Not Found</h3>
-          <Link to="/">
+          <Link to="/instagram-clone">
             <button className={Styles.returnButton}>Return Home</button>
           </Link>
         </div>

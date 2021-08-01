@@ -1,6 +1,6 @@
 # Instagram Redesign.
 
-I built this project using react. Besides using create-react-app I built everything from scratch.
+I built this project using react. Besides using create-react-app and firestore, I built everything from scratch.
 In total it took me around 20 days to complete.
 
 ## [Live Demo](https://joshwrn.github.io/instagram-clone/)
@@ -31,9 +31,9 @@ In total it took me around 20 days to complete.
 
 ---
 
-## Sidebar
+## Edit Profile
 
-![light-sidebar](https://user-images.githubusercontent.com/81135679/127759560-23af78b7-6327-4902-8512-c5ac58d8be8c.png)
+![light-sidebar](https://user-images.githubusercontent.com/81135679/127760114-352ef70b-d49c-4881-a8a2-ddf5068e8f3e.png)
 
 ---
 
@@ -57,17 +57,21 @@ In total it took me around 20 days to complete.
 
 ## Notifications
 
-- get notifications from other users
-- likes / comments / follows
+- get notifications from other users.
+- likes / comments / follows.
 
 ## Search
 
-- search for other users
-- updates as you type
+- search for other users.
+- updates as you type.
 
 ## Themes
 
 - light / dark mode.
+
+## Mobile
+
+- built for mobile as well.
 
 ---
 

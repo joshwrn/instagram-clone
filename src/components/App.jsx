@@ -22,7 +22,7 @@ function App() {
             <Nav />
             <Switch>
               {/*//+ Home */}
-              <Route exact path="/">
+              <Route exact path="/instagram-clone">
                 <Home />
               </Route>
               {/*//+ Messages */}
