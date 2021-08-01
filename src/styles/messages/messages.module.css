@@ -40,7 +40,7 @@
 
   height: 100px;
   width: 25vw;
-
+  z-index: 10;
   box-sizing: border-box;
   backdrop-filter: blur(50px);
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import {
   IoHomeOutline,
   IoChatbubbleOutline,
@@ -30,6 +30,7 @@ const Nav = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [renderModal, setRenderModal] = useState(false);
+  let history = useHistory();
 
   const getModal = (e) => {
     e.preventDefault();
@@ -43,6 +44,7 @@ const Nav = () => {
   };
 
   const handleNoti = async () => {
+    if (!userProfile) return history.push('/sign-up');
     if (openNoti) {
       setOpenNoti(false);
     } else {

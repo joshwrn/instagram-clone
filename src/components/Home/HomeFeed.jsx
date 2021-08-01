@@ -44,15 +44,14 @@ const HomeFeed = ({ newPost }) => {
         .limit(5)
         .get();
     } else if (type === 'none') {
+      const me = await firestore.collection('users').doc('e9x1NbFsE8VqLAqAKfbpHkH0QS93').get();
+      following.push(me.data());
+      // get people i follow
       userRef = await firestore
         .collection('users')
-        .where('followers', 'array-contains-any', [
-          'e9x1NbFsE8VqLAqAKfbpHkH0QS93',
-          'Jz9eufQ3zGUHVS4QnJrLVOHmRQ72',
-          'rivUGxnKCrZD6cwBOFzwyClaQZP2',
-        ])
+        .where('followers', 'array-contains', 'e9x1NbFsE8VqLAqAKfbpHkH0QS93')
         .orderBy('lastPostDate', 'desc')
-        .limit(5)
+        .limit(10)
         .get();
     }
 
@@ -60,7 +59,7 @@ const HomeFeed = ({ newPost }) => {
       following.push(user.data());
     });
 
-    if (!userRef.docs[userRef.docs.length - 1]) {
+    if (type === 'infinite' && !userRef.docs[userRef.docs.length - 1]) {
       setIsFetching(false);
       setNoPosts(true);
       noPostsRef.current = true;
@@ -92,9 +91,11 @@ const HomeFeed = ({ newPost }) => {
 
     // sort all the posts by date
     const sort = temp.sort((a, b) => b.data().date - a.data().date);
+
     return sort;
   };
 
+  //! get none
   const getNone = async () => {
     const sort = await firestoreFunction('none');
     //add to stored posts
@@ -110,6 +111,7 @@ const HomeFeed = ({ newPost }) => {
 
   //+ GET more from storage
   const createFeed = () => {
+    if (!stored) return;
     const sliced = stored.slice(feed.length, feed.length + 2);
     const combine = [...feed, ...sliced];
     setFeed(combine);

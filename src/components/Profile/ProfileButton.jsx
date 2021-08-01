@@ -3,7 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 
-const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObject }) => {
+const ProfileButton = ({
+  Styles,
+  currentUser,
+  match,
+  currentProfile,
+  getUserObject,
+  handleFollowers,
+}) => {
   const [following, setFollowing] = useState(false);
   const { userProfile } = useAuth();
   let history = useHistory();
@@ -20,7 +27,7 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
   //+ follow
   const handleFollow = async (e) => {
     e.preventDefault();
-
+    if (!userProfile) return history.push('/sign-up');
     const thisUser = firestore.collection('users').doc(match);
     const userRef = firestore.collection('users').doc(userProfile.userID);
 
@@ -58,6 +65,9 @@ const ProfileButton = ({ Styles, currentUser, match, currentProfile, getUserObje
 
   const handleLink = (e) => {
     e.preventDefault();
+    if (handleFollowers) {
+      handleFollowers(e);
+    }
     history.push('/settings');
   };
 

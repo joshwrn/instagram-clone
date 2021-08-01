@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavSearchItem from './NavSearchItem';
 import { firestore } from '../../services/firebase';
 import Styles from '../../styles/nav/nav__search.module.css';
@@ -22,7 +22,7 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
   }, []);
 
   useEffect(() => {
-    const searchFunc = async () => {
+    const search = async () => {
       if (searchInput !== '') {
         setLoading(true);
         let temp = [];
@@ -41,7 +41,7 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
         setLoading(false);
       }
     };
-    searchFunc();
+    search();
   }, [searchInput]);
 
   let searchInner;

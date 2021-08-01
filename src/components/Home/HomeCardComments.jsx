@@ -66,7 +66,7 @@ const HomeCardComments = ({ Styles, userID, post }) => {
         </Link>
         <div className={Styles.commentContainer}>
           {commentArr.map((item) => {
-            return <HomeCardCommentItem item={item} Styles={Styles} />;
+            return <HomeCardCommentItem key={item.time} item={item} Styles={Styles} />;
           })}
         </div>
       </div>

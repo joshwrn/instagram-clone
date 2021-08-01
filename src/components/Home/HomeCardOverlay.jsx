@@ -9,7 +9,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
   const { userProfile } = useAuth();
   let history = useHistory();
   //+ unfollow
-  const handleUnfollow = async (e) => {
+  const handleUnfollow = async () => {
     const thisUser = firestore.collection('users').doc(userID);
     const userRef = firestore.collection('users').doc(userProfile.userID);
 
@@ -17,8 +17,9 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
       followers: firestoreFieldValue.arrayRemove(userProfile.userID),
     });
     await userRef.update({
-      following: firestoreFieldValue.arrayRemove(userID.userID),
+      following: firestoreFieldValue.arrayRemove(userID),
     });
+    getModal();
   };
 
   const copyToClipboard = (content) => {
@@ -32,6 +33,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
 
   const handleShare = () => {
     copyToClipboard(`${window.location.host}/post/${userID}/${post.id}`);
+    getModal();
   };
 
   const openLink = (linkType) => {
@@ -67,24 +69,27 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
         </button>
       );
     }
-    if (userProfile.userID === userID) {
-      button = (
-        <button
-          onClick={() => {
-            openLink('settings');
-          }}
-          className={Styles.button}
-        >
-          Edit Profile
-        </button>
-      );
-    }
-    if (userProfile.userID !== userID) {
-      button = (
-        <button onClick={handleUnfollow} className={Styles.button}>
-          Unfollow
-        </button>
-      );
+
+    if (userProfile) {
+      if (userProfile.userID === userID) {
+        button = (
+          <button
+            onClick={() => {
+              openLink('settings');
+            }}
+            className={Styles.button}
+          >
+            Edit Profile
+          </button>
+        );
+      }
+      if (userProfile.userID !== userID) {
+        button = (
+          <button onClick={handleUnfollow} className={Styles.button}>
+            Unfollow
+          </button>
+        );
+      }
     }
   }
 

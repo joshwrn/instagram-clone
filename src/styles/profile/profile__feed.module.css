@@ -6,7 +6,7 @@
 
 .feed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 270px);
+  grid-template-columns: repeat(auto-fill, 300px);
   grid-template-rows: repeat(auto-fill, 1fr);
   padding: 0 0 100px 24px;
   justify-content: center;

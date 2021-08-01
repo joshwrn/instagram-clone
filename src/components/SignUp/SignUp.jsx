@@ -120,7 +120,7 @@ const SignUp = () => {
                 </div>
                 <div className={Styles.helperDiv}>{nameHelper}</div>
                 <button
-                  type={'submit'}
+                  type="submit"
                   onClick={!nameTaken && userInput.length > 2 ? handleSubmit : doNothing}
                   className={Styles.signUpButton}
                   style={

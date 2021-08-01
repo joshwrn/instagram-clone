@@ -18,7 +18,7 @@ const ProfileCard = ({ src, match, postId, likes, comments }) => {
               <p>{comments.length}</p>
             </div>
           </div>
-          <ImageLoader src={src} transition={1} borderRadius={'9px'} />
+          <ImageLoader src={src} borderRadius="9px" />
         </Link>
       </div>
       <img className={Styles.blur} src={src} alt="" />

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { IoCloseOutline, IoCloudUploadOutline } from 'react-icons/io5';
 import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage';
@@ -11,7 +10,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
   const [caption, setCaption] = useState('');
   const [uploading, setUploading] = useState(false);
   const [imageFile, setImageFile] = useState();
-  const { userProfile } = useAuth();
+  const { userProfile, getUserProfile } = useAuth();
 
   //+ after choosing a file store it in state
   const handleFileChange = (e) => {
@@ -71,6 +70,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
     //+ close modal and update state with new post
     getModal(e);
     setUploading(false);
+    getUserProfile();
     if (!setNewPost) return;
     setNewPost((prev) => prev + 1);
   };

@@ -51,7 +51,7 @@
 
 .time {
   color: var(--secondary-font-color);
-  z-index: 10;
+  z-index: 9;
   font-size: 11px;
 }
 

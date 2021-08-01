@@ -41,6 +41,7 @@ const ProfileFollowerListItem = ({ item, Styles, handleFollowers, currentTab, cu
         currentUser={currentUser}
         getUserObject={getUser}
         Styles={Styles}
+        handleFollowers={handleFollowers}
       />
     </div>
   );

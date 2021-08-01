@@ -3,9 +3,11 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { IoShareSocialOutline, IoTrashOutline } from 'react-icons/io5';
 import Styles from '../../styles/post/post__menu.module.css';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
   const [menuStatus, setMenuStatus] = useState(false);
+  const { getUserProfile } = useAuth();
   let history = useHistory();
   let menuRef = useRef();
 
@@ -35,6 +37,7 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
         },
         { merge: true }
       );
+    await getUserProfile();
     history.push(`/profile/${match.params.uid}`);
   };
 

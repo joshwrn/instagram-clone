@@ -3,21 +3,21 @@ const resizeImage = (e, setImageFile, setPostFile, width) => {
   if (file && file.size < 5000000) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function (event) {
+    reader.onload = (event) => {
       const imgEl = document.createElement('img');
       imgEl.src = event.target.result;
 
-      imgEl.onload = function (e) {
+      imgEl.onload = (img) => {
         const canvas = document.createElement('canvas');
         const MAX_WIDTH = width;
-        const scaleSize = MAX_WIDTH / e.target.width;
+        const scaleSize = MAX_WIDTH / img.target.width;
         canvas.width = MAX_WIDTH;
-        canvas.height = e.target.height * scaleSize;
+        canvas.height = img.target.height * scaleSize;
 
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img.target, 0, 0, canvas.width, canvas.height);
 
-        const srcEncoded = ctx.canvas.toDataURL(e.target, 'image/jpeg');
+        const srcEncoded = ctx.canvas.toDataURL(img.target, 'image/jpeg');
         if (setImageFile !== 'none') {
           setImageFile(srcEncoded);
         }

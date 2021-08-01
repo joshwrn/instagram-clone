@@ -19,7 +19,7 @@ const Profile = (props) => {
   const [newPost, setNewPost] = useState(0);
   const [noPosts, setNoPosts] = useState(false);
   const { match } = props;
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile } = useAuth();
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState([
     { image: 'avatar', loading: true },
@@ -84,6 +84,7 @@ const Profile = (props) => {
 
   //+ new message link
   const newMessage = () => {
+    if (!userProfile) return history.push('/sign-up');
     history.push(`/messages/${currentProfile.userID}`);
   };
 

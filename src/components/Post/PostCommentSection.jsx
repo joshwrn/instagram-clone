@@ -62,7 +62,7 @@ const PostCommentSection = ({ loaded, currentPost }) => {
             {comments.map((item) => {
               return (
                 <PostComment
-                  key={item.id}
+                  key={item.time}
                   time={item.time}
                   comment={item.comment}
                   user={item.user}

@@ -4,7 +4,7 @@
 
 .top {
   border-bottom: 1px solid rgba(124, 124, 124, 0.281);
-  height: fit-content;
+  height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@
   color: var(--secondary-font-color);
   margin-top: 1rem;
   font-size: 0.8rem;
-  word-break: break-all;
+  word-break: normal;
 }
 
 /*+ profile */

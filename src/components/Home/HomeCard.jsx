@@ -17,10 +17,13 @@ const Card = ({ post }) => {
   const [modal, setModal] = useState(false);
   const [type, setType] = useState();
 
-  useEffect(async () => {
-    const userRef = await firestore.collection('users').doc(userID).get();
-    setUser(userRef.data());
-    setLikeState(likes.length);
+  useEffect(() => {
+    const getUser = async () => {
+      const userRef = await firestore.collection('users').doc(userID).get();
+      setUser(userRef.data());
+      setLikeState(likes.length);
+    };
+    getUser();
   }, [post]);
 
   const getModal = (modalType) => {
