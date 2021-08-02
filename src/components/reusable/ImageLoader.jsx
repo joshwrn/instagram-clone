@@ -10,6 +10,7 @@ const ImageLoader = ({
   borderRadius = '0',
   shadow = 'none',
   zIndex = '1',
+  transform = 'initial',
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -25,9 +26,9 @@ const ImageLoader = ({
     background: 'var(--loading-gradient)',
     backgroundSize: '200%',
     animation: '2s linear infinite gradientMove',
-    display: 'block',
     borderRadius,
     boxShadow: shadow,
+    transform,
   };
 
   const hideDiv = {
@@ -41,6 +42,7 @@ const ImageLoader = ({
     display: 'block',
     borderRadius,
     boxShadow: shadow,
+    transform,
   };
 
   const image = {
@@ -54,6 +56,7 @@ const ImageLoader = ({
     transition: `opacity ${transition}s`,
     borderRadius,
     boxShadow: shadow,
+    transform,
   };
 
   const hideImg = {
@@ -62,6 +65,7 @@ const ImageLoader = ({
     height,
     opacity: '0',
     borderRadius,
+    transform,
   };
 
   return (

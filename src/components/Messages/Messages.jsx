@@ -24,24 +24,28 @@ const Messages = ({ match }) => {
       : dummyRef.current?.scrollIntoView();
   };
 
-  const listener = useCallback(
-    (event) => {
-      return firestore
-        .collection('users')
-        .doc(userProfile?.userID)
-        .collection('messages')
-        .orderBy('time', 'desc')
-        .onSnapshot((querySnapshot) => {
-          let temp = [];
-          querySnapshot.forEach((doc) => {
-            temp.push(doc.data());
-          });
-          setMessages(temp);
-          scrollToBottom('smooth');
+  const listener = useCallback(() => {
+    return firestore
+      .collection('users')
+      .doc(userProfile?.userID)
+      .collection('messages')
+      .orderBy('time', 'desc')
+      .onSnapshot((querySnapshot) => {
+        let temp = [];
+        querySnapshot.forEach((doc) => {
+          temp.push(doc.data());
         });
-    },
-    [userProfile]
-  );
+        setMessages(temp);
+        scrollToBottom('smooth');
+      });
+  }, [userProfile]);
+
+  useEffect(() => {
+    let unsubscribe = listener();
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const getCurrentMessage = (num) => {
     setCurrentIndex(num);
@@ -51,7 +55,7 @@ const Messages = ({ match }) => {
 
   // creating messages from profile
   useEffect(() => {
-    if (match && messages) {
+    if (match && messages && messages.length > 0) {
       const check = messages.some((item) => item.user === match.params.uid);
       if (!check) {
         setMessages([{ user: match.params.uid, time: Date.now(), messages: [] }, ...messages]);
@@ -81,13 +85,6 @@ const Messages = ({ match }) => {
   useEffect(() => {
     subRef.current = userProfile?.userID;
   }, [userProfile]);
-
-  useEffect(() => {
-    let unsubscribe = listener();
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   const handleCreate = (e) => {
     e.preventDefault();

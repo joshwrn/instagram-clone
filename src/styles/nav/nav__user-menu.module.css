@@ -72,8 +72,8 @@
   }
 
   .container:after {
-    bottom: -16px;
-    left: 60.5%;
+    bottom: -15px;
+    left: 68%;
     border: solid transparent;
     content: ' ';
     height: 0;
@@ -89,17 +89,32 @@
     position: relative;
     flex-direction: column;
     top: initial;
-    width: 100%;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: var(--primary-transparent-color);
-    min-height: 50px;
-    min-width: 200px;
-    max-height: 50vh;
+    width: 200px;
     overflow-y: scroll;
     border: var(--primary-border);
     backdrop-filter: none;
     border-radius: 0.25rem;
     box-sizing: border-box;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 0.5em;
+    color: var(--user-menu-font-color);
+    transition: background-color 0.25s;
+    font-size: 16px;
+    gap: 5px;
+  }
+
+  .icon {
+    font-size: 19px;
   }
 }

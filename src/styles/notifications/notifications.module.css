@@ -67,8 +67,8 @@
   }
 
   .container:after {
-    bottom: -16px;
-    left: 60.5%;
+    bottom: -15px;
+    left: 70%;
     border: solid transparent;
     content: ' ';
     height: 0;

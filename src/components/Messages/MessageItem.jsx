@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Styles from '../../styles/messages/message__item.module.css';
+import ImageLoader from '../reusable/ImageLoader';
 
 const MessageItem = ({ user, message, userProfile, currentProfile, thread, index }) => {
   const [sent, setSent] = useState(false);
@@ -32,7 +33,7 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubbleSent}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer} />
+        <div className={Styles.sideContainer} />
       </div>
     );
   }
@@ -43,9 +44,14 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubbleSent}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer}>
+        <div className={Styles.sideContainer}>
           <Link to={`/profile/${userProfile.userID}`}>
-            <img className={Styles.avatar} src={userProfile.profilePhoto} alt="user-avi" />
+            <ImageLoader
+              height="38px"
+              width="38px"
+              borderRadius="100%"
+              src={userProfile.profilePhoto}
+            />
           </Link>
         </div>
       </div>
@@ -58,7 +64,7 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubble}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer} />
+        <div className={Styles.sideContainer} />
       </div>
     );
   }
@@ -69,9 +75,14 @@ const MessageItem = ({ user, message, userProfile, currentProfile, thread, index
         <div className={Styles.bubble}>
           <p>{message}</p>
         </div>
-        <div className={Styles.avatarContainer}>
+        <div className={Styles.sideContainer}>
           <Link to={`/profile/${currentProfile?.userID}`}>
-            <img className={Styles.avatar} src={currentProfile?.profilePhoto} alt="contact-avi" />
+            <ImageLoader
+              height="38px"
+              width="38px"
+              borderRadius="100%"
+              src={currentProfile?.profilePhoto}
+            />
           </Link>
         </div>
       </div>

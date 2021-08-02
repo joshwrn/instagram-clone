@@ -112,17 +112,7 @@
   pointer-events: none;
 }
 
-.avatar {
-  border-radius: 100%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  position: relative;
-  object-fit: cover;
-  transform: translateY(5px);
-}
-
-.avatarContainer {
+.sideContainer {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -130,6 +120,12 @@
   height: 100%;
   background-color: var(--primary-background-color);
   overflow: hidden;
+}
+
+.sideContainer a {
+  display: flex;
+  align-items: center;
+  height: 49px;
 }
 
 @media only screen and (max-width: 850px) {
@@ -155,7 +151,10 @@
     transform: translateY(5px);
   }
 
-  .avatarContainer {
-    width: 30px;
+  .sideContainer {
+    width: 5px;
+  }
+  .sideContainer a {
+    display: none;
   }
 }

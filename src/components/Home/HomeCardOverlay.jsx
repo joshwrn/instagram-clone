@@ -48,6 +48,7 @@ const HomeCardOverlay = ({ getModal, type, userID, post }) => {
         <input
           className={Styles.input}
           value={`${window.location.href}post/${userID}/${post.id}`}
+          readOnly
         />
         <button onClick={handleShare} className={Styles.button}>
           Copy Link
