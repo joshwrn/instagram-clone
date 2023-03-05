@@ -71,7 +71,7 @@ const PostMenu = ({ ownPost, match, currentPost, firestore, storage }) => {
   let menu;
 
   menu = (
-    <div ref={menuRef} className={ownPost ? Styles.containerOwn : Styles.container}>
+    <div ref={menuRef} className={Styles.container}>
       <div className={Styles.inner}>
         <div onClick={handleShare} className={Styles.option}>
           <IoShareSocialOutline className={Styles.icon} />
