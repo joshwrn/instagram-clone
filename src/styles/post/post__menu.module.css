@@ -1,11 +1,5 @@
 .container {
   position: fixed;
-  transform: translateX(-78px) translateY(-40px);
-  width: 160px;
-}
-
-.containerOwn {
-  position: fixed;
   transform: translateX(-78px) translateY(-72px);
   width: 160px;
 }
@@ -68,12 +62,6 @@
 
 @media only screen and (max-width: 850px) {
   .container {
-    position: fixed;
-    transform: translateX(-175px) translateY(-10px);
-    width: 160px;
-  }
-
-  .containerOwn {
     position: fixed;
     transform: translateX(-175px) translateY(-25px);
     width: 160px;

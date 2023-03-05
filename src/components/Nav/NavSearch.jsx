@@ -56,7 +56,6 @@ const NavSearch = ({ searchInput, setOpenSearch, setSearchInput, searchRef }) =>
         {searchResults.length === 0 && <p className={Styles.noResults}>No Results</p>}
         {searchResults.map((item) => (
           <NavSearchItem
-            key={item.username}
             setSearchInput={setSearchInput}
             setOpenSearch={setOpenSearch}
             item={item}

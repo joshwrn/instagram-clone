@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Styles from '../../styles/nav/nav__search__item.module.css';
-import ImageLoader from '../reusable/ImageLoader';
 
 const NavSearchItem = ({ item, setOpenSearch, setSearchInput }) => {
   let history = useHistory();
@@ -16,7 +15,7 @@ const NavSearchItem = ({ item, setOpenSearch, setSearchInput }) => {
       <div className={Styles.container}>
         <div className={Styles.start}>
           <div className={Styles.avatarContainer}>
-            <ImageLoader borderRadius="100%" width="25px" height="25px" src={item.profilePhoto} />
+            <img className={Styles.avatar} src={item.profilePhoto} alt="" />
           </div>
           <div className={Styles.displayName}>{item.displayName}</div>
           <div className={Styles.type}>@{item.username}</div>
