@@ -7,6 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage';
 import ImageLoader from '../reusable/ImageLoader';
+import { clean } from '../../functions/clean';
 
 const Settings = () => {
   const { getUserProfile, currentUser, userProfile } = useAuth();
@@ -35,7 +36,7 @@ const Settings = () => {
     const userRef = firestore.collection('users').doc(currentUser.uid);
     await userRef.set(
       {
-        ['profilePhoto']: fileUrl,
+        'profilePhoto': fileUrl,
       },
       { merge: true }
     );
@@ -52,7 +53,7 @@ const Settings = () => {
     const userRef = firestore.collection('users').doc(currentUser.uid);
     await userRef.set(
       {
-        ['banner']: fileUrl,
+        'banner': fileUrl,
       },
       { merge: true }
     );
@@ -81,14 +82,14 @@ const Settings = () => {
     const { value } = e.target;
     const reg = /[^a-zA-Z' ']/gi; //replace all but these characters
     const newVal = value.replace(reg, '');
-    setUserInput(newVal);
+    setUserInput(clean(newVal));
   };
 
   //@ handle bio change
   const handleBioChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    setUserBio(value);
+    setUserBio(clean(value));
   };
 
   //+ handle save text
