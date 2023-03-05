@@ -4,6 +4,7 @@ import { firestore, storageRef } from '../../services/firebase';
 import resizeImage from '../../functions/resizeImage';
 import { useAuth } from '../../contexts/AuthContext';
 import Styles from '../../styles/profile/profile__upload.module.css';
+import { clean } from '../../functions/clean';
 
 const ProfileUpload = ({ getModal, setNewPost }) => {
   const [postFile, setPostFile] = useState(null);
@@ -25,7 +26,7 @@ const ProfileUpload = ({ getModal, setNewPost }) => {
   //+ set the caption
   const handleTextChange = (e) => {
     e.preventDefault();
-    setCaption(e.target.value);
+    setCaption(clean(e.target.value));
   };
 
   //+ submit the post

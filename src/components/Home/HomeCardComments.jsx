@@ -4,6 +4,7 @@ import { IoSendOutline } from 'react-icons/io5';
 import HomeCardCommentItem from './HomeCardCommentItem';
 import { useAuth } from '../../contexts/AuthContext';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
+import { clean } from '../../functions/clean';
 
 const HomeCardComments = ({ Styles, userID, post }) => {
   const [commentArr, setCommentArr] = useState([]);
@@ -53,7 +54,7 @@ const HomeCardComments = ({ Styles, userID, post }) => {
   };
 
   const handleChange = (e) => {
-    setCommentInput(e.target.value);
+    setCommentInput(clean(e.target.value));
   };
 
   return (

@@ -5,6 +5,7 @@ import { signIn, firestore } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import logo from '../../assets/img/logo/logo-2.png';
 import debounce from '../../functions/debounce';
+import { clean } from '../../functions/clean';
 
 const SignUp = () => {
   const { login, currentUser, firebaseRegister } = useAuth();
@@ -12,30 +13,26 @@ const SignUp = () => {
   const [userValue, setUserValue] = useState('');
   const [nameTaken, setNameTaken] = useState(false);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { value } = e.target;
-    const reg = /[^a-zA-Z\d]/gi;
-    const newVal = value.replace(reg, '');
-    const lower = newVal.toLowerCase();
-    setUserInput(lower);
-  };
   const debounceChange = useCallback(
-    debounce((nextValue) => handleChange(nextValue), 500),
+    debounce((nextValue) => setUserValue(nextValue), 500),
     []
   );
   const handleValue = (e) => {
-    setUserValue(e.target.value);
-    debounceChange(e);
+    const { value } = e.target;
+    const reg = /[^a-zA-Z\d]/gi;
+    const newVal = value.replace(reg, '');
+    let lower = newVal.toLowerCase();
+    setUserInput(clean(lower));
+    debounceChange(clean(lower));
   };
 
   useEffect(() => {
     let foundName;
     const check = async () => {
-      if (userInput.length > 2) {
+      if (userValue.length > 2) {
         await firestore
           .collection('users')
-          .where('username', '==', userInput)
+          .where('username', '==', userValue)
           .get()
           .then((searchResults) => {
             return searchResults.forEach((doc) => {
@@ -50,7 +47,7 @@ const SignUp = () => {
       }
     };
     check();
-  }, [userInput]);
+  }, [userValue]);
 
   useEffect(() => {
     return firebaseRegister(userInput);
@@ -110,7 +107,7 @@ const SignUp = () => {
                     placeholder="username"
                     maxLength="15"
                     minLength="3"
-                    value={userValue}
+                    value={userInput}
                   />
                 </div>
                 <div className={Styles.helperDiv}>{nameHelper}</div>
