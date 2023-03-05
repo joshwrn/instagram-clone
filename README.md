@@ -3,8 +3,6 @@
 I built this project using react. Besides using create-react-app and firestore, I built everything from scratch.
 In total it took me around 20 days to complete.
 
-I would not take notes from the code, as it was my first real project and was not very well written. I have many better projects now.
-
 ## [Live Demo](https://joshwrn.github.io/instagram-clone/)
 
 ---
