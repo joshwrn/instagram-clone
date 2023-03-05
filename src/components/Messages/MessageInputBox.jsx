@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { IoSendOutline } from 'react-icons/io5';
 import { firestore, firestoreFieldValue } from '../../services/firebase';
 import { useAuth } from '../../contexts/AuthContext';
-import { clean } from '../../functions/clean';
 
 const MessageInputBox = ({ currentMessage, currentProfile, Styles, setCurrentIndex }) => {
   const [inputBox, setInputBox] = useState('');
@@ -72,7 +71,7 @@ const MessageInputBox = ({ currentMessage, currentProfile, Styles, setCurrentInd
   const handleChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    setInputBox(clean(value));
+    setInputBox(value);
   };
 
   return (

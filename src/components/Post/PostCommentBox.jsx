@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { clean } from '../../functions/clean';
 
 const PostCommentBox = ({
   Styles,
@@ -19,7 +18,7 @@ const PostCommentBox = ({
   const handleChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    setInput(clean(value));
+    setInput(value);
   };
 
   const handleSubmit = async (e) => {
