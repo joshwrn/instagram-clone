@@ -1,5 +1,7 @@
 # Instagram Redesign.
 
+This was my first real project please don't take any notes from the code or how it's structured. I have much better projects now.
+
 I built this project using react. Besides using create-react-app and firestore, I built everything from scratch.
 In total it took me around 20 days to complete.
 
